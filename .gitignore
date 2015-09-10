@@ -1,0 +1,8 @@
+.DS_store
+out
+*.class
+.idea/workspace.xml
+.idea/*.iws
+.idea/tasks.xml
+build
+.gradle

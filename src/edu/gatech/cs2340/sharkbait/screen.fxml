@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+
+<SplitPane id="splitter_main" dividerPositions="0.8" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+    <AnchorPane id="canvas" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <Pane layoutX="199.0" layoutY="37.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ComboBox layoutX="25.0" layoutY="26.0" prefWidth="150.0" promptText="Difficulty" id="difficulty">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Beginner" />
+                              <String fx:value="Standard" />
+                              <String fx:value="Tournament" />
+                          </FXCollections>
+                      </items>
+
+                  </ComboBox>
+
+               </children>
+            </Pane>
+         </children></AnchorPane>
+    <AnchorPane id="info_pane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+  </items>
+</SplitPane>
