@@ -12,7 +12,7 @@
            orientation="VERTICAL" prefHeight="600.0" prefWidth="600.0"
            style="-fx-background-color: #ADD6AD;" xmlns="http://javafx.com/javafx/8"
            xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="edu.gatech.cs2340.sharkbait.ScreenController">
+           fx:controller="edu.gatech.cs2340.sharkbait.controller.ScreenController">
   <effect>
     <InnerShadow color="#00000020" height="60.07692307692308" radius="29.53846153846154" width="60.07692307692308" />
   </effect>
@@ -28,9 +28,6 @@
         </Button>
         <Pane layoutX="116.0" layoutY="145.0" prefHeight="200.0" prefWidth="366.0"
               style="-fx-background-color: #799679;" fx:id="configBox">
-            <!--<children>-->
-                <!--<fx:include fx:id="gameConfig" source="gameConfig.fxml"/>-->
-            <!--</children>-->
         </Pane>
         <Text fill="WHITE" layoutX="192.0" layoutY="105.0" strokeType="OUTSIDE"
               strokeWidth="0.0" text="Welcome to MULE!" fx:id="mainGameMessage">

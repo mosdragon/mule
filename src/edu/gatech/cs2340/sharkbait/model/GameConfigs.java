@@ -1,4 +1,8 @@
-package edu.gatech.cs2340.sharkbait;
+package edu.gatech.cs2340.sharkbait.model;
+
+import edu.gatech.cs2340.sharkbait.util.Difficulty;
+import edu.gatech.cs2340.sharkbait.util.MapType;
+import edu.gatech.cs2340.sharkbait.util.Player;
 
 import java.util.ArrayList;
 import java.util.List;

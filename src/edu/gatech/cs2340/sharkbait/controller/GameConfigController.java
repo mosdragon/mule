@@ -1,21 +1,17 @@
-package edu.gatech.cs2340.sharkbait;
+package edu.gatech.cs2340.sharkbait.controller;
 
+import edu.gatech.cs2340.sharkbait.model.GameConfigs;
+import edu.gatech.cs2340.sharkbait.util.Difficulty;
+import edu.gatech.cs2340.sharkbait.util.MapType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -47,35 +43,11 @@ public class GameConfigController implements Initializable {
                 MapType.RandomMap
         );
         mapChoice.setItems(mapOptions);
-
-//        nextButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                final GameConfigs configs = GameConfigs.getInstance();
-//                int numPlayers = (int) playerSlider.getValue();
-//                System.out.println(numPlayers);
-//                Difficulty difficulty = configDifficulty.getValue();
-//                System.out.println(difficulty);
-//                MapType mapType = mapChoice.getValue();
-//                System.out.println(mapType);
-////
-//                configs.setGameDifficulty(difficulty);
-//                configs.setMapType(mapType);
-//                configs.setNumPlayers(numPlayers);
-//
-//                configBox.getChildren().clear();
-//                try {
-//                    Parent root = FXMLLoader.load(getClass().getResource("gameConfig.fxml"));
-//                    configBox.getChildren().add(root);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        });
-
     }
 
+    /**
+     * Called externally, most likely by ScreenController
+     */
     public void saveConfigs() {
         final GameConfigs configs = GameConfigs.getInstance();
         int numPlayers = (int) playerSlider.getValue();

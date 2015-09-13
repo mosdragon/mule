@@ -1,5 +1,7 @@
-package edu.gatech.cs2340.sharkbait;
+package edu.gatech.cs2340.sharkbait.controller;
 
+import edu.gatech.cs2340.sharkbait.util.Player;
+import edu.gatech.cs2340.sharkbait.util.Race;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +16,7 @@ import java.util.ResourceBundle;
 /**
  * Created by osama on 9/13/15.
  */
-public class PlayerAddController implements Initializable {
+public class PlayerConfigController implements Initializable {
 
     @FXML private TextField selectName;
     @FXML private ComboBox<Color> selectColor;
@@ -45,6 +47,11 @@ public class PlayerAddController implements Initializable {
 
     }
 
+    /**
+     * Called by an external class to create a Player object and save it to configs
+     * @param defaultName, the default name for a player to be added
+     * @return the player object constructed from this controller's selectors
+     */
     public Player addPlayer(String defaultName) {
         if (selectName.getText().isEmpty()) {
             selectName.setText(defaultName);

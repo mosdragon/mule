@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait;
 
+import edu.gatech.cs2340.sharkbait.controller.ScreenController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,9 +13,9 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("screen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/screen.fxml"));
         Parent root = fxmlLoader.load();
-        controller = (ScreenController) fxmlLoader.getController();
+        controller = fxmlLoader.getController();
 
         primaryStage.setTitle("Hello World");
         Scene scene = new Scene(root);

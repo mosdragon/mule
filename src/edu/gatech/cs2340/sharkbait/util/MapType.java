@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.sharkbait;
+package edu.gatech.cs2340.sharkbait.util;
 
 /**
  * Created by osama on 9/12/15.

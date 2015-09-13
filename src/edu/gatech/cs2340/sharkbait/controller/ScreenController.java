@@ -1,5 +1,7 @@
-package edu.gatech.cs2340.sharkbait;
+package edu.gatech.cs2340.sharkbait.controller;
 
+import edu.gatech.cs2340.sharkbait.model.GameConfigs;
+import edu.gatech.cs2340.sharkbait.util.Player;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import javafx.scene.text.Text;
@@ -32,6 +33,9 @@ public class ScreenController implements Initializable {
     private SplitPane infoPane;
     @FXML private Text mainGameMessage;
 
+    /**
+     * Possible game states. Must find a better way to implement this
+     */
     private enum State {
         NotSConfigured, ConfigGame, ConfigPlayers, BeginGame
     }
@@ -39,7 +43,7 @@ public class ScreenController implements Initializable {
     private State gameState;
 
     private GameConfigController gameConfigController;
-    private List<PlayerAddController> playerAddControllers;
+    private List<PlayerConfigController> playerConfigControllers;
 
 
     @Override
@@ -47,28 +51,17 @@ public class ScreenController implements Initializable {
         gameState = State.NotSConfigured;
         nextButton.setText("Configure Game");
 
-        playerAddControllers = new ArrayList<>();
+        playerConfigControllers = new ArrayList<>();
 
         nextButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-//                final GameConfigs configs = GameConfigs.getInstance();
-//                int numPlayers = (int) playerSlider.getValue();
-//                System.out.println(numPlayers);
-//                Difficulty difficulty = configDifficulty.getValue();
-//                System.out.println(difficulty);
-//                MapType mapType = mapChoice.getValue();
-//                System.out.println(mapType);
-//
-//                configs.setGameDifficulty(difficulty);
-//                configs.setMapType(mapType);
-//                configs.setNumPlayers(numPlayers);
 
                 configBox.getChildren().clear();
                 if (gameState == State.NotSConfigured) {
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                                .getResource("gameConfig.fxml"));
+                                .getResource("../view/gameConfig.fxml"));
 
                         Parent root = fxmlLoader.load();
                         gameConfigController = fxmlLoader.getController();
@@ -82,27 +75,22 @@ public class ScreenController implements Initializable {
                 }
                 else if (gameState == State.ConfigGame) {
                     try {
-//                        Node root = FXMLLoader.load(getClass().getResource(
-//                                "info_pane_holder.fxml"));
-//
-//                        infoPane.getChildren().add(root);
+
                         GameConfigs configs = GameConfigs.getInstance();
                         gameConfigController.saveConfigs();
                         int numPlayers = configs.getNumPlayers();
-//                        <fx:include source="players.fxml" fx:id="player1"/>
-//
+
                         for (int i = 1; i <= numPlayers; i++) {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                                    .getResource("players.fxml"));
+                                    .getResource("../view/players.fxml"));
                             Node playerPrompt = fxmlLoader.load();
-                            PlayerAddController playerAddController = fxmlLoader.getController();
+                            PlayerConfigController playerConfigController = fxmlLoader.getController();
 
-                            playerAddControllers.add(playerAddController);
+                            playerConfigControllers.add(playerConfigController);
 
                             playerPrompt.setId("pane" + i);
                             System.out.println(playerPrompt.getId());
 
-//                            infoPane.getChildrenUnmodifiable();
                             infoPane.getItems().add(playerPrompt);
 
                         }
@@ -115,10 +103,10 @@ public class ScreenController implements Initializable {
                     nextButton.setText("Begin Game");
                 } else if (gameState == State.ConfigPlayers) {
 
-                    List<Player> players = new ArrayList<Player>();
+                    List<Player> players = new ArrayList<>();
 
                     int i = 1;
-                    for (PlayerAddController controller : playerAddControllers) {
+                    for (PlayerConfigController controller : playerConfigControllers) {
                         String defaultName = "Player" + i;
                         players.add(controller.addPlayer(defaultName));
                         i++;
@@ -132,6 +120,9 @@ public class ScreenController implements Initializable {
                     nextButton.setVisible(false);
                     gameState = State.BeginGame;
                     mainGameMessage.setText("Loading your game...");
+
+                    gameState = State.BeginGame;
+
                 }
 
             }
