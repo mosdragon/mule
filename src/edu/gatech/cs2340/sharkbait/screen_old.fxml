@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+
+<SplitPane fx:id="splitter_main" dividerPositions="0.8" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gatech.cs2340.sharkbait.GameConfigController">
+  <items>
+    <AnchorPane fx:id="canvas" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+             <!--<TitledPane text="SomePane" />-->
+
+            <Pane fx:id="config_pane" layoutX="199.0" layoutY="37.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ComboBox fx:id="configDifficulty" layoutX="25.0" layoutY="26.0" prefWidth="150.0" promptText="Difficulty" />
+                  <Slider fx:id="playerSlider" blockIncrement="1.0" layoutX="30.0" layoutY="92.0" majorTickUnit="1.0" max="4.0" min="2.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                  <ComboBox fx:id="mapChoice" layoutX="25.0" layoutY="160.0" prefWidth="150.0"
+                            promptText="Map Type" />
+
+               </children>
+            </Pane>
+         </children></AnchorPane>
+    <AnchorPane id="info_pane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+  </items>
+</SplitPane>

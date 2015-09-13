@@ -7,20 +7,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<SplitPane id="splitter_main" disable="false" dividerPositions="0.81438127090301" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #ADD6AD;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
-  <effect>
-    <InnerShadow color="#00000020" height="60.07692307692308" radius="29.53846153846154" width="60.07692307692308" />
-  </effect>
-  <items>
-    <AnchorPane id="canvas" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="">
-      <children>
-        <Text fill="WHITE" layoutX="107.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONGRATS! Game is Configured!">
-          <font>
+<Pane xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.gatech.cs2340.sharkbait.GameConfigController">
+    <Text fill="WHITE" layoutX="107.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONGRATS! Game is Configured!">
+        <font>
             <Font size="24.0" />
-          </font>
-        </Text>
-      </children>
-    </AnchorPane>
-    <AnchorPane id="info_pane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #799679;" />
-  </items>
-</SplitPane>
+        </font>
+    </Text>
+</Pane>

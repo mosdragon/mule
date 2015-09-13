@@ -1,15 +1,17 @@
 package edu.gatech.cs2340.sharkbait;
 
+import javafx.scene.paint.Color;
+
 /**
  * Created by osama on 9/12/15.
  */
 public class Player {
 
     private String name;
-    private String color;
+    private Color color;
     private Race race;
 
-    public Player(String name, String color, Race race) {
+    public Player(String name, Color color, Race race) {
         this.name = name;
         this.color = color;
         this.race = race;
@@ -23,11 +25,11 @@ public class Player {
         this.name = name;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
