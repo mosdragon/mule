@@ -6,3 +6,5 @@ out
 .idea/tasks.xml
 build
 .gradle
+.idea/codeStyleSettings.xml
+
