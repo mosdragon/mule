@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane id="splitter_main" disable="false" dividerPositions="0.81438127090301" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #ADD6AD;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <effect>
+    <InnerShadow color="#00000020" height="60.07692307692308" radius="29.53846153846154" width="60.07692307692308" />
+  </effect>
+  <items>
+    <AnchorPane id="canvas" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="">
+      <children>
+        <Pane layoutX="116.0" layoutY="145.0" prefHeight="200.0" prefWidth="366.0" style="-fx-background-color: #799679;">
+          <children>
+            <ComboBox id="selectRace" disable="false" layoutX="153.0" layoutY="87.0" prefWidth="150.0" promptText="Select Race" style="-fx-background-color: #DDE1DD;">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Race #1" />
+                  <String fx:value="Race #2" />
+                  <String fx:value="Race #3" />
+                  <String fx:value="Race #4" />
+                </FXCollections>
+              </items>
+            </ComboBox>
+            <ComboBox id="selectColor" disable="false" layoutX="153.0" layoutY="133.0" prefWidth="150.0" promptText="Select Color" style="-fx-background-color: #DDE1DD;">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Red" />
+                  <String fx:value="Green" />
+                  <String fx:value="Blue" />
+                  <String fx:value="White" />
+                </FXCollections>
+              </items>
+            </ComboBox>
+            <Text fill="WHITE" layoutX="55.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Name:" textAlignment="RIGHT">
+              <font>
+                <Font name="System Bold" size="13.0" fx:id="x1" />
+              </font>
+            </Text>
+            <Text fill="WHITE" font="$x1" layoutX="107.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Race:" textAlignment="RIGHT" />
+            <Text fill="WHITE" font="$x1" layoutX="102.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color:" textAlignment="RIGHT" />
+            <TextField id="selectName" layoutX="153.0" layoutY="39.0" prefWidth="150.0" />
+          </children>
+          <effect>
+            <InnerShadow blurType="GAUSSIAN" color="#0000001e" height="116.9160839160839" radius="57.95804195804195" width="116.9160839160839" />
+          </effect>
+        </Pane>
+        <Button id="startGameButton" layoutX="226.0" layoutY="400.0" mnemonicParsing="false" style="-fx-background-color: #DDE1DD;" text="Start Game!">
+          <font>
+            <Font size="20.0" />
+          </font>
+        </Button>
+        <Text fill="WHITE" layoutX="146.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Configure Your Character">
+          <font>
+            <Font size="24.0" />
+          </font>
+        </Text>
+      </children>
+    </AnchorPane>
+    <AnchorPane id="info_pane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #799679;" />
+  </items>
+</SplitPane>

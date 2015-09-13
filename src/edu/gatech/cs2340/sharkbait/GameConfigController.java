@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,43 +18,46 @@ import java.util.ResourceBundle;
 public class GameConfigController implements Initializable {
 
     @FXML
-    private ComboBox<String> configDifficulty;
+    private ComboBox<Difficulty> configDifficulty;
     @FXML
-    private ComboBox<String> mapChoice;
+    private ComboBox<MapType> mapChoice;
     @FXML
     private Slider playerSlider;
-
     @FXML
-    private Button startButton;
+    private Button next;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        ObservableList<String> difficultyOptions = FXCollections.observableArrayList(
-                "Beginner",
-                "Standard",
-                "Tournament"
+        ObservableList<Difficulty> difficultyOptions = FXCollections.observableArrayList(
+                Difficulty.Beginner,
+                Difficulty.Standard,
+                Difficulty.Tournament
         );
         configDifficulty.setItems(difficultyOptions);
 
-        ObservableList<String> mapOptions = FXCollections.observableArrayList(
-                "Standard",
-                "Randomized"
+        ObservableList<MapType> mapOptions = FXCollections.observableArrayList(
+                MapType.StandardMap,
+                MapType.RandomMap
         );
         mapChoice.setItems(mapOptions);
 
-        int val = (int) playerSlider.getValue();
+        next.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                final GameConfigs configs = GameConfigs.getInstance();
+                int numPlayers = (int) playerSlider.getValue();
+                System.out.println(numPlayers);
+                Difficulty difficulty = configDifficulty.getValue();
+                System.out.println(difficulty);
+                MapType mapType = mapChoice.getValue();
+                System.out.println(mapType);
 
-        System.out.println(val);
-
-//        playerSlider.setOnDragDropped(new EventHandler<DragEvent>() {
-//            @Override
-//            public void handle(DragEvent event) {
-//                System.out.println("Moved");
-//                System.out.println(playerSlider.getValue());
-//            }
-//        });
-
+                configs.setGameDifficulty(difficulty);
+                configs.setMapType(mapType);
+                configs.setNumPlayers(numPlayers);
+            }
+        });
 
     }
 }

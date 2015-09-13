@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.gatech.cs2340.sharkbait.GameConfigController">
+    <ComboBox layoutX="153.0" layoutY="39.0" prefWidth="150.0"
+              promptText="Select Difficulty" style="-fx-background-color: #DDE1DD;"
+              fx:id="configDifficulty" />
+
+    <ComboBox disable="false" layoutX="153.0" layoutY="87.0"
+              prefWidth="150.0" promptText="Select Map Type"
+              style="-fx-background-color: #DDE1DD;" fx:id="mapChoice" />
+
+    <Slider fx:id="playerSlider" blockIncrement="1.0" layoutX="163.0" layoutY="133.0"
+            majorTickUnit="1.0" max="4.0" min="2.0" minorTickCount="0"
+            showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+
+    <Text fill="WHITE" layoutX="78.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty:" textAlignment="RIGHT">
+    <font>
+        <Font name="System Bold" size="13.0" fx:id="x1" />
+    </font>
+    </Text>
+    <Text fill="WHITE" font="$x1" layoutX="75.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map Type:" textAlignment="RIGHT" />
+    <Text fill="WHITE" font="$x1" layoutX="82.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Players:" textAlignment="RIGHT" />
+    </Pane>
