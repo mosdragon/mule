@@ -23,10 +23,7 @@ public class GameConfigController implements Initializable {
     private ComboBox<MapType> mapChoice;
     @FXML
     private Slider playerSlider;
-    @FXML
-    private Button nextButton;
-    @FXML
-    private Pane configBox;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

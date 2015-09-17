@@ -37,7 +37,7 @@ public class ScreenController implements Initializable {
      * Possible game states. Must find a better way to implement this
      */
     private enum State {
-        NotSConfigured, ConfigGame, ConfigPlayers, BeginGame
+        NotConfigured, ConfigGame, ConfigPlayers, BeginGame
     }
 
     private State gameState;
@@ -48,7 +48,7 @@ public class ScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        gameState = State.NotSConfigured;
+        gameState = State.NotConfigured;
         nextButton.setText("Configure Game");
 
         playerConfigControllers = new ArrayList<>();
@@ -58,7 +58,7 @@ public class ScreenController implements Initializable {
             public void handle(MouseEvent event) {
 
                 configBox.getChildren().clear();
-                if (gameState == State.NotSConfigured) {
+                if (gameState == State.NotConfigured) {
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
                                 .getResource("../view/gameConfig.fxml"));
@@ -108,7 +108,7 @@ public class ScreenController implements Initializable {
                     int i = 1;
                     for (PlayerConfigController controller : playerConfigControllers) {
                         String defaultName = "Player" + i;
-                        players.add(controller.addPlayer(defaultName));
+                        players.add(controller.makePlayer(defaultName));
                         i++;
                     }
 
@@ -120,9 +120,6 @@ public class ScreenController implements Initializable {
                     nextButton.setVisible(false);
                     gameState = State.BeginGame;
                     mainGameMessage.setText("Loading your game...");
-
-                    gameState = State.BeginGame;
-
                 }
 
             }

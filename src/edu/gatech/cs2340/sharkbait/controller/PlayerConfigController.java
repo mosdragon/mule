@@ -52,14 +52,13 @@ public class PlayerConfigController implements Initializable {
      * @param defaultName, the default name for a player to be added
      * @return the player object constructed from this controller's selectors
      */
-    public Player addPlayer(String defaultName) {
+    public Player makePlayer(String defaultName) {
         if (selectName.getText().isEmpty()) {
             selectName.setText(defaultName);
         }
         Player player = new Player(selectName.getText(),
                 selectColor.getValue(),
-                selectRace
-                .getValue());
+                selectRace.getValue());
 
         System.out.println(defaultName);
         System.out.println(player.getName());
