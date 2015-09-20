@@ -13,7 +13,7 @@ sourceSets {
     main {
         resources {
             srcDirs = ["src/main/java"]
-            includes = ["**/*.fxml"]
+            includes = ["**/*.edu.gatech.cs2340.sharkbait.view.fxml"]
         }
     }
 }

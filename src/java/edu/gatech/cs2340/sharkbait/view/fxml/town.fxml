@@ -12,12 +12,13 @@
       <children>
         <ImageView id="townBG" fitHeight="600.0" fitWidth="600.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/Town%20Background.jpeg" />
+            <!--<Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/Town%20Background.jpeg" />-->
+            <Image url="@../images/townBackground.jpeg" />
           </image>
         </ImageView>
         <ImageView id="oreStore" fitHeight="120.0" fitWidth="120.0" layoutX="33.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/ore.jpeg" />
+            <Image url="@../images/ore.jpeg" />
           </image>
         </ImageView>
         <ImageView id="energyStore" fitHeight="120.0" fitWidth="120.0" layoutX="240.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">

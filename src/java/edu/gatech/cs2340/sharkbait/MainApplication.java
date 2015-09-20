@@ -11,9 +11,13 @@ public class MainApplication extends Application {
 
     private ScreenController controller;
 
+    public static String BASE = "../../../../..";
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/town.fxml"));
+//        ResourceBundle.getBundle();
+//        getClass().getResource();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/fxml/map.fxml"));
         Parent root = fxmlLoader.load();
         controller = fxmlLoader.getController();
 
