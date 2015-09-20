@@ -22,8 +22,12 @@ public class MainApplication extends Application {
         controller = fxmlLoader.getController();
 
         primaryStage.setTitle("Hello World");
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
+        Scene configScene = new Scene(root);
+        primaryStage.setScene(configScene);
+
+//        Parent map = null;
+//        Scene mapScene = new Scene(map);
+//        primaryStage.setScene(mapScene);
 
         primaryStage.show();
     }
