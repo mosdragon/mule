@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="607.0" prefWidth="1080.0">
+      <children>
+        <ImageView id="tile00" fitHeight="120.0" fitWidth="120.0" layoutX="0.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile10" fitHeight="120.0" fitWidth="120.0" layoutX="120.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile02" fitHeight="120.0" fitWidth="120.0" layoutX="240.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@mountain1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile03" fitHeight="120.0" fitWidth="120.0" layoutX="360.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile04" fitHeight="120.0" fitWidth="120.0" layoutX="480.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@river.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile05" fitHeight="120.0" fitWidth="120.0" layoutX="600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile06" fitHeight="120.0" fitWidth="120.0" layoutX="720.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@mountain3.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile07" fitHeight="120.0" fitWidth="120.0" layoutX="840.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile08" fitHeight="120.0" fitWidth="120.0" layoutX="960.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile14" fitHeight="120.0" fitWidth="120.0" layoutX="480.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@river.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile24" fitHeight="120.0" fitWidth="120.0" layoutX="480.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@town.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile34" fitHeight="120.0" fitWidth="120.0" layoutX="480.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@river.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile44" fitHeight="120.0" fitWidth="120.0" layoutX="480.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@river.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile10" fitHeight="120.0" fitWidth="120.0" layoutX="0.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile11" fitHeight="120.0" fitWidth="120.0" layoutX="120.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@mountain1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile12" fitHeight="120.0" fitWidth="120.0" layoutX="240.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile13" fitHeight="120.0" fitWidth="120.0" layoutX="360.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile15" fitHeight="120.0" fitWidth="120.0" layoutX="600.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile16" fitHeight="120.0" fitWidth="120.0" layoutX="720.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile17" fitHeight="120.0" fitWidth="120.0" layoutX="840.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile18" fitHeight="120.0" fitWidth="120.0" layoutX="960.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@mountain3.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile20" fitHeight="120.0" fitWidth="120.0" layoutX="0.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@mountain3.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile21" fitHeight="120.0" fitWidth="120.0" layoutX="120.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile22" fitHeight="120.0" fitWidth="120.0" layoutX="240.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile23" fitHeight="120.0" fitWidth="120.0" layoutX="360.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile25" fitHeight="120.0" fitWidth="120.0" layoutX="600.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile26" fitHeight="120.0" fitWidth="120.0" layoutX="720.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile27" fitHeight="120.0" fitWidth="120.0" layoutX="840.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile28" fitHeight="120.0" fitWidth="120.0" layoutX="960.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@mountain1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile30" fitHeight="120.0" fitWidth="120.0" layoutX="0.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile31" fitHeight="120.0" fitWidth="120.0" layoutX="120.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@mountain2.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile32" fitHeight="120.0" fitWidth="120.0" layoutX="240.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile33" fitHeight="120.0" fitWidth="120.0" layoutX="360.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile35" fitHeight="120.0" fitWidth="120.0" layoutX="600.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile38" fitHeight="120.0" fitWidth="120.0" layoutX="960.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile37" fitHeight="120.0" fitWidth="120.0" layoutX="840.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile36" fitHeight="120.0" fitWidth="120.0" layoutX="720.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@mountain2.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile40" fitHeight="120.0" fitWidth="120.0" layoutX="0.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile41" fitHeight="120.0" fitWidth="120.0" layoutX="120.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile42" fitHeight="120.0" fitWidth="120.0" layoutX="240.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@mountain2.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile34" fitHeight="120.0" fitWidth="120.0" layoutX="360.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile45" fitHeight="120.0" fitWidth="120.0" layoutX="600.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile46" fitHeight="120.0" fitWidth="120.0" layoutX="720.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile47" fitHeight="120.0" fitWidth="120.0" layoutX="840.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@plains1.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="tile48" fitHeight="120.0" fitWidth="120.0" layoutX="960.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@mountain2.jpeg" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

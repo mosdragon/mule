@@ -9,7 +9,7 @@
 
 <SplitPane id="splitter_main" dividerPositions="0.7993311036789298" maxHeight="-Infinity"
            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
-           orientation="VERTICAL" prefHeight="600.0" prefWidth="600.0"
+           orientation="VERTICAL" prefHeight="600.0" prefWidth="1080.0"
            style="-fx-background-color: #ADD6AD;" xmlns="http://javafx.com/javafx/8"
            xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="edu.gatech.cs2340.sharkbait.controller.ScreenController">
@@ -19,17 +19,17 @@
   <items>
     <AnchorPane id="canvas" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="">
       <children>
-        <Button id="nextButton" layoutX="250.0" layoutY="395.0" mnemonicParsing="false"
-                prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #DDE1DD;"
+        <Button id="nextButton" layoutX="440.0" layoutY="395.0" mnemonicParsing="false"
+                prefHeight="-1.0" prefWidth="200" style="-fx-background-color: #DDE1DD;"
                 text="Next" fx:id="nextButton">
           <font>
             <Font size="20.0" />
           </font>
         </Button>
-        <Pane layoutX="116.0" layoutY="145.0" prefHeight="200.0" prefWidth="366.0"
+        <Pane layoutX="350.0" layoutY="145.0" prefHeight="200.0" prefWidth="366.0"
               style="-fx-background-color: #799679;" fx:id="configBox">
         </Pane>
-        <Text fill="WHITE" layoutX="192.0" layoutY="105.0" strokeType="OUTSIDE"
+        <Text fill="WHITE" layoutX="430.0" layoutY="105.0" strokeType="OUTSIDE"
               strokeWidth="0.0" text="Welcome to MULE!" fx:id="mainGameMessage">
           <font>
             <Font size="24.0" />
@@ -42,7 +42,7 @@
 
         <children>
 
-            <SplitPane dividerPositions="0.25, 0.5, 0.75" prefHeight="107.0" prefWidth="598.0"
+            <SplitPane dividerPositions="0.25, 0.5, 0.75" prefHeight="120.0" prefWidth="1080"
                        xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
                        fx:id="infoPane">
             </SplitPane>

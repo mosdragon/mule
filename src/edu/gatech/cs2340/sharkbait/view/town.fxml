@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="600.0">
+      <children>
+        <ImageView id="townBG" fitHeight="600.0" fitWidth="600.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/Town%20Background.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="oreStore" fitHeight="120.0" fitWidth="120.0" layoutX="33.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/ore.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="energyStore" fitHeight="120.0" fitWidth="120.0" layoutX="240.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/energy.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="foodStore" fitHeight="120.0" fitWidth="120.0" layoutX="447.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/food.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="oreStore" fitHeight="240.0" fitWidth="120.0" layoutX="33.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/land.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="oreStore" fitHeight="240.0" fitWidth="120.0" layoutX="180.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/pub.jpeg" />
+          </image>
+        </ImageView>
+        <ImageView id="oreStore" fitHeight="240.0" fitWidth="240.0" layoutX="327.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/mules.jpeg" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>
