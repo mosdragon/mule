@@ -2,50 +2,186 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <Pane layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="600.0">
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="1080.0" style="-fx-background-color:#583B1E;">
       <children>
-        <ImageView id="townBG" fitHeight="600.0" fitWidth="600.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../images/townBackground.jpeg" />
-          </image>
+
+        <Text fx:id="oreText" fill="WHITE" layoutX="165.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ORE:">
+          <font>
+            <Font size="20.0" fx:id="x2" />
+          </font>
+        </Text>
+
+          <ImageView id="oreStore" fx:id="oreImage" fitHeight="120.0" fitWidth="120.0" layoutX="55.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+
+              <effect>
+                  <DropShadow color="#0000003d" height="45.19047619047619" radius="22.095238095238095" width="45.19047619047619" fx:id="x3" />
+              </effect>
+
+              <image>
+                  <Image url="@../images/ore.jpeg" />
+              </image>
+          </ImageView>
+
+
+          <Button id="" fx:id="sellOre" layoutX="185.0" layoutY="65.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:#505050;" text="Sell Ore: $" textFill="WHITE" textOverrun="ELLIPSIS">
+              <effect>
+                  <InnerShadow height="12.118881118881118" radius="5.559440559440559" width="12.118881118881118" fx:id="x1">
+
+                      <color>
+                          <Color blue="0.000" green="0.000" opacity="0.200" red="0.000" fx:id="x5" />
+                      </color>
+                  </InnerShadow>
+
+              </effect>
+
+          </Button>
+
+          <Button fx:id="buyOre" effect="$x1" layoutX="185.0" layoutY="130.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:white;" text="Buy Ore: $" textOverrun="ELLIPSIS" />
+
+          <Text fx:id="energyText" fill="WHITE" font="$x2" layoutX="491.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ENERGY: " />
+
+          <ImageView id="energyStore" fx:id="energyImage" effect="$x3" fitHeight="120.0" fitWidth="120.0" layoutX="397.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@../images/energy.jpeg" />
+              </image>
+          </ImageView>
+
+
+          <Button id="" fx:id="sellEnergy" effect="$x1" layoutX="531.0" layoutY="65.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:#505050;" text="Sell Energy: $" textFill="WHITE" textOverrun="ELLIPSIS" />
+          <Button id="buyOre" fx:id="buyEnergy" effect="$x1" layoutX="531.0" layoutY="130.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:white;" text="Buy Energy: $" textOverrun="ELLIPSIS" />
+          <Text fx:id="foodText" fill="WHITE" font="$x2" layoutX="845.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FOOD:" />
+
+          <ImageView id="foodStore" fx:id="foodImage" effect="$x3" fitHeight="120.0" fitWidth="120.0" layoutX="741.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@../images/food.jpeg" />
+              </image>
+          </ImageView>
+
+        <Button id="" effect="$x1" layoutX="875.0" layoutY="65.0" minWidth="-1.0"
+                mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0"
+                style="-fx-background-color:#505050;" text="Sell Food: $" textFill="WHITE" textOverrun="ELLIPSIS" />
+
+        <Button id="buyOre" effect="$x1" layoutX="875.0" layoutY="130.0" minWidth="-1.0"
+                mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0"
+                style="-fx-background-color:white;" text="Buy Food: $" textOverrun="ELLIPSIS" />
+
+            <ImageView id="oreStore" effect="$x3" fitHeight="120.0" fitWidth="120.0" layoutX="55.0" layoutY="256.0" pickOnBounds="true" preserveRatio="false">
+                  <image>
+                        <Image url="@../images/land.jpeg" />
+                  </image>
+            </ImageView>
+
+          <ImageView id="oreStore" fx:id="pubImage" effect="$x3" fitHeight="120.0" fitWidth="120.0" layoutX="55.0" layoutY="441.0" pickOnBounds="true" preserveRatio="false">
+
+            <image>
+
+                <Image url="@../images/pub.jpeg" />
+
+            </image>
+
         </ImageView>
-        <ImageView id="oreStore" fitHeight="120.0" fitWidth="120.0" layoutX="33.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../images/ore.jpeg" />
-          </image>
-        </ImageView>
-        <ImageView id="energyStore" fitHeight="120.0" fitWidth="120.0" layoutX="240.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../images/energy.jpeg" />
-          </image>
-        </ImageView>
-        <ImageView id="foodStore" fitHeight="120.0" fitWidth="120.0" layoutX="447.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../images/food.jpeg" />
-          </image>
-        </ImageView>
-        <ImageView id="oreStore" fitHeight="240.0" fitWidth="120.0" layoutX="33.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../images/land.jpeg" />
-          </image>
-        </ImageView>
-        <ImageView id="oreStore" fitHeight="240.0" fitWidth="120.0" layoutX="180.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../images/pub.jpeg" />
-          </image>
-        </ImageView>
-        <ImageView id="oreStore" fitHeight="240.0" fitWidth="240.0" layoutX="327.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../images/mules.jpeg" />
-          </image>
-        </ImageView>
+
+          <ImageView id="oreStore" effect="$x3" fitHeight="142.0" fitWidth="628.0" layoutX="395.0" layoutY="419.0" pickOnBounds="true" preserveRatio="false">
+
+              <image>
+
+                  <Image url="@../images/mules.jpeg" />
+
+              </image>
+
+          </ImageView>
+
+          <Button id="buyOre" fx:id="buyOreMule" effect="$x1" layoutX="397.0" layoutY="321.0"
+                minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
+                style="-fx-background-color:white;" text="Buy Ore Mule: $" textOverrun="ELLIPSIS" />
+
+          <Button id="buyOre" fx:id="buyEnergyMule" effect="$x1" layoutX="619.0" layoutY="320.0"
+                minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
+                style="-fx-background-color:white;" text="Buy Energy Mule: $" textOverrun="ELLIPSIS" />
+
+          <Button id="buyOre" fx:id="buyFoodMule" effect="$x1" layoutX="845.0" layoutY="320.0"
+                minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
+                style="-fx-background-color:white;" text="Buy Food Mule: $" textOverrun="ELLIPSIS" />
+
+          <Button id="" fx:id="sellOreMule" effect="$x1" layoutX="397.0" layoutY="256.0"
+                minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
+                style="-fx-background-color:#505050;" text="Sell Ore Mule: $" textFill="WHITE" textOverrun="ELLIPSIS" />
+
+          <Button id="" fx:id="sellEnergyMule" effect="$x1" layoutX="619.0" layoutY="256.0"
+                minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
+                style="-fx-background-color:#505050;" text="Sell Energy Mule: $" textFill="WHITE" textOverrun="ELLIPSIS" />
+
+          <Button id="" fx:id="sellFoodMule" effect="$x1" layoutX="845.0" layoutY="256.0"
+                minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
+                style="-fx-background-color:#505050;" text="Sell Food Mule: $" textFill="WHITE" textOverrun="ELLIPSIS" />
+
+          <Text id="foodText" fx:id="muleText" fill="WHITE" font="$x2" layoutX="678.0"
+                layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MULES:" />
+
+          <Text id="oreText" fx:id="landOfficeText" fill="WHITE" font="$x2" layoutX="121.0"
+                layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LAND OFFICE: " />
+
+          <Text id="oreText" fx:id="pubText" fill="WHITE" font="$x2" layoutX="161.0"
+                layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PUB:" />
+
+          <Button id="" fx:id="sellLand" layoutX="185.0" layoutY="256.0"  minWidth="-1.0"
+                mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0"
+                style="-fx-background-color:#505050;" text="Sell Land: $" textFill="WHITE" textOverrun="ELLIPSIS">
+
+              <effect>
+
+                  <InnerShadow color="$x5" height="12.118881118881118" radius="5.559440559440559" width="12.118881118881118" fx:id="x4" />
+
+              </effect>
+
+          </Button>
+
+          <Button id="buyOre" fx:id="buyLand" effect="$x4" layoutX="185.0" layoutY="321.0"
+                minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0"
+                style="-fx-background-color:white;" text="Buy Land: $" textOverrun="ELLIPSIS" />
+
+          <Button id="buyOre" fx:id="enterPub" layoutX="185.0" layoutY="441.0" minWidth="-1.0"
+                mnemonicParsing="false" prefHeight="120.0" prefWidth="150.0"
+                  style="-fx-background-color:white;" text="ENTER THE PUB" textOverrun="ELLIPSIS">
+
+              <effect>
+
+                  <InnerShadow color="$x5" height="12.118881118881118" radius="5.559440559440559"
+                               width="12.118881118881118" />
+
+              </effect>
+
+          </Button>
+
+          <Button id="buyOre" fx:id="returnToMap" layoutX="0.0" layoutY="0.0" minWidth="-1.0"
+                  mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0"
+                  style="-fx-background-color:white;"
+                  text="Return To Map" textOverrun="ELLIPSIS">
+          <effect>
+            <InnerShadow color="$x5" height="12.118881118881118" radius="5.559440559440559"
+                         width="12.118881118881118" />
+          </effect>
+        </Button>
       </children>
+
+        <effect>
+
+            <InnerShadow color="#00000013" height="97.37762237762237" radius="48.18881118881119"
+                     width="97.37762237762237" />
+
+        </effect>
+
     </Pane>
+
   </children>
+
 </AnchorPane>
