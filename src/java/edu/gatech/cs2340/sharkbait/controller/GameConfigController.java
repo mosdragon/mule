@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
@@ -34,16 +35,18 @@ public class GameConfigController implements Initializable {
                 Difficulty.Tournament
         );
         configDifficulty.setItems(difficultyOptions);
+        configDifficulty.setValue(difficultyOptions.get(0));
 
         ObservableList<MapType> mapOptions = FXCollections.observableArrayList(
                 MapType.StandardMap,
                 MapType.RandomMap
         );
         mapChoice.setItems(mapOptions);
+        mapChoice.setValue(mapOptions.get(0));
     }
 
     /**
-     * Called externally, most likely by ScreenController
+     * Called externally, most likely by ConfigScreenController
      */
     public void saveConfigs() {
         final GameConfigs configs = GameConfigs.getInstance();

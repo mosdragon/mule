@@ -13,11 +13,11 @@
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="edu.gatech.cs2340.sharkbait.controller.GameConfigController">
     <ComboBox layoutX="153.0" layoutY="39.0" prefWidth="150.0"
-              promptText="Select Difficulty" style="-fx-background-color: #DDE1DD;"
+              style="-fx-background-color: #DDE1DD;"
               fx:id="configDifficulty" />
 
     <ComboBox disable="false" layoutX="153.0" layoutY="87.0"
-              prefWidth="150.0" promptText="Select Map Type"
+              prefWidth="150.0"
               style="-fx-background-color: #DDE1DD;" fx:id="mapChoice" />
 
     <Slider fx:id="playerSlider" blockIncrement="1.0" layoutX="163.0" layoutY="133.0"

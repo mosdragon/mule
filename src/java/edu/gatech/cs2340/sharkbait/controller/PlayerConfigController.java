@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
  */
 public class PlayerConfigController implements Initializable {
 
-    @FXML private TextField selectName;
+    @FXML protected TextField selectName;
     @FXML private ComboBox<Color> selectColor;
     @FXML private ComboBox<Race> selectRace;
 
@@ -34,6 +34,7 @@ public class PlayerConfigController implements Initializable {
                 Color.VIOLET
         );
         selectColor.setItems(colorOptions);
+        selectColor.setValue(colorOptions.get(0));
 
         ObservableList<Race> raceOptions = FXCollections.observableArrayList(
                 Race.Flapper,
@@ -43,6 +44,7 @@ public class PlayerConfigController implements Initializable {
                 Race.Ugaite
         );
         selectRace.setItems(raceOptions);
+        selectRace.setValue(raceOptions.get(0));
 
 
     }

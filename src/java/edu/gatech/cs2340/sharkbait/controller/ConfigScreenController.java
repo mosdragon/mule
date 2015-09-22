@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 /**
  * Created by osama on 9/13/15.
  */
-public class ScreenController implements Initializable {
+public class ConfigScreenController implements Initializable {
 
     @FXML
     private Pane configBox;
@@ -61,7 +61,7 @@ public class ScreenController implements Initializable {
                 if (gameState == State.NotConfigured) {
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                                .getResource("../view/fxml/gameConfig.fxml"));
+                                .getResource("../view/fxml/config/gameConfig.fxml"));
 
                         Parent root = fxmlLoader.load();
                         gameConfigController = fxmlLoader.getController();
@@ -82,7 +82,7 @@ public class ScreenController implements Initializable {
 
                         for (int i = 1; i <= numPlayers; i++) {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                                    .getResource("../view/fxml/players.fxml"));
+                                    .getResource("../view/fxml/config/players.fxml"));
                             Node playerPrompt = fxmlLoader.load();
                             PlayerConfigController playerConfigController = fxmlLoader.getController();
 
@@ -92,6 +92,8 @@ public class ScreenController implements Initializable {
                             System.out.println(playerPrompt.getId());
 
                             infoPane.getItems().add(playerPrompt);
+                            String defaultName = "Player " + i;
+                            playerConfigController.selectName.setText(defaultName);
 
                         }
 
