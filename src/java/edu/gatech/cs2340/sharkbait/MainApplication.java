@@ -17,7 +17,7 @@ public class MainApplication extends Application {
     public void start(Stage primaryStage) throws Exception {
 //        ResourceBundle.getBundle();
 //        getClass().getResource();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/fxml/map.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/fxml/screeny.fxml"));
         Parent root = fxmlLoader.load();
         controller = fxmlLoader.getController();
 

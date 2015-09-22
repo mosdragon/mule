@@ -12,7 +12,6 @@
       <children>
         <ImageView id="townBG" fitHeight="600.0" fitWidth="600.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <!--<Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/Town%20Background.jpeg" />-->
             <Image url="@../images/townBackground.jpeg" />
           </image>
         </ImageView>
@@ -23,27 +22,27 @@
         </ImageView>
         <ImageView id="energyStore" fitHeight="120.0" fitWidth="120.0" layoutX="240.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/energy.jpeg" />
+            <Image url="@../images/energy.jpeg" />
           </image>
         </ImageView>
         <ImageView id="foodStore" fitHeight="120.0" fitWidth="120.0" layoutX="447.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/food.jpeg" />
+            <Image url="@../images/food.jpeg" />
           </image>
         </ImageView>
         <ImageView id="oreStore" fitHeight="240.0" fitWidth="120.0" layoutX="33.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/land.jpeg" />
+            <Image url="@../images/land.jpeg" />
           </image>
         </ImageView>
         <ImageView id="oreStore" fitHeight="240.0" fitWidth="120.0" layoutX="180.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/pub.jpeg" />
+            <Image url="@../images/pub.jpeg" />
           </image>
         </ImageView>
         <ImageView id="oreStore" fitHeight="240.0" fitWidth="240.0" layoutX="327.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="file:/Users/JosiahMacbook/Documents/School%20-%20Fall%202015/CS%202340/M4/FXML%20Tests/mules.jpeg" />
+            <Image url="@../images/mules.jpeg" />
           </image>
         </ImageView>
       </children>

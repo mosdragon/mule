@@ -120,6 +120,17 @@ public class ScreenController implements Initializable {
                     nextButton.setVisible(false);
                     gameState = State.BeginGame;
                     mainGameMessage.setText("Loading your game...");
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass()
+                            .getResource("../view/fxml/map.fxml"));
+
+                    try {
+                        Parent parent = fxmlLoader.load();
+                        configBox.getScene().setRoot(parent);
+//                        configBox.getScene().
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }
