@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
+import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Race;
 import javafx.collections.FXCollections;
@@ -65,13 +66,15 @@ public class PlayerConfigController implements Initializable {
      * Called by an external class to create a Player object and save it to configs
      * @return the player object constructed from this controller's selectors
      */
-    public Player makePlayer() {
+    public void makePlayer() {
         int index = colorOptions.indexOf(selectColor.getValue());
 
         Player player = new Player(selectName.getText(),
                 colorList.get(index),
                 selectRace.getValue());
 
-        return player;
+        GameConfigs configs = GameConfigs.getInstance();
+        configs.addPlayer(player);
+
     }
 }

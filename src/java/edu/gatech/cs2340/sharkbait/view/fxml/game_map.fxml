@@ -7,7 +7,9 @@
 <?import javafx.scene.paint.*?>
 
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+            minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0"
+            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
+        fx:controller="edu.gatech.cs2340.sharkbait.controller.GameMapController">
   <children>
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="607.0" prefWidth="1080.0">
       <children>
@@ -71,7 +73,7 @@
             <Image url="@../images/river.jpeg" />
           </image>
         </ImageView>
-        <ImageView fx:id="tile24" fitHeight="120.0" fitWidth="120.0" layoutX="480.0"
+        <ImageView fx:id="town" fitHeight="120.0" fitWidth="120.0" layoutX="480.0"
                    layoutY="241.0" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@../images/town.jpeg" />

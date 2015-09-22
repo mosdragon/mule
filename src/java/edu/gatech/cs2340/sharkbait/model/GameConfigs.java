@@ -39,6 +39,10 @@ public class GameConfigs {
         this.players = players;
     }
 
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
     public Difficulty getGameDifficulty() {
         return gameDifficulty;
     }

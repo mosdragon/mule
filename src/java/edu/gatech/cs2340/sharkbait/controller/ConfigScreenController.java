@@ -1,7 +1,6 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
-import edu.gatech.cs2340.sharkbait.util.Player;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,7 +60,7 @@ public class ConfigScreenController implements Initializable {
                 if (gameState == State.NotConfigured) {
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                                .getResource("../view/fxml/config/gameConfig.fxml"));
+                                .getResource("../view/fxml/config/game_config.fxml"));
 
                         Parent root = fxmlLoader.load();
                         gameConfigController = fxmlLoader.getController();
@@ -82,7 +81,7 @@ public class ConfigScreenController implements Initializable {
 
                         for (int i = 1; i <= numPlayers; i++) {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                                    .getResource("../view/fxml/config/players.fxml"));
+                                    .getResource("../view/fxml/config/players_config.fxml"));
                             Node playerPrompt = fxmlLoader.load();
                             PlayerConfigController playerConfigController = fxmlLoader.getController();
 
@@ -105,16 +104,9 @@ public class ConfigScreenController implements Initializable {
                     nextButton.setText("Begin Game");
                 } else if (gameState == State.ConfigPlayers) {
 
-                    List<Player> players = new ArrayList<>();
-
-                    int i = 1;
                     for (PlayerConfigController controller : playerConfigControllers) {
-                        players.add(controller.makePlayer());
-                        i++;
+                        controller.makePlayer();
                     }
-
-                    GameConfigs configs = GameConfigs.getInstance();
-                    configs.setPlayers(players);
 
                     infoPane.getItems().clear();
 
@@ -123,12 +115,11 @@ public class ConfigScreenController implements Initializable {
                     mainGameMessage.setText("Loading your game...");
 
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                            .getResource("../view/fxml/map.fxml"));
+                            .getResource("../view/fxml/game_map.fxml"));
 
                     try {
                         Parent parent = fxmlLoader.load();
                         configBox.getScene().setRoot(parent);
-//                        configBox.getScene().
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
