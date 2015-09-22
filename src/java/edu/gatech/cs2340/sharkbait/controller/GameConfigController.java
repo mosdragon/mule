@@ -51,11 +51,8 @@ public class GameConfigController implements Initializable {
     public void saveConfigs() {
         final GameConfigs configs = GameConfigs.getInstance();
         int numPlayers = (int) playerSlider.getValue();
-        System.out.println(numPlayers);
         Difficulty difficulty = configDifficulty.getValue();
-        System.out.println(difficulty);
         MapType mapType = mapChoice.getValue();
-        System.out.println(mapType);
 
         configs.setGameDifficulty(difficulty);
         configs.setMapType(mapType);

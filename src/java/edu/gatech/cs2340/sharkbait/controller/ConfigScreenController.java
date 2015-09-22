@@ -109,8 +109,7 @@ public class ConfigScreenController implements Initializable {
 
                     int i = 1;
                     for (PlayerConfigController controller : playerConfigControllers) {
-                        String defaultName = "Player" + i;
-                        players.add(controller.makePlayer(defaultName));
+                        players.add(controller.makePlayer());
                         i++;
                     }
 

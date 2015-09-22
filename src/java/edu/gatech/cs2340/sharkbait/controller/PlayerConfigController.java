@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -19,19 +20,30 @@ import java.util.ResourceBundle;
 public class PlayerConfigController implements Initializable {
 
     @FXML protected TextField selectName;
-    @FXML private ComboBox<Color> selectColor;
+    @FXML private ComboBox<String> selectColor;
     @FXML private ComboBox<Race> selectRace;
+
+    private List<Color> colorList;
+    private ObservableList<String> colorOptions;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        ObservableList<Color> colorOptions = FXCollections.observableArrayList(
+        colorList = FXCollections.observableArrayList(
                 Color.AQUA,
                 Color.BEIGE,
                 Color.FIREBRICK,
                 Color.DARKSEAGREEN,
                 Color.GOLD,
                 Color.VIOLET
+        );
+        colorOptions = FXCollections.observableArrayList(
+                "Aqua",
+                "Beige",
+                "Dark Sea Green",
+                "Fire Brick",
+                "Gold",
+                "Violet"
         );
         selectColor.setItems(colorOptions);
         selectColor.setValue(colorOptions.get(0));
@@ -51,22 +63,14 @@ public class PlayerConfigController implements Initializable {
 
     /**
      * Called by an external class to create a Player object and save it to configs
-     * @param defaultName, the default name for a player to be added
      * @return the player object constructed from this controller's selectors
      */
-    public Player makePlayer(String defaultName) {
-        if (selectName.getText().isEmpty()) {
-            selectName.setText(defaultName);
-        }
+    public Player makePlayer() {
+        int index = colorOptions.indexOf(selectColor.getValue());
+
         Player player = new Player(selectName.getText(),
-                selectColor.getValue(),
+                colorList.get(index),
                 selectRace.getValue());
-
-        System.out.println(defaultName);
-        System.out.println(player.getName());
-        System.out.println(player.getColor());
-        System.out.println(player.getRace());
-
 
         return player;
     }

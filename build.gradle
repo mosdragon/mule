@@ -11,14 +11,18 @@ dependencies {
 
 sourceSets {
     main {
+        java {
+            srcDir 'src/java/'
+        }
         resources {
-            srcDirs = ["src/main/java"]
-            includes = ["**/*.edu.gatech.cs2340.sharkbait.view.fxml"]
+            srcDirs = ["src/view/edu/gatech/cs2340/sharkbait/view/fxml",
+                       "src/view/edu/gatech/cs2340/sharkbait/view/images"]
+
         }
     }
 }
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 version = '1.0'
 jar {
     jar {
