@@ -26,37 +26,66 @@ public class GameMapController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Player active = null;
-
         town.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 System.out.println("Town Clicked");
 
+                Player active = GameDuration.getActivePlayer();
+                Scene currentScene = town.getScene();
+
                 if (active == null) {
                     if (GameDuration.getTownMap() == null) {
-                        Scene gameScene = town.getScene();
+                        System.out.println("First time in town");
 
-                        Parent map = gameScene.getRoot();
-                        GameDuration.setGameMap(map);
+                        Parent gameMap = currentScene.getRoot();
+                        GameDuration.setGameMap(gameMap);
 
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource
                                 ("../view/fxml/town_map.fxml"));
 
                         try {
                             Parent townMap = fxmlLoader.load();
-                            System.out.println("Creating town for the first time");
-                            gameScene.setRoot(townMap);
+                            currentScene.setRoot(townMap);
+                            GameDuration.setTownMap(townMap);
 
 
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
 
+                    } else {
+                        System.out.println("Been there, done that. In town before.");
+                        Parent townMap = GameDuration.getTownMap();
+                        currentScene.setRoot(townMap);
                     }
                 }
             }
         });
+    }
+
+
+    private void beginLandSelection(Player player, int cost) {
 
     }
+
+//    TODO: Begin a round for a player
+    /**
+     * Begin a round for a player for this much time
+     * @param player, the player who's turn it is
+     * @param coundown, the time in second for the turn to proceed
+     */
+    private void beginTurn(Player player, int coundown) {
+
+    }
+
+//    TODO: Implement reward for ending turn
+
+    /**
+     * Use difficulty to determine how much player gets rewarded for ending turn
+     * @param player
+     */
+    private void goToPub(Player player) {
+    }
+
 }

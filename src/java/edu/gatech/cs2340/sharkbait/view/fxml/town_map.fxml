@@ -9,7 +9,10 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="edu.gatech.cs2340.sharkbait.controller.TownMapController">
   <children>
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="1080.0" style="-fx-background-color:#583B1E;">
       <children>
@@ -162,10 +165,11 @@
 
           </Button>
 
-          <Button id="buyOre" fx:id="returnToMap" layoutX="0.0" layoutY="0.0" minWidth="-1.0"
+          <Button id="buyOre" fx:id="exitTown" layoutX="0.0" layoutY="0.0" minWidth="-1.0"
                   mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0"
                   style="-fx-background-color:white;"
                   text="Return To Map" textOverrun="ELLIPSIS">
+
           <effect>
             <InnerShadow color="$x5" height="12.118881118881118" radius="5.559440559440559"
                          width="12.118881118881118" />

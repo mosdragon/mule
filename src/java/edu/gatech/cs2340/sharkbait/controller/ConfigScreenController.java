@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
@@ -118,8 +119,9 @@ public class ConfigScreenController implements Initializable {
                             .getResource("../view/fxml/game_map.fxml"));
 
                     try {
-                        Parent parent = fxmlLoader.load();
-                        configBox.getScene().setRoot(parent);
+                        Parent gameMap = fxmlLoader.load();
+                        Scene currentScene = configBox.getScene();
+                        currentScene.setRoot(gameMap);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
