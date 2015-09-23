@@ -6,10 +6,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +25,8 @@ public class GameMapController implements Initializable {
 
     @FXML
     private ImageView town;
+    @FXML
+    private GridPane grid;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,6 +67,49 @@ public class GameMapController implements Initializable {
                 }
             }
         });
+
+//        For all grid cells
+        for (Node n : grid.getChildren()) {
+
+//            Unless you are the town cell
+            if (!n.equals(town)) {
+
+//                When clicked and in buying phase, buy for player, end buy phase
+                n.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                    @Override
+                    public void handle(MouseEvent event) {
+                        Player player = GameDuration.getActivePlayer();
+
+                        if (player != null) {
+//                            TODO: Change color using activePlayer.getColor() if no other player
+//                            bought
+                            ImageView view = (ImageView) n;
+                            Image img = view.getImage();
+//                            img.getPixelReader().;
+//                            Image other = new Image(img);
+
+//                            TODO: End turn for this player
+                        }
+                    }
+                });
+
+//                When hoevered and is player's turn, change color
+                n.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+
+//                        if not bought, then change color.
+
+                    }
+                });
+            }
+        }
+
+
+
+//        popup some message saying it's player X's turn
+//        first 2
     }
 
 
