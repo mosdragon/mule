@@ -43,11 +43,13 @@ public class TownMapController implements Initializable {
 
 //    TODO: Buy energy, decrement player money
     private void buyEnergy(Player player) {
-
+        player.changeEnergy(10);
+        player.changeMoney(-10);
     }
 
 //    TODO: Sell energy, increment player money
     private void sellEnergy(Player player) {
-
+        player.changeEnergy(-10);
+        player.changeMoney(10);
     }
 }

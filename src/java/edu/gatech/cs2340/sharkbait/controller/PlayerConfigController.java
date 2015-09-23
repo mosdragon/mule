@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -71,7 +72,8 @@ public class PlayerConfigController implements Initializable {
 
         Player player = new Player(selectName.getText(),
                 colorList.get(index),
-                selectRace.getValue());
+                selectRace.getValue(),
+                new ArrayList<>());
 
         GameConfigs configs = GameConfigs.getInstance();
         configs.addPlayer(player);
