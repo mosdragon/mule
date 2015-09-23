@@ -72,8 +72,7 @@ public class PlayerConfigController implements Initializable {
 
         Player player = new Player(selectName.getText(),
                 colorList.get(index),
-                selectRace.getValue(),
-                new ArrayList<>());
+                selectRace.getValue());
 
         GameConfigs configs = GameConfigs.getInstance();
         configs.addPlayer(player);

@@ -16,7 +16,7 @@ public class Player {
     private double energy;
     ArrayList<Property> playerProperties;
 
-    public Player(String name, Color color, Race race, ArrayList<Property> playerProperties) {
+    public Player(String name, Color color, Race race) {
         this.name = name;
         this.color = color;
         this.race = race;
@@ -27,7 +27,7 @@ public class Player {
         } else if (Objects.equals(race.toString(), "Others")){
             money = 1000;
         }
-        this.playerProperties = playerProperties;
+        this.playerProperties = new ArrayList<>();
     }
 
     public String getName() {
