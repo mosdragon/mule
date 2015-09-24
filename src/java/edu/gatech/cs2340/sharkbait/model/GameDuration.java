@@ -13,10 +13,10 @@ public class GameDuration {
     private static Parent townMap = null;
     private static Player activePlayer = null;
     private static int round;
-    private static int turn =1;
+    private static int turn;
 
     private GameDuration() {
-
+        turn = 1;
     }
 
 
@@ -60,7 +60,7 @@ public class GameDuration {
     public static void endTurn() {
         setActivePlayer(GameConfigs.players.get(turn));
         turn++;
-        if (getTurn()>= GameConfigs.getNumPlayers()) {
+        if (getTurn() > GameConfigs.getNumPlayers()) {
             round++;
             setTurn(0);
         }
