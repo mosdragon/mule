@@ -48,6 +48,10 @@ public class GameMapController implements Initializable {
     @FXML
     private Label playerMsg;
 
+    @FXML
+    private Label player1, player2, player3, player4;
+
+
     private static final String PHASE = "Phase: ";
     private static final String PLAYER = "Active Player: ";
 
@@ -195,6 +199,10 @@ public class GameMapController implements Initializable {
         }
         phaseMsg.setText(PHASE + GameDuration.getPhase().toString());
         playerMsg.setText(PLAYER + GameDuration.getActivePlayer().getName());
+        player1.setText("Player 1: " + GameConfigs.players.get(0).getMoney());
+        player2.setText("Player 2: " + GameConfigs.players.get(1).getMoney());
+        player3.setText("Player 3: " + GameConfigs.players.get(2).getMoney());
+        player4.setText("Player 4: " + GameConfigs.players.get(3).getMoney());
     }
 
 

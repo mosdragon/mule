@@ -505,7 +505,14 @@
                   orientation="HORIZONTAL" prefHeight="120.0" prefWidth="1080.0">
 
            <items>
-
+                <VBox>
+                    <children>
+                        <Label fx:id="player1"></Label>
+                        <Label fx:id="player2"></Label>
+                        <Label fx:id="player3"></Label>
+                        <Label fx:id="player4"></Label>
+                    </children>
+                </VBox>
                <AnchorPane />
                <AnchorPane />
                <AnchorPane />
