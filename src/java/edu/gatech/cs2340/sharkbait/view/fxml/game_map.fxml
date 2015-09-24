@@ -6,7 +6,13 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
 <?import javafx.scene.text.Text?>
 <SplitPane dividerPositions="0.83" orientation="VERTICAL"
@@ -15,8 +21,8 @@
            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="edu.gatech.cs2340.sharkbait.controller.GameMapController">
    <items>
-   
-   
+
+
        <GridPane fx:id="grid"  prefHeight="600" prefWidth="1080.0"
                  AnchorPane.bottomAnchor="0.0"
                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
@@ -509,8 +515,7 @@
                    <children>
 
 
-                       <Button fx:id="passButton" text="PASS" prefWidth="200"
-                               onMouseClicked="#passLandPhase" />
+                       <Button fx:id="passButton" text="PASS" prefWidth="200"/>
 
                    </children>
 

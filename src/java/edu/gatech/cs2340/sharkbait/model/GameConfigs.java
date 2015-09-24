@@ -15,10 +15,10 @@ public class GameConfigs {
     private static GameConfigs ourInstance = new GameConfigs();
 
     private Difficulty gameDifficulty;
-    private int numPlayers;
+    private static int numPlayers;
     private MapType mapType;
 
-    private List<Player> players;
+    public static List<Player> players;
 
 
     public static GameConfigs getInstance() {
@@ -51,7 +51,7 @@ public class GameConfigs {
         this.gameDifficulty = gameDifficulty;
     }
 
-    public int getNumPlayers() {
+    public static int getNumPlayers() {
         return numPlayers;
     }
 

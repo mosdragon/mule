@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,12 +93,22 @@ public class Player {
 
 
 // TODO: if round <= 2, do not decrement player money! (land grant)
-    public void addProperty(Property property) {
+
+    public boolean addProperty(Property property) {
         properties.add(property);
-        // if (GameDuration.getRound() > 2) {
-        //      player.changeMoney(property.price());
-        // }
+        if (GameDuration.getRound() > 2 && (money >= 300)) {
+            this.changeMoney(-300);
+            return true;
+        }
+        return false;
     }
 
+    @Override
+    public String toString() {
+        return getName();
+    }
 
+    //    public boolean canBuyProperty(Property property) {
+//
+//    }
 }

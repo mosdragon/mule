@@ -19,7 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
 import java.io.ByteArrayInputStream;
@@ -43,7 +42,6 @@ public class GameMapController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         town.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -91,6 +89,8 @@ public class GameMapController implements Initializable {
 //                            Image other = new Image(img);
 
 //                            TODO: End turn for this player
+                            GameDuration.endTurn();
+                            player = GameDuration.getActivePlayer();
                         }
                     }
                 });
@@ -102,6 +102,13 @@ public class GameMapController implements Initializable {
 
 //                        if not bought, then change color.
 
+                    }
+                });
+
+                passButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        passLandPhase();
                     }
                 });
             }
@@ -117,12 +124,14 @@ public class GameMapController implements Initializable {
     private void handleGridButtonPress(ActionEvent ev) {
 
 //        TODO: Make sure actual active player is set. This is mocked
-        GameDuration.setActivePlayer(GameConfigs.getInstance().getPlayers().get(0));
+//        GameDuration.setActivePlayer(GameConfigs.getInstance().getPlayers().get(0));
 
         Button button = (Button) ev.getSource();
         System.out.println("You pressed: " + button.getText());
 
-        if (button.getStyle().contains("-fx-background-color:rgba(0,0,0,0);")) {
+        boolean available = button.getStyle().contains("-fx-background-color:rgba(0,0,0,0);");
+
+        if (!available) {
 //            Property already bought, do nothing
 
         } else {
@@ -154,6 +163,11 @@ public class GameMapController implements Initializable {
                 button.setStyle(styleVal);
 
 //                TODO: End land phase turn
+                System.out.println(GameDuration.getActivePlayer());
+                System.out.println(GameDuration.getTurn());
+                GameDuration.endTurn();
+                System.out.println(GameDuration.getActivePlayer());
+                System.out.println(GameDuration.getTurn());
 
             }
 
@@ -162,8 +176,14 @@ public class GameMapController implements Initializable {
 
     }
 
-    @FXML protected void passLandPhase(ActionEvent event) {
+    private void passLandPhase() {
 //        TODO: End land phase turn
+        System.out.println(GameDuration.getActivePlayer());
+        System.out.println(GameDuration.getTurn());
+        GameDuration.endTurn();
+        System.out.println(GameDuration.getActivePlayer());
+        System.out.println(GameDuration.getTurn());
+
     }
 
 
@@ -178,7 +198,6 @@ public class GameMapController implements Initializable {
      * @param coundown, the time in second for the turn to proceed
      */
     private void beginTurn(Player player, int coundown) {
-
     }
 
 //    TODO: Implement reward for ending turn

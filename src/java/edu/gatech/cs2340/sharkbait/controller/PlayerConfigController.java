@@ -33,7 +33,6 @@ public class PlayerConfigController implements Initializable {
 
         colorOptions = FXCollections.observableArrayList(
                 "Aqua",
-                "Beige",
                 "DarkSeaGreen",
                 "FireBrick",
                 "Gold",
