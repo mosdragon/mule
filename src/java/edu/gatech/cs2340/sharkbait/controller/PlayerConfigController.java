@@ -31,19 +31,11 @@ public class PlayerConfigController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        colorList = FXCollections.observableArrayList(
-                Color.AQUA,
-                Color.BEIGE,
-                Color.FIREBRICK,
-                Color.DARKSEAGREEN,
-                Color.GOLD,
-                Color.VIOLET
-        );
         colorOptions = FXCollections.observableArrayList(
                 "Aqua",
                 "Beige",
-                "Dark Sea Green",
-                "Fire Brick",
+                "DarkSeaGreen",
+                "FireBrick",
                 "Gold",
                 "Violet"
         );
@@ -68,10 +60,10 @@ public class PlayerConfigController implements Initializable {
      * @return the player object constructed from this controller's selectors
      */
     public void makePlayer() {
-        int index = colorOptions.indexOf(selectColor.getValue());
+//        int index = colorOptions.indexOf(selectColor.getValue());
 
         Player player = new Player(selectName.getText(),
-                colorList.get(index),
+                selectColor.getValue(),
                 selectRace.getValue());
 
         GameConfigs configs = GameConfigs.getInstance();

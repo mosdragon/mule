@@ -2,6 +2,7 @@ package edu.gatech.cs2340.sharkbait.util;
 
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -10,13 +11,13 @@ import java.util.Objects;
 public class Player {
 
     private String name;
-    private Color color;
+    private String color;
     private Race race;
     private double money;
     private double energy;
-    ArrayList<Property> playerProperties;
+    private List<Property> properties;
 
-    public Player(String name, Color color, Race race) {
+    public Player(String name, String color, Race race) {
         this.name = name;
         this.color = color;
         this.race = race;
@@ -30,7 +31,7 @@ public class Player {
         } else {
             money = 1000;
         }
-        this.playerProperties = new ArrayList<>();
+        this.properties = new ArrayList<>();
     }
 
     public String getName() {
@@ -41,11 +42,11 @@ public class Player {
         this.name = name;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
@@ -81,9 +82,18 @@ public class Player {
         return energy;
     }
 
+    public List<Property> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<Property> properties) {
+        this.properties = properties;
+    }
+
+
 // TODO: if round <= 2, do not decrement player money! (land grant)
     public void addProperty(Property property) {
-        playerProperties.add(property);
+        properties.add(property);
         // if (GameDuration.getRound() > 2) {
         //      player.changeMoney(property.price());
         // }

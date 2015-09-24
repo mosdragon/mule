@@ -1,8 +1,11 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
 import edu.gatech.cs2340.sharkbait.MasterController;
+import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.util.Player;
+import edu.gatech.cs2340.sharkbait.util.Property;
+import edu.gatech.cs2340.sharkbait.util.PropertyType;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -117,10 +120,31 @@ public class GameMapController implements Initializable {
 
         //THIS SHOULD UPDATE THE PLAYER
         System.out.println("You pressed: " + button.getText());
+        GameDuration.setActivePlayer(GameConfigs.getInstance().getPlayers().get(0));
+        Player activePlayer = GameDuration.getActivePlayer();
 
+        String type = button.getText();
+        PropertyType propertyType = null;
 
-        //THIS SHOULD BE THE PLAYER COLOR.
-        button.setStyle("-fx-background-color:red;");
+        if (type.equals("plains")) {
+            propertyType = PropertyType.Plains;
+        } else if (type.equals("mountain1")) {
+            propertyType = PropertyType.Mountain;
+        } else if (type.equals("River")) {
+            propertyType = PropertyType.River;
+        }
+
+        Property property = new Property(propertyType, activePlayer);
+        activePlayer.addProperty(property);
+
+        System.out.println(activePlayer.getProperties().size());
+
+        if (activePlayer != null) {
+            String color = activePlayer.getColor();
+            String styleVal = "-fx-background-color:" + color;
+            //THIS SHOULD BE THE PLAYER COLOR.
+            button.setStyle(styleVal);
+        }
 
 
     }
