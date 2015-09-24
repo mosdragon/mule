@@ -14,7 +14,7 @@ public class GameDuration {
     private static Parent gameMap = null;
     private static Parent townMap = null;
     private static Player activePlayer = null;
-    private static int round;
+    private static int round = 1;
     private static int turn = 0;
     private static GamePhase phase = GamePhase.LandBuyPhase;
 

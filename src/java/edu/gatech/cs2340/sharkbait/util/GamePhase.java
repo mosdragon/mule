@@ -14,6 +14,6 @@ public enum GamePhase {
 
     @Override
     public String toString() {
-        return super.toString();
+        return name;
     }
 }

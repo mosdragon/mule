@@ -69,10 +69,8 @@ public class GameMapController implements Initializable {
                 System.out.println("Town Clicked");
 
                 Player active = GameDuration.getActivePlayer();
-                Scene currentScene = town.getScene();
 
-//                TODO: Only if play active then go into store with that player
-                if (active == null) {
+                if (GameDuration.getPhase() == GamePhase.PlayerTurnPhase) {
                     MasterController.changeSceneToTownMap();
                 }
             }
@@ -149,11 +147,9 @@ public class GameMapController implements Initializable {
         System.out.println("You pressed: " + button.getText());
 
         boolean available = button.getStyle().contains("-fx-background-color:rgba(0,0,0,0);");
+        boolean isLandBuyPhase = GameDuration.getPhase() == GamePhase.LandBuyPhase;
 
-        if (!available) {
-//            Property already bought, do nothing
-
-        } else {
+        if (available && isLandBuyPhase) {
 //            Buy property
             //THIS SHOULD UPDATE THE PLAYER
 
@@ -199,14 +195,21 @@ public class GameMapController implements Initializable {
         }
         phaseMsg.setText(PHASE + GameDuration.getPhase().toString());
         playerMsg.setText(PLAYER + GameDuration.getActivePlayer().getName());
-        player1.setText("Player 1: " + GameConfigs.players.get(0).getMoney());
-        player2.setText("Player 2: " + GameConfigs.players.get(1).getMoney());
-        if (GameConfigs.getNumPlayers() == 3) {
-            player3.setText("Player 3: " + GameConfigs.players.get(2).getMoney());
+
+        player1.setText(GameConfigs.players.get(0).getName() + ": " + GameConfigs.players
+                .get(0).getMoney());
+        player2.setText(GameConfigs.players.get(1).getName() + ": " + GameConfigs.players
+                .get(1).getMoney());
+
+
+        if (GameConfigs.getNumPlayers() >= 3) {
+            player3.setText(GameConfigs.players.get(2).getName() + ": " + GameConfigs.players
+                    .get(2).getMoney());
         }
         if (GameConfigs.getNumPlayers() == 4) {
-            player3.setText("Player 3: " + GameConfigs.players.get(2).getMoney());
-            player4.setText("Player 4: " + GameConfigs.players.get(3).getMoney());
+
+            player4.setText(GameConfigs.players.get(3).getName() + ": " + GameConfigs.players
+                    .get(3).getMoney());
         }
     }
 
