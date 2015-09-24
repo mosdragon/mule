@@ -5,6 +5,11 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
 <?import javafx.scene.control.SplitPane?>
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
@@ -28,7 +33,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 
-        </columnConstraints>
+            </columnConstraints>
             <rowConstraints>
 
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -41,292 +46,342 @@
 
             <children>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="0">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="1">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="2">
-                     <image>
-                         <Image url="@../images/mountain1.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="2">
+                    <image>
+                        <Image url="@../images/mountain1.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="3">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="3">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="4">
-                     <image>
-                         <Image url="@../images/river.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="4">
+                    <image>
+                        <Image url="@../images/river.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="5">
-                     <image>
-                         <Image url="@../images/mountain2.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="5">
+                    <image>
+                        <Image url="@../images/mountain2.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="6">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="6">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="7">
-                     <image>
-                         <Image url="@../images/mountain3.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="7">
+                    <image>
+                        <Image url="@../images/mountain3.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="8">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="0" GridPane.columnIndex="8">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="0">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="1">
-                     <image>
-                         <Image url="@../images/mountain1.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                    <image>
+                        <Image url="@../images/mountain1.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="2">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="2">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="3">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="3">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="4">
-                     <image>
-                         <Image url="@../images/river.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="4">
+                    <image>
+                        <Image url="@../images/river.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="5">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="5">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="6">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="6">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="7">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="7">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="8">
-                     <image>
-                         <Image url="@../images/mountain3.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="1" GridPane.columnIndex="8">
+                    <image>
+                        <Image url="@../images/mountain3.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="0">
-                     <image>
-                         <Image url="@../images/mountain3.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="0">
+                    <image>
+                        <Image url="@../images/mountain3.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="1">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="2">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="2">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="3">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="3">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="4"
-                            fx:id="town">
-                     <image>
-                         <Image url="@../images/town.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="4"
+                           fx:id="town">
+                    <image>
+                        <Image url="@../images/town.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="5">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="5">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="6">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="6">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="7">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="7">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="8">
-                     <image>
-                         <Image url="@../images/mountain1.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="2" GridPane.columnIndex="8">
+                    <image>
+                        <Image url="@../images/mountain1.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="0">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="0">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="1">
-                     <image>
-                         <Image url="@../images/mountain2.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="1">
+                    <image>
+                        <Image url="@../images/mountain2.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="2">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="2">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="3">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="3">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="4">
-                     <image>
-                         <Image url="@../images/river.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="4">
+                    <image>
+                        <Image url="@../images/river.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="5">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="5">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="6">
-                     <image>
-                         <Image url="@../images/mountain2.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="6">
+                    <image>
+                        <Image url="@../images/mountain2.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="7">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="7">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="8">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="3" GridPane.columnIndex="8">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="0">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="0">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="1">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="1">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="2">
-                     <image>
-                         <Image url="@../images/mountain2.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="2">
+                    <image>
+                        <Image url="@../images/mountain2.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="3">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="3">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="4">
-                     <image>
-                         <Image url="@../images/river.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="4">
+                    <image>
+                        <Image url="@../images/river.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="5">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="5">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="6">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="6">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="7">
-                     <image>
-                         <Image url="@../images/plains.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="7">
+                    <image>
+                        <Image url="@../images/plains.jpeg" />
+                    </image>
+                </ImageView>
 
-                 <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="8">
-                     <image>
-                         <Image url="@../images/mountain2.jpeg" />
-                     </image>
-                 </ImageView>
+                <ImageView pickOnBounds="true" GridPane.rowIndex="4" GridPane.columnIndex="8">
+                    <image>
+                        <Image url="@../images/mountain2.jpeg" />
+                    </image>
+                </ImageView>
+                <Button onAction="#handleGridButtonPress" fx:id="button1" defaultButton="false" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <font>
+                        <Font name="System Bold" size="13.0" fx:id="x1" />
+                    </font>
+                </Button>
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="mountain1" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="river" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="mountain3" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="7" GridPane.rowIndex="0" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="8" GridPane.rowIndex="0" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="mountain1" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="river" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="mountain3" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="mountain3" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="mountain1" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="mountain2" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="river" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="mountain2" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="mountain2" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="river" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="plain" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                <Button onAction="#handleGridButtonPress" defaultButton="false" font="$x1" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color:rgba(0,0,0,0);" text="mountain2" textAlignment="CENTER" underline="false" visible="true" wrapText="false" GridPane.columnIndex="8" GridPane.rowIndex="4" />
 
-         </children>
+
+            </children>
+
 
         </GridPane>
 
         <!--<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="1080.0"-->
-                    <!--style="-fx-background-color: #799679;" >-->
+        <!--style="-fx-background-color: #799679;" >-->
 
-            <!--<children>-->
+        <!--<children>-->
 
-                <!--<SplitPane dividerPositions="0.25, 0.5, 0.75" prefHeight="120.0" prefWidth="1080"-->
-                           <!--xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"-->
-                           <!--fx:id="infoPane">-->
-                <!--</SplitPane>-->
+        <!--<SplitPane dividerPositions="0.25, 0.5, 0.75" prefHeight="120.0" prefWidth="1080"-->
+        <!--xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"-->
+        <!--fx:id="infoPane">-->
+        <!--</SplitPane>-->
 
-            <!--</children>-->
+        <!--</children>-->
         <!--</AnchorPane>-->
 
     </children>

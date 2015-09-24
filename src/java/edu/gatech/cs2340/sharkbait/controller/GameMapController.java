@@ -13,6 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.control.*;
+import javafx.event.ActionEvent;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,9 +31,20 @@ public class GameMapController implements Initializable {
     @FXML
     private GridPane grid;
 
+    @FXML
+    private void handleGridButtonPress(ActionEvent ev) {
+        Button button = (Button) ev.getSource();
+
+        //THIS SHOULD UPDATE THE PLAYER
+        System.out.println("You pressed: " + button.getText());
+
+        //THIS SHOULD BE THE PLAYER COLOR.
+        button.setStyle("-fx-background-color:red;");
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         town.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
