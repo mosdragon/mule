@@ -81,15 +81,15 @@ public class Player {
     }
 
 // TODO: if round <= 2, do not decrement player money! (land grant)
-    public void addProperty(Property property) {
+    public boolean addProperty(Property property) {
         playerProperties.add(property);
-        // if (GameDuration.getRound() > 2) {
-        //      player.changeMoney(property.price());
-        // }
+        if (GameDuration.getRound() > 2 && (money >= 300)) {
+            this.changeMoney(-300);
+            return true;
+        }
+        return false;
     }
-
-
-
-
-
+//    public boolean canBuyProperty(Property property) {
+//
+//    }
 }

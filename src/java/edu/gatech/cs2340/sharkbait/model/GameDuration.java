@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.sharkbait.model;
 
 import edu.gatech.cs2340.sharkbait.controller.GameConfigController;
+import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import javafx.scene.Parent;
 
@@ -14,6 +15,7 @@ public class GameDuration {
     private static Player activePlayer = null;
     private static int round;
     private static int turn;
+    private static GamePhase phase = GamePhase.LandBuyPhase;
 
     private GameDuration() {
         turn = 1;
@@ -53,17 +55,22 @@ public class GameDuration {
     }
 
 
-    public int getRound() {
+    public static int getRound() {
         return round;
     }
 
     public static void endTurn() {
+        if (getTurn() >= GameConfigs.getNumPlayers()) {
+            if (phase == GamePhase.LandBuyPhase) {
+                turn = 0;
+                phase = GamePhase.PlayerTurnPhase;
+            } else {
+                round++;
+                setTurn(0);
+            }
+        }
         setActivePlayer(GameConfigs.players.get(turn));
         turn++;
-        if (getTurn() > GameConfigs.getNumPlayers()) {
-            round++;
-            setTurn(0);
-        }
     }
 
     public static void endGame(){}
