@@ -104,6 +104,8 @@ public class GameMapController implements Initializable {
 //                            Image other = new Image(img);
 
 //                            TODO: End turn for this player
+                            GameDuration.endTurn();
+                            player = GameDuration.getActivePlayer();
                         }
                     }
                 });
@@ -138,7 +140,6 @@ public class GameMapController implements Initializable {
      * @param coundown, the time in second for the turn to proceed
      */
     private void beginTurn(Player player, int coundown) {
-
     }
 
 //    TODO: Implement reward for ending turn

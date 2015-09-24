@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -14,6 +15,7 @@ public class Player {
     private Race race;
     private double money;
     private double energy;
+
     ArrayList<Property> playerProperties;
 
     public Player(String name, Color color, Race race) {
@@ -85,6 +87,9 @@ public class Player {
         //      player.changeMoney(property.price());
         // }
     }
+
+
+
 
 
 }
