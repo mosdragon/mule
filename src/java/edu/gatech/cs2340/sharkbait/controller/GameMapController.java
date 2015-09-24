@@ -1,7 +1,10 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
+import edu.gatech.cs2340.sharkbait.MasterController;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.util.Player;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,12 +12,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
+import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
+import javax.imageio.ImageIO;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -27,6 +35,8 @@ public class GameMapController implements Initializable {
     private ImageView town;
     @FXML
     private GridPane grid;
+    @FXML
+    private Button passButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,37 +49,24 @@ public class GameMapController implements Initializable {
                 Player active = GameDuration.getActivePlayer();
                 Scene currentScene = town.getScene();
 
+//                TODO: Only if play active then go into store with that player
                 if (active == null) {
-                    if (GameDuration.getTownMap() == null) {
-                        System.out.println("First time in town");
-
-                        Parent gameMap = currentScene.getRoot();
-                        GameDuration.setGameMap(gameMap);
-
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource
-                                ("../view/fxml/town_map.fxml"));
-
-                        try {
-                            Parent townMap = fxmlLoader.load();
-                            currentScene.setRoot(townMap);
-                            GameDuration.setTownMap(townMap);
-
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                    } else {
-                        System.out.println("Been there, done that. In town before.");
-                        Parent townMap = GameDuration.getTownMap();
-                        currentScene.setRoot(townMap);
-                    }
+                    MasterController.changeSceneToTownMap();
                 }
             }
         });
 
+
+
 //        For all grid cells
         for (Node n : grid.getChildren()) {
+
+//            System.out.println(n.getClass().toString());
+//            ImageView imgView = (ImageView) n;
+//            System.out.println(imgView.getImage().getPixelReader());
+
+//            System.out.println(grid.getRow);
+//            System.out.println(n.getLayoutY());
 
 //            Unless you are the town cell
             if (!n.equals(town)) {
@@ -81,11 +78,12 @@ public class GameMapController implements Initializable {
                     public void handle(MouseEvent event) {
                         Player player = GameDuration.getActivePlayer();
 
-                        if (player != null) {
+                        if (player == null) {
 //                            TODO: Change color using activePlayer.getColor() if no other player
 //                            bought
                             ImageView view = (ImageView) n;
                             Image img = view.getImage();
+                            tint(view);
 //                            img.getPixelReader().;
 //                            Image other = new Image(img);
 
@@ -112,6 +110,26 @@ public class GameMapController implements Initializable {
 //        first 2
     }
 
+    @FXML
+    private void handleGridButtonPress(ActionEvent ev) {
+        Button button = (Button) ev.getSource();
+
+
+        //THIS SHOULD UPDATE THE PLAYER
+        System.out.println("You pressed: " + button.getText());
+
+
+        //THIS SHOULD BE THE PLAYER COLOR.
+        button.setStyle("-fx-background-color:red;");
+
+
+    }
+
+    @FXML protected void passLandPhase(ActionEvent event) {
+
+
+    }
+
 
     private void beginLandSelection(Player player, int cost) {
 
@@ -134,6 +152,46 @@ public class GameMapController implements Initializable {
      * @param player
      */
     private void goToPub(Player player) {
+    }
+
+    public static void tint(ImageView view) {
+
+        Image img = view.getImage();
+        PixelReader reader = img.getPixelReader();
+
+        WritableImage write = new WritableImage(reader,
+                (int) img.getWidth(),
+                (int) img.getHeight());
+
+        PixelWriter writer = write.getPixelWriter();
+
+        view.setStyle("-fx-background-color:red;");
+
+        System.out.println("Tinting image now");
+
+//        double red;
+
+//        for (int x = 0; x < img.getWidth(); x++) {
+//            for (int y = 0; y < img.getHeight(); y++) {
+//
+//                Color orig = reader.getColor(x, y);
+//                red = orig.getRed();
+//                Color after;
+
+//                Image updated = new Image()
+
+//                Color color = new Color(img.getRGB(x, y));
+//
+//                // do something with the color :) (change the hue, saturation and/or brightness)
+//                // float[] hsb = new float[3];
+//                // Color.RGBtoHSB(color.getRed(), old.getGreen(), old.getBlue(), hsb);
+//
+//                // or just call brighter to just tint it
+//                Color brighter = color.brighter();
+
+//                img.setRGB(x, y, brighter.getRGB());
+//            }
+//        }
     }
 
 }

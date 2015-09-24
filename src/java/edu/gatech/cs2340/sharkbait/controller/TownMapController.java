@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
+import edu.gatech.cs2340.sharkbait.MasterController;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import javafx.event.EventHandler;
@@ -33,9 +34,7 @@ public class TownMapController implements Initializable {
         exitTown.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Scene currentScene = exitTown.getScene();
-                Parent gameMap = GameDuration.getGameMap();
-                currentScene.setRoot(gameMap);
+                MasterController.changeSceneToGameMap();
             }
         });
 

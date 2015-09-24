@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
+import edu.gatech.cs2340.sharkbait.MasterController;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -115,16 +116,18 @@ public class ConfigScreenController implements Initializable {
                     gameState = State.BeginGame;
                     mainGameMessage.setText("Loading your game...");
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                            .getResource("../view/fxml/game_map.fxml"));
+                    MasterController.changeSceneToGameMap();
 
-                    try {
-                        Parent gameMap = fxmlLoader.load();
-                        Scene currentScene = configBox.getScene();
-                        currentScene.setRoot(gameMap);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    FXMLLoader fxmlLoader = new FXMLLoader(getClass()
+//                            .getResource("../view/fxml/game_map.fxml"));
+//
+//                    try {
+//                        Parent gameMap = fxmlLoader.load();
+//                        Scene currentScene = configBox.getScene();
+//                        currentScene.setRoot(gameMap);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
 
             }

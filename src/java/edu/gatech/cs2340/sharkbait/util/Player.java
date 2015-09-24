@@ -20,11 +20,14 @@ public class Player {
         this.name = name;
         this.color = color;
         this.race = race;
-        if (Objects.equals(race.toString(), "Flapper")) {
+
+        if (race == Race.Flapper) {
             money = 1600;
-        } else if (Objects.equals(race.toString(), "Human")) {
+
+        } else if (race == Race.Human) {
             money = 600;
-        } else if (Objects.equals(race.toString(), "Others")){
+
+        } else {
             money = 1000;
         }
         this.playerProperties = new ArrayList<>();
