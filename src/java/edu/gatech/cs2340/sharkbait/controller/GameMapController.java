@@ -86,7 +86,7 @@ public class GameMapController implements Initializable {
 //                            bought
                             ImageView view = (ImageView) n;
                             Image img = view.getImage();
-                            tint(view);
+//                            tint(view);
 //                            img.getPixelReader().;
 //                            Image other = new Image(img);
 
@@ -115,43 +115,55 @@ public class GameMapController implements Initializable {
 
     @FXML
     private void handleGridButtonPress(ActionEvent ev) {
-        Button button = (Button) ev.getSource();
 
-
-        //THIS SHOULD UPDATE THE PLAYER
-        System.out.println("You pressed: " + button.getText());
+//        TODO: Make sure actual active player is set. This is mocked
         GameDuration.setActivePlayer(GameConfigs.getInstance().getPlayers().get(0));
-        Player activePlayer = GameDuration.getActivePlayer();
 
-        String type = button.getText();
-        PropertyType propertyType = null;
+        Button button = (Button) ev.getSource();
+        System.out.println("You pressed: " + button.getText());
 
-        if (type.equals("plains")) {
-            propertyType = PropertyType.Plains;
-        } else if (type.equals("mountain1")) {
-            propertyType = PropertyType.Mountain;
-        } else if (type.equals("River")) {
-            propertyType = PropertyType.River;
-        }
+        if (button.getStyle().contains("-fx-background-color:rgba(0,0,0,0);")) {
+//            Property already bought, do nothing
 
-        Property property = new Property(propertyType, activePlayer);
-        activePlayer.addProperty(property);
+        } else {
+//            Buy property
+            //THIS SHOULD UPDATE THE PLAYER
 
-        System.out.println(activePlayer.getProperties().size());
+            Player activePlayer = GameDuration.getActivePlayer();
+            String type = button.getText();
+            PropertyType propertyType = null;
 
-        if (activePlayer != null) {
-            String color = activePlayer.getColor();
-            String styleVal = "-fx-background-color:" + color;
-            //THIS SHOULD BE THE PLAYER COLOR.
-            button.setStyle(styleVal);
+            if (activePlayer != null) {
+
+
+                if (type.equals("plains")) {
+                    propertyType = PropertyType.Plains;
+                } else if (type.equals("mountain1")) {
+                    propertyType = PropertyType.Mountain;
+                } else if (type.equals("River")) {
+                    propertyType = PropertyType.River;
+                }
+
+                Property property = new Property(propertyType, activePlayer);
+                activePlayer.addProperty(property);
+
+                System.out.println(activePlayer.getProperties().size());
+
+                String color = activePlayer.getColor();
+                String styleVal = "-fx-background-color:" + color;
+                button.setStyle(styleVal);
+
+//                TODO: End land phase turn
+
+            }
+
         }
 
 
     }
 
     @FXML protected void passLandPhase(ActionEvent event) {
-
-
+//        TODO: End land phase turn
     }
 
 
