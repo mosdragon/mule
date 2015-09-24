@@ -509,17 +509,33 @@
                <AnchorPane />
                <AnchorPane />
                <AnchorPane />
-               <AnchorPane />
-               <AnchorPane >
+
+               <VBox>
 
                    <children>
 
 
-                       <Button fx:id="passButton" text="PASS" prefWidth="200"/>
+                       <Label fx:id="phaseMsg"></Label>
+                       <Label fx:id="playerMsg"></Label>
 
                    </children>
 
-               </AnchorPane>
+
+               </VBox>
+
+
+               <VBox >
+
+                   <children>
+
+
+                       <Button fx:id="passButton" text="Pass" prefWidth="200"/>
+
+
+
+                   </children>
+
+               </VBox>
            </items>
 
 

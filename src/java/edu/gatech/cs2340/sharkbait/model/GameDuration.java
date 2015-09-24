@@ -62,6 +62,10 @@ public class GameDuration {
         return round;
     }
 
+    public static GamePhase getPhase() {
+        return phase;
+    }
+
     public static void endTurn() {
         turn++;
         if (turn >= GameConfigs.getNumPlayers()) {
@@ -78,6 +82,7 @@ public class GameDuration {
 
 
 
+    public static void endGame() {
 
-    public static void endGame(){}
+    }
 }

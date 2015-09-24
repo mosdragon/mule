@@ -3,6 +3,7 @@ package edu.gatech.cs2340.sharkbait.controller;
 import edu.gatech.cs2340.sharkbait.MasterController;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
+import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Property;
 import edu.gatech.cs2340.sharkbait.util.PropertyType;
@@ -16,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -40,8 +42,23 @@ public class GameMapController implements Initializable {
     @FXML
     private Button passButton;
 
+    @FXML
+    private Label phaseMsg;
+
+    @FXML
+    private Label playerMsg;
+
+    private static final String PHASE = "Phase: ";
+    private static final String PLAYER = "Active Player: ";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+
+//        phaseMsg.setText(PHASE + GameDuration.getPhase().toString());
+//        playerMsg.setText(PLAYER + GameDuration.getActivePlayer().getName());
+
         town.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -108,7 +125,8 @@ public class GameMapController implements Initializable {
                 passButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        passLandPhase();
+                        GameDuration.endTurn();
+                        updateMessages();
                     }
                 });
             }
@@ -122,9 +140,6 @@ public class GameMapController implements Initializable {
 
     @FXML
     private void handleGridButtonPress(ActionEvent ev) {
-
-//        TODO: Make sure actual active player is set. This is mocked
-//        GameDuration.setActivePlayer(GameConfigs.getInstance().getPlayers().get(0));
 
         Button button = (Button) ev.getSource();
         System.out.println("You pressed: " + button.getText());
@@ -162,12 +177,8 @@ public class GameMapController implements Initializable {
                 String styleVal = "-fx-background-color:" + color;
                 button.setStyle(styleVal);
 
-//                TODO: End land phase turn
-                System.out.println(GameDuration.getActivePlayer());
-                System.out.println(GameDuration.getTurn());
                 GameDuration.endTurn();
-                System.out.println(GameDuration.getActivePlayer());
-                System.out.println(GameDuration.getTurn());
+                updateMessages();
 
             }
 
@@ -176,14 +187,14 @@ public class GameMapController implements Initializable {
 
     }
 
-    private void passLandPhase() {
-//        TODO: End land phase turn
-        System.out.println(GameDuration.getActivePlayer());
-        System.out.println(GameDuration.getTurn());
-        GameDuration.endTurn();
-        System.out.println(GameDuration.getActivePlayer());
-        System.out.println(GameDuration.getTurn());
-
+    private void updateMessages() {
+        if (GameDuration.getPhase() == GamePhase.PlayerTurnPhase) {
+            passButton.setText("End Turn");
+        } else {
+            passButton.setText("Pass");
+        }
+        phaseMsg.setText(PHASE + GameDuration.getPhase().toString());
+        playerMsg.setText(PLAYER + GameDuration.getActivePlayer().getName());
     }
 
 
