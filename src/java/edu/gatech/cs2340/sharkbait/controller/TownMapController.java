@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import java.util.Random;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import java.util.ResourceBundle;
  */
 public class TownMapController implements Initializable {
 
+    private int timeBonus = 10;
     @FXML
     private Button exitTown;
     @FXML
@@ -43,12 +45,18 @@ public class TownMapController implements Initializable {
         enterPub.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                Random rand = new Random();
+                int time = rand.nextInt(timeBonus);
+                Player player = GameDuration.getActivePlayer();
+                System.out.println(player.getMoney());
+                player.changeMoney(GameDuration.getRound() * time );
+                System.out.println(player.getMoney());
                 MasterController.changeSceneToGameMap();
                 GameDuration.endTurn();
                 GameMapController controller = GameDuration.getGameMapController();
                 controller.updateMessages();
-                System.out.println(GameDuration.getActivePlayer().toString());
-               // GameMapController.updateMessages();
+
+
             }
         });
 
