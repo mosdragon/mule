@@ -8,6 +8,8 @@ import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import javafx.scene.Parent;
 
+import java.util.Collections;
+
 /**
  * Created by osama on 9/22/15.
  */
@@ -79,6 +81,9 @@ public class GameDuration {
             if (phase == GamePhase.LandBuyPhase) {
                 phase = GamePhase.PlayerTurnPhase;
             } else {
+//                End of turn. Sort the list of players
+                Collections.sort(GameConfigs.getPlayers());
+                System.out.println("Sorted players by score");
                 phase = GamePhase.LandBuyPhase;
                 round++;
             }

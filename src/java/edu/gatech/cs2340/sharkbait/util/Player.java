@@ -3,13 +3,14 @@ package edu.gatech.cs2340.sharkbait.util;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * Created by osama on 9/12/15.
  */
-public class Player {
+public class Player implements Comparable<Player> {
 
     private String name;
     private String color;
@@ -106,6 +107,13 @@ public class Player {
     @Override
     public String toString() {
         return getName();
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        Double myMoney = this.money;
+        Double thatMoney = o.money;
+        return myMoney.compareTo(thatMoney);
     }
 
     //    public boolean canBuyProperty(Property property) {

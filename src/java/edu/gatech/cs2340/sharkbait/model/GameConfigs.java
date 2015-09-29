@@ -14,9 +14,9 @@ public class GameConfigs {
 
     private static GameConfigs ourInstance = new GameConfigs();
 
-    private Difficulty gameDifficulty;
+    private static Difficulty gameDifficulty;
     private static int numPlayers;
-    private MapType mapType;
+    private static MapType mapType;
 
     public static List<Player> players;
 
@@ -31,15 +31,15 @@ public class GameConfigs {
         players = new ArrayList<>();
     }
 
-    public List<Player> getPlayers() {
+    public static List<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<Player> players) {
-        this.players = players;
+    public static void setPlayers(List<Player> players) {
+        GameConfigs.players = players;
     }
 
-    public void addPlayer(Player player) {
+    public static void addPlayer(Player player) {
         players.add(player);
     }
 
@@ -47,8 +47,8 @@ public class GameConfigs {
         return gameDifficulty;
     }
 
-    public void setGameDifficulty(Difficulty gameDifficulty) {
-        this.gameDifficulty = gameDifficulty;
+    public static void setGameDifficulty(Difficulty gameDifficulty) {
+        GameConfigs.gameDifficulty = gameDifficulty;
     }
 
     public static int getNumPlayers() {
