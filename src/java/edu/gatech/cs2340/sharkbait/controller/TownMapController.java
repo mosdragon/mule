@@ -10,10 +10,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import java.util.Random;
+
+import java.util.*;
 
 import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Created by osama on 9/22/15.
@@ -35,6 +35,7 @@ public class TownMapController implements Initializable {
 //                        player.energy += 1
 
 
+
         exitTown.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -42,14 +43,16 @@ public class TownMapController implements Initializable {
             }
         });
 
+
         enterPub.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                List<Integer> roundBonus = new ArrayList<>(Arrays.asList(50,50,50,100,100,100,100,150,150,150,150,200));
                 Random rand = new Random();
                 int time = rand.nextInt(timeBonus);
                 Player player = GameDuration.getActivePlayer();
                 System.out.println(player.getMoney());
-                player.changeMoney(GameDuration.getRound() * time );
+                player.changeMoney(roundBonus.get(GameDuration.getRound() - 1) * time );
                 System.out.println(player.getMoney());
                 MasterController.changeSceneToGameMap();
                 GameDuration.endTurn();
