@@ -80,30 +80,30 @@ public class Store {
         }
     }
 
-    public static void sellMule (Player p, Resource type) {
-        if (type.name() == "Smithore") {
+    public static void sellMule (Player p, Mule mule) {
+        if (mule.getType().name() == "Smithore") {
             if (p.getMules() > 0) {
                 p.changeMoney(oreMulePrice);
                 p.changeMules(-1);
-//              removing the mule from the player
+                p.removeMule(p.getOwnedMules(), mule);
                 muleCount++;
             } else {
                 System.out.println("Not enough Money!");
             }
-        } else if (type.name() == "Food") {
+        } else if (mule.getType().name() == "Food") {
             if (p.getMules() > 0) {
                 p.changeMoney(foodMulePrice);
                 p.changeMules(-1);
-//              removing the mule from the player
+                p.removeMule(p.getOwnedMules(), mule);
                 muleCount++;
             } else {
                 System.out.println("Not enough Money!");
             }
-        } else if (type.name() == "Energy") {
+        } else if (mule.getType().name() == "Energy") {
             if (p.getMules() > 0) {
                 p.changeMoney(energyMulePrice);
                 p.changeMules(-1);
-//              removing the mule from the player
+                p.removeMule(p.getOwnedMules(), mule);
                 muleCount++;
             } else {
                 System.out.println("Not enough Money!");

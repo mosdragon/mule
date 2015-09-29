@@ -12,4 +12,20 @@ public class Mule {
         this.owner = owner;
         this.type = type;
     }
+
+    public Resource getType() {
+        return type;
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+    public void setType(Resource type) {
+        this.type = type;
+    }
 }
