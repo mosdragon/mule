@@ -187,7 +187,7 @@ public class GameMapController implements Initializable {
 
     }
 
-    private void updateMessages() {
+    public void updateMessages() {
         if (GameDuration.getPhase() == GamePhase.PlayerTurnPhase) {
             passButton.setText("End Turn");
         } else {
