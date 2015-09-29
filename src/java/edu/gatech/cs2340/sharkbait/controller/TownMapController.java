@@ -45,6 +45,8 @@ public class TownMapController implements Initializable {
             public void handle(MouseEvent event) {
                 MasterController.changeSceneToGameMap();
                 GameDuration.endTurn();
+                GameMapController controller = GameDuration.getGameMapController();
+                controller.updateMessages();
                 System.out.println(GameDuration.getActivePlayer().toString());
                // GameMapController.updateMessages();
             }

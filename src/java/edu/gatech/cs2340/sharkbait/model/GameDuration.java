@@ -2,6 +2,8 @@ package edu.gatech.cs2340.sharkbait.model;
 
 import com.sun.org.apache.bcel.internal.generic.LAND;
 import edu.gatech.cs2340.sharkbait.controller.GameConfigController;
+import edu.gatech.cs2340.sharkbait.controller.GameMapController;
+import edu.gatech.cs2340.sharkbait.controller.TownMapController;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import javafx.scene.Parent;
@@ -12,7 +14,11 @@ import javafx.scene.Parent;
 public class GameDuration {
 
     private static Parent gameMap = null;
+    private static GameMapController gameMapController;
+
     private static Parent townMap = null;
+    private static TownMapController townMapController;
+
     private static Player activePlayer = null;
     private static int round = 1;
     private static int turn = 0;
@@ -84,5 +90,21 @@ public class GameDuration {
 
     public static void endGame() {
 
+    }
+
+    public static GameMapController getGameMapController() {
+        return gameMapController;
+    }
+
+    public static void setGameMapController(GameMapController gameMapController) {
+        GameDuration.gameMapController = gameMapController;
+    }
+
+    public static TownMapController getTownMapController() {
+        return townMapController;
+    }
+
+    public static void setTownMapController(TownMapController townMapController) {
+        GameDuration.townMapController = townMapController;
     }
 }

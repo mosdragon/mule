@@ -1,5 +1,9 @@
 package edu.gatech.cs2340.sharkbait;
 
+import edu.gatech.cs2340.sharkbait.controller.GameMapController;
+import edu.gatech.cs2340.sharkbait.controller.TownMapController;
+import edu.gatech.cs2340.sharkbait.model.GameDuration;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -45,13 +49,19 @@ public class MasterController {
             gameStage.setScene(configScene);
             gameStage.show();
 
-            Parent gameMapRoot = new FXMLLoader(getInstance().getClass().getResource
-                    ("view/fxml/game_map.fxml")).load();
+            FXMLLoader gameMapLoader = new FXMLLoader(getInstance().getClass().getResource
+                    ("view/fxml/game_map.fxml"));
+            Parent gameMapRoot = gameMapLoader.load();
             gameMapScene = new Scene(gameMapRoot);
+            GameMapController gameMapController = gameMapLoader.getController();
+            GameDuration.setGameMapController(gameMapController);
 
-            Parent townMapRoot = new FXMLLoader(getInstance().getClass().getResource
-                    ("view/fxml/town_map.fxml")).load();
+            FXMLLoader townMapLoader = new FXMLLoader(getInstance().getClass().getResource
+                    ("view/fxml/town_map.fxml"));
+            Parent townMapRoot = townMapLoader.load();
             townMapScene = new Scene(townMapRoot);
+            TownMapController townMapController = townMapLoader.getController();
+            GameDuration.setTownMapController(townMapController);
 
 
         } catch (IOException e) {
