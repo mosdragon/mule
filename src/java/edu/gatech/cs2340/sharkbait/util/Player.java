@@ -16,7 +16,12 @@ public class Player {
     private Race race;
     private double money;
     private double energy;
+    private double food;
+    private double ore;
+    private double mules;
+    private List<Mule> ownedMules;
     private List<Property> properties;
+
 
     public Player(String name, String color, Race race) {
         this.name = name;
@@ -81,6 +86,50 @@ public class Player {
 
     public double getEnergy() {
         return energy;
+    }
+
+    /**
+     *
+     * @param amount positive or negative amount of money
+     */
+    public void changeFood(double amount) {
+        food += amount;
+    }
+
+    public double getFood() {
+        return food;
+    }
+
+    public void changeOre(double amount) {
+        ore += amount;
+    }
+
+    public double getOre() {
+        return ore;
+    }
+
+    /**
+     *
+     * @param amount positive or negative amount of money
+     */
+    public void changeMules(double amount) {
+        mules += amount;
+    }
+
+    public double getMules() {
+        return mules;
+    }
+
+    public List<Mule> getOwnedMules() {
+        return ownedMules;
+    }
+
+    public void addMule(List<Mule> mules, Mule mule) {
+        mules.add(mule);
+    }
+
+    public void removeMule(List<Mule> mules, Mule mule) {
+        mules.remove(mule);
     }
 
     public List<Property> getProperties() {

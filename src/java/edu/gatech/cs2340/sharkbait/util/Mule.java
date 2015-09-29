@@ -7,4 +7,9 @@ public class Mule {
 
     private Resource type;
     private Player owner;
+
+    public Mule (Player owner, Resource type) {
+        this.owner = owner;
+        this.type = type;
+    }
 }
