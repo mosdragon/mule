@@ -15,6 +15,9 @@ import java.util.Collections;
  */
 public class GameDuration {
 
+//    Start with 50 second turns
+    private static final int TIME_START = 50;
+
     private static Parent gameMap = null;
     private static GameMapController gameMapController;
 
@@ -24,15 +27,30 @@ public class GameDuration {
     private static Player activePlayer = null;
     private static int round = 1;
     private static int turn = 0;
+
+    private static boolean begun = false;
     private static GamePhase phase = GamePhase.LandBuyPhase;
+
+//    Time left of the turn, in seconds
+    private static int timeRemaining;
 
     private GameDuration() {
     }
 
+    public static boolean hasBegun() {
+        return begun;
+    }
+
+    public static void begin() {
+        begun = true;
+        phase = GamePhase.LandBuyPhase;
+        resetTime();
+    }
 
     public static Player getActivePlayer() {
-        if (activePlayer == null) {
+        if (activePlayer == null && hasBegun()) {
             activePlayer = GameConfigs.getInstance().getPlayers().get(turn);
+            resetTime();
         }
         return activePlayer;
     }
@@ -83,12 +101,12 @@ public class GameDuration {
             } else {
 //                End of turn. Sort the list of players
                 Collections.sort(GameConfigs.getPlayers());
-                System.out.println("Sorted players by score");
                 phase = GamePhase.LandBuyPhase;
                 round++;
             }
         }
         activePlayer = GameConfigs.getInstance().getPlayers().get(turn);
+        timeRemaining = TIME_START;
     }
 
 
@@ -111,5 +129,21 @@ public class GameDuration {
 
     public static void setTownMapController(TownMapController townMapController) {
         GameDuration.townMapController = townMapController;
+    }
+
+    public static int getTimeRemaining() {
+        return timeRemaining;
+    }
+
+    public static void setTimeRemaining(int timeRemaining) {
+        GameDuration.timeRemaining = timeRemaining;
+    }
+
+    public static void passOneSecond() {
+        GameDuration.timeRemaining -= 1;
+    }
+
+    public static void resetTime() {
+        timeRemaining = TIME_START;
     }
 }

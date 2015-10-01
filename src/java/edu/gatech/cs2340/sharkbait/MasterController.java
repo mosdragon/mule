@@ -71,16 +71,15 @@ public class MasterController {
 
     public static void changeSceneToGameMap() {
         gameStage.setScene(gameMapScene);
-        System.out.println(gameStage.getMaxHeight());
-        System.out.println(gameStage.getMaxWidth());
     }
 
     public static void changeSceneToTownMap() {
         gameStage.setScene(townMapScene);
     }
 
-    // Unused atm
     public static void changeSceneToConfig() {
         gameStage.setScene(configScene);
     }
+
+
 }

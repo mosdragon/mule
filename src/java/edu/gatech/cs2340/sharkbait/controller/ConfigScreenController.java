@@ -2,6 +2,7 @@ package edu.gatech.cs2340.sharkbait.controller;
 
 import edu.gatech.cs2340.sharkbait.MasterController;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
+import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -90,7 +91,6 @@ public class ConfigScreenController implements Initializable {
                             playerConfigControllers.add(playerConfigController);
 
                             playerPrompt.setId("pane" + i);
-                            System.out.println(playerPrompt.getId());
 
                             infoPane.getItems().add(playerPrompt);
                             String defaultName = "Player " + i;
@@ -117,17 +117,7 @@ public class ConfigScreenController implements Initializable {
                     mainGameMessage.setText("Loading your game...");
 
                     MasterController.changeSceneToGameMap();
-
-//                    FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-//                            .getResource("../view/fxml/game_map.fxml"));
-//
-//                    try {
-//                        Parent gameMap = fxmlLoader.load();
-//                        Scene currentScene = configBox.getScene();
-//                        currentScene.setRoot(gameMap);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
+                    GameDuration.begin();
                 }
 
             }

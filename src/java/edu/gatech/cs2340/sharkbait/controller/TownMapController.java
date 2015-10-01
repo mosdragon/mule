@@ -47,8 +47,6 @@ public class TownMapController implements Initializable {
                 GameDuration.endTurn();
                 GameMapController controller = GameDuration.getGameMapController();
                 controller.updateMessages();
-                System.out.println(GameDuration.getActivePlayer().toString());
-               // GameMapController.updateMessages();
             }
         });
 

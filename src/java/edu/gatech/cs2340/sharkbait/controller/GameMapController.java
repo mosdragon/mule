@@ -7,6 +7,10 @@ import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Property;
 import edu.gatech.cs2340.sharkbait.util.PropertyType;
+import edu.gatech.cs2340.trydent.log.Log;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
 import java.io.ByteArrayInputStream;
@@ -49,109 +54,83 @@ public class GameMapController implements Initializable {
     private Label playerMsg;
 
     @FXML
+    private Label timerMsg;
+
+    @FXML
     private Label player1, player2, player3, player4;
+
+    protected Timeline timeline;
 
 
     private static final String PHASE = "Phase: ";
     private static final String PLAYER = "Active Player: ";
+    private static final String TIME_LEFT = "Time Remaining: ";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        timeline = new Timeline(new KeyFrame(
+                Duration.millis(1000),
+                ae -> passTime()));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
 
-
-//        phaseMsg.setText(PHASE + GameDuration.getPhase().toString());
-//        playerMsg.setText(PLAYER + GameDuration.getActivePlayer().getName());
+        int time = GameDuration.getTimeRemaining();
+        timerMsg.setText(TIME_LEFT + time + 1);
 
         town.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Town Clicked");
-
-                Player active = GameDuration.getActivePlayer();
-
                 if (GameDuration.getPhase() == GamePhase.PlayerTurnPhase) {
                     MasterController.changeSceneToTownMap();
                 }
             }
         });
 
-
-
-//        For all grid cells
-        for (Node n : grid.getChildren()) {
-
-//            System.out.println(n.getClass().toString());
-//            ImageView imgView = (ImageView) n;
-//            System.out.println(imgView.getImage().getPixelReader());
-
-//            System.out.println(grid.getRow);
-//            System.out.println(n.getLayoutY());
-
-//            Unless you are the town cell
-            if (!n.equals(town)) {
-
-//                When clicked and in buying phase, buy for player, end buy phase
-                n.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                    @Override
-                    public void handle(MouseEvent event) {
-                        Player player = GameDuration.getActivePlayer();
-
-                        if (player == null) {
-//                            TODO: Change color using activePlayer.getColor() if no other player
-//                            bought
-                            ImageView view = (ImageView) n;
-                            Image img = view.getImage();
-//                            tint(view);
-//                            img.getPixelReader().;
-//                            Image other = new Image(img);
-
-//                            TODO: End turn for this player
-                            GameDuration.endTurn();
-                            player = GameDuration.getActivePlayer();
-                        }
-                    }
-                });
-
-//                When hoevered and is player's turn, change color
-                n.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-
-//                        if not bought, then change color.
-
-                    }
-                });
-
-                passButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        GameDuration.endTurn();
-                        updateMessages();
-                    }
-                });
+        passButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                GameDuration.endTurn();
+                updateTimer();
             }
-        }
-
-
-
+        });
 //        popup some message saying it's player X's turn
 //        first 2
+    }
+
+    private void passTime() {
+        if (GameDuration.hasBegun()) {
+            GameDuration.passOneSecond();
+            updateTimer();
+        }
+    }
+
+
+    private void updateTimer() {
+        if (GameDuration.hasBegun()) {
+            int time = GameDuration.getTimeRemaining();
+            if (time == 0) {
+                GameDuration.endTurn();
+//                Changes to game map if you're in town
+                MasterController.changeSceneToGameMap();
+                time = GameDuration.getTimeRemaining();
+            }
+            timerMsg.setText(TIME_LEFT + GameDuration.getTimeRemaining());
+            Log.debug("updateTimer: " + time);
+            updateMessages();
+        }
     }
 
     @FXML
     private void handleGridButtonPress(ActionEvent ev) {
 
         Button button = (Button) ev.getSource();
-        System.out.println("You pressed: " + button.getText());
+        Log.debug("You pressed: " + button.getText());
 
         boolean available = button.getStyle().contains("-fx-background-color:rgba(0,0,0,0);");
         boolean isLandBuyPhase = GameDuration.getPhase() == GamePhase.LandBuyPhase;
 
         if (available && isLandBuyPhase) {
-//            Buy property
-            //THIS SHOULD UPDATE THE PLAYER
 
             Player activePlayer = GameDuration.getActivePlayer();
             String type = button.getText();
@@ -160,28 +139,29 @@ public class GameMapController implements Initializable {
             if (activePlayer != null) {
 
 
-                if (type.equals("plains")) {
+                if (type.contains("plain")) {
                     propertyType = PropertyType.Plains;
-                } else if (type.equals("mountain1")) {
+
+                } else if (type.contains("mountain")) {
                     propertyType = PropertyType.Mountain;
-                } else if (type.equals("River")) {
+
+                } else if (type.contains("river")) {
                     propertyType = PropertyType.River;
                 }
 
                 Property property = new Property(propertyType, activePlayer);
                 activePlayer.addProperty(property);
-
-                System.out.println(activePlayer.getProperties().size());
+                Log.debug("Type: " + type);
+                Log.debug("Added " + propertyType.toString()  + " property to player " + activePlayer
+                        .getName());
 
                 String color = activePlayer.getColor();
                 String styleVal = "-fx-background-color:" + color;
                 button.setStyle(styleVal);
 
                 GameDuration.endTurn();
-                updateMessages();
-
+                updateTimer();
             }
-
         }
 
 
@@ -234,46 +214,6 @@ public class GameMapController implements Initializable {
      * @param player
      */
     private void goToPub(Player player) {
-    }
-
-    public static void tint(ImageView view) {
-
-        Image img = view.getImage();
-        PixelReader reader = img.getPixelReader();
-
-        WritableImage write = new WritableImage(reader,
-                (int) img.getWidth(),
-                (int) img.getHeight());
-
-        PixelWriter writer = write.getPixelWriter();
-
-        view.setStyle("-fx-background-color:red;");
-
-        System.out.println("Tinting image now");
-
-//        double red;
-
-//        for (int x = 0; x < img.getWidth(); x++) {
-//            for (int y = 0; y < img.getHeight(); y++) {
-//
-//                Color orig = reader.getColor(x, y);
-//                red = orig.getRed();
-//                Color after;
-
-//                Image updated = new Image()
-
-//                Color color = new Color(img.getRGB(x, y));
-//
-//                // do something with the color :) (change the hue, saturation and/or brightness)
-//                // float[] hsb = new float[3];
-//                // Color.RGBtoHSB(color.getRed(), old.getGreen(), old.getBlue(), hsb);
-//
-//                // or just call brighter to just tint it
-//                Color brighter = color.brighter();
-
-//                img.setRGB(x, y, brighter.getRGB());
-//            }
-//        }
     }
 
 }

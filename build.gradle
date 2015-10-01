@@ -6,6 +6,7 @@ repositories {
 
 dependencies {
     compile files('libs/Trydent.jar')
+    compile files('libs/reactfx.jar')
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
