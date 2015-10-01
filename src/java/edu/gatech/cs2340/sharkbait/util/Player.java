@@ -15,10 +15,10 @@ public class Player {
     private String color;
     private Race race;
     private double money;
-    private double energy;
-    private double food;
-    private double ore;
-    private double mules;
+    private int energy;
+    private int food;
+    private int ore;
+    private int mules;
     private List<Mule> ownedMules;
     private List<Property> properties;
 
@@ -80,11 +80,11 @@ public class Player {
      *
      * @param amount positive or negative amount of energy
      */
-    public void changeEnergy(double amount) {
+    public void changeEnergy(int amount) {
         energy += amount;
     }
 
-    public double getEnergy() {
+    public int getEnergy() {
         return energy;
     }
 
@@ -92,19 +92,19 @@ public class Player {
      *
      * @param amount positive or negative amount of money
      */
-    public void changeFood(double amount) {
+    public void changeFood(int amount) {
         food += amount;
     }
 
-    public double getFood() {
+    public int getFood() {
         return food;
     }
 
-    public void changeOre(double amount) {
+    public void changeOre(int amount) {
         ore += amount;
     }
 
-    public double getOre() {
+    public int getOre() {
         return ore;
     }
 
@@ -112,11 +112,11 @@ public class Player {
      *
      * @param amount positive or negative amount of money
      */
-    public void changeMules(double amount) {
+    public void changeMules(int amount) {
         mules += amount;
     }
 
-    public double getMules() {
+    public int getMules() {
         return mules;
     }
 
@@ -140,12 +140,12 @@ public class Player {
         this.properties = properties;
     }
 
-
-// TODO: if round <= 2, do not decrement player money! (land grant)
-
     public boolean addProperty(Property property) {
-        properties.add(property);
-        if (GameDuration.getRound() > 2 && (money >= 300)) {
+        if (GameDuration.getRound() < 2) {
+            properties.add(property);
+            return true;
+        } else if (GameDuration.getRound() > 2 && (money >= 300)) {
+            properties.add(property);
             this.changeMoney(-300);
             return true;
         }
@@ -156,8 +156,4 @@ public class Player {
     public String toString() {
         return getName();
     }
-
-    //    public boolean canBuyProperty(Property property) {
-//
-//    }
 }

@@ -28,4 +28,13 @@ public class Mule {
     public void setType(Resource type) {
         this.type = type;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Mule)) {
+            return false;
+        }
+        Mule other = (Mule) obj;
+        return this.type == other.type;
+    }
 }
