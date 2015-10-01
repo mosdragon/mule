@@ -116,7 +116,6 @@ public class GameMapController implements Initializable {
                 time = GameDuration.getTimeRemaining();
             }
             timerMsg.setText(TIME_LEFT + GameDuration.getTimeRemaining());
-            Log.debug("updateTimer: " + time);
             updateMessages();
         }
     }

@@ -39,6 +39,7 @@ public class Player implements Comparable<Player> {
             money = 1000;
         }
         this.properties = new ArrayList<>();
+        this.ownedMules = new ArrayList<>();
     }
 
     public String getName() {

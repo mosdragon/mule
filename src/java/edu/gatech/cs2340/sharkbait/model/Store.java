@@ -5,6 +5,7 @@ import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.Mule;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Resource;
+import jdk.management.resource.ResourceType;
 
 /**
  * Created by osama on 9/22/15.
@@ -47,7 +48,7 @@ public class Store {
     }
 
     public static void buyEnergy (Player p) {
-        if (p.getMoney() >= (ENERGY) && energyCount >= 1) {
+        if (p.getMoney() >= (ENERGY) && hasEnergy()) {
             p.changeMoney(-ENERGY);
             p.changeEnergy(1);
             energyCount--;
@@ -66,10 +67,9 @@ public class Store {
         }
     }
 
-    public static void buyMules (Player p, Resource type) {
+    public static void buyMule(Player p, Resource type) {
         boolean canAfford = false;
-        boolean hasMules = muleCount >= 1;
-        if (hasMules) {
+        if (hasMules()) {
             if (type == Resource.Smithore) {
                 if (p.getMoney() >= ORE_MULE) {
                     p.changeMoney(-ORE_MULE);
@@ -95,8 +95,8 @@ public class Store {
 
             if (canAfford) {
                 p.changeMules(1);
-                Mule temp = new Mule(p, type);
-                p.addMule(p.getOwnedMules(), temp);
+                Mule mule = new Mule(p, type);
+                p.addMule(p.getOwnedMules(), mule);
                 muleCount--;
             }
         } else {
@@ -104,42 +104,45 @@ public class Store {
         }
     }
 
-    public static void sellMule(Player p, Mule mule) {
+    public static void sellMule(Player p, Resource type) {
 
-        if (mule.getType() == Resource.Smithore) {
+        Mule mule = new Mule(p, type);
+
+
+        if (type == Resource.Smithore) {
             if (p.getMules() > 0) {
                 p.changeMoney(ORE_MULE);
                 p.changeMules(-1);
                 p.removeMule(p.getOwnedMules(), mule);
                 muleCount++;
             } else {
-                Log.debug("Not enough money!");
+                Log.debug("Not enough mules!");
             }
 
-        } else if (mule.getType() == Resource.Food) {
+        } else if (type == Resource.Food) {
             if (p.getMules() > 0) {
                 p.changeMoney(FOOD_MULE);
                 p.changeMules(-1);
                 p.removeMule(p.getOwnedMules(), mule);
                 muleCount++;
             } else {
-                Log.debug("Not enough money!");
+                Log.debug("Not enough mules!");
             }
 
-        } else if (mule.getType() == Resource.Energy) {
+        } else if (type == Resource.Energy) {
             if (p.getMules() > 0) {
                 p.changeMoney(ENERGY_MULE);
                 p.changeMules(-1);
                 p.removeMule(p.getOwnedMules(), mule);
                 muleCount++;
             } else {
-                Log.debug("Not enough money!");
+                Log.debug("Not enough mules!");
             }
         }
     }
 
     public static void buyFood (Player p) {
-        if (p.getMoney() >= (FOOD)) {
+        if (p.getMoney() >= (FOOD) && hasFood()) {
             p.changeMoney(-FOOD);
             p.changeFood(1);
             foodCount--;
@@ -148,7 +151,7 @@ public class Store {
         }
     }
 
-    public static void sellFood (Player p) {
+    public static void sellFood(Player p) {
         if (p.getFood() > 0) {
             p.changeFood(-1);
             p.changeMoney(FOOD);
@@ -158,8 +161,8 @@ public class Store {
         }
     }
 
-    public static void buyOre (Player p) {
-        if (p.getMoney() >= (ORE)) {
+    public static void buyOre(Player p) {
+        if (p.getMoney() >= (ORE) && hasOre()) {
             p.changeMoney(-ORE);
             p.changeOre(1);
             oreCount--;
@@ -168,7 +171,7 @@ public class Store {
         }
     }
 
-    public static void sellOre (Player p) {
+    public static void sellOre(Player p) {
         if (p.getOre() > 0) {
             p.changeOre(-1);
             p.changeMoney(ORE);
@@ -178,20 +181,35 @@ public class Store {
         }
     }
 
-    public boolean hasMules() {
+    public static boolean hasMules() {
         return muleCount > 0;
     }
 
-    public boolean hasEnergy() {
+    public static boolean hasEnergy() {
         return energyCount > 0;
     }
 
-    public boolean hasOre() {
+    public static boolean hasOre() {
         return oreCount > 0;
     }
 
-    public boolean hasFood() {
+    public static boolean hasFood() {
         return foodCount > 0;
     }
 
+    public static int getEnergyCount() {
+        return energyCount;
+    }
+
+    public static int getFoodCount() {
+        return foodCount;
+    }
+
+    public static int getOreCount() {
+        return oreCount;
+    }
+
+    public static int getMuleCount() {
+        return muleCount;
+    }
 }

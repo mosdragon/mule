@@ -29,7 +29,6 @@ public class GameConfigs {
         gameDifficulty = Difficulty.Standard;
         mapType = MapType.StandardMap;
         players = new ArrayList<>();
-        Store.initializeStore();
     }
 
     public static List<Player> getPlayers() {
@@ -50,6 +49,7 @@ public class GameConfigs {
 
     public static void setGameDifficulty(Difficulty gameDifficulty) {
         GameConfigs.gameDifficulty = gameDifficulty;
+        Store.initializeStore();
     }
 
     public static int getNumPlayers() {
