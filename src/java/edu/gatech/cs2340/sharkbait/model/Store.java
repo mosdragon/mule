@@ -12,10 +12,10 @@ import edu.gatech.cs2340.sharkbait.util.Resource;
 public class Store {
 
 //    TODO: Add all resource counts
-    private static int energyCount = 16;
-    private static int muleCount = 25;
-    private static int foodCount = 16;
-    private static int oreCount = 0;
+    private static int energyCount;
+    private static int muleCount;
+    private static int foodCount;
+    private static int oreCount;
 
     private static final int ENERGY = 25;
     private static final int FOOD = 30;
@@ -47,7 +47,7 @@ public class Store {
     }
 
     public static void buyEnergy (Player p) {
-        if (p.getMoney() >= (ENERGY)) {
+        if (p.getMoney() >= (ENERGY) && energyCount >= 1) {
             p.changeMoney(-ENERGY);
             p.changeEnergy(1);
             energyCount--;
@@ -68,34 +68,39 @@ public class Store {
 
     public static void buyMules (Player p, Resource type) {
         boolean canAfford = false;
-        if (type == Resource.Smithore) {
-            if (p.getMoney() >= ORE_MULE) {
-                p.changeMoney(-ORE_MULE);
-                canAfford = true;
+        boolean hasMules = muleCount >= 1;
+        if (hasMules) {
+            if (type == Resource.Smithore) {
+                if (p.getMoney() >= ORE_MULE) {
+                    p.changeMoney(-ORE_MULE);
+                    canAfford = true;
+                } else {
+                    Log.debug("Not enough money!");
+                }
+            } else if (type == Resource.Energy) {
+                if (p.getMoney() >= ENERGY_MULE) {
+                    p.changeMoney(-ENERGY_MULE);
+                    canAfford = true;
+                } else {
+                    Log.debug("Not enough money!");
+                }
             } else {
-                Log.debug("Not enough money!");
+                if (p.getMoney() >= FOOD_MULE) {
+                    p.changeMoney(-FOOD_MULE);
+                    canAfford = true;
+                } else {
+                    Log.debug("Not enough money!");
+                }
             }
-        } else if (type == Resource.Energy) {
-            if (p.getMoney() >= ENERGY_MULE) {
-                p.changeMoney(-ENERGY_MULE);
-                canAfford = true;
-            } else {
-                Log.debug("Not enough money!");
+
+            if (canAfford) {
+                p.changeMules(1);
+                Mule temp = new Mule(p, type);
+                p.addMule(p.getOwnedMules(), temp);
+                muleCount--;
             }
         } else {
-            if (p.getMoney() >= FOOD_MULE) {
-                p.changeMoney(-FOOD_MULE);
-                canAfford = true;
-            } else {
-                Log.debug("Not enough money!");
-            }
-        }
-
-        if (canAfford) {
-            p.changeMules(1);
-            Mule temp = new Mule(p, type);
-            p.addMule(p.getOwnedMules(), temp);
-            muleCount--;
+            Log.debug("Not enough mules");
         }
     }
 
@@ -171,6 +176,22 @@ public class Store {
         } else {
             Log.debug("Not enough Ore!");
         }
+    }
+
+    public boolean hasMules() {
+        return muleCount > 0;
+    }
+
+    public boolean hasEnergy() {
+        return energyCount > 0;
+    }
+
+    public boolean hasOre() {
+        return oreCount > 0;
+    }
+
+    public boolean hasFood() {
+        return foodCount > 0;
     }
 
 }

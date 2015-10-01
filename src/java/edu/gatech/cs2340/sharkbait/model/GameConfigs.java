@@ -29,6 +29,7 @@ public class GameConfigs {
         gameDifficulty = Difficulty.Standard;
         mapType = MapType.StandardMap;
         players = new ArrayList<>();
+        Store.initializeStore();
     }
 
     public static List<Player> getPlayers() {

@@ -59,7 +59,7 @@ public class GameMapController implements Initializable {
     @FXML
     private Label player1, player2, player3, player4;
 
-    protected Timeline timeline;
+    private Timeline timeline;
 
 
     private static final String PHASE = "Phase: ";
