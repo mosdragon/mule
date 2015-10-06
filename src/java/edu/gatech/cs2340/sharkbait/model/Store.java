@@ -69,6 +69,7 @@ public class Store {
 
     public static void buyMule(Player p, Resource type) {
         boolean canAfford = false;
+        Log.debug("Mule Type: " + type.toString());
         if (hasMules()) {
             if (type == Resource.Smithore) {
                 if (p.getMoney() >= ORE_MULE) {
