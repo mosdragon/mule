@@ -29,12 +29,6 @@ public class MasterController {
 //    Used to update timers
     private static final String TIME_LEFT = "Time Remaining: ";
 
-//    Used for Grid Button Press
-    private static final String CSS_TRANSPARENT = "-fx-background-color:rgba(0,0,0,0);";
-    private static final String PLAINS = "plain";
-    private static final String MOUNTAIN = "mountain";
-    private static final String RIVER = "river";
-
     private static Scene configScene;
     private static Scene gameMapScene;
     private static Scene townMapScene;
@@ -152,43 +146,6 @@ public class MasterController {
         return townMapView;
     }
 
-
-    public static void attemptGridButtonClick(Button button) {
-        boolean available = button.getStyle().contains(CSS_TRANSPARENT);
-        boolean isLandBuyPhase = GameDuration.getPhase() == GamePhase.LandBuyPhase;
-
-        if (available && isLandBuyPhase) {
-
-            Player activePlayer = GameDuration.getActivePlayer();
-            String type = button.getText().toLowerCase();
-            PropertyType propertyType = null;
-
-            if (activePlayer != null) {
-
-                if (type.toLowerCase().contains("plain")) {
-                    propertyType = PropertyType.Plains;
-
-                } else if (type.contains("mountain")) {
-                    propertyType = PropertyType.Mountain;
-
-                } else if (type.contains("river")) {
-                    propertyType = PropertyType.River;
-                }
-
-                Property property = new Property(propertyType, activePlayer);
-                activePlayer.addProperty(property);
-                Log.debug("Type: " + type);
-                Log.debug("Added " + propertyType.toString()  + " property to player " + activePlayer
-                        .getName());
-
-                String color = activePlayer.getColor();
-                String styleVal = "-fx-background-color:" + color;
-                button.setStyle(styleVal);
-
-                GameDuration.endTurn();
-            }
-        }
-    }
 
 
 

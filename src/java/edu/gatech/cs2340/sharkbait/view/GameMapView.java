@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.view;
 
+import edu.gatech.cs2340.sharkbait.controller.GameMapController;
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
@@ -60,30 +61,18 @@ public class GameMapView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        town.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (GameDuration.getPhase() == GamePhase.PlayerTurnPhase) {
-                    MasterController.changeSceneToTownMap();
-                }
-            }
-        });
+        town.setOnMouseClicked(event -> GameMapController.townClicked());
 
-        passButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                GameDuration.endTurn();
-            }
+        passButton.setOnMouseClicked(event -> {
+            GameMapController.pass();
         });
     }
 
     @FXML
     private void handleGridButtonPress(ActionEvent ev) {
-
         Button button = (Button) ev.getSource();
         Log.debug("You pressed: " + button.getText());
-        MasterController.attemptGridButtonClick(button);
-
+        GameMapController.attemptGridButtonClick(button);
     }
 
     public void updateTimer(String timeText) {
