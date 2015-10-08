@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.sharkbait.controller;
+package edu.gatech.cs2340.sharkbait.view;
 
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
@@ -16,7 +16,7 @@ import javafx.scene.layout.Pane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GameConfigController implements Initializable {
+public class GameConfigView implements Initializable {
 
     @FXML
     private ComboBox<Difficulty> configDifficulty;
@@ -46,7 +46,7 @@ public class GameConfigController implements Initializable {
     }
 
     /**
-     * Called externally, most likely by ConfigScreenController
+     * Called externally, most likely by ConfigScreenView
      */
     public void saveConfigs() {
         final GameConfigs configs = GameConfigs.getInstance();

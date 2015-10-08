@@ -12,7 +12,7 @@
            orientation="VERTICAL" prefHeight="600.0" prefWidth="1080.0"
            style="-fx-background-color: #ADD6AD;" xmlns="http://javafx.com/javafx/8"
            xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="edu.gatech.cs2340.sharkbait.controller.ConfigScreenController">
+           fx:controller="edu.gatech.cs2340.sharkbait.view.ConfigScreenView">
   <effect>
     <InnerShadow color="#00000020" height="60.07692307692308" radius="29.53846153846154" width="60.07692307692308" />
   </effect>

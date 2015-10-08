@@ -1,6 +1,6 @@
-package edu.gatech.cs2340.sharkbait.controller;
+package edu.gatech.cs2340.sharkbait.view;
 
-import edu.gatech.cs2340.sharkbait.MasterController;
+import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import javafx.event.EventHandler;
@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
@@ -25,7 +24,7 @@ import java.util.ResourceBundle;
 /**
  * Created by osama on 9/13/15.
  */
-public class ConfigScreenController implements Initializable {
+public class ConfigScreenView implements Initializable {
 
     @FXML
     private Pane configBox;
@@ -44,8 +43,8 @@ public class ConfigScreenController implements Initializable {
 
     private State gameState;
 
-    private GameConfigController gameConfigController;
-    private List<PlayerConfigController> playerConfigControllers;
+    private GameConfigView gameConfigView;
+    private List<PlayerConfigView> playerConfigViews;
 
 
     @Override
@@ -53,7 +52,7 @@ public class ConfigScreenController implements Initializable {
         gameState = State.NotConfigured;
         nextButton.setText("Configure Game");
 
-        playerConfigControllers = new ArrayList<>();
+        playerConfigViews = new ArrayList<>();
 
         nextButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -66,7 +65,7 @@ public class ConfigScreenController implements Initializable {
                                 .getResource("../view/fxml/config/game_config.fxml"));
 
                         Parent root = fxmlLoader.load();
-                        gameConfigController = fxmlLoader.getController();
+                        gameConfigView = fxmlLoader.getController();
 
                         configBox.getChildren().add(root);
                     } catch (IOException e) {
@@ -79,22 +78,22 @@ public class ConfigScreenController implements Initializable {
                     try {
 
                         GameConfigs configs = GameConfigs.getInstance();
-                        gameConfigController.saveConfigs();
+                        gameConfigView.saveConfigs();
                         int numPlayers = configs.getNumPlayers();
 
                         for (int i = 1; i <= numPlayers; i++) {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass()
                                     .getResource("../view/fxml/config/players_config.fxml"));
                             Node playerPrompt = fxmlLoader.load();
-                            PlayerConfigController playerConfigController = fxmlLoader.getController();
+                            PlayerConfigView playerConfigView = fxmlLoader.getController();
 
-                            playerConfigControllers.add(playerConfigController);
+                            playerConfigViews.add(playerConfigView);
 
                             playerPrompt.setId("pane" + i);
 
                             infoPane.getItems().add(playerPrompt);
                             String defaultName = "Player " + i;
-                            playerConfigController.selectName.setText(defaultName);
+                            playerConfigView.selectName.setText(defaultName);
 
                         }
 
@@ -106,7 +105,7 @@ public class ConfigScreenController implements Initializable {
                     nextButton.setText("Begin Game");
                 } else if (gameState == State.ConfigPlayers) {
 
-                    for (PlayerConfigController controller : playerConfigControllers) {
+                    for (PlayerConfigView controller : playerConfigViews) {
                         controller.makePlayer();
                     }
 

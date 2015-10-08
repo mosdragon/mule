@@ -1,14 +1,14 @@
 package edu.gatech.cs2340.sharkbait.model;
 
-import com.sun.org.apache.bcel.internal.generic.LAND;
-import edu.gatech.cs2340.sharkbait.controller.GameConfigController;
-import edu.gatech.cs2340.sharkbait.controller.GameMapController;
-import edu.gatech.cs2340.sharkbait.controller.TownMapController;
+import edu.gatech.cs2340.sharkbait.view.GameMapView;
+import edu.gatech.cs2340.sharkbait.view.TownMapView;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import javafx.scene.Parent;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by osama on 9/22/15.
@@ -19,11 +19,12 @@ public class GameDuration {
     private static final int TIME_START = 50;
 
     private static Parent gameMap = null;
-    private static GameMapController gameMapController;
+    private static GameMapView gameMapView;
 
     private static Parent townMap = null;
-    private static TownMapController townMapController;
+    private static TownMapView townMapView;
 
+    public static List<Player> players;
     private static Player activePlayer = null;
     private static int round = 1;
     private static int turn = 0;
@@ -49,7 +50,7 @@ public class GameDuration {
 
     public static Player getActivePlayer() {
         if (activePlayer == null && hasBegun()) {
-            activePlayer = GameConfigs.getInstance().getPlayers().get(turn);
+            activePlayer = getPlayers().get(turn);
             resetTime();
         }
         return activePlayer;
@@ -100,12 +101,12 @@ public class GameDuration {
                 phase = GamePhase.PlayerTurnPhase;
             } else {
 //                End of turn. Sort the list of players
-                Collections.sort(GameConfigs.getPlayers());
+                Collections.sort(getPlayers());
                 phase = GamePhase.LandBuyPhase;
                 round++;
             }
         }
-        activePlayer = GameConfigs.getInstance().getPlayers().get(turn);
+        activePlayer = getPlayers().get(turn);
         timeRemaining = TIME_START;
     }
 
@@ -115,35 +116,34 @@ public class GameDuration {
 
     }
 
-    public static GameMapController getGameMapController() {
-        return gameMapController;
-    }
-
-    public static void setGameMapController(GameMapController gameMapController) {
-        GameDuration.gameMapController = gameMapController;
-    }
-
-    public static TownMapController getTownMapController() {
-        return townMapController;
-    }
-
-    public static void setTownMapController(TownMapController townMapController) {
-        GameDuration.townMapController = townMapController;
+    public static void changeTimeRemaining(int deltaT) {
+        GameDuration.timeRemaining += deltaT;
     }
 
     public static int getTimeRemaining() {
-        return timeRemaining;
-    }
-
-    public static void setTimeRemaining(int timeRemaining) {
-        GameDuration.timeRemaining = timeRemaining;
-    }
-
-    public static void passOneSecond() {
-        GameDuration.timeRemaining -= 1;
+        return GameDuration.timeRemaining;
     }
 
     public static void resetTime() {
         timeRemaining = TIME_START;
     }
+
+    public static List<Player> getPlayers() {
+        if (players == null) {
+            players = new ArrayList<>();
+        }
+        return players;
+    }
+
+    public static void setPlayers(List<Player> players) {
+        GameDuration.players = players;
+    }
+
+    public static void addPlayer(Player player) {
+        if (players == null) {
+            players = new ArrayList<>();
+        }
+        players.add(player);
+    }
+
 }

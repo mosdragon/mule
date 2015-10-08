@@ -18,9 +18,6 @@ public class GameConfigs {
     private static int numPlayers;
     private static MapType mapType;
 
-    public static List<Player> players;
-
-
     public static GameConfigs getInstance() {
         return ourInstance;
     }
@@ -28,19 +25,6 @@ public class GameConfigs {
     private GameConfigs() {
         gameDifficulty = Difficulty.Standard;
         mapType = MapType.StandardMap;
-        players = new ArrayList<>();
-    }
-
-    public static List<Player> getPlayers() {
-        return players;
-    }
-
-    public static void setPlayers(List<Player> players) {
-        GameConfigs.players = players;
-    }
-
-    public static void addPlayer(Player player) {
-        players.add(player);
     }
 
     public Difficulty getGameDifficulty() {

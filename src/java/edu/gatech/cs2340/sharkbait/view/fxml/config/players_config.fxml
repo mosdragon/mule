@@ -9,7 +9,7 @@
 <Pane layoutX="0" layoutY="0"
       style="-fx-background-color: #799679;" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="edu.gatech.cs2340.sharkbait.controller.PlayerConfigController">
+      fx:controller="edu.gatech.cs2340.sharkbait.view.PlayerConfigView">
 
     <children>
         <TextField fx:id="selectName" layoutX="5" layoutY="5" prefWidth="100"

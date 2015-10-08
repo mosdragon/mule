@@ -22,7 +22,7 @@
            maxHeight="720.0" maxWidth="1080.0"
            prefHeight="720.0" prefWidth="1080.0"
            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="edu.gatech.cs2340.sharkbait.controller.TownMapController">
+           fx:controller="edu.gatech.cs2340.sharkbait.view.TownMapView">
     <items>
 
         <Pane layoutX="0.0" layoutY="0.0"
