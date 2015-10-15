@@ -36,7 +36,7 @@ public class GameMapController {
         if (available && isLandBuyPhase) {
 
             Player activePlayer = GameDuration.getActivePlayer();
-            String type = button.getText().toLowerCase();
+            String type = button.getStyleClass().toString().toLowerCase();
             PropertyType propertyType = null;
 
             if (activePlayer != null) {

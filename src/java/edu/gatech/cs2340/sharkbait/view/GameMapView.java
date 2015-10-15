@@ -71,7 +71,7 @@ public class GameMapView implements Initializable {
     @FXML
     private void handleGridButtonPress(ActionEvent ev) {
         Button button = (Button) ev.getSource();
-        Log.debug("You pressed: " + button.getText());
+        Log.debug("You pressed: " + button.getStyleClass().toString());
         GameMapController.attemptGridButtonClick(button);
     }
 

@@ -58,8 +58,16 @@ public class PlayerConfigView implements Initializable {
      * Called by an external class to create a Player object and save it to configs
      */
     public void makePlayer() {
+        String rgbColor = selectColor.getValue();
+        switch (rgbColor) {
+            case "Aqua": rgbColor = "rgba(0,255,255,0.3)"; break;
+            case "DarkSeaGreen": rgbColor = "rgba(143,188,143,0.3)"; break;
+            case "FireBrick": rgbColor = "rgba(178,34,34,0.3)"; break;
+            case "Gold": rgbColor = "rgba(255,215,0,0.3)"; break;
+            case "Violet": rgbColor = "rgba(238,130,238,0.3)"; break;
+        }
         PlayerConfigController.createPlayer(selectName.getText(),
-                selectColor.getValue(),
+                rgbColor,
                 selectRace.getValue());
     }
 }
