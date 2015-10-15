@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.view;
 
+import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.MapType;
@@ -49,14 +50,11 @@ public class GameConfigView implements Initializable {
      * Called externally, most likely by ConfigScreenView
      */
     public void saveConfigs() {
-        final GameConfigs configs = GameConfigs.getInstance();
         int numPlayers = (int) playerSlider.getValue();
         Difficulty difficulty = configDifficulty.getValue();
         MapType mapType = mapChoice.getValue();
 
-        configs.setGameDifficulty(difficulty);
-        configs.setMapType(mapType);
-        configs.setNumPlayers(numPlayers);
+        MasterController.saveConfigs(numPlayers, difficulty, mapType);
     }
 
 }

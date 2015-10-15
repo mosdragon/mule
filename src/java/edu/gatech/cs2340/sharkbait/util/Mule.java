@@ -37,4 +37,9 @@ public class Mule {
         Mule other = (Mule) obj;
         return this.type == other.type;
     }
+
+    @Override
+    public String toString() {
+        return type.toString() + " Mule";
+    }
 }

@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.model;
 
+import edu.gatech.cs2340.sharkbait.util.Resource;
 import edu.gatech.cs2340.sharkbait.view.GameMapView;
 import edu.gatech.cs2340.sharkbait.view.TownMapView;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
@@ -25,7 +26,6 @@ public class GameDuration {
     private static TownMapView townMapView;
 
     public static List<Player> players;
-    private static Player activePlayer = null;
     private static int round = 1;
     private static int turn = 0;
 
@@ -34,6 +34,11 @@ public class GameDuration {
 
 //    Time left of the turn, in seconds
     private static int timeRemaining;
+
+    private static Player activePlayer = null;
+
+//    Holds the type of the mule if one is just bought, clear it once it is set on a property
+    private static Resource activeMuleType;
 
     private GameDuration() {
     }
@@ -97,7 +102,7 @@ public class GameDuration {
         turn++;
         if (turn >= GameConfigs.getNumPlayers()) {
             turn = 0;
-            if (phase == GamePhase.LandBuyPhase) {
+            if (phase != GamePhase.PlayerTurnPhase) {
                 phase = GamePhase.PlayerTurnPhase;
             } else {
 //                End of turn. Sort the list of players
@@ -144,6 +149,26 @@ public class GameDuration {
             players = new ArrayList<>();
         }
         players.add(player);
+    }
+
+    public static Resource getActiveMuleType() {
+        return activeMuleType;
+    }
+
+    public static void setActiveMuleType(Resource activeMuleType) {
+        GameDuration.activeMuleType = activeMuleType;
+    }
+
+    public static void clearActiveMuleType() {
+        setActiveMuleType(null);
+    }
+
+    public static void beginMulePlacementPhase() {
+        phase = GamePhase.MulePlacementPhase;
+    }
+
+    public static void endMulePlacementPhase() {
+        phase = GamePhase.PlayerTurnPhase;
     }
 
 }

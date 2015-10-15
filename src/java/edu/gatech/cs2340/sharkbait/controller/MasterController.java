@@ -1,10 +1,8 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
+import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
-import edu.gatech.cs2340.sharkbait.util.GamePhase;
-import edu.gatech.cs2340.sharkbait.util.Player;
-import edu.gatech.cs2340.sharkbait.util.Property;
-import edu.gatech.cs2340.sharkbait.util.PropertyType;
+import edu.gatech.cs2340.sharkbait.util.*;
 import edu.gatech.cs2340.sharkbait.view.GameMapView;
 import edu.gatech.cs2340.sharkbait.view.TownMapView;
 import edu.gatech.cs2340.trydent.log.Log;
@@ -144,6 +142,13 @@ public class MasterController {
 
     public static TownMapView getTownMapView() {
         return townMapView;
+    }
+
+    public static void saveConfigs(int numPlayers, Difficulty difficulty, MapType mapType) {
+        final GameConfigs configs = GameConfigs.getInstance();
+        configs.setGameDifficulty(difficulty);
+        configs.setMapType(mapType);
+        configs.setNumPlayers(numPlayers);
     }
 
 

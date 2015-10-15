@@ -1,11 +1,10 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
+import com.sun.xml.internal.ws.api.config.management.policy.ManagedServiceAssertion;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.model.Store;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Resource;
-import edu.gatech.cs2340.sharkbait.view.GameMapView;
-import edu.gatech.cs2340.sharkbait.view.TownMapView;
 import edu.gatech.cs2340.trydent.log.Log;
 
 import java.util.ArrayList;
@@ -37,7 +36,6 @@ public class TownMapController {
 
     }
 
-
     public static void buyOre() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyOre(activePlayer);
@@ -68,40 +66,52 @@ public class TownMapController {
         Store.sellFood(activePlayer);
     }
 
+    private static void purchasedMule() {
+        GameDuration.beginMulePlacementPhase();
+        MasterController.changeSceneToGameMap();
+    }
+
 
     public static void buyOreMule() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyMule(activePlayer, Resource.Smithore);
+        GameDuration.setActiveMuleType(Resource.Smithore);
+        purchasedMule();
     }
 
     public static void sellOreMule() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellMule(activePlayer, Resource.Smithore);
+        GameDuration.setActiveMuleType(Resource.Smithore);
     }
 
     public static void buyFoodMule() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyMule(activePlayer, Resource.Food);
+        GameDuration.setActiveMuleType(Resource.Food);
+        purchasedMule();
     }
 
     public static void sellFoodMule() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellMule(activePlayer, Resource.Food);
+        GameDuration.setActiveMuleType(Resource.Food);
     }
 
     public static void buyEnergyMule() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyMule(activePlayer, Resource.Energy);
+        GameDuration.setActiveMuleType(Resource.Energy);
+        purchasedMule();
     }
 
     public static void sellEnergyMule() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellMule(activePlayer, Resource.Energy);
+        GameDuration.setActiveMuleType(Resource.Energy);
     }
 
     public static void exitTown() {
         MasterController.changeSceneToGameMap();
     }
-
-
 }
