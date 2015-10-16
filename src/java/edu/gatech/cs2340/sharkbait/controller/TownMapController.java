@@ -39,36 +39,43 @@ public class TownMapController {
     public static void buyOre() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyOre(activePlayer);
+        activePlayer.print();
     }
 
     public static void sellOre() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellOre(activePlayer);
+        activePlayer.print();
     }
 
     public static void buyEnergy() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyEnergy(activePlayer);
+        activePlayer.print();
     }
 
     public static void sellEnergy() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellEnergy(activePlayer);
+        activePlayer.print();
     }
 
     public static void buyFood() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyFood(activePlayer);
+        activePlayer.print();
     }
 
     public static void sellFood() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellFood(activePlayer);
+        activePlayer.print();
     }
 
     private static void purchasedMule() {
         GameDuration.beginMulePlacementPhase();
         MasterController.changeSceneToGameMap();
+        GameDuration.getActivePlayer().print();
     }
 
 
@@ -83,6 +90,7 @@ public class TownMapController {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellMule(activePlayer, Resource.Smithore);
         GameDuration.setActiveMuleType(Resource.Smithore);
+        GameDuration.getActivePlayer().print();
     }
 
     public static void buyFoodMule() {
@@ -96,6 +104,7 @@ public class TownMapController {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellMule(activePlayer, Resource.Food);
         GameDuration.setActiveMuleType(Resource.Food);
+        GameDuration.getActivePlayer().print();
     }
 
     public static void buyEnergyMule() {
@@ -109,6 +118,7 @@ public class TownMapController {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellMule(activePlayer, Resource.Energy);
         GameDuration.setActiveMuleType(Resource.Energy);
+        GameDuration.getActivePlayer().print();
     }
 
     public static void exitTown() {
