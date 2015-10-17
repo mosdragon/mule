@@ -146,6 +146,7 @@ public class Player implements Comparable<Player> {
     public boolean addProperty(Property property) {
         if (GameDuration.getRound() < 2) {
             properties.add(property);
+            property.purchase(this);
             return true;
         } else if (GameDuration.getRound() > 2 && (money >= 300)) {
             properties.add(property);

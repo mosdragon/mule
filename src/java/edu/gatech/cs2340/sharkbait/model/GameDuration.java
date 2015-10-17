@@ -1,15 +1,12 @@
 package edu.gatech.cs2340.sharkbait.model;
 
-import edu.gatech.cs2340.sharkbait.util.Resource;
+import edu.gatech.cs2340.sharkbait.util.*;
 import edu.gatech.cs2340.sharkbait.view.GameMapView;
 import edu.gatech.cs2340.sharkbait.view.TownMapView;
-import edu.gatech.cs2340.sharkbait.util.GamePhase;
-import edu.gatech.cs2340.sharkbait.util.Player;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by osama on 9/22/15.
@@ -40,6 +37,8 @@ public class GameDuration {
 //    Holds the type of the mule if one is just bought, clear it once it is set on a property
     private static Resource activeMuleType;
 
+    private static Map<Button, Tile> tilesMap;
+
     private GameDuration() {
     }
 
@@ -51,6 +50,7 @@ public class GameDuration {
         begun = true;
         phase = GamePhase.LandBuyPhase;
         resetTime();
+        tilesMap = new HashMap<>();
     }
 
     public static Player getActivePlayer() {
@@ -63,6 +63,16 @@ public class GameDuration {
 
     public static void setActivePlayer(Player activePlayer) {
         GameDuration.activePlayer = activePlayer;
+    }
+
+    public static Tile fetchTile(Button button) {
+        Tile found = tilesMap.get(button);
+        return found;
+    }
+
+    public static void addTile(Tile tile) {
+        Button button = tile.getHolder();
+        tilesMap.put(button, tile);
     }
 
     public static Parent getGameMap() {

@@ -51,7 +51,7 @@ public class GameMapController {
                     propertyType = PropertyType.River;
                 }
 
-                Property property = new Property(propertyType, activePlayer);
+                Property property = new Property(button);
                 activePlayer.addProperty(property);
                 Log.debug("Type: " + type);
                 Log.debug("Added " + propertyType.toString()  + " property to player " + activePlayer
