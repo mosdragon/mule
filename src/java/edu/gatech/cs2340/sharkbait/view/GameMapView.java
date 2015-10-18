@@ -2,6 +2,7 @@ package edu.gatech.cs2340.sharkbait.view;
 
 import edu.gatech.cs2340.sharkbait.controller.GameMapController;
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
+import edu.gatech.cs2340.sharkbait.model.Constants;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
@@ -21,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -49,7 +51,22 @@ public class GameMapView implements Initializable {
     private Label timerMsg;
 
     @FXML
-    private Label player1, player2, player3, player4;
+    private VBox scorePanel1, scorePanel2, scorePanel3, scorePanel4;
+
+    @FXML
+    private Label name1, name2, name3, name4;
+
+    @FXML
+    private Label money1, money2, money3, money4;
+
+    @FXML
+    private Label food1, food2, food3, food4;
+
+    @FXML
+    private Label mules1, mules2, mules3, mules4;
+
+    @FXML
+    private Label energy1, energy2, energy3, energy4;
 
     private Timeline timeline;
 
@@ -89,22 +106,60 @@ public class GameMapView implements Initializable {
             phaseMsg.setText(PHASE + GameDuration.getPhase().toString());
             playerMsg.setText(PLAYER + GameDuration.getActivePlayer().getName());
 
-            List<Player> players = GameDuration.getPlayers();
-
-            player1.setText(players.get(0).getName() + ": " + players
-                    .get(0).getMoney());
-            player2.setText(players.get(1).getName() + ": " + players
-                    .get(1).getMoney());
-
-            if (GameConfigs.getNumPlayers() >= 3) {
-                player3.setText(players.get(2).getName() + ": " + players
-                        .get(2).getMoney());
-            }
-            if (GameConfigs.getNumPlayers() == 4) {
-                player4.setText(players.get(3).getName() + ": " + players
-                        .get(3).getMoney());
-            }
+            updateScorePanels();
         }
     }
+
+    private void updateScorePanels() {
+        final String BG_COLOR_TEMPLATE = Constants.BG_COLOR_TEMPLATE;
+        List<Player> players = GameDuration.getPlayers();
+
+//        Player1 score panel
+        Player player1 = players.get(0);
+
+        scorePanel1.setStyle(String.format(BG_COLOR_TEMPLATE, player1.getColor()));
+        name1.setText(player1.getName());
+        money1.setText("Money: " + player1.getMoney());
+        food1.setText("Food: " + player1.getFood());
+        mules1.setText("Mules Owned: " + player1.getMuleCount());
+        energy1.setText("Energy: " + player1.getEnergy());
+
+//        Player2 score panel
+        Player player2 = players.get(1);
+
+        scorePanel2.setStyle(String.format(BG_COLOR_TEMPLATE, player2.getColor()));
+        name2.setText(player2.getName());
+        money2.setText("Money: " + player2.getMoney());
+        food2.setText("Food: " + player2.getFood());
+        mules2.setText("Mules Owned: " + player2.getMuleCount());
+        energy2.setText("Energy: " + player2.getEnergy());
+
+//        Player3 score panel
+        if (GameConfigs.getNumPlayers() >= 3) {
+
+            Player player3 = players.get(2);
+
+            scorePanel3.setStyle(String.format(BG_COLOR_TEMPLATE, player3.getColor()));
+            name3.setText(player3.getName());
+            money3.setText("Money: " + player3.getMoney());
+            food3.setText("Food: " + player3.getFood());
+            mules3.setText("Mules Owned: " + player3.getMuleCount());
+            energy3.setText("Energy: " + player3.getEnergy());
+        }
+
+//        Player4 score panel
+        if (GameConfigs.getNumPlayers() >= 4) {
+
+            Player player4 = players.get(3);
+
+            scorePanel4.setStyle(String.format(BG_COLOR_TEMPLATE, player4.getColor()));
+            name4.setText(player4.getName());
+            money4.setText("Money: " + player4.getMoney());
+            food4.setText("Food: " + player4.getFood());
+            mules4.setText("Mules Owned: " + player4.getMuleCount());
+            energy4.setText("Energy: " + player4.getEnergy());
+        }
+    }
+
 
 }

@@ -5,7 +5,6 @@ import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Resource;
 
-
 /**
  * Created by osama on 9/22/15.
  */
