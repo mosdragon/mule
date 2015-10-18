@@ -18,24 +18,7 @@ public class Property {
 
     public Property(Button tileHolder) {
         tile = new Tile(tileHolder);
-        type = PropertyType.Plains;
-
-        if (tile.getText().contains(PropertyType.Plains.getText())) {
-            type = PropertyType.Plains;
-
-        } else if (tile.getText().contains(PropertyType.River.getText())) {
-            type = PropertyType.River;
-
-        } else if (tile.getText().contains(PropertyType.Mountain1.getText())) {
-            type = PropertyType.Mountain1;
-
-        } else if (tile.getText().contains(PropertyType.Mountain2.getText())) {
-            type = PropertyType.Mountain2;
-
-        } else if (tile.getText().contains(PropertyType.Mountain3.getText())) {
-            type = PropertyType.Mountain3;
-        }
-
+        type = tile.getType();
         Log.debug(toString());
     }
 
@@ -53,14 +36,12 @@ public class Property {
     }
 
     public void addMule(Mule mule) {
-        tile.displayOriginalText();
         String muleText = createMuleText(mule);
-        String muleAdded = tile.getText() + muleText;
-        tile.setText(muleAdded);
+        tile.setText(muleText);
     }
 
     public void removeMule() {
-        tile.displayOriginalText();
+        tile.setText("");
     }
 
     public boolean isAvailable() {

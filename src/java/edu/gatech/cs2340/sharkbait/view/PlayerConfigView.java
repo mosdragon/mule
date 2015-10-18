@@ -13,14 +13,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Created by osama on 9/13/15.
  */
 public class PlayerConfigView implements Initializable {
+
+    private static final double ALPHA = 0.5;
 
     @FXML protected TextField selectName;
     @FXML private ComboBox<String> selectColor;
@@ -28,16 +28,23 @@ public class PlayerConfigView implements Initializable {
 
     private ObservableList<String> colorOptions;
 
+    private Map<String, String> colorMap;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        colorOptions = FXCollections.observableArrayList(
-                "Aqua",
-                "DarkSeaGreen",
-                "FireBrick",
-                "Gold",
-                "Violet"
-        );
+        colorMap = new HashMap<>();
+
+//        These are the tinted versions of the colors
+        colorMap.put("Aqua", String.format("rgba(0,255,255,%f)", ALPHA));
+        colorMap.put("DarkSeaGreen", String.format("rgba(143,188,143,%f)", ALPHA));
+        colorMap.put("FireBrick", String.format("rgba(178,34,34,%f)", ALPHA));
+        colorMap.put("Gold", String.format("rgba(255,215,0,%f)", ALPHA));
+        colorMap.put("Violet", String.format("rgba(238,130,238,%f)", ALPHA));
+
+        Collection<String> colors = colorMap.keySet();
+        colorOptions = FXCollections.observableArrayList(colors);
+
         selectColor.setItems(colorOptions);
         selectColor.setValue(colorOptions.get(0));
 
@@ -58,8 +65,10 @@ public class PlayerConfigView implements Initializable {
      * Called by an external class to create a Player object and save it to configs
      */
     public void makePlayer() {
+        String color = selectColor.getValue();
+
         PlayerConfigController.createPlayer(selectName.getText(),
-                selectColor.getValue(),
+                colorMap.get(color),
                 selectRace.getValue());
     }
 }

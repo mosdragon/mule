@@ -3,8 +3,9 @@ package edu.gatech.cs2340.sharkbait.model;
 /**
  * Created by osama on 10/17/15.
  */
-public interface Prices {
+public interface Constants {
 
+//    Prices
     int LAND = 300;
     int ENERGY = 25;
     int FOOD = 30;
