@@ -64,7 +64,7 @@ public class Mule {
                     player.changeFood(P_FOOD);
                 } else if (type == Resource.Energy) {
                     player.changeEnergy(P_ENERGY);
-                } else if (type == Resource.Smithore) {
+                } else if (type == Resource.Ore) {
                     player.changeOre(P_ORE);
                 }
 
@@ -74,7 +74,7 @@ public class Mule {
                     player.changeFood(R_FOOD);
                 } else if (type == Resource.Energy) {
                     player.changeEnergy(R_ENERGY);
-                } else if (type == Resource.Smithore) {
+                } else if (type == Resource.Ore) {
                     player.changeOre(R_ORE);
                 }
 
@@ -84,7 +84,7 @@ public class Mule {
                     player.changeFood(M1_FOOD);
                 } else if (type == Resource.Energy) {
                     player.changeEnergy(M1_ENERGY);
-                } else if (type == Resource.Smithore) {
+                } else if (type == Resource.Ore) {
                     player.changeOre(M1_ORE);
                 }
 
@@ -94,7 +94,7 @@ public class Mule {
                     player.changeFood(M2_FOOD);
                 } else if (type == Resource.Energy) {
                     player.changeEnergy(M2_ENERGY);
-                } else if (type == Resource.Smithore) {
+                } else if (type == Resource.Ore) {
                     player.changeOre(M2_ORE);
                 }
 
@@ -104,7 +104,7 @@ public class Mule {
                     player.changeFood(M3_FOOD);
                 } else if (type == Resource.Energy) {
                     player.changeEnergy(M3_ENERGY);
-                } else if (type == Resource.Smithore) {
+                } else if (type == Resource.Ore) {
                     player.changeOre(M3_ORE);
                 }
 

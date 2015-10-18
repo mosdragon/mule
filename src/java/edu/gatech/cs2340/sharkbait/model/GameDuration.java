@@ -16,6 +16,8 @@ public class GameDuration {
 //    Start with 50 second turns
     private static final int TIME_START = 50;
 
+    private static final int[] foodRequirements = {3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5};
+
     private static Parent gameMap = null;
     private static GameMapView gameMapView;
 
@@ -135,7 +137,20 @@ public class GameDuration {
      */
     private static void determineTimeRemaining() {
 //        TODO: Consider food and energy minimums
-        timeRemaining = TIME_START;
+
+        Player player = getActivePlayer();
+        int foodCount = player.getFood();
+        int foodRequirement = foodRequirements[getRound() - 1];
+
+        if (foodCount == 0) {
+//            If you have no food, turn lasts 5 seconds
+            timeRemaining = 5;
+        } else if (foodCount > 0 && foodCount < foodRequirement) {
+//            If you have food but not enough as the round demands, turn is 30 seconds
+            timeRemaining = 30;
+        } else {
+            timeRemaining = TIME_START;
+        }
     }
 
     /**

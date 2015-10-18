@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.model.Prices;
 import edu.gatech.cs2340.trydent.log.Log;
@@ -35,12 +36,32 @@ public class Player implements Comparable<Player> {
 
     private static final int MIN_PRODUCTION_ENERGY = 1;
 
+    private static final int BEGINNER_FOOD = 8;
+    private static final int BEGINNER_ENERGY = 4;
+    private static final int BEGINNER_ORE = 0;
+
+    private static final int STANDARD_FOOD = 4;
+    private static final int STANDARD_ENERGY = 2;
+    private static final int STANDARD_ORE = 0;
+
+    private static final int TOURNAMENT_FOOD = 4;
+    private static final int TOURNAMENT_ENERGY = 2;
+    private static final int TOURNAMENT_ORE = 0;
+
 
     public Player(String name, String color, Race race) {
         this.name = name;
         this.color = color;
         this.race = race;
 
+        initializeMoney();
+        initializeResources();
+
+        this.properties = new ArrayList<>();
+        this.mules = new ArrayList<>();
+    }
+
+    private void initializeMoney() {
         if (race == Race.Flapper) {
             money = 1600;
 
@@ -50,8 +71,26 @@ public class Player implements Comparable<Player> {
         } else {
             money = 1000;
         }
-        this.properties = new ArrayList<>();
-        this.mules = new ArrayList<>();
+    }
+
+    private void initializeResources() {
+        Difficulty difficulty = GameConfigs.getGameDifficulty();
+
+        if (difficulty == Difficulty.Beginner) {
+            food = BEGINNER_FOOD;
+            energy = BEGINNER_ENERGY;
+            ore = BEGINNER_ORE;
+
+        } else if (difficulty == Difficulty.Standard) {
+            food = STANDARD_FOOD;
+            energy = STANDARD_ENERGY;
+            ore = STANDARD_ORE;
+
+        } else if (difficulty == Difficulty.Tournament) {
+            food = TOURNAMENT_FOOD;
+            energy = TOURNAMENT_ENERGY;
+            ore = TOURNAMENT_ORE;
+        }
     }
 
     public String getName() {
@@ -104,7 +143,7 @@ public class Player implements Comparable<Player> {
 
     /**
      *
-     * @param amount positive or negative amount of money
+     * @param amount positive or negative amount of food
      */
     public void changeFood(int amount) {
         food += amount;
@@ -114,6 +153,10 @@ public class Player implements Comparable<Player> {
         return food;
     }
 
+    /**
+     *
+     * @param amount positive or negative amount of ore
+     */
     public void changeOre(int amount) {
         ore += amount;
     }

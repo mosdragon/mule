@@ -143,10 +143,9 @@ public class MasterController {
     }
 
     public static void saveConfigs(int numPlayers, Difficulty difficulty, MapType mapType) {
-        final GameConfigs configs = GameConfigs.getInstance();
-        configs.setGameDifficulty(difficulty);
-        configs.setMapType(mapType);
-        configs.setNumPlayers(numPlayers);
+        GameConfigs.setGameDifficulty(difficulty);
+        GameConfigs.setMapType(mapType);
+        GameConfigs.setNumPlayers(numPlayers);
     }
 
 

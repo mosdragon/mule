@@ -2,7 +2,6 @@ package edu.gatech.cs2340.sharkbait.model;
 
 import com.oracle.tools.packager.Log;
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
-import edu.gatech.cs2340.sharkbait.util.Mule;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Resource;
 
@@ -31,7 +30,7 @@ public class Store {
 
     public static void initializeStore() {
 
-        if (GameConfigs.getInstance().getGameDifficulty() == Difficulty.Beginner) {
+        if (GameConfigs.getGameDifficulty() == Difficulty.Beginner) {
             energyCount = 16;
             foodCount = 16;
             oreCount = 0;
@@ -70,7 +69,7 @@ public class Store {
         boolean canAfford = false;
         Log.debug("Mule Type: " + type.toString());
         if (hasMules()) {
-            if (type == Resource.Smithore) {
+            if (type == Resource.Ore) {
                 if (player.getMoney() >= ORE_MULE) {
                     player.changeMoney(-ORE_MULE);
                     canAfford = true;
@@ -109,7 +108,7 @@ public class Store {
 //        Mule mule = new Mule(player, type);
 //
 //
-//        if (type == Resource.Smithore) {
+//        if (type == Resource.Ore) {
 //            if (player.getMuleCount() > 0) {
 //                player.changeMoney(ORE_MULE);
 //                player.removeMule(mule);

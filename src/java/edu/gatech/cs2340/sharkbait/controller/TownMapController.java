@@ -1,6 +1,5 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
-import com.sun.xml.internal.ws.api.config.management.policy.ManagedServiceAssertion;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.model.Store;
 import edu.gatech.cs2340.sharkbait.util.Player;
@@ -81,15 +80,15 @@ public class TownMapController {
 
     public static void buyOreMule() {
         Player activePlayer = GameDuration.getActivePlayer();
-        Store.buyMule(activePlayer, Resource.Smithore);
-        GameDuration.setActiveMuleType(Resource.Smithore);
+        Store.buyMule(activePlayer, Resource.Ore);
+        GameDuration.setActiveMuleType(Resource.Ore);
         purchasedMule();
     }
 
     public static void sellOreMule() {
         Player activePlayer = GameDuration.getActivePlayer();
-        Store.sellMule(activePlayer, Resource.Smithore);
-        GameDuration.setActiveMuleType(Resource.Smithore);
+        Store.sellMule(activePlayer, Resource.Ore);
+        GameDuration.setActiveMuleType(Resource.Ore);
         GameDuration.getActivePlayer().print();
     }
 
