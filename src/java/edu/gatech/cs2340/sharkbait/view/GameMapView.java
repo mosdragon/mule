@@ -51,7 +51,7 @@ public class GameMapView implements Initializable {
     private Label timerMsg;
 
     @FXML
-    private VBox scorePanel1, scorePanel2, scorePanel3, scorePanel4;
+    private VBox scorePanel1, scorePanel2, scorePanel3, scorePanel4, activePlayerPanel;
 
     @FXML
     private Label name1, name2, name3, name4;
@@ -159,6 +159,9 @@ public class GameMapView implements Initializable {
             mules4.setText("Mules Owned: " + player4.getMuleCount());
             energy4.setText("Energy: " + player4.getEnergy());
         }
+
+        Player activePlayer = GameDuration.getActivePlayer();
+        activePlayerPanel.setStyle(String.format(BG_COLOR_TEMPLATE, activePlayer.getColor()));
     }
 
 
