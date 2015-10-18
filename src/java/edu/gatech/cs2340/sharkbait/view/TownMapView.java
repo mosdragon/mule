@@ -54,6 +54,18 @@ public class TownMapView implements Initializable {
     @FXML
     private Label player1, player2, player3, player4;
 
+    @FXML
+    private Label money1, money2, money3, money4;
+
+    @FXML
+    private Label food1, food2, food3, food4;
+
+    @FXML
+    private Label mules1, mules2, mules3, mules4;
+
+    @FXML
+    private Label energy1, energy2, energy3, energy4;
+
     private Timeline timeline;
 
 
@@ -85,20 +97,37 @@ public class TownMapView implements Initializable {
 
             List<Player> players = GameDuration.getPlayers();
 
-            player1.setText(players.get(0).getName() + ": " + players
-                    .get(0).getMoney());
-            player2.setText(players.get(1).getName() + ": " + players
-                    .get(1).getMoney());
+            //Player1 scoreTable
+            player1.setText(players.get(0).getName());
+            money1.setText("Money: " + players.get(0).getMoney());
+            food1.setText("Food: " + players.get(0).getFood());
+            mules1.setText("Mules Owned: " + players.get(0).getNumMules());
+            energy1.setText("Energy: " + players.get(0).getEnergy());
 
+            //Player2 ScoreTable
+            player2.setText(players.get(1).getName());
+            money2.setText("Money: " + players.get(1).getMoney());
+            food2.setText("Food: " + players.get(1).getFood());
+            mules2.setText("Mules Owned: " + players.get(1).getNumMules());
+            energy2.setText("Energy: " + players.get(1).getEnergy());
+
+            //Player3 ScoreTable
             if (GameConfigs.getNumPlayers() >= 3) {
-                player3.setText(players.get(2).getName() + ": " + players
-                        .get(2).getMoney());
+                player3.setText(players.get(2).getName());
+                money3.setText("Money: " + players.get(2).getMoney());
+                food3.setText("Food: " + players.get(2).getFood());
+                mules3.setText("Mules Owned: " + players.get(2).getNumMules());
+                energy3.setText("Energy: " + players.get(2).getEnergy());
             }
+            //Player4  ScoreTable
             if (GameConfigs.getNumPlayers() == 4) {
-
-                player4.setText(players.get(3).getName() + ": " + players
-                        .get(3).getMoney());
+                player4.setText(players.get(3).getName());
+                money4.setText("Money: " + players.get(3).getMoney());
+                food4.setText("Food: " + players.get(3).getFood());
+                mules4.setText("Mules Owned: " + players.get(3).getNumMules());
+                energy4.setText("Energy: " + players.get(3).getEnergy());
             }
+
         }
     }
 

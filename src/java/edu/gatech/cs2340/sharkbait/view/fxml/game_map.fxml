@@ -557,22 +557,41 @@
                 <VBox>
                     <children>
                         <Label fx:id="player1"></Label>
-                        <Label fx:id="player2"></Label>
-                        <Label fx:id="player3"></Label>
-                        <Label fx:id="player4"></Label>
+                        <Label fx:id="money1"></Label>
+                        <Label fx:id="food1"></Label>
+                        <Label fx:id="mules1"></Label>
+                        <Label fx:id="energy1"></Label>
+
                     </children>
                 </VBox>
-               <AnchorPane />
-               <AnchorPane />
+               <VBox>
+                   <children>
+                       <Label fx:id="player2"></Label>
+                       <Label fx:id="money2"></Label>
+                       <Label fx:id="food2"></Label>
+                       <Label fx:id="mules2"></Label>
+                       <Label fx:id="energy2"></Label>
+                   </children>
+               </VBox>
+
+               <VBox>
+                   <children>
+                       <Label fx:id="player3"></Label>
+                       <Label fx:id="money3"></Label>
+                       <Label fx:id="food3"></Label>
+                       <Label fx:id="mules3"></Label>
+                       <Label fx:id="energy3"></Label>
+                   </children>
+               </VBox>
 
                <VBox>
 
                    <children>
-
-
-                       <Label fx:id="phaseMsg"></Label>
-                       <Label fx:id="playerMsg"></Label>
-                       <Label fx:id="timerMsg"></Label>
+                       <Label fx:id="player4"></Label>
+                       <Label fx:id="money4"></Label>
+                       <Label fx:id="food4"></Label>
+                       <Label fx:id="mules4"></Label>
+                       <Label fx:id="energy4"></Label>
 
                    </children>
 
@@ -586,8 +605,9 @@
 
 
                        <Button fx:id="passButton" text="Pass" prefWidth="200"/>
-
-
+                       <Label fx:id="phaseMsg"></Label>
+                       <Label fx:id="playerMsg"></Label>
+                       <Label fx:id="timerMsg"></Label>
 
                    </children>
 

@@ -126,6 +126,14 @@ public class Player implements Comparable<Player> {
         return ownedMules;
     }
 
+    public int getNumMules() {
+        int mules = 0;
+        for (Mule mule : ownedMules ) {
+            mules++;
+        }
+        return mules;
+    }
+
     public void addMule(List<Mule> mules, Mule mule) {
         mules.add(mule);
     }

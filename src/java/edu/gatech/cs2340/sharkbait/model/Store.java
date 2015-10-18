@@ -5,7 +5,7 @@ import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.Mule;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Resource;
-import jdk.management.resource.ResourceType;
+//import jdk.management.resource.ResourceType;
 
 /**
  * Created by osama on 9/22/15.
