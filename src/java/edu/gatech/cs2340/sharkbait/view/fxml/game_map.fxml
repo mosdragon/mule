@@ -85,19 +85,19 @@
    
                         <ImageView pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="0">
                             <image>
-                                <Image url="@../images/mountain2.jpeg" />
+                                <Image url="@../images/plains.jpeg" />
                             </image>
                         </ImageView>
    
                         <ImageView pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="0">
                             <image>
-                                <Image url="@../images/plains.jpeg" />
+                                <Image url="@../images/mountain3.jpeg" />
                             </image>
                         </ImageView>
    
                         <ImageView pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="0">
                             <image>
-                                <Image url="@../images/mountain3.jpeg" />
+                                <Image url="@../images/plains.jpeg" />
                             </image>
                         </ImageView>
    
@@ -325,223 +325,231 @@
 
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="1"  GridPane.rowIndex="0" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="mountain1"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="M1"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="2"  GridPane.rowIndex="0" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="3"  GridPane.rowIndex="0" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="river"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="R"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="4"  GridPane.rowIndex="0" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="5"  GridPane.rowIndex="0" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="mountain3"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="M3"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="6"  GridPane.rowIndex="0" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="7"  GridPane.rowIndex="0" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="8"  GridPane.rowIndex="0" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="0"  GridPane.rowIndex="1" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="mountain1"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="M1"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="1"  GridPane.rowIndex="1" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="2"  GridPane.rowIndex="1" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="3"  GridPane.rowIndex="1" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="river"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="R"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="4"  GridPane.rowIndex="1" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="5"  GridPane.rowIndex="1" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="6"  GridPane.rowIndex="1" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="7"  GridPane.rowIndex="1" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="mountain3"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="M3"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="8"  GridPane.rowIndex="1" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="mountain3"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="M3"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="0"  GridPane.rowIndex="2" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="1"  GridPane.rowIndex="2" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="2"  GridPane.rowIndex="2" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="3"  GridPane.rowIndex="2" />
+
+                       <!-- No button on top of town-->
+                       <!--<Button onAction="#handleGridButtonPress" defaultButton="false"-->
+                               <!--mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"-->
+                               <!--style="-fx-background-color:rgba(0,0,0,0);" -->
+                               <!--textAlignment="CENTER" underline="false" visible="true"-->
+                               <!--wrapText="false" GridPane.columnIndex="4"  GridPane.rowIndex="2" />-->
+
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="5"  GridPane.rowIndex="2" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="6"  GridPane.rowIndex="2" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="7"  GridPane.rowIndex="2" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="mountain1"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="M1"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="8"  GridPane.rowIndex="2" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="0"  GridPane.rowIndex="3" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="mountain2"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="M2"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="1"  GridPane.rowIndex="3" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="2"  GridPane.rowIndex="3" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="3"  GridPane.rowIndex="3" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="river"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="R"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="4"  GridPane.rowIndex="3" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="5"  GridPane.rowIndex="3" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="mountain2"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="M2"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="6"  GridPane.rowIndex="3" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="7"  GridPane.rowIndex="3" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="8"  GridPane.rowIndex="3" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="0"  GridPane.rowIndex="4" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="1"  GridPane.rowIndex="4" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="mountain2"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="M2"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="2"  GridPane.rowIndex="4" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="3"  GridPane.rowIndex="4" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="river"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="R"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="4"  GridPane.rowIndex="4" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="5"  GridPane.rowIndex="4" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="6"  GridPane.rowIndex="4" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="plain"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="P"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="7"  GridPane.rowIndex="4" />
                        <Button onAction="#handleGridButtonPress" defaultButton="false"
                                mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0"
-                               style="-fx-background-color:rgba(0,0,0,0);" text="mountain2"
+                               style="-fx-background-color:rgba(0,0,0,0);" text="M2"
                                textAlignment="CENTER" underline="false" visible="true"
                                wrapText="false" GridPane.columnIndex="8"  GridPane.rowIndex="4"/>
 

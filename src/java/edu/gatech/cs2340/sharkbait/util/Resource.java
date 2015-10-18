@@ -6,7 +6,7 @@ package edu.gatech.cs2340.sharkbait.util;
 public enum Resource {
     Energy("Energy"),
     Food("Food"),
-    Smithore("Smithore"),
+    Ore("Ore"),
     Crystite("Crystite"),;
 
     private String name;

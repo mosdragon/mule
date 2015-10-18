@@ -1,6 +1,9 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
+import edu.gatech.cs2340.sharkbait.model.Prices;
+import edu.gatech.cs2340.trydent.log.Log;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -19,9 +22,31 @@ public class Player implements Comparable<Player> {
     private int energy;
     private int food;
     private int ore;
-    private int mules;
-    private List<Mule> ownedMules;
+    private List<Mule> mules;
     private List<Property> properties;
+
+    private static final int LAND_COST = Prices.LAND;
+    private static final int ENERGY = Prices.ENERGY;
+    private static final int FOOD = Prices.FOOD;
+    private static final int ORE = Prices.ORE;
+    private static final int MULE = Prices.MULE;
+    private static final int ORE_MULE = Prices.ORE_MULE;
+    private static final int FOOD_MULE = Prices.FOOD_MULE;
+    private static final int ENERGY_MULE = Prices.ENERGY_MULE;
+
+    private static final int MIN_PRODUCTION_ENERGY = 1;
+
+    private static final int BEGINNER_FOOD = 8;
+    private static final int BEGINNER_ENERGY = 4;
+    private static final int BEGINNER_ORE = 0;
+
+    private static final int STANDARD_FOOD = 4;
+    private static final int STANDARD_ENERGY = 2;
+    private static final int STANDARD_ORE = 0;
+
+    private static final int TOURNAMENT_FOOD = 4;
+    private static final int TOURNAMENT_ENERGY = 2;
+    private static final int TOURNAMENT_ORE = 0;
 
 
     public Player(String name, String color, Race race) {
@@ -29,6 +54,14 @@ public class Player implements Comparable<Player> {
         this.color = color;
         this.race = race;
 
+        initializeMoney();
+        initializeResources();
+
+        this.properties = new ArrayList<>();
+        this.mules = new ArrayList<>();
+    }
+
+    private void initializeMoney() {
         if (race == Race.Flapper) {
             money = 1600;
 
@@ -38,8 +71,26 @@ public class Player implements Comparable<Player> {
         } else {
             money = 1000;
         }
-        this.properties = new ArrayList<>();
-        this.ownedMules = new ArrayList<>();
+    }
+
+    private void initializeResources() {
+        Difficulty difficulty = GameConfigs.getGameDifficulty();
+
+        if (difficulty == Difficulty.Beginner) {
+            food = BEGINNER_FOOD;
+            energy = BEGINNER_ENERGY;
+            ore = BEGINNER_ORE;
+
+        } else if (difficulty == Difficulty.Standard) {
+            food = STANDARD_FOOD;
+            energy = STANDARD_ENERGY;
+            ore = STANDARD_ORE;
+
+        } else if (difficulty == Difficulty.Tournament) {
+            food = TOURNAMENT_FOOD;
+            energy = TOURNAMENT_ENERGY;
+            ore = TOURNAMENT_ORE;
+        }
     }
 
     public String getName() {
@@ -92,7 +143,7 @@ public class Player implements Comparable<Player> {
 
     /**
      *
-     * @param amount positive or negative amount of money
+     * @param amount positive or negative amount of food
      */
     public void changeFood(int amount) {
         food += amount;
@@ -102,6 +153,10 @@ public class Player implements Comparable<Player> {
         return food;
     }
 
+    /**
+     *
+     * @param amount positive or negative amount of ore
+     */
     public void changeOre(int amount) {
         ore += amount;
     }
@@ -110,45 +165,60 @@ public class Player implements Comparable<Player> {
         return ore;
     }
 
-    /**
-     *
-     * @param amount positive or negative amount of money
-     */
-    public void changeMules(int amount) {
-        mules += amount;
+    public int getMuleCount() {
+        return mules.size();
     }
 
-    public int getMules() {
+    public List<Mule> getMules() {
         return mules;
     }
 
-    public List<Mule> getOwnedMules() {
-        return ownedMules;
-    }
-
-    public void addMule(List<Mule> mules, Mule mule) {
+    public void addMule(Mule mule) {
         mules.add(mule);
     }
 
-    public void removeMule(List<Mule> mules, Mule mule) {
+    public void removeMule(Mule mule) {
         mules.remove(mule);
+    }
+
+    /**
+     * Called at the beginning of every PlayerTurnPhase to update counts of resources
+     */
+    public void handleProduction() {
+        Log.debug("Computing Production");
+        if (getEnergy() >= MIN_PRODUCTION_ENERGY) {
+            for (Mule mule : mules) {
+                mule.handleProduction(this);
+            }
+        } else {
+            Log.debug("Not enough energy for production");
+        }
+        print();
     }
 
     public List<Property> getProperties() {
         return properties;
     }
 
-    public void setProperties(List<Property> properties) {
-        this.properties = properties;
+    public boolean purchaseProperty(Property property) {
+        if (GameDuration.getRound() <= 2) {
+            properties.add(property);
+            property.purchase(this);
+            return true;
+        } else if (GameDuration.getRound() > 2 && (money >= LAND_COST)) {
+            properties.add(property);
+            property.purchase(this);
+            this.changeMoney(-LAND_COST);
+            return true;
+        }
+        return false;
     }
 
-    public boolean addProperty(Property property) {
-        if (GameDuration.getRound() < 2) {
-            properties.add(property);
-            return true;
-        } else if (GameDuration.getRound() > 2 && (money >= 300)) {
-            properties.add(property);
-            this.changeMoney(-300);
+    public boolean sellProperty(Property property) {
+
+        if (property.isOwner(this)) {
+            properties.remove(property);
+            changeMoney(LAND_COST);
             return true;
         }
         return false;
@@ -164,6 +234,16 @@ public class Player implements Comparable<Player> {
         Double myMoney = this.money;
         Double thatMoney = o.money;
         return myMoney.compareTo(thatMoney);
+    }
+
+    public void print() {
+        String everything = "";
+        everything += "Mules: "+ mules;
+        everything += "\nFood: "+ food;
+        everything += "\nEnergy: "+ energy;
+        everything += "\nOre: " + ore;
+        everything += "\n"+ name;
+        Log.debug(everything);
     }
 
 }

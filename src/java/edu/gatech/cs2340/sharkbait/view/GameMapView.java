@@ -83,7 +83,7 @@ public class GameMapView implements Initializable {
         if (GameDuration.hasBegun()) {
             if (GameDuration.getPhase() == GamePhase.PlayerTurnPhase) {
                 passButton.setText("End Turn");
-            } else {
+            } else if (GameDuration.getPhase() == GamePhase.LandBuyPhase) {
                 passButton.setText("Pass");
             }
             phaseMsg.setText(PHASE + GameDuration.getPhase().toString());

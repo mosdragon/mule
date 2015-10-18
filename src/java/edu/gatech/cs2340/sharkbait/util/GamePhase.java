@@ -4,7 +4,7 @@ package edu.gatech.cs2340.sharkbait.util;
  * Created by sayem on 9/24/2015.
  */
 public enum GamePhase {
-    LandBuyPhase("Land Buy"), PlayerTurnPhase("Player Turn");
+    LandBuyPhase("Land Buy"), PlayerTurnPhase("Player Turn"), MulePlacementPhase("Mule Placement");
 
     private String name;
 

@@ -12,22 +12,16 @@ import java.util.List;
  */
 public class GameConfigs {
 
-    private static GameConfigs ourInstance = new GameConfigs();
-
     private static Difficulty gameDifficulty;
     private static int numPlayers;
     private static MapType mapType;
-
-    public static GameConfigs getInstance() {
-        return ourInstance;
-    }
 
     private GameConfigs() {
         gameDifficulty = Difficulty.Standard;
         mapType = MapType.StandardMap;
     }
 
-    public Difficulty getGameDifficulty() {
+    public static Difficulty getGameDifficulty() {
         return gameDifficulty;
     }
 
@@ -40,16 +34,16 @@ public class GameConfigs {
         return numPlayers;
     }
 
-    public void setNumPlayers(int numPlayers) {
-        this.numPlayers = numPlayers;
+    public static void setNumPlayers(int numPlayers) {
+        GameConfigs.numPlayers = numPlayers;
     }
 
-    public MapType getMapType() {
+    public static MapType getMapType() {
         return mapType;
     }
 
-    public void setMapType(MapType mapType) {
-        this.mapType = mapType;
+    public static void setMapType(MapType mapType) {
+        GameConfigs.mapType = mapType;
     }
 
 

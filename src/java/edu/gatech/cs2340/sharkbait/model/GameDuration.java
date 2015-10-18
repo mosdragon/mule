@@ -1,14 +1,12 @@
 package edu.gatech.cs2340.sharkbait.model;
 
+import edu.gatech.cs2340.sharkbait.util.*;
 import edu.gatech.cs2340.sharkbait.view.GameMapView;
 import edu.gatech.cs2340.sharkbait.view.TownMapView;
-import edu.gatech.cs2340.sharkbait.util.GamePhase;
-import edu.gatech.cs2340.sharkbait.util.Player;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by osama on 9/22/15.
@@ -18,6 +16,8 @@ public class GameDuration {
 //    Start with 50 second turns
     private static final int TIME_START = 50;
 
+    private static final int[] foodRequirements = {3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5};
+
     private static Parent gameMap = null;
     private static GameMapView gameMapView;
 
@@ -25,7 +25,6 @@ public class GameDuration {
     private static TownMapView townMapView;
 
     public static List<Player> players;
-    private static Player activePlayer = null;
     private static int round = 1;
     private static int turn = 0;
 
@@ -34,6 +33,14 @@ public class GameDuration {
 
 //    Time left of the turn, in seconds
     private static int timeRemaining;
+
+    private static Player activePlayer = null;
+
+//    Holds the type of the mule if one is just bought, clear it once it is set on a property
+    private static Resource activeMuleType;
+
+//    Maps UI Buttons to properties in the game
+    private static Map<Button, Property> propertiesMap;
 
     private GameDuration() {
     }
@@ -46,6 +53,7 @@ public class GameDuration {
         begun = true;
         phase = GamePhase.LandBuyPhase;
         resetTime();
+        propertiesMap = new HashMap<>();
     }
 
     public static Player getActivePlayer() {
@@ -58,6 +66,19 @@ public class GameDuration {
 
     public static void setActivePlayer(Player activePlayer) {
         GameDuration.activePlayer = activePlayer;
+    }
+
+    public static Property fetchProperty(Button button) {
+        Property property = propertiesMap.get(button);
+        if (property == null) {
+            property = new Property(button);
+            propertiesMap.put(button, property);
+        }
+        return property;
+    }
+
+    public static void addProperty(Button button, Property property) {
+        propertiesMap.put(button, property);
     }
 
     public static Parent getGameMap() {
@@ -97,7 +118,7 @@ public class GameDuration {
         turn++;
         if (turn >= GameConfigs.getNumPlayers()) {
             turn = 0;
-            if (phase == GamePhase.LandBuyPhase) {
+            if (phase != GamePhase.PlayerTurnPhase) {
                 phase = GamePhase.PlayerTurnPhase;
             } else {
 //                End of turn. Sort the list of players
@@ -107,10 +128,39 @@ public class GameDuration {
             }
         }
         activePlayer = getPlayers().get(turn);
-        timeRemaining = TIME_START;
+        determineTimeRemaining();
+        handleProductionIfApplicable();
     }
 
+    /**
+     * Determines length of player turn based on resources left
+     */
+    private static void determineTimeRemaining() {
+//        TODO: Consider food and energy minimums
 
+        Player player = getActivePlayer();
+        int foodCount = player.getFood();
+        int foodRequirement = foodRequirements[getRound() - 1];
+
+        if (foodCount == 0) {
+//            If you have no food, turn lasts 5 seconds
+            timeRemaining = 5;
+        } else if (foodCount > 0 && foodCount < foodRequirement) {
+//            If you have food but not enough as the round demands, turn is 30 seconds
+            timeRemaining = 30;
+        } else {
+            timeRemaining = TIME_START;
+        }
+    }
+
+    /**
+     * When a player's turn begins, production must be computed immediately
+     */
+    private static void handleProductionIfApplicable() {
+        if (phase == GamePhase.PlayerTurnPhase) {
+            activePlayer.handleProduction();
+        }
+    }
 
     public static void endGame() {
 
@@ -144,6 +194,26 @@ public class GameDuration {
             players = new ArrayList<>();
         }
         players.add(player);
+    }
+
+    public static Resource getActiveMuleType() {
+        return activeMuleType;
+    }
+
+    public static void setActiveMuleType(Resource activeMuleType) {
+        GameDuration.activeMuleType = activeMuleType;
+    }
+
+    public static void clearActiveMuleType() {
+        setActiveMuleType(null);
+    }
+
+    public static void beginMulePlacementPhase() {
+        phase = GamePhase.MulePlacementPhase;
+    }
+
+    public static void endMulePlacementPhase() {
+        phase = GamePhase.PlayerTurnPhase;
     }
 
 }

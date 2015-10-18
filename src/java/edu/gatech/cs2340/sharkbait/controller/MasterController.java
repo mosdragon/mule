@@ -1,10 +1,8 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
+import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
-import edu.gatech.cs2340.sharkbait.util.GamePhase;
-import edu.gatech.cs2340.sharkbait.util.Player;
-import edu.gatech.cs2340.sharkbait.util.Property;
-import edu.gatech.cs2340.sharkbait.util.PropertyType;
+import edu.gatech.cs2340.sharkbait.util.*;
 import edu.gatech.cs2340.sharkbait.view.GameMapView;
 import edu.gatech.cs2340.sharkbait.view.TownMapView;
 import edu.gatech.cs2340.trydent.log.Log;
@@ -58,7 +56,7 @@ public class MasterController {
         return instance;
     }
 
-    private void passTime() {
+    private static void passTime() {
         if (GameDuration.hasBegun()) {
             passOneSecond();
             updateTimers();
@@ -66,7 +64,7 @@ public class MasterController {
         }
     }
 
-    private void updateTimers() {
+    private static void updateTimers() {
         if (GameDuration.hasBegun()) {
             int time = GameDuration.getTimeRemaining();
             gameMapView.updateTimer(TIME_LEFT + time);
@@ -75,9 +73,7 @@ public class MasterController {
         }
     }
 
-
-
-    private void updateMessages() {
+    public static void updateMessages() {
         gameMapView.updateMessages();
         townMapView.updateMessages();
     }
@@ -144,6 +140,12 @@ public class MasterController {
 
     public static TownMapView getTownMapView() {
         return townMapView;
+    }
+
+    public static void saveConfigs(int numPlayers, Difficulty difficulty, MapType mapType) {
+        GameConfigs.setGameDifficulty(difficulty);
+        GameConfigs.setMapType(mapType);
+        GameConfigs.setNumPlayers(numPlayers);
     }
 
 

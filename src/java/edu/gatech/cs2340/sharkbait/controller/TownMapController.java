@@ -4,8 +4,6 @@ import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.model.Store;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Resource;
-import edu.gatech.cs2340.sharkbait.view.GameMapView;
-import edu.gatech.cs2340.sharkbait.view.TownMapView;
 import edu.gatech.cs2340.trydent.log.Log;
 
 import java.util.ArrayList;
@@ -37,71 +35,92 @@ public class TownMapController {
 
     }
 
-
     public static void buyOre() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyOre(activePlayer);
+        activePlayer.print();
     }
 
     public static void sellOre() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellOre(activePlayer);
+        activePlayer.print();
     }
 
     public static void buyEnergy() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyEnergy(activePlayer);
+        activePlayer.print();
     }
 
     public static void sellEnergy() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellEnergy(activePlayer);
+        activePlayer.print();
     }
 
     public static void buyFood() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyFood(activePlayer);
+        activePlayer.print();
     }
 
     public static void sellFood() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellFood(activePlayer);
+        activePlayer.print();
+    }
+
+    private static void purchasedMule() {
+        GameDuration.beginMulePlacementPhase();
+        MasterController.changeSceneToGameMap();
+        GameDuration.getActivePlayer().print();
     }
 
 
     public static void buyOreMule() {
         Player activePlayer = GameDuration.getActivePlayer();
-        Store.buyMule(activePlayer, Resource.Smithore);
+        Store.buyMule(activePlayer, Resource.Ore);
+        GameDuration.setActiveMuleType(Resource.Ore);
+        purchasedMule();
     }
 
     public static void sellOreMule() {
         Player activePlayer = GameDuration.getActivePlayer();
-        Store.sellMule(activePlayer, Resource.Smithore);
+        Store.sellMule(activePlayer, Resource.Ore);
+        GameDuration.setActiveMuleType(Resource.Ore);
+        GameDuration.getActivePlayer().print();
     }
 
     public static void buyFoodMule() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyMule(activePlayer, Resource.Food);
+        GameDuration.setActiveMuleType(Resource.Food);
+        purchasedMule();
     }
 
     public static void sellFoodMule() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellMule(activePlayer, Resource.Food);
+        GameDuration.setActiveMuleType(Resource.Food);
+        GameDuration.getActivePlayer().print();
     }
 
     public static void buyEnergyMule() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.buyMule(activePlayer, Resource.Energy);
+        GameDuration.setActiveMuleType(Resource.Energy);
+        purchasedMule();
     }
 
     public static void sellEnergyMule() {
         Player activePlayer = GameDuration.getActivePlayer();
         Store.sellMule(activePlayer, Resource.Energy);
+        GameDuration.setActiveMuleType(Resource.Energy);
+        GameDuration.getActivePlayer().print();
     }
 
     public static void exitTown() {
         MasterController.changeSceneToGameMap();
     }
-
-
 }

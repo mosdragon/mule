@@ -77,9 +77,8 @@ public class ConfigScreenView implements Initializable {
                 else if (gameState == State.ConfigGame) {
                     try {
 
-                        GameConfigs configs = GameConfigs.getInstance();
                         gameConfigView.saveConfigs();
-                        int numPlayers = configs.getNumPlayers();
+                        int numPlayers = GameConfigs.getNumPlayers();
 
                         for (int i = 1; i <= numPlayers; i++) {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass()
