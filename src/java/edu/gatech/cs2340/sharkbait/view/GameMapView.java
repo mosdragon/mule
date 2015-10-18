@@ -114,7 +114,7 @@ public class GameMapView implements Initializable {
             player2.setText(players.get(1).getName());
             money2.setText("Money: " + players.get(1).getMoney());
             food2.setText("Food: " + players.get(1).getFood());
-            mules2.setText("Mules Owned: " + players.get(0).getNumMules());
+            mules2.setText("Mules Owned: " + players.get(1).getNumMules());
             energy2.setText("Energy: " + players.get(1).getEnergy());
 
             //Player3 ScoreTable
@@ -122,7 +122,7 @@ public class GameMapView implements Initializable {
                 player3.setText(players.get(2).getName());
                 money3.setText("Money: " + players.get(2).getMoney());
                 food3.setText("Food: " + players.get(2).getFood());
-                mules3.setText("Mules Owned: " + players.get(0).getNumMules());
+                mules3.setText("Mules Owned: " + players.get(2).getNumMules());
                 energy3.setText("Energy: " + players.get(2).getEnergy());
             }
             //Player4  ScoreTable
@@ -130,7 +130,7 @@ public class GameMapView implements Initializable {
                 player4.setText(players.get(3).getName());
                 money4.setText("Money: " + players.get(3).getMoney());
                 food4.setText("Food: " + players.get(3).getFood());
-                mules4.setText("Mules Owned: " + players.get(0).getNumMules());
+                mules4.setText("Mules Owned: " + players.get(3).getNumMules());
                 energy4.setText("Energy: " + players.get(3).getEnergy());
             }
 
