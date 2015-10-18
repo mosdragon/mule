@@ -30,7 +30,7 @@ public class Tile {
         if (originalText.contains(PLAINS)) {
             type = PropertyType.Plains;
         } else if (originalText.contains(MOUNTAIN)) {
-            type = PropertyType.Mountain;
+//            type = PropertyType.Mountain;
         } else if (originalText.contains(RIVER)) {
             type = PropertyType.River;
         }

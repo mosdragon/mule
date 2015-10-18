@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.sharkbait.util;
 
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
+import edu.gatech.cs2340.sharkbait.model.Prices;
 import edu.gatech.cs2340.trydent.log.Log;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
@@ -20,9 +21,16 @@ public class Player implements Comparable<Player> {
     private int energy;
     private int food;
     private int ore;
-    private int mules;
-    private List<Mule> ownedMules;
+    private List<Mule> mules;
     private List<Property> properties;
+
+    private static final int ENERGY = Prices.ENERGY;
+    private static final int FOOD = Prices.FOOD;
+    private static final int ORE = Prices.ORE;
+    private static final int MULE = Prices.MULE;
+    private static final int ORE_MULE = Prices.ORE_MULE;
+    private static final int FOOD_MULE = Prices.FOOD_MULE;
+    private static final int ENERGY_MULE = Prices.ENERGY_MULE;
 
 
     public Player(String name, String color, Race race) {
@@ -40,7 +48,7 @@ public class Player implements Comparable<Player> {
             money = 1000;
         }
         this.properties = new ArrayList<>();
-        this.ownedMules = new ArrayList<>();
+        this.mules = new ArrayList<>();
     }
 
     public String getName() {
@@ -111,36 +119,24 @@ public class Player implements Comparable<Player> {
         return ore;
     }
 
-    /**
-     *
-     * @param amount positive or negative amount of money
-     */
-    public void changeMules(int amount) {
-        mules += amount;
+    public int getMuleCount() {
+        return mules.size();
     }
 
-    public int getMules() {
+    public List<Mule> getMules() {
         return mules;
     }
 
-    public List<Mule> getOwnedMules() {
-        return ownedMules;
-    }
-
-    public void addMule(List<Mule> mules, Mule mule) {
+    public void addMule(Mule mule) {
         mules.add(mule);
     }
 
-    public void removeMule(List<Mule> mules, Mule mule) {
+    public void removeMule(Mule mule) {
         mules.remove(mule);
     }
 
     public List<Property> getProperties() {
         return properties;
-    }
-
-    public void setProperties(List<Property> properties) {
-        this.properties = properties;
     }
 
     public boolean purchaseProperty(Property property) {
@@ -151,6 +147,16 @@ public class Player implements Comparable<Player> {
         } else if (GameDuration.getRound() > 2 && (money >= 300)) {
             properties.add(property);
             this.changeMoney(-300);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean sellProperty(Property property) {
+
+        if (property.isOwner(this)) {
+            properties.remove(property);
+            changeMoney(300);
             return true;
         }
         return false;

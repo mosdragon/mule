@@ -6,10 +6,10 @@ package edu.gatech.cs2340.sharkbait.util;
 public class Mule {
 
     private Resource type;
-    private Player owner;
+    private Property property;
 
-    public Mule (Player owner, Resource type) {
-        this.owner = owner;
+    public Mule(Property property, Resource type) {
+        this.property = property;
         this.type = type;
     }
 
@@ -17,16 +17,16 @@ public class Mule {
         return type;
     }
 
-    public Player getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
-
     public void setType(Resource type) {
         this.type = type;
+    }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
     }
 
     @Override

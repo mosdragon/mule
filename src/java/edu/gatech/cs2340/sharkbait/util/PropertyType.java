@@ -4,18 +4,24 @@ package edu.gatech.cs2340.sharkbait.util;
  * Created by arihanshah on 9/22/15.
  */
 public enum PropertyType {
-    Mountain("Mountain"),
-    Plains("Plains"),
-    River("River"),;
+    Mountain1("M1"),
+    Mountain2("M2"),
+    Mountain3("M3"),
+    Plains("P"),
+    River("R"),;
 
-    private String name;
+    private String text;
 
-    PropertyType(String name) {
-        this.name = name;
+    PropertyType(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        return text;
     }
 }

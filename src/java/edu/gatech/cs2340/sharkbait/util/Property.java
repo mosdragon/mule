@@ -1,6 +1,8 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
+import edu.gatech.cs2340.trydent.log.Log;
 import javafx.scene.control.Button;
 
 /**
@@ -8,12 +10,33 @@ import javafx.scene.control.Button;
  */
 public class Property {
 
-    private Tile tile;
     private static final String MULE = "Mule";
     private static final String MULE_TEMPLATE = "\n%s "+ MULE;
 
+    private Tile tile;
+    private PropertyType type;
+
     public Property(Button tileHolder) {
         tile = new Tile(tileHolder);
+        type = PropertyType.Plains;
+
+        if (tile.getText().contains(PropertyType.Plains.getText())) {
+            type = PropertyType.Plains;
+
+        } else if (tile.getText().contains(PropertyType.River.getText())) {
+            type = PropertyType.River;
+
+        } else if (tile.getText().contains(PropertyType.Mountain1.getText())) {
+            type = PropertyType.Mountain1;
+
+        } else if (tile.getText().contains(PropertyType.Mountain2.getText())) {
+            type = PropertyType.Mountain2;
+
+        } else if (tile.getText().contains(PropertyType.Mountain3.getText())) {
+            type = PropertyType.Mountain3;
+        }
+
+        Log.debug(toString());
     }
 
     public Tile getTile() {
@@ -88,5 +111,18 @@ public class Property {
             return this.tile.equals(other.tile);
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Property: " + type.getText();
+    }
+
+    public PropertyType getType() {
+        return type;
+    }
+
+    public void setType(PropertyType type) {
+        this.type = type;
     }
 }
