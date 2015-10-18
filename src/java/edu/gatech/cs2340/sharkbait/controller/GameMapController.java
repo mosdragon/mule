@@ -29,33 +29,20 @@ public class GameMapController {
     }
 
     public static void attemptGridButtonClick(Button button) {
-        boolean available = button.getStyle().contains(CSS_TRANSPARENT);
+
+        Property property = GameDuration.fetchProperty(button);
+        boolean available = property.isAvailable();
+
         boolean isLandBuyPhase = GameDuration.getPhase() == GamePhase.LandBuyPhase;
         boolean isMuleBuyPhase = GameDuration.getPhase() == GamePhase.MulePlacementPhase;
 
         if (available && isLandBuyPhase) {
 
             Player activePlayer = GameDuration.getActivePlayer();
-            String type = button.getText().toLowerCase();
-            PropertyType propertyType = null;
 
             if (activePlayer != null) {
 
-                if (type.toLowerCase().contains("plain")) {
-                    propertyType = PropertyType.Plains;
-
-                } else if (type.contains("mountain")) {
-                    propertyType = PropertyType.Mountain;
-
-                } else if (type.contains("river")) {
-                    propertyType = PropertyType.River;
-                }
-
-                Property property = new Property(button);
-                activePlayer.addProperty(property);
-                Log.debug("Type: " + type);
-                Log.debug("Added " + propertyType.toString()  + " property to player " + activePlayer
-                        .getName());
+                activePlayer.purchaseProperty(property);
 
                 String color = activePlayer.getColor();
                 String styleVal = BG_COLOR + color;
@@ -67,20 +54,16 @@ public class GameMapController {
         } else if (isMuleBuyPhase) {
 //            Else if bought and bought by active player and in mule buy phase do this
 
-            String buttonStyle = button.getStyle().toLowerCase();
             Player activePlayer = GameDuration.getActivePlayer();
-            String playerColor = activePlayer.getColor().toLowerCase();
-            boolean isOwnedByPlayer = buttonStyle.contains(playerColor);
 
-            boolean noMuleHere = !button.getText().contains(" Mule");
+            boolean isOwnedByPlayer = property.isOwner(activePlayer);
+            boolean noMuleHere = !property.hasMule();
             boolean tileBought = !available;
 
             if (tileBought && isOwnedByPlayer && noMuleHere) {
-//                Add muletext to button
-                Mule mockMule = new Mule(null, GameDuration.getActiveMuleType());
-                button.setText(button.getText() + "\n" + mockMule.toString());
-                Log.debug(mockMule.toString() + " successfully place for player " + activePlayer
-                        .toString());
+
+                Mule mule = new Mule(null, GameDuration.getActiveMuleType());
+                property.addMule(mule);
 
             } else {
                 Log.debug("Player messed up. Lost MULE. Sorry");
@@ -88,6 +71,7 @@ public class GameMapController {
 
             GameDuration.clearActiveMuleType();
             GameDuration.endMulePlacementPhase();
+            MasterController.updateMessages();
         }
 
     }

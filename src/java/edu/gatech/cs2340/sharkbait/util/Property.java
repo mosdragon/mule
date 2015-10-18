@@ -13,11 +13,7 @@ public class Property {
     private static final String MULE_TEMPLATE = "\n%s "+ MULE;
 
     public Property(Button tileHolder) {
-        tile = GameDuration.fetchTile(tileHolder);
-        if (tile == null) {
-            tile = new Tile(tileHolder);
-            GameDuration.addTile(tile);
-        }
+        tile = new Tile(tileHolder);
     }
 
     public Tile getTile() {

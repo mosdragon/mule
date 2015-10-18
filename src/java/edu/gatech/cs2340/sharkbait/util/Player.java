@@ -143,7 +143,7 @@ public class Player implements Comparable<Player> {
         this.properties = properties;
     }
 
-    public boolean addProperty(Property property) {
+    public boolean purchaseProperty(Property property) {
         if (GameDuration.getRound() < 2) {
             properties.add(property);
             property.purchase(this);

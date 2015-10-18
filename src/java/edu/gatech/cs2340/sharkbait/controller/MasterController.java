@@ -56,7 +56,7 @@ public class MasterController {
         return instance;
     }
 
-    private void passTime() {
+    private static void passTime() {
         if (GameDuration.hasBegun()) {
             passOneSecond();
             updateTimers();
@@ -64,7 +64,7 @@ public class MasterController {
         }
     }
 
-    private void updateTimers() {
+    private static void updateTimers() {
         if (GameDuration.hasBegun()) {
             int time = GameDuration.getTimeRemaining();
             gameMapView.updateTimer(TIME_LEFT + time);
@@ -73,9 +73,7 @@ public class MasterController {
         }
     }
 
-
-
-    private void updateMessages() {
+    public static void updateMessages() {
         gameMapView.updateMessages();
         townMapView.updateMessages();
     }

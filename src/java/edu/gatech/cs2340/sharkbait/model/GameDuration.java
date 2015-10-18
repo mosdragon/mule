@@ -37,7 +37,8 @@ public class GameDuration {
 //    Holds the type of the mule if one is just bought, clear it once it is set on a property
     private static Resource activeMuleType;
 
-    private static Map<Button, Tile> tilesMap;
+//    Maps UI Buttons to properties in the game
+    private static Map<Button, Property> propertiesMap;
 
     private GameDuration() {
     }
@@ -50,7 +51,7 @@ public class GameDuration {
         begun = true;
         phase = GamePhase.LandBuyPhase;
         resetTime();
-        tilesMap = new HashMap<>();
+        propertiesMap = new HashMap<>();
     }
 
     public static Player getActivePlayer() {
@@ -65,14 +66,17 @@ public class GameDuration {
         GameDuration.activePlayer = activePlayer;
     }
 
-    public static Tile fetchTile(Button button) {
-        Tile found = tilesMap.get(button);
-        return found;
+    public static Property fetchProperty(Button button) {
+        Property property = propertiesMap.get(button);
+        if (property == null) {
+            property = new Property(button);
+            propertiesMap.put(button, property);
+        }
+        return property;
     }
 
-    public static void addTile(Tile tile) {
-        Button button = tile.getHolder();
-        tilesMap.put(button, tile);
+    public static void addProperty(Button button, Property property) {
+        propertiesMap.put(button, property);
     }
 
     public static Parent getGameMap() {
