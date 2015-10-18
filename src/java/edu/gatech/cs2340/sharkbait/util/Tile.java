@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import edu.gatech.cs2340.sharkbait.model.Constants;
 import javafx.scene.control.Button;
 
 import javax.swing.text.html.CSS;
@@ -9,8 +10,8 @@ import javax.swing.text.html.CSS;
  */
 public class Tile {
 
-    protected static final String CSS_TRANSPARENT = "-fx-background-color:rgba(0,0,0,0);";
-    private static final String BG_COLOR = "-fx-background-color:%s;";
+    private static final String CSS_TRANSPARENT = Constants.CSS_TRANSPARENT;
+    private static final String BG_COLOR_TEMPLATE = Constants.BG_COLOR_TEMPLATE;
 
     private static final String PLAIN = "plain";
     private static final String RIVER = "river";
@@ -58,12 +59,12 @@ public class Tile {
     }
 
     public void makeTransparent(String color) {
-        String currentColor = String.format(BG_COLOR, color);
+        String currentColor = String.format(BG_COLOR_TEMPLATE, color);
         replaceColor(currentColor, CSS_TRANSPARENT);
     }
 
     public void setColor(String replacementColor) {
-        String replacement = String.format(BG_COLOR, replacementColor);
+        String replacement = String.format(BG_COLOR_TEMPLATE, replacementColor);
         replaceColor(CSS_TRANSPARENT, replacement);
     }
 

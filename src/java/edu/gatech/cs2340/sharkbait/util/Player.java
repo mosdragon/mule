@@ -191,7 +191,6 @@ public class Player implements Comparable<Player> {
         } else {
             Log.debug("Not enough energy for production");
         }
-        print();
     }
 
     public List<Property> getProperties() {
@@ -232,16 +231,6 @@ public class Player implements Comparable<Player> {
         Double myMoney = this.money;
         Double thatMoney = o.money;
         return myMoney.compareTo(thatMoney);
-    }
-
-    public void print() {
-        String everything = "";
-        everything += "Mules: "+ mules;
-        everything += "\nFood: "+ food;
-        everything += "\nEnergy: "+ energy;
-        everything += "\nOre: " + ore;
-        everything += "\n"+ name;
-        Log.debug(everything);
     }
 
 }

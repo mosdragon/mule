@@ -14,4 +14,7 @@ public interface Constants {
     int ORE_MULE = MULE + ORE;
     int FOOD_MULE = MULE + FOOD;
     int ENERGY_MULE = MULE + ENERGY;
+
+    String CSS_TRANSPARENT = "-fx-background-color:rgba(0,0,0,0);";
+    String BG_COLOR_TEMPLATE = "-fx-background-color:%s;";
 }
