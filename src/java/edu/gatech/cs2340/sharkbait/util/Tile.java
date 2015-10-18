@@ -12,27 +12,35 @@ public class Tile {
     protected static final String CSS_TRANSPARENT = "-fx-background-color:rgba(0,0,0,0);";
     private static final String BG_COLOR = "-fx-background-color:%s;";
 
-    private static final String PLAINS = "plain";
-    private static final String MOUNTAIN = "mountain";
+    private static final String PLAIN = "plain";
     private static final String RIVER = "river";
+    private static final String MOUNTAIN1 = "mountain1";
+    private static final String MOUNTAIN2 = "mountain2";
+    private static final String MOUNTAIN3 = "mountain3";
 
 //    This button is passed in and is serves as the physical grid representation of the tile
 //    including color, text, etc
     private Button holder;
     private PropertyType type;
-//    Original text in the tile. Ex: "plain", "mountain", or "river"
-    private String originalText;
 
 
     public Tile(Button holder) {
         this.holder = holder;
-        originalText = holder.getText();
-        if (originalText.contains(PLAINS)) {
+        String buttonClass = holder.getStyleClass().toString();
+        if (buttonClass.contains(PLAIN)) {
             type = PropertyType.Plains;
-        } else if (originalText.contains(MOUNTAIN)) {
-//            type = PropertyType.Mountain;
-        } else if (originalText.contains(RIVER)) {
+
+        } else if (buttonClass.contains(RIVER)) {
             type = PropertyType.River;
+
+        } else if (buttonClass.contains(MOUNTAIN1)) {
+            type = PropertyType.Mountain1;
+
+        } else if (buttonClass.contains(MOUNTAIN2)) {
+            type = PropertyType.Mountain2;
+
+        } else if (buttonClass.contains(MOUNTAIN3)) {
+            type = PropertyType.Mountain3;
         }
     }
 
@@ -84,10 +92,6 @@ public class Tile {
 
     public void setType(PropertyType type) {
         this.type = type;
-    }
-
-    public void displayOriginalText() {
-        holder.setText(originalText);
     }
 
     @Override

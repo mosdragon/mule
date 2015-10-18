@@ -5,6 +5,7 @@ import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Resource;
 
+
 /**
  * Created by osama on 9/22/15.
  */
@@ -16,13 +17,13 @@ public class Store {
     private static int foodCount;
     private static int oreCount;
 
-    private static final int ENERGY = Prices.ENERGY;
-    private static final int FOOD = Prices.FOOD;
-    private static final int ORE = Prices.ORE;
-    private static final int MULE = Prices.MULE;
-    private static final int ORE_MULE = Prices.ORE_MULE;
-    private static final int FOOD_MULE = Prices.FOOD_MULE;
-    private static final int ENERGY_MULE = Prices.ENERGY_MULE;
+    private static final int ENERGY = Constants.ENERGY;
+    private static final int FOOD = Constants.FOOD;
+    private static final int ORE = Constants.ORE;
+    private static final int MULE = Constants.MULE;
+    private static final int ORE_MULE = Constants.ORE_MULE;
+    private static final int FOOD_MULE = Constants.FOOD_MULE;
+    private static final int ENERGY_MULE = Constants.ENERGY_MULE;
 
     private Store() {
 

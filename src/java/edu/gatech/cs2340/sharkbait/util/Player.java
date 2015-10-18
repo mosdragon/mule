@@ -2,13 +2,11 @@ package edu.gatech.cs2340.sharkbait.util;
 
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
-import edu.gatech.cs2340.sharkbait.model.Prices;
+import edu.gatech.cs2340.sharkbait.model.Constants;
 import edu.gatech.cs2340.trydent.log.Log;
-import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by osama on 9/12/15.
@@ -25,14 +23,14 @@ public class Player implements Comparable<Player> {
     private List<Mule> mules;
     private List<Property> properties;
 
-    private static final int LAND_COST = Prices.LAND;
-    private static final int ENERGY = Prices.ENERGY;
-    private static final int FOOD = Prices.FOOD;
-    private static final int ORE = Prices.ORE;
-    private static final int MULE = Prices.MULE;
-    private static final int ORE_MULE = Prices.ORE_MULE;
-    private static final int FOOD_MULE = Prices.FOOD_MULE;
-    private static final int ENERGY_MULE = Prices.ENERGY_MULE;
+    private static final int LAND_COST = Constants.LAND;
+    private static final int ENERGY = Constants.ENERGY;
+    private static final int FOOD = Constants.FOOD;
+    private static final int ORE = Constants.ORE;
+    private static final int MULE = Constants.MULE;
+    private static final int ORE_MULE = Constants.ORE_MULE;
+    private static final int FOOD_MULE = Constants.FOOD_MULE;
+    private static final int ENERGY_MULE = Constants.ENERGY_MULE;
 
     private static final int MIN_PRODUCTION_ENERGY = 1;
 
