@@ -24,6 +24,7 @@ public class Player implements Comparable<Player> {
     private List<Mule> mules;
     private List<Property> properties;
 
+    private static final int LAND_COST = Prices.LAND;
     private static final int ENERGY = Prices.ENERGY;
     private static final int FOOD = Prices.FOOD;
     private static final int ORE = Prices.ORE;
@@ -31,6 +32,8 @@ public class Player implements Comparable<Player> {
     private static final int ORE_MULE = Prices.ORE_MULE;
     private static final int FOOD_MULE = Prices.FOOD_MULE;
     private static final int ENERGY_MULE = Prices.ENERGY_MULE;
+
+    private static final int MIN_PRODUCTION_ENERGY = 1;
 
 
     public Player(String name, String color, Race race) {
@@ -135,18 +138,34 @@ public class Player implements Comparable<Player> {
         mules.remove(mule);
     }
 
+    /**
+     * Called at the beginning of every PlayerTurnPhase to update counts of resources
+     */
+    public void handleProduction() {
+        Log.debug("Computing Production");
+        if (getEnergy() >= MIN_PRODUCTION_ENERGY) {
+            for (Mule mule : mules) {
+                mule.handleProduction(this);
+            }
+        } else {
+            Log.debug("Not enough energy for production");
+        }
+        print();
+    }
+
     public List<Property> getProperties() {
         return properties;
     }
 
     public boolean purchaseProperty(Property property) {
-        if (GameDuration.getRound() < 2) {
+        if (GameDuration.getRound() <= 2) {
             properties.add(property);
             property.purchase(this);
             return true;
-        } else if (GameDuration.getRound() > 2 && (money >= 300)) {
+        } else if (GameDuration.getRound() > 2 && (money >= LAND_COST)) {
             properties.add(property);
-            this.changeMoney(-300);
+            property.purchase(this);
+            this.changeMoney(-LAND_COST);
             return true;
         }
         return false;
@@ -156,7 +175,7 @@ public class Player implements Comparable<Player> {
 
         if (property.isOwner(this)) {
             properties.remove(property);
-            changeMoney(300);
+            changeMoney(LAND_COST);
             return true;
         }
         return false;

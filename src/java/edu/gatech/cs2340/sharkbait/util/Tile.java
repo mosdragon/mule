@@ -61,7 +61,8 @@ public class Tile {
 
     public void replaceColor(String originalColor, String replacementColor) {
         String styleText = holder.getStyle();
-        styleText.replace(originalColor, replacementColor);
+        styleText = styleText.replace(originalColor, replacementColor);
+        holder.setStyle(styleText);
     }
 
     public boolean containsColor(String color) {

@@ -126,10 +126,26 @@ public class GameDuration {
             }
         }
         activePlayer = getPlayers().get(turn);
+        determineTimeRemaining();
+        handleProductionIfApplicable();
+    }
+
+    /**
+     * Determines length of player turn based on resources left
+     */
+    private static void determineTimeRemaining() {
+//        TODO: Consider food and energy minimums
         timeRemaining = TIME_START;
     }
 
-
+    /**
+     * When a player's turn begins, production must be computed immediately
+     */
+    private static void handleProductionIfApplicable() {
+        if (phase == GamePhase.PlayerTurnPhase) {
+            activePlayer.handleProduction();
+        }
+    }
 
     public static void endGame() {
 

@@ -10,14 +10,6 @@ import javafx.scene.control.Button;
  */
 public class GameMapController {
 
-    //    Used for Grid Button Press
-    private static final String CSS_TRANSPARENT = "-fx-background-color:rgba(0,0,0,0);";
-    private static final String BG_COLOR = "-fx-background-color:";
-
-    private static final String PLAINS = "plain";
-    private static final String MOUNTAIN = "mountain";
-    private static final String RIVER = "river";
-
     public static void townClicked() {
         if (GameDuration.getPhase() == GamePhase.PlayerTurnPhase) {
             MasterController.changeSceneToTownMap();
@@ -34,25 +26,25 @@ public class GameMapController {
         boolean available = property.isAvailable();
 
         boolean isLandBuyPhase = GameDuration.getPhase() == GamePhase.LandBuyPhase;
-        boolean isMuleBuyPhase = GameDuration.getPhase() == GamePhase.MulePlacementPhase;
+        boolean isMulePlacementPhase = GameDuration.getPhase() == GamePhase.MulePlacementPhase;
 
-        if (available && isLandBuyPhase) {
+        if (isLandBuyPhase) {
 
-            Player activePlayer = GameDuration.getActivePlayer();
+            if (available) {
+                Player activePlayer = GameDuration.getActivePlayer();
+                boolean purchased = activePlayer.purchaseProperty(property);
 
-            if (activePlayer != null) {
-
-                activePlayer.purchaseProperty(property);
-
-                String color = activePlayer.getColor();
-                String styleVal = BG_COLOR + color;
-                button.setStyle(styleVal);
-
-                GameDuration.endTurn();
+                if (purchased) {
+                    GameDuration.endTurn();
+                } else {
+                    Log.debug("Purchase incomplete");
+                }
+            } else {
+                Log.debug("Property unavailable");
             }
 
-        } else if (isMuleBuyPhase) {
-//            Else if bought and bought by active player and in mule buy phase do this
+        } else if (isMulePlacementPhase) {
+//            Else if bought and owned by active player and in mule buy phase do this
 
             Player activePlayer = GameDuration.getActivePlayer();
 
@@ -61,9 +53,9 @@ public class GameMapController {
             boolean tileBought = !available;
 
             if (tileBought && isOwnedByPlayer && noMuleHere) {
-
-                Mule mule = new Mule(null, GameDuration.getActiveMuleType());
+                Mule mule = new Mule(property, GameDuration.getActiveMuleType());
                 property.addMule(mule);
+                activePlayer.addMule(mule);
 
             } else {
                 Log.debug("Player messed up. Lost MULE. Sorry");

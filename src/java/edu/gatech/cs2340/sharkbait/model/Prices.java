@@ -5,6 +5,7 @@ package edu.gatech.cs2340.sharkbait.model;
  */
 public interface Prices {
 
+    int LAND = 300;
     int ENERGY = 25;
     int FOOD = 30;
     int ORE = 50;
