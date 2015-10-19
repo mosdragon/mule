@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.sharkbait.model;
 
+import edu.gatech.cs2340.sharkbait.controller.MasterController;
+import edu.gatech.cs2340.sharkbait.util.Label;
 import edu.gatech.cs2340.sharkbait.view.GameMapView;
 import edu.gatech.cs2340.sharkbait.view.TownMapView;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
@@ -46,6 +48,7 @@ public class GameDuration {
         begun = true;
         phase = GamePhase.LandBuyPhase;
         resetTime();
+        MasterController.generateRandomEvent(new Label());
     }
 
     public static Player getActivePlayer() {
