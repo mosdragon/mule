@@ -46,6 +46,9 @@ public class TownMapView implements Initializable {
     private Label phaseMsg;
 
     @FXML
+    private Label randomEventMsg;
+
+    @FXML
     private Label playerMsg;
 
     @FXML

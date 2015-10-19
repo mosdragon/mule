@@ -2,24 +2,18 @@ package edu.gatech.cs2340.sharkbait.controller;
 
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
-import edu.gatech.cs2340.sharkbait.util.Label;
 import edu.gatech.cs2340.sharkbait.util.Player;
-import edu.gatech.cs2340.sharkbait.util.Property;
-import edu.gatech.cs2340.sharkbait.util.PropertyType;
 import edu.gatech.cs2340.sharkbait.view.GameMapView;
 import edu.gatech.cs2340.sharkbait.view.TownMapView;
-import edu.gatech.cs2340.trydent.log.Log;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.swing.text.html.CSS;
 import java.io.IOException;
 import java.util.Random;
 
@@ -77,11 +71,17 @@ public class MasterController {
         }
     }
 
-    public static void generateRandomEvent(Label messageLabel) {
+    public static void clearRandomEvent() {
+        String event = "";
+        gameMapView.handleRandomEvent(event);
+
+    }
+
+    public static void generateRandomEvent() {
+        String event = "";
         Random random = new Random();
         int chanceOfEvent = random.nextInt(100) + 1;
         GamePhase phase = GameDuration.getPhase();
-        messageLabel.setText("");
         if(phase != GamePhase.LandBuyPhase && chanceOfEvent <= 27) {
             Player player = GameDuration.getActivePlayer();
             int round = GameDuration.getRound();
@@ -105,36 +105,86 @@ public class MasterController {
 
             switch(randomInt) {
                 case 1:
-                    messageLabel.setText("YOU JUST RECEIVED A PACKAGE FROM THE GT ALUMNI CONTAINING 3 FOOD AND 2 ENERGY UNITS.");
+                    event = ("YOU JUST RECEIVED A PACKAGE FROM THE GT ALUMNI CONTAINING 3 FOOD AND 2 ENERGY UNITS.");
                     player.changeFood(3);
                     player.changeEnergy(2);
                     break;
                 case 2:
-                    messageLabel.setText("A WANDERING TECH STUDENT REPAID YOUR HOSPITALITY BY LEAVING TWO BARS OF ORE.");
+                    event = ("A WANDERING TECH STUDENT REPAID YOUR HOSPITALITY BY LEAVING TWO BARS OF ORE.");
                     player.changeOre(2);
                     break;
                 case 3:
-                    messageLabel.setText("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $" + 8*m);
+                    event = ("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $" + 8*m);
                     player.changeMoney(8*m);
                     break;
                 case 4:
-                    messageLabel.setText("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $" + 2*m);
+                    event = ("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $" + 2*m);
                     player.changeMoney(2*m);
                     break;
                 case 5:
-                    messageLabel.setText("FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $" + 4*m);
+                    event = ("FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $" + 4*m);
                     player.changeMoney(-4*m);
                     break;
                 case 6:
-                    messageLabel.setText("MISCHIEVOUS UGA STUDENTS BROKE INTO YOUR STORAGE SHED AND STOLE HALF YOUR FOOD.");
+                    event = ("MISCHIEVOUS UGA STUDENTS BROKE INTO YOUR STORAGE SHED AND STOLE HALF YOUR FOOD.");
                     player.changeFood(-player.getFood()/2);
                     break;
                 case 7:
-                    messageLabel.setText("YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. IT COST YOU $" + 6*m + " TO CLEAN IT UP.");
+                    event = ("YOUR SPACE GYPSY IN-LAWS MADE A MESS OF THE TOWN. IT COST YOU $" + 6*m + " TO CLEAN IT UP.");
                     player.changeMoney(-6*m);
                     break;
             }
         }
+        gameMapView.handleRandomEvent(event);
+    }
+
+    public static void generateRandomGoodEvent() {
+        String event = "";
+        Random random = new Random();
+        int chanceOfEvent = random.nextInt(100) + 1;
+        GamePhase phase = GameDuration.getPhase();
+        if(phase != GamePhase.LandBuyPhase && chanceOfEvent <= 27) {
+            Player player = GameDuration.getActivePlayer();
+            int round = GameDuration.getRound();
+            int randomInt = random.nextInt(4) + 1;
+            int m = 0;
+
+            switch(round) {
+                case 1: m = 25; break;
+                case 2: m = 25; break;
+                case 3: m = 25; break;
+                case 4: m = 50; break;
+                case 5: m = 50; break;
+                case 6: m = 50; break;
+                case 7: m = 50; break;
+                case 8: m = 75; break;
+                case 9: m = 75; break;
+                case 10: m = 75; break;
+                case 11: m = 75; break;
+                case 12: m = 100; break;
+            }
+
+            switch(randomInt) {
+                case 1:
+                    event = ("YOU JUST RECEIVED A PACKAGE FROM THE GT ALUMNI CONTAINING 3 FOOD AND 2 ENERGY UNITS.");
+                    player.changeFood(3);
+                    player.changeEnergy(2);
+                    break;
+                case 2:
+                    event = ("A WANDERING TECH STUDENT REPAID YOUR HOSPITALITY BY LEAVING TWO BARS OF ORE.");
+                    player.changeOre(2);
+                    break;
+                case 3:
+                    event = ("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $" + 8*m);
+                    player.changeMoney(8*m);
+                    break;
+                case 4:
+                    event = ("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $" + 2*m);
+                    player.changeMoney(2*m);
+                    break;
+            }
+        }
+        gameMapView.handleRandomEvent(event);
     }
 
     private void updateMessages() {

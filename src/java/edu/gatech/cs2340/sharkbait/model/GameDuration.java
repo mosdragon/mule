@@ -1,12 +1,12 @@
 package edu.gatech.cs2340.sharkbait.model;
 
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
-import edu.gatech.cs2340.sharkbait.util.Label;
 import edu.gatech.cs2340.sharkbait.view.GameMapView;
 import edu.gatech.cs2340.sharkbait.view.TownMapView;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,7 +48,6 @@ public class GameDuration {
         begun = true;
         phase = GamePhase.LandBuyPhase;
         resetTime();
-        MasterController.generateRandomEvent(new Label());
     }
 
     public static Player getActivePlayer() {
@@ -106,11 +105,19 @@ public class GameDuration {
 //                End of turn. Sort the list of players
                 Collections.sort(getPlayers());
                 phase = GamePhase.LandBuyPhase;
+
                 round++;
             }
         }
         activePlayer = getPlayers().get(turn);
         timeRemaining = TIME_START;
+        if (phase == GamePhase.PlayerTurnPhase && activePlayer == players.get(0)) {
+            MasterController.generateRandomGoodEvent();
+        } else if (phase == GamePhase.PlayerTurnPhase) {
+            MasterController.generateRandomEvent();
+        } else {
+            MasterController.clearRandomEvent();
+        }
     }
 
 
