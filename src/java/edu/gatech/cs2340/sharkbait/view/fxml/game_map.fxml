@@ -559,10 +559,11 @@
                 <VBox fx:id="scorePanel1">
                     <children>
                         <Label fx:id="name1"></Label>
+                        <Label fx:id="mules1"></Label>
                         <Label fx:id="money1"></Label>
                         <Label fx:id="food1"></Label>
-                        <Label fx:id="mules1"></Label>
                         <Label fx:id="energy1"></Label>
+                        <Label fx:id="ore1"></Label>
 
                     </children>
                 </VBox>
@@ -570,20 +571,22 @@
                 <VBox fx:id="scorePanel2">
                     <children>
                         <Label fx:id="name2"></Label>
+                        <Label fx:id="mules2"></Label>
                         <Label fx:id="money2"></Label>
                         <Label fx:id="food2"></Label>
-                        <Label fx:id="mules2"></Label>
                         <Label fx:id="energy2"></Label>
+                        <Label fx:id="ore2"></Label>
                     </children>
                 </VBox>
 
                 <VBox fx:id="scorePanel3">
                     <children>
                         <Label fx:id="name3"></Label>
+                        <Label fx:id="mules3"></Label>
                         <Label fx:id="money3"></Label>
                         <Label fx:id="food3"></Label>
-                        <Label fx:id="mules3"></Label>
                         <Label fx:id="energy3"></Label>
+                        <Label fx:id="ore3"></Label>
                     </children>
                 </VBox>
 
@@ -591,10 +594,11 @@
 
                     <children>
                         <Label fx:id="name4"></Label>
+                        <Label fx:id="mules4"></Label>
                         <Label fx:id="money4"></Label>
                         <Label fx:id="food4"></Label>
-                        <Label fx:id="mules4"></Label>
                         <Label fx:id="energy4"></Label>
+                        <Label fx:id="ore4"></Label>
 
                     </children>
 

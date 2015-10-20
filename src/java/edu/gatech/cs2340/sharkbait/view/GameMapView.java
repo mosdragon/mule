@@ -68,6 +68,9 @@ public class GameMapView implements Initializable {
     @FXML
     private Label energy1, energy2, energy3, energy4;
 
+    @FXML
+    private Label ore1, ore2, ore3, ore4;
+
     private Timeline timeline;
 
 
@@ -121,8 +124,9 @@ public class GameMapView implements Initializable {
         name1.setText(player1.getName());
         money1.setText("Money: " + player1.getMoney());
         food1.setText("Food: " + player1.getFood());
-        mules1.setText("Mules Owned: " + player1.getMuleCount());
+        mules1.setText("Mules: " + player1.getMuleCount());
         energy1.setText("Energy: " + player1.getEnergy());
+        ore1.setText("Ore: " + player1.getOre());
 
 //        Player2 score panel
         Player player2 = players.get(1);
@@ -131,8 +135,9 @@ public class GameMapView implements Initializable {
         name2.setText(player2.getName());
         money2.setText("Money: " + player2.getMoney());
         food2.setText("Food: " + player2.getFood());
-        mules2.setText("Mules Owned: " + player2.getMuleCount());
+        mules2.setText("Mules: " + player2.getMuleCount());
         energy2.setText("Energy: " + player2.getEnergy());
+        ore2.setText("Ore: " + player2.getOre());
 
 //        Player3 score panel
         if (GameConfigs.getNumPlayers() >= 3) {
@@ -143,8 +148,9 @@ public class GameMapView implements Initializable {
             name3.setText(player3.getName());
             money3.setText("Money: " + player3.getMoney());
             food3.setText("Food: " + player3.getFood());
-            mules3.setText("Mules Owned: " + player3.getMuleCount());
+            mules3.setText("Mules: " + player3.getMuleCount());
             energy3.setText("Energy: " + player3.getEnergy());
+            ore3.setText("Ore: " + player3.getOre());
         }
 
 //        Player4 score panel
@@ -156,8 +162,9 @@ public class GameMapView implements Initializable {
             name4.setText(player4.getName());
             money4.setText("Money: " + player4.getMoney());
             food4.setText("Food: " + player4.getFood());
-            mules4.setText("Mules Owned: " + player4.getMuleCount());
+            mules4.setText("Mules: " + player4.getMuleCount());
             energy4.setText("Energy: " + player4.getEnergy());
+            ore4.setText("Ore: " + player4.getOre());
         }
 
         Player activePlayer = GameDuration.getActivePlayer();
