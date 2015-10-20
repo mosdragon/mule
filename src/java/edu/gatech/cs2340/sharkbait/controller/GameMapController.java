@@ -67,17 +67,31 @@ public class GameMapController {
                 Log.debug("Player messed up. Lost MULE. Sorry");
             }
 
+//            Serialize Player
             Gson gson = new Gson();
             JsonElement json = gson.toJsonTree(activePlayer);
             String jsonString = json.toString();
             Log.debug("Json String: " + jsonString);
 
-//            Deserialize
+//            Deserialize Player
             deserializedPlayer = gson.fromJson(jsonString, Player.class);
             if (deserializedPlayer != null) {
                 Log.debug("NAME: " + deserializedPlayer.getName());
                 Log.debug("MONEY: " + deserializedPlayer.getMoney());
             }
+
+//            Serialize GameDuration
+            GameDuration toSerialize = GameDuration.getInstance();
+            String gameDurationJson = gson.toJsonTree(toSerialize).toString();
+            Log.debug("GAME DURATION: " + gameDurationJson);
+
+//            Deserialize GameDuration
+            GameDuration recovered = gson.fromJson(gameDurationJson, GameDuration.class);
+            if (recovered != null) {
+                Log.debug("PLAYERS: " + recovered);
+            }
+
+
 
             GameDuration.clearActiveMuleType();
             GameDuration.endMulePlacementPhase();

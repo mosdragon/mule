@@ -6,128 +6,138 @@ import edu.gatech.cs2340.sharkbait.view.TownMapView;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by osama on 9/22/15.
  */
-public class GameDuration {
+public class GameDuration implements Serializable {
 
 //    Start with 50 second turns
     private static final int TIME_START = 50;
+    private static final int[] FOOD_REQUIREMENTS = {3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5};
 
-    private static final int[] foodRequirements = {3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5};
+    private transient Parent gameMap = null;
+    private transient GameMapView gameMapView;
 
-    private static Parent gameMap = null;
-    private static GameMapView gameMapView;
+    private transient Parent townMap = null;
+    private transient TownMapView townMapView;
 
-    private static Parent townMap = null;
-    private static TownMapView townMapView;
+    private List<Player> players;
+    private int round = 1;
+    private int turn = 0;
 
-    public static List<Player> players;
-    private static int round = 1;
-    private static int turn = 0;
-
-    private static boolean begun = false;
-    private static GamePhase phase = GamePhase.LandBuyPhase;
+    private boolean begun = false;
+    private GamePhase phase = GamePhase.LandBuyPhase;
 
 //    Time left of the turn, in seconds
-    private static int timeRemaining;
+    private int timeRemaining;
 
-    private static Player activePlayer = null;
+    private Player activePlayer;
 
 //    Holds the type of the mule if one is just bought, clear it once it is set on a property
-    private static Resource activeMuleType;
+    private Resource activeMuleType;
 
 //    Maps UI Buttons to properties in the game
-    private static Map<Button, Property> propertiesMap;
+    private Map<Button, Property> propertiesMap;
+
+    private static GameDuration instance;
 
     private GameDuration() {
+        activePlayer = null;
+    }
+
+    public static GameDuration getInstance() {
+        if (instance == null) {
+            instance = new GameDuration();
+        }
+        return instance;
     }
 
     public static boolean hasBegun() {
-        return begun;
+        return getInstance().begun;
     }
 
     public static void begin() {
-        begun = true;
-        phase = GamePhase.LandBuyPhase;
+        getInstance().begun = true;
+        getInstance().phase = GamePhase.LandBuyPhase;
         resetTime();
-        propertiesMap = new HashMap<>();
+        getInstance().propertiesMap = new HashMap<>();
     }
 
     public static Player getActivePlayer() {
-        if (activePlayer == null && hasBegun()) {
-            activePlayer = getPlayers().get(turn);
+        if (getInstance().activePlayer == null && hasBegun()) {
+            getInstance().activePlayer = getPlayers().get(getInstance().turn);
             resetTime();
         }
-        return activePlayer;
+        return getInstance().activePlayer;
     }
 
     public static void setActivePlayer(Player activePlayer) {
-        GameDuration.activePlayer = activePlayer;
+        getInstance().activePlayer = activePlayer;
     }
 
     public static Property fetchProperty(Button button) {
-        Property property = propertiesMap.get(button);
+        Property property = getInstance().propertiesMap.get(button);
         if (property == null) {
             property = new Property(button);
-            propertiesMap.put(button, property);
+            getInstance().propertiesMap.put(button, property);
         }
         return property;
     }
 
     public static void addProperty(Button button, Property property) {
-        propertiesMap.put(button, property);
+        getInstance().propertiesMap.put(button, property);
     }
 
     public static Parent getGameMap() {
-        return gameMap;
+        return getInstance().gameMap;
     }
 
     public static void setGameMap(Parent gameMap) {
-        GameDuration.gameMap = gameMap;
+        getInstance().gameMap = gameMap;
     }
 
     public static Parent getTownMap() {
-        return townMap;
+        return getInstance().townMap;
     }
 
     public static void setTownMap(Parent townMap) {
-        GameDuration.townMap = townMap;
+        getInstance().townMap = townMap;
     }
 
 
     public static int getTurn() {
-        return turn;
+        return getInstance().turn;
     }
     public static void setTurn (int number) {
-        turn = number;
+        getInstance().turn = number;
     }
 
 
     public static int getRound() {
-        return round;
+        return getInstance().round;
     }
 
     public static GamePhase getPhase() {
-        return phase;
+        return getInstance().phase;
     }
 
     public static void endTurn() {
-        turn++;
-        if (turn >= GameConfigs.getNumPlayers()) {
-            turn = 0;
-            if (phase != GamePhase.PlayerTurnPhase) {
-                phase = GamePhase.PlayerTurnPhase;
+        getInstance().turn++;
+        if (getInstance().turn >= GameConfigs.getNumPlayers()) {
+            getInstance().turn = 0;
+            if (getInstance().phase != GamePhase.PlayerTurnPhase) {
+                getInstance().phase = GamePhase.PlayerTurnPhase;
             } else {
 //                End of turn. Sort the list of players
                 Collections.sort(getPlayers());
-                phase = GamePhase.LandBuyPhase;
-                round++;
+                getInstance().phase = GamePhase.LandBuyPhase;
+                getInstance().round++;
             }
         }
-        activePlayer = getPlayers().get(turn);
+        getInstance().activePlayer = getPlayers().get(getInstance().turn);
         determineTimeRemaining();
         handleProductionIfApplicable();
     }
@@ -140,16 +150,16 @@ public class GameDuration {
 
         Player player = getActivePlayer();
         int foodCount = player.getFood();
-        int foodRequirement = foodRequirements[getRound() - 1];
+        int foodRequirement = FOOD_REQUIREMENTS[getRound() - 1];
 
         if (foodCount == 0) {
 //            If you have no food, turn lasts 5 seconds
-            timeRemaining = 5;
+            getInstance().timeRemaining = 5;
         } else if (foodCount > 0 && foodCount < foodRequirement) {
 //            If you have food but not enough as the round demands, turn is 30 seconds
-            timeRemaining = 30;
+            getInstance().timeRemaining = 30;
         } else {
-            timeRemaining = TIME_START;
+            getInstance().timeRemaining = TIME_START;
         }
     }
 
@@ -157,8 +167,8 @@ public class GameDuration {
      * When a player's turn begins, production must be computed immediately
      */
     private static void handleProductionIfApplicable() {
-        if (phase == GamePhase.PlayerTurnPhase) {
-            activePlayer.handleProduction();
+        if (getInstance().phase == GamePhase.PlayerTurnPhase) {
+            getInstance().activePlayer.handleProduction();
         }
     }
 
@@ -167,41 +177,41 @@ public class GameDuration {
     }
 
     public static void changeTimeRemaining(int deltaT) {
-        GameDuration.timeRemaining += deltaT;
+        getInstance().timeRemaining += deltaT;
     }
 
     public static int getTimeRemaining() {
-        return GameDuration.timeRemaining;
+        return getInstance().timeRemaining;
     }
 
     public static void resetTime() {
-        timeRemaining = TIME_START;
+        getInstance().timeRemaining = TIME_START;
     }
 
     public static List<Player> getPlayers() {
-        if (players == null) {
-            players = new ArrayList<>();
+        if (getInstance().players == null) {
+            getInstance().players = new ArrayList<>();
         }
-        return players;
+        return getInstance().players;
     }
 
     public static void setPlayers(List<Player> players) {
-        GameDuration.players = players;
+        getInstance().players = players;
     }
 
     public static void addPlayer(Player player) {
-        if (players == null) {
-            players = new ArrayList<>();
+        if (getInstance().players == null) {
+            getInstance().players = new ArrayList<>();
         }
-        players.add(player);
+        getInstance().players.add(player);
     }
 
     public static Resource getActiveMuleType() {
-        return activeMuleType;
+        return getInstance().activeMuleType;
     }
 
     public static void setActiveMuleType(Resource activeMuleType) {
-        GameDuration.activeMuleType = activeMuleType;
+        getInstance().activeMuleType = activeMuleType;
     }
 
     public static void clearActiveMuleType() {
@@ -209,11 +219,11 @@ public class GameDuration {
     }
 
     public static void beginMulePlacementPhase() {
-        phase = GamePhase.MulePlacementPhase;
+        getInstance().phase = GamePhase.MulePlacementPhase;
     }
 
     public static void endMulePlacementPhase() {
-        phase = GamePhase.PlayerTurnPhase;
+        getInstance().phase = GamePhase.PlayerTurnPhase;
     }
 
 }
