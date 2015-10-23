@@ -1,0 +1,17 @@
+
+.randomEventMsg {
+    -fx-font-size: 10px;
+    -fx-font-family: "Tahoma";
+}
+
+.turnMessages {
+	-fx-font-size: 10px;
+	-fx-font-family: "Tahoma";
+}
+
+.scorepanel {
+}
+
+.scorepanel {
+	--fx-font-size: 11px;
+}
