@@ -1,10 +1,17 @@
 package edu.gatech.cs2340.sharkbait.model;
 
-import edu.gatech.cs2340.sharkbait.util.*;
+
+import edu.gatech.cs2340.sharkbait.controller.MasterController;
+
+import edu.gatech.cs2340.sharkbait.util.GamePhase;
+import edu.gatech.cs2340.sharkbait.util.Player;
+import edu.gatech.cs2340.sharkbait.util.Property;
+import edu.gatech.cs2340.sharkbait.util.Resource;
 import edu.gatech.cs2340.sharkbait.view.GameMapView;
 import edu.gatech.cs2340.sharkbait.view.TownMapView;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import java.util.*;
 
@@ -124,12 +131,14 @@ public class GameDuration {
 //                End of turn. Sort the list of players
                 Collections.sort(getPlayers());
                 phase = GamePhase.LandBuyPhase;
+
                 round++;
             }
         }
         activePlayer = getPlayers().get(turn);
         determineTimeRemaining();
-        handleProductionIfApplicable();
+        handleRandomEvents();
+        handleProduction();
     }
 
     /**
@@ -154,9 +163,23 @@ public class GameDuration {
     }
 
     /**
+     * If player turn begins and player isn't the lowest scoring player, a random event should
+     * happen
+     */
+    private static void handleRandomEvents() {
+        if (phase == GamePhase.PlayerTurnPhase && players.indexOf(activePlayer) == 0) {
+            MasterController.generateRandomGoodEvent();
+        } else if (phase == GamePhase.PlayerTurnPhase) {
+            MasterController.generateRandomEvent();
+        } else {
+            MasterController.clearRandomEvent();
+        }
+    }
+
+    /**
      * When a player's turn begins, production must be computed immediately
      */
-    private static void handleProductionIfApplicable() {
+    private static void handleProduction() {
         if (phase == GamePhase.PlayerTurnPhase) {
             activePlayer.handleProduction();
         }

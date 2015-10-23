@@ -15,11 +15,16 @@
 <?import javafx.scene.text.*?>
 
 <?import javafx.scene.text.Text?>
+<?import java.net.URL?>
 <SplitPane dividerPositions="0.83" orientation="VERTICAL"
            minHeight="720.0" minWidth="1080.0"
            prefHeight="720.0" prefWidth="1080.0"
            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="edu.gatech.cs2340.sharkbait.view.GameMapView">
+
+    <stylesheets>
+        <URL value="@../css/map.css" />
+    </stylesheets>
 
     <items>
 
@@ -556,11 +561,11 @@
 
             <items>
 
-                <VBox fx:id="scorePanel1">
+                <VBox fx:id="scorePanel1" styleClass="scorepanel">
                     <children>
                         <Label fx:id="name1"></Label>
-                        <Label fx:id="mules1"></Label>
                         <Label fx:id="money1"></Label>
+                        <Label fx:id="mules1"></Label>
                         <Label fx:id="food1"></Label>
                         <Label fx:id="energy1"></Label>
                         <Label fx:id="ore1"></Label>
@@ -568,37 +573,38 @@
                     </children>
                 </VBox>
 
-                <VBox fx:id="scorePanel2">
+                <VBox fx:id="scorePanel2" styleClass="scorepanel">
                     <children>
                         <Label fx:id="name2"></Label>
-                        <Label fx:id="mules2"></Label>
                         <Label fx:id="money2"></Label>
+                        <Label fx:id="mules2"></Label>
                         <Label fx:id="food2"></Label>
                         <Label fx:id="energy2"></Label>
                         <Label fx:id="ore2"></Label>
                     </children>
                 </VBox>
 
-                <VBox fx:id="scorePanel3">
+                <VBox fx:id="scorePanel3" styleClass="scorepanel">
                     <children>
                         <Label fx:id="name3"></Label>
-                        <Label fx:id="mules3"></Label>
                         <Label fx:id="money3"></Label>
+                        <Label fx:id="mules3"></Label>
                         <Label fx:id="food3"></Label>
                         <Label fx:id="energy3"></Label>
                         <Label fx:id="ore3"></Label>
                     </children>
                 </VBox>
 
-                <VBox fx:id="scorePanel4">
+                <VBox fx:id="scorePanel4" styleClass="scorepanel">
 
                     <children>
                         <Label fx:id="name4"></Label>
-                        <Label fx:id="mules4"></Label>
                         <Label fx:id="money4"></Label>
+                        <Label fx:id="mules4"></Label>
                         <Label fx:id="food4"></Label>
                         <Label fx:id="energy4"></Label>
                         <Label fx:id="ore4"></Label>
+
 
                     </children>
 
@@ -611,10 +617,12 @@
                     <children>
 
 
-                       <Button fx:id="passButton" text="Pass" prefWidth="200"/>
-                       <Label fx:id="phaseMsg"></Label>
-                       <Label fx:id="playerMsg"></Label>
-                       <Label fx:id="timerMsg"></Label>
+                       <Button fx:id="passButton" text="Pass" prefWidth="200"
+                               styleClass="turnMessages"/>
+                        <Label fx:id="phaseMsg" styleClass="turnMessages"></Label>
+                        <Label fx:id="playerMsg" styleClass="turnMessages"></Label>
+                        <Label fx:id="timerMsg" styleClass="turnMessages"></Label>
+                        <Label fx:id="randomEventMsg" styleClass="randomEventMsg"></Label>
                     </children>
 
                 </VBox>

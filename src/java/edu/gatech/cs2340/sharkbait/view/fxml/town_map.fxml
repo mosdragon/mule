@@ -17,12 +17,19 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import java.net.URL?>
+
 <SplitPane dividerPositions="0.83" orientation="VERTICAL"
            minHeight="720.0" minWidth="1080.0"
            maxHeight="720.0" maxWidth="1080.0"
            prefHeight="720.0" prefWidth="1080.0"
            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="edu.gatech.cs2340.sharkbait.view.TownMapView">
+
+    <stylesheets>
+        <URL value="@../css/map.css" />
+    </stylesheets>
+
     <items>
 
         <Pane layoutX="0.0" layoutY="0.0"
@@ -294,6 +301,7 @@
                         <Label fx:id="energy4"></Label>
                         <Label fx:id="ore4"></Label>
 
+
                     </children>
 
 
@@ -304,9 +312,10 @@
 
                     <children>
 
-                        <Label fx:id="phaseMsg"></Label>
-                        <Label fx:id="playerMsg"></Label>
-                        <Label fx:id="timerMsg"></Label>
+                        <Label fx:id="phaseMsg" styleClass="turnMessages"></Label>
+                        <Label fx:id="playerMsg" styleClass="turnMessages"></Label>
+                        <Label fx:id="timerMsg" styleClass="turnMessages"></Label>
+                        <Label fx:id="randomEventMsg" styleClass="randomEventMsg"></Label>
 
                     </children>
 

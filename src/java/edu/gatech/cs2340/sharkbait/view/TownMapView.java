@@ -48,6 +48,9 @@ public class TownMapView implements Initializable {
     private Label phaseMsg;
 
     @FXML
+    private Label randomEventMsg;
+
+    @FXML
     private Label playerMsg;
 
     @FXML
@@ -159,7 +162,6 @@ public class TownMapView implements Initializable {
     }
 
     public void updateQuantities() {
-        Log.debug("update quantities");
 
         oreText.setText(ORE_TEXT + Store.getOreCount());
         foodText.setText(FOOD_TEXT + Store.getFoodCount());
@@ -236,5 +238,10 @@ public class TownMapView implements Initializable {
             updateQuantities();
         });
 
+    }
+
+    public void handleRandomEvent(String randomEventText) {
+        randomEventMsg.setText(randomEventText);
+        randomEventMsg.setWrapText(true);
     }
 }

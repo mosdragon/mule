@@ -45,6 +45,9 @@ public class GameMapView implements Initializable {
     private Label phaseMsg;
 
     @FXML
+    private Label randomEventMsg;
+
+    @FXML
     private Label playerMsg;
 
     @FXML
@@ -97,6 +100,11 @@ public class GameMapView implements Initializable {
 
     public void updateTimer(String timeText) {
         timerMsg.setText(timeText);
+    }
+
+    public void handleRandomEvent(String randomEventText) {
+        randomEventMsg.setText(randomEventText);
+        randomEventMsg.setWrapText(true);
     }
 
     public void updateMessages() {
