@@ -126,7 +126,7 @@ public class GameDuration implements Serializable {
 
     public static void endTurn() {
         getInstance().turn++;
-        if (getInstance().turn >= GameConfigs.getNumPlayers()) {
+        if (getInstance().turn >= GameConfigs.getInstance().getNumPlayers()) {
             getInstance().turn = 0;
             if (getInstance().phase != GamePhase.PlayerTurnPhase) {
                 getInstance().phase = GamePhase.PlayerTurnPhase;

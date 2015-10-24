@@ -5,10 +5,12 @@ import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Resource;
 
+import java.io.Serializable;
+
 /**
  * Created by osama on 9/22/15.
  */
-public class Store {
+public class Store implements Serializable{
 
 //    TODO: Add all resource counts
     private static int energyCount;
@@ -23,33 +25,41 @@ public class Store {
     private static final int ORE_MULE = Constants.ORE_MULE;
     private static final int FOOD_MULE = Constants.FOOD_MULE;
     private static final int ENERGY_MULE = Constants.ENERGY_MULE;
+    private static Store instance;
 
     private Store() {
 
     }
 
+    public static Store getInstance() {
+        if (instance == null) {
+            instance = new Store();
+        }
+        return instance;
+    }
+
     public static void initializeStore() {
 
-        if (GameConfigs.getGameDifficulty() == Difficulty.Beginner) {
-            energyCount = 16;
-            foodCount = 16;
-            oreCount = 0;
-            muleCount = 25;
+        if (GameConfigs.getInstance().getGameDifficulty() == Difficulty.Beginner) {
+            getInstance().energyCount = 16;
+            getInstance().foodCount = 16;
+            getInstance().oreCount = 0;
+            getInstance().muleCount = 25;
 
 //            TODO: Extra Credit initial store amounts for Standard & Tournament difficulties
         } else {
-            energyCount = 8;
-            foodCount = 8;
-            oreCount = 8;
-            muleCount = 14;
+            getInstance().energyCount = 8;
+            getInstance().foodCount = 8;
+            getInstance().oreCount = 8;
+            getInstance().muleCount = 14;
         }
     }
 
     public static void buyEnergy (Player player) {
-        if (player.getMoney() >= (ENERGY) && hasEnergy()) {
-            player.changeMoney(-ENERGY);
+        if (player.getMoney() >= (getInstance().ENERGY) && hasEnergy()) {
+            player.changeMoney(-getInstance().ENERGY);
             player.changeEnergy(1);
-            energyCount--;
+            getInstance().energyCount--;
         } else {
             Log.debug("Not enough money!");
         }
@@ -58,8 +68,8 @@ public class Store {
     public static void sellEnergy (Player player) {
         if (player.getEnergy() > 0) {
             player.changeEnergy(-1);
-            player.changeMoney(ENERGY);
-            energyCount++;
+            player.changeMoney(getInstance().ENERGY);
+            getInstance().energyCount++;
         } else {
             Log.debug("Not enough energy!");
         }
@@ -70,22 +80,22 @@ public class Store {
         Log.debug("Mule Type: " + type.toString());
         if (hasMules()) {
             if (type == Resource.Ore) {
-                if (player.getMoney() >= ORE_MULE) {
-                    player.changeMoney(-ORE_MULE);
+                if (player.getMoney() >= getInstance().ORE_MULE) {
+                    player.changeMoney(-getInstance().ORE_MULE);
                     canAfford = true;
                 } else {
                     Log.debug("Not enough money!");
                 }
             } else if (type == Resource.Energy) {
-                if (player.getMoney() >= ENERGY_MULE) {
-                    player.changeMoney(-ENERGY_MULE);
+                if (player.getMoney() >= getInstance().ENERGY_MULE) {
+                    player.changeMoney(-getInstance().ENERGY_MULE);
                     canAfford = true;
                 } else {
                     Log.debug("Not enough money!");
                 }
             } else {
-                if (player.getMoney() >= FOOD_MULE) {
-                    player.changeMoney(-FOOD_MULE);
+                if (player.getMoney() >= getInstance().FOOD_MULE) {
+                    player.changeMoney(-getInstance().FOOD_MULE);
                     canAfford = true;
                 } else {
                     Log.debug("Not enough money!");
@@ -96,7 +106,7 @@ public class Store {
 //                player.changeMules(1);
 //                Mule mule = new Mule(player, type);
 //                p.addMule(p.getMules(), mule);
-                muleCount--;
+                getInstance().muleCount--;
             }
         } else {
             Log.debug("Not enough mules");
@@ -138,10 +148,10 @@ public class Store {
     }
 
     public static void buyFood (Player player) {
-        if (player.getMoney() >= (FOOD) && hasFood()) {
-            player.changeMoney(-FOOD);
+        if (player.getMoney() >= (getInstance().FOOD) && hasFood()) {
+            player.changeMoney(-getInstance().FOOD);
             player.changeFood(1);
-            foodCount--;
+            getInstance().foodCount--;
         } else {
             Log.debug("Not enough money!");
         }
@@ -150,18 +160,18 @@ public class Store {
     public static void sellFood(Player player) {
         if (player.getFood() > 0) {
             player.changeFood(-1);
-            player.changeMoney(FOOD);
-            foodCount++;
+            player.changeMoney(getInstance().FOOD);
+            getInstance().foodCount++;
         } else {
             Log.debug("Not enough food!");
         }
     }
 
     public static void buyOre(Player player) {
-        if (player.getMoney() >= (ORE) && hasOre()) {
-            player.changeMoney(-ORE);
+        if (player.getMoney() >= (getInstance().ORE) && hasOre()) {
+            player.changeMoney(-getInstance().ORE);
             player.changeOre(1);
-            oreCount--;
+            getInstance().oreCount--;
         } else {
             Log.debug("Not enough money!");
         }
@@ -170,42 +180,42 @@ public class Store {
     public static void sellOre(Player player) {
         if (player.getOre() > 0) {
             player.changeOre(-1);
-            player.changeMoney(ORE);
-            oreCount++;
+            player.changeMoney(getInstance().ORE);
+            getInstance().oreCount++;
         } else {
             Log.debug("Not enough Ore!");
         }
     }
 
     public static boolean hasMules() {
-        return muleCount > 0;
+        return getInstance().muleCount > 0;
     }
 
     public static boolean hasEnergy() {
-        return energyCount > 0;
+        return getInstance().energyCount > 0;
     }
 
     public static boolean hasOre() {
-        return oreCount > 0;
+        return getInstance().oreCount > 0;
     }
 
     public static boolean hasFood() {
-        return foodCount > 0;
+        return getInstance().foodCount > 0;
     }
 
     public static int getEnergyCount() {
-        return energyCount;
+        return getInstance().energyCount;
     }
 
     public static int getFoodCount() {
-        return foodCount;
+        return getInstance().foodCount;
     }
 
     public static int getOreCount() {
-        return oreCount;
+        return getInstance().oreCount;
     }
 
     public static int getMuleCount() {
-        return muleCount;
+        return getInstance().muleCount;
     }
 }
