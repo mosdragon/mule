@@ -67,15 +67,15 @@ public class MasterController {
     private static void updateTimers() {
         if (GameDuration.hasBegun()) {
             int time = GameDuration.getTimeRemaining();
-            gameMapView.updateTimer(TIME_LEFT + time);
-            townMapView.updateTimer(TIME_LEFT + time);
+            getInstance().gameMapView.updateTimer(TIME_LEFT + time);
+            getInstance().townMapView.updateTimer(TIME_LEFT + time);
             updateMessages();
         }
     }
 
     public static void updateMessages() {
-        gameMapView.updateMessages();
-        townMapView.updateMessages();
+        getInstance().gameMapView.updateMessages();
+        getInstance().townMapView.updateMessages();
     }
 
     private static void passOneSecond() {
@@ -123,23 +123,23 @@ public class MasterController {
     }
 
     public static void changeSceneToGameMap() {
-        gameStage.setScene(gameMapScene);
+        getInstance().gameStage.setScene(getInstance().gameMapScene);
     }
 
     public static void changeSceneToTownMap() {
-        gameStage.setScene(townMapScene);
+        getInstance().gameStage.setScene(getInstance().townMapScene);
     }
 
     public static void changeSceneToConfig() {
-        gameStage.setScene(configScene);
+        getInstance().gameStage.setScene(getInstance().configScene);
     }
 
     public static GameMapView getGameMapView() {
-        return gameMapView;
+        return getInstance().gameMapView;
     }
 
     public static TownMapView getTownMapView() {
-        return townMapView;
+        return getInstance().townMapView;
     }
 
     public static void saveConfigs(int numPlayers, Difficulty difficulty, MapType mapType) {

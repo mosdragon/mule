@@ -93,9 +93,9 @@ public class GameMapController {
 
 
 
-            GameDuration.clearActiveMuleType();
-            GameDuration.endMulePlacementPhase();
-            MasterController.updateMessages();
+            GameDuration.getInstance().clearActiveMuleType();
+            GameDuration.getInstance().endMulePlacementPhase();
+            MasterController.getInstance().updateMessages();
         }
 
     }

@@ -31,7 +31,7 @@ public class GameConfigs implements Serializable{
     }
 
     public static Difficulty getGameDifficulty() {
-        return gameDifficulty;
+        return getInstance().gameDifficulty;
     }
 
     public static void setGameDifficulty(Difficulty gameDifficulty) {
@@ -40,7 +40,7 @@ public class GameConfigs implements Serializable{
     }
 
     public static int getNumPlayers() {
-        return numPlayers;
+        return getInstance().numPlayers;
     }
 
     public static void setNumPlayers(int numPlayers) {
@@ -48,7 +48,7 @@ public class GameConfigs implements Serializable{
     }
 
     public static MapType getMapType() {
-        return mapType;
+        return getInstance().mapType;
     }
 
     public static void setMapType(MapType mapType) {
