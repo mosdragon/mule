@@ -62,7 +62,7 @@ public class ConfigScreenView implements Initializable {
                 if (gameState == State.NotConfigured) {
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                                .getResource("../view/fxml/config/game_config.fxml"));
+                                .getResource("/fxml/config/game_config.fxml"));
 
                         Parent root = fxmlLoader.load();
                         gameConfigView = fxmlLoader.getController();
@@ -82,7 +82,7 @@ public class ConfigScreenView implements Initializable {
 
                         for (int i = 1; i <= numPlayers; i++) {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                                    .getResource("../view/fxml/config/players_config.fxml"));
+                                    .getResource("/fxml/config/players_config.fxml"));
                             Node playerPrompt = fxmlLoader.load();
                             PlayerConfigView playerConfigView = fxmlLoader.getController();
 

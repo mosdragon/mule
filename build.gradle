@@ -2,6 +2,17 @@ group 'edu.gatech.cs2340.sharkbait'
 version '1.0'
 
 apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+apply from: 'javafx.plugin'
+
+javafx {
+    javaRuntime = 'C:\\Program Files\\Java\\jdk1.7.0_45'
+
+    appID 'Mule'
+    appName 'Mule'
+    mainClass 'edu.gatech.cs2340.sharkbait'
+}
 
 sourceCompatibility = 1.8
 
@@ -16,9 +27,13 @@ dependencies {
 
 sourceSets {
     main {
+        java {
+            srcDir 'src/main/java'
+        }
         resources {
-            srcDirs = ["src/main/java"]
-            includes = ["**/*.fxml", "**/*.css", "**/*.jpeg"]
+            srcDir 'src/main/resources'
+            includes = ["fxml/", "images/", "css/"]
+
         }
     }
 }

@@ -238,7 +238,7 @@ public class MasterController {
 
         try {
             Parent configRoot = new FXMLLoader(getClass().getResource
-                    ("../view/fxml/config/config_screen.fxml")).load();
+                    ("/fxml/config/config_screen.fxml")).load();
             gameStage.setTitle("M.U.L.E");
             configScene = new Scene(configRoot);
 
@@ -246,13 +246,13 @@ public class MasterController {
             gameStage.show();
 
             FXMLLoader gameMapLoader = new FXMLLoader(getInstance().getClass().getResource
-                    ("../view/fxml/game_map.fxml"));
+                    ("/fxml/game_map.fxml"));
             Parent gameMapRoot = gameMapLoader.load();
             gameMapScene = new Scene(gameMapRoot);
             gameMapView = gameMapLoader.getController();
 
             FXMLLoader townMapLoader = new FXMLLoader(getInstance().getClass().getResource
-                    ("../view/fxml/town_map.fxml"));
+                    ("/fxml/town_map.fxml"));
             Parent townMapRoot = townMapLoader.load();
             townMapScene = new Scene(townMapRoot);
             townMapView = townMapLoader.getController();
