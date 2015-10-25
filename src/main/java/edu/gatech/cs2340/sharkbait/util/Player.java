@@ -3,15 +3,17 @@ package edu.gatech.cs2340.sharkbait.util;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.model.Constants;
+import edu.gatech.cs2340.sharkbait.model.Packable;
 import edu.gatech.cs2340.trydent.log.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by osama on 9/12/15.
  */
-public class Player implements Comparable<Player> {
+public class Player implements Comparable<Player>, Serializable, Packable<Player> {
 
     private String name;
     private String color;

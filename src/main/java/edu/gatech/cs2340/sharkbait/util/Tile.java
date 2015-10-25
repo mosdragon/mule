@@ -4,11 +4,12 @@ import edu.gatech.cs2340.sharkbait.model.Constants;
 import javafx.scene.control.Button;
 
 import javax.swing.text.html.CSS;
+import java.io.Serializable;
 
 /**
  * Created by osama on 10/15/15.
  */
-public class Tile {
+public class Tile implements Serializable {
 
     private static final String CSS_TRANSPARENT = Constants.CSS_TRANSPARENT;
     private static final String BG_COLOR_TEMPLATE = Constants.BG_COLOR_TEMPLATE;
@@ -21,7 +22,7 @@ public class Tile {
 
 //    This button is passed in and is serves as the physical grid representation of the tile
 //    including color, text, etc
-    private Button holder;
+    private transient Button holder;
     private PropertyType type;
 
 

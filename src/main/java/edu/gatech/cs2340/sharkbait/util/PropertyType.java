@@ -1,9 +1,11 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import java.io.Serializable;
+
 /**
  * Created by arihanshah on 9/22/15.
  */
-public enum PropertyType {
+public enum PropertyType implements Serializable {
     Mountain1("M1"),
     Mountain2("M2"),
     Mountain3("M3"),
