@@ -1,9 +1,11 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import java.io.Serializable;
+
 /**
  * Created by osama on 9/12/15.
  */
-public enum Race {
+public enum Race implements Serializable {
     Human("Human"), Flapper("Flapper"), Buzzite("Buzzite"), Ugaite("Ugaite"),
     Bonzoid("Bonzoid");
 

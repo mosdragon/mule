@@ -1,9 +1,11 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import java.io.Serializable;
+
 /**
  * Created by sayem on 9/24/2015.
  */
-public enum GamePhase {
+public enum GamePhase implements Serializable {
     LandBuyPhase("Land Buy"), PlayerTurnPhase("Player Turn"), MulePlacementPhase("Mule Placement");
 
     private String name;
