@@ -86,6 +86,19 @@ public class TownMapView implements Initializable {
     private static final String ENERGY_TEXT = "ENERGY: ";
     private static final String ORE_TEXT = "ORE: ";
 
+    private static final String BUY_ORE_TEXT = "Buy Ore: $";
+    private static final String SELL_ORE_TEXT = "Sell Ore: $";
+    private static final String BUY_FOOD_TEXT = "Buy Food: $";
+    private static final String SELL_FOOD_TEXT = "Sell Food: $";
+    private static final String BUY_ENERGY_TEXT = "Buy Energy: $";
+    private static final String SELL_ENERGY_TEXT = "Sell Energy: $";
+    private static final String BUY_ORE_MULE_TEXT = "Buy Ore Mule: $";
+    private static final String SELL_ORE_MULE_TEXT = "Sell Ore Mule: $";
+    private static final String BUY_FOOD_MULE_TEXT = "Buy Food Mule: $";
+    private static final String SELL_FOOD_MULE_TEXT = "Sell Food Mule: $";
+    private static final String BUY_ENERGY_MULE_TEXT = "Buy Energy Mule: $";
+    private static final String SELL_ENERGY_MULE_TEXT = "Sell Energy Mule: $";
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -163,6 +176,18 @@ public class TownMapView implements Initializable {
     }
 
     public void updateQuantities() {
+        buyOre.setText(BUY_ORE_TEXT + Store.getOreCost());
+        sellOre.setText(SELL_ORE_TEXT + Store.getOreCost());
+        buyFood.setText(BUY_FOOD_TEXT + Store.getFoodCost());
+        sellFood.setText(SELL_FOOD_TEXT + Store.getFoodCost());
+        buyEnergy.setText(BUY_ENERGY_TEXT + Store.getEnergyCost());
+        sellEnergy.setText(SELL_ENERGY_TEXT + Store.getEnergyCost());
+        buyOreMule.setText(BUY_ORE_MULE_TEXT + Store.getOreMuleCost());
+        sellOreMule.setText(SELL_ORE_MULE_TEXT + Store.getOreMuleCost());
+        buyFoodMule.setText(BUY_FOOD_MULE_TEXT + Store.getFoodMuleCost());
+        sellFoodMule.setText(SELL_FOOD_MULE_TEXT + Store.getFoodMuleCost());
+        buyEnergyMule.setText(BUY_ENERGY_MULE_TEXT + Store.getEnergyMuleCost());
+        sellEnergyMule.setText(SELL_ENERGY_MULE_TEXT + Store.getEnergyMuleCost());
 
         oreText.setText(ORE_TEXT + Store.getOreCount());
         foodText.setText(FOOD_TEXT + Store.getFoodCount());

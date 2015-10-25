@@ -218,4 +218,17 @@ public class Store implements Serializable{
     public static int getMuleCount() {
         return getInstance().muleCount;
     }
+
+    public static int getOreCost() {return Constants.ORE; }
+
+    public static int getFoodCost() {return Constants.FOOD; }
+
+    public static int getEnergyCost() {return Constants.ENERGY; }
+
+    public static int getOreMuleCost() {return Constants.ORE_MULE; }
+
+    public static int getFoodMuleCost() {return Constants.FOOD_MULE; }
+
+    public static int getEnergyMuleCost() {return Constants.ENERGY_MULE; }
+
 }
