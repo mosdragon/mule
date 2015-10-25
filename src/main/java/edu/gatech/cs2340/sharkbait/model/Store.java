@@ -1,9 +1,9 @@
 package edu.gatech.cs2340.sharkbait.model;
 
-import com.oracle.tools.packager.Log;
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Resource;
+import edu.gatech.cs2340.trydent.log.Log;
 
 /**
  * Created by osama on 9/22/15.

@@ -1,9 +1,4 @@
-group 'edu.gatech.cs2340.sharkbait'
-version '1.0'
-
 apply plugin: 'java'
-
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -11,19 +6,25 @@ repositories {
 
 dependencies {
     compile files('libs/Trydent.jar')
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile files('libs/reactfx.jar')
+    testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
 sourceSets {
     main {
+        java {
+            srcDir 'src/java/'
+        }
         resources {
-            srcDirs = ["src/main/java"]
-            includes = ["**/*.fxml", "**/*.css", "**/*.jpeg"]
+            srcDirs = ["src/view/edu/gatech/cs2340/sharkbait/view/fxml",
+                       "src/view/edu/gatech/cs2340/sharkbait/view/images"]
+
         }
     }
 }
 
-
+sourceCompatibility = 1.8
+version = '1.0'
 jar {
     jar {
         manifest {
@@ -43,3 +44,5 @@ uploadArchives {
         }
     }
 }
+
+defaultTasks 'jar'
