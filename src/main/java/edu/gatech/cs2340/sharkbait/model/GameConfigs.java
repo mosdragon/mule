@@ -1,5 +1,7 @@
 package edu.gatech.cs2340.sharkbait.model;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.MapType;
 import edu.gatech.cs2340.sharkbait.util.Player;
@@ -11,11 +13,11 @@ import java.util.List;
 /**
  * Created by osama on 9/12/15.
  */
-public class GameConfigs implements Serializable{
+public class GameConfigs implements Serializable, Packable<GameConfigs> {
 
-    private static Difficulty gameDifficulty;
-    private static int numPlayers;
-    private static MapType mapType;
+    private Difficulty gameDifficulty;
+    private int numPlayers;
+    private MapType mapType;
     private static GameConfigs instance;
 
     private GameConfigs() {
@@ -55,5 +57,30 @@ public class GameConfigs implements Serializable{
         getInstance().mapType = mapType;
     }
 
+
+    /**
+     * Redefine the single instance of a singleton using the provided source
+     * @param source, the source object
+     */
+    public static void unpack(GameConfigs source) {
+        instance = source;
+    }
+
+    /**
+     * Redefine the single instance of a singleton using the provided source, which is JSON
+     * @param jsonSource
+     */
+    public static void unpackfromJson(String jsonSource) {
+        GameConfigs source = Packer.unpack(jsonSource, GameConfigs.class);
+        unpack(source);
+    }
+
+    /**
+     * Serialized instance as JSON
+     * @return
+     */
+    public static String packAsJson() {
+        return getInstance().pack();
+    }
 
 }

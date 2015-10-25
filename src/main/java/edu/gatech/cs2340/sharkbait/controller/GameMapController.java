@@ -2,7 +2,9 @@ package edu.gatech.cs2340.sharkbait.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
+import edu.gatech.cs2340.sharkbait.model.Packer;
 import edu.gatech.cs2340.sharkbait.util.*;
 import edu.gatech.cs2340.trydent.log.Log;
 import javafx.scene.control.Button;
@@ -67,29 +69,15 @@ public class GameMapController {
                 Log.debug("Player messed up. Lost MULE. Sorry");
             }
 
-//            Serialize Player
+//            Serialize
             Gson gson = new Gson();
-            JsonElement json = gson.toJsonTree(activePlayer);
-            String jsonString = json.toString();
-            Log.debug("Json String: " + jsonString);
 
-//            Deserialize Player
-            deserializedPlayer = gson.fromJson(jsonString, Player.class);
-            if (deserializedPlayer != null) {
-                Log.debug("NAME: " + deserializedPlayer.getName());
-                Log.debug("MONEY: " + deserializedPlayer.getMoney());
-            }
-
-//            Serialize GameDuration
-//            GameDuration toSerialize = GameDuration.getInstance();
-//            String gameDurationJson = gson.toJsonTree(toSerialize).toString();
-//            Log.debug("GAME DURATION: " + gameDurationJson);
-
-//            Deserialize GameDuration
-//            GameDuration recovered = gson.fromJson(gameDurationJson, GameDuration.class);
-//            if (recovered != null) {
-//                Log.debug("PLAYERS: " + recovered);
-//            }
+            String configsJson = GameConfigs.packAsJson();
+            Log.debug("Configs: " + configsJson);
+            GameConfigs.setNumPlayers(1000);
+            Log.debug("Set players 1000: " + GameConfigs.getNumPlayers());
+            GameConfigs.unpackfromJson(configsJson);
+            Log.debug("Unpacked: " + GameConfigs.getNumPlayers());
 
 
 

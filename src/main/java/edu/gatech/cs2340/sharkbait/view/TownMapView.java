@@ -110,6 +110,7 @@ public class TownMapView implements Initializable {
     private void updateScorePanels() {
         final String BG_COLOR_TEMPLATE = Constants.BG_COLOR_TEMPLATE;
         List<Player> players = GameDuration.getPlayers();
+        int numPlayers = players.size();
 
 //        Player1 score panel
         Player player1 = players.get(0);
@@ -132,7 +133,7 @@ public class TownMapView implements Initializable {
         energy2.setText("Energy: " + player2.getEnergy());
 
 //        Player3 score panel
-        if (GameConfigs.getNumPlayers() >= 3) {
+        if (numPlayers >= 3) {
 
             Player player3 = players.get(2);
 
@@ -145,7 +146,7 @@ public class TownMapView implements Initializable {
         }
 
 //        Player4 score panel
-        if (GameConfigs.getNumPlayers() >= 4) {
+        if (numPlayers >= 4) {
 
             Player player4 = players.get(3);
 
