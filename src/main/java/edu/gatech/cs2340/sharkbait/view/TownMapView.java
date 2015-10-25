@@ -103,6 +103,7 @@ public class TownMapView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setClickListeners();
+        displayItemCosts();
     }
 
 
@@ -175,7 +176,7 @@ public class TownMapView implements Initializable {
         activePlayerPanel.setStyle(String.format(BG_COLOR_TEMPLATE, activePlayer.getColor()));
     }
 
-    public void updateQuantities() {
+    private void displayItemCosts() {
         buyOre.setText(BUY_ORE_TEXT + Store.getOreCost());
         sellOre.setText(SELL_ORE_TEXT + Store.getOreCost());
         buyFood.setText(BUY_FOOD_TEXT + Store.getFoodCost());
@@ -188,7 +189,9 @@ public class TownMapView implements Initializable {
         sellFoodMule.setText(SELL_FOOD_MULE_TEXT + Store.getFoodMuleCost());
         buyEnergyMule.setText(BUY_ENERGY_MULE_TEXT + Store.getEnergyMuleCost());
         sellEnergyMule.setText(SELL_ENERGY_MULE_TEXT + Store.getEnergyMuleCost());
+    }
 
+    public void updateQuantities() {
         oreText.setText(ORE_TEXT + Store.getOreCount());
         foodText.setText(FOOD_TEXT + Store.getFoodCount());
         energyText.setText(ENERGY_TEXT + Store.getEnergyCount());
