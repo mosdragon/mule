@@ -1,11 +1,6 @@
+gameLocation="build/libs/mule-*.jar" # where gameLocation is located
 
-gamejar="build/libs/mule-*.jar" # where gamejar is located
+[ -f $gameLocation ] && echo "Game already built" || (echo "Building game:" && gradle build)
 
-if [ ! -f  "$gamejar" ]
-then
-  echo "Building the game"
-  gradle build
-fi
-
-echo "Starting your game"
-java -jar $gamejar
+echo "Starting game"
+java -jar $gameLocation
