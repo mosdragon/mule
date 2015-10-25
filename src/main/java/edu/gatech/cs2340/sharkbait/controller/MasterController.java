@@ -40,7 +40,9 @@ public class MasterController implements Serializable, Packable {
 //    Interval for timeline in milliseconds
     private static final int INTERVAL = 1000;
 
-    private final Random random = new Random();
+    private transient Random random;
+
+    private transient Timeline timeline;
 
     private transient Scene configScene;
     private transient Scene gameMapScene;
@@ -51,13 +53,18 @@ public class MasterController implements Serializable, Packable {
     private transient GameMapView gameMapView;
     private transient TownMapView townMapView;
 
-    private static MasterController instance;
+    private transient static MasterController instance;
 
+    private long gameId;
 
-    private Timeline timeline;
 
     private MasterController() {
-//          Used to pass time every second
+        gameId = System.currentTimeMillis();
+        initializeTimeline();
+    }
+
+    private void initializeTimeline() {
+//        Used to pass time every second
         timeline = new Timeline(new KeyFrame(
                 Duration.millis(INTERVAL),
                 ae -> passTime()));
@@ -97,6 +104,10 @@ public class MasterController implements Serializable, Packable {
     }
 
     public static void generateRandomEvent() {
+
+        if (getInstance().random == null) {
+            getInstance().random = new Random();
+        }
         String event = "";
 
         double chanceOfEvent = getInstance().random.nextDouble();
@@ -229,17 +240,15 @@ public class MasterController implements Serializable, Packable {
     private static void passOneSecond() {
         int oneSecond = -1;
         GameDuration.changeTimeRemaining(oneSecond);
-        if (GameDuration.getTimeRemaining() == 0) {
+        if (GameDuration.getTimeRemaining() <= 0) {
             GameDuration.endTurn();
-//            Changes to game map if you're in town
+//            New turns always begin on game map
             changeSceneToGameMap();
         }
     }
 
 
-
-
-    public static void initialize(Stage gameStage) {
+    private static void constructScenes(Stage gameStage) {
         getInstance().gameStage = gameStage;
 
         try {
@@ -247,9 +256,6 @@ public class MasterController implements Serializable, Packable {
                     ("/fxml/config/config_screen.fxml")).load();
             gameStage.setTitle("M.U.L.E");
             getInstance().configScene = new Scene(configRoot);
-
-            gameStage.setScene(getInstance().configScene);
-            gameStage.show();
 
             FXMLLoader gameMapLoader = new FXMLLoader(getInstance().getClass().getResource
                     ("/fxml/game_map.fxml"));
@@ -268,6 +274,14 @@ public class MasterController implements Serializable, Packable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void initialize(Stage gameStage) {
+        constructScenes(gameStage);
+
+        gameStage.setScene(getInstance().configScene);
+        gameStage.show();
+
     }
 
     public static void changeSceneToGameMap() {
@@ -296,13 +310,15 @@ public class MasterController implements Serializable, Packable {
         GameConfigs.setNumPlayers(numPlayers);
     }
 
-
     /**
      * Redefine the single instance of a singleton using the provided source
      * @param source, the source object
      */
     public static void unpack(MasterController source) {
+        Stage currentStage = getInstance().gameStage;
         instance = source;
+        constructScenes(currentStage);
+        instance.initializeTimeline();
     }
 
     /**
@@ -310,20 +326,27 @@ public class MasterController implements Serializable, Packable {
      * @param jsonSource
      */
     public static void unpackfromJson(String jsonSource) {
+        if (getInstance().timeline != null) {
+            getInstance().timeline.stop();
+        }
         MasterController source = Packer.unpack(jsonSource, MasterController.class);
         unpack(source);
     }
 
     /**
      * Serialized instance as JSON
-     * @return
+     * @return a JSONified version of this object
      */
     public static String packAsJson() {
         return getInstance().pack();
     }
 
 
+    public static long getGameId() {
+        return getInstance().gameId;
+    }
 
-
-
+    public void setGameId(long gameId) {
+        getInstance().gameId = gameId;
+    }
 }

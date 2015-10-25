@@ -25,7 +25,8 @@ public class Store implements Serializable, Packable {
     private static final int ORE_MULE = Constants.ORE_MULE;
     private static final int FOOD_MULE = Constants.FOOD_MULE;
     private static final int ENERGY_MULE = Constants.ENERGY_MULE;
-    private static Store instance;
+
+    private transient static Store instance;
 
     private Store() {
 
@@ -250,7 +251,7 @@ public class Store implements Serializable, Packable {
 
     /**
      * Serialized instance as JSON
-     * @return
+     * @return a JSONified version of this object
      */
     public static String packAsJson() {
         return getInstance().pack();

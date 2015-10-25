@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
+import edu.gatech.cs2340.sharkbait.model.MongoPersistence;
 import edu.gatech.cs2340.sharkbait.model.Packer;
 import edu.gatech.cs2340.sharkbait.util.*;
 import edu.gatech.cs2340.trydent.log.Log;
@@ -68,21 +69,13 @@ public class GameMapController {
             }
 
 
-//          TODO: Remove serialization code
-            Gson gson = new Gson();
-
-            String configsJson = GameConfigs.packAsJson();
-            Log.debug("Configs: " + configsJson);
-            GameConfigs.setNumPlayers(1000);
-            Log.debug("Set players 1000: " + GameConfigs.getNumPlayers());
-            GameConfigs.unpackfromJson(configsJson);
-            Log.debug("Unpacked: " + GameConfigs.getNumPlayers());
-
-
-
             GameDuration.clearActiveMuleType();
             GameDuration.endMulePlacementPhase();
             MasterController.getInstance().updateMessages();
+
+            //          TODO: Remove serialization code
+//            MongoPersistence.saveGame();
+            MongoPersistence.loadGame(1445811031661L);
         }
 
     }

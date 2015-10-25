@@ -21,9 +21,15 @@ import java.util.*;
  */
 public class GameDuration implements Serializable, Packable {
 
-//    Start with 50 second turns
-    private static final int TIME_START = 50;
+//    Food requirement by round. Index offset by 1
     private static final int[] FOOD_REQUIREMENTS = {3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5};
+
+//    Constants for time if not enough food
+    private static final int TIME_NO_FOOD = 5;
+    private static final int TIME_FOOD_LOW = 30;
+    private static final int TIME_DEFAULT = 50;
+
+    private static final int MAX_ROUNDS = 12;
 
     private transient Parent gameMap = null;
     private transient GameMapView gameMapView;
@@ -47,9 +53,9 @@ public class GameDuration implements Serializable, Packable {
     private Resource activeMuleType;
 
 //    Maps UI Buttons to properties in the game
-    private Map<Button, Property> propertiesMap;
+    private transient Map<Button, Property> propertiesMap;
 
-    private static GameDuration instance;
+    private transient static GameDuration instance;
 
     private GameDuration() {
         activePlayer = null;
@@ -158,16 +164,22 @@ public class GameDuration implements Serializable, Packable {
 
         Player player = getActivePlayer();
         int foodCount = player.getFood();
-        int foodRequirement = FOOD_REQUIREMENTS[getRound() - 1];
 
-        if (foodCount == 0) {
+        int round = getRound();
+        if (round > MAX_ROUNDS) {
+            int foodRequirement = FOOD_REQUIREMENTS[getRound() - 1];
+
+            if (foodCount == 0) {
 //            If you have no food, turn lasts 5 seconds
-            getInstance().timeRemaining = 5;
-        } else if (foodCount > 0 && foodCount < foodRequirement) {
+                getInstance().timeRemaining = TIME_NO_FOOD;
+            } else if (foodCount > 0 && foodCount < foodRequirement) {
 //            If you have food but not enough as the round demands, turn is 30 seconds
-            getInstance().timeRemaining = 30;
+                getInstance().timeRemaining = TIME_FOOD_LOW;
+            } else {
+                getInstance().timeRemaining = TIME_DEFAULT;
+            }
         } else {
-            getInstance().timeRemaining = TIME_START;
+            endGame();
         }
     }
 
@@ -196,7 +208,7 @@ public class GameDuration implements Serializable, Packable {
     }
 
     public static void endGame() {
-
+//        TODO: End game somehow
     }
 
     public static void changeTimeRemaining(int deltaT) {
@@ -208,7 +220,7 @@ public class GameDuration implements Serializable, Packable {
     }
 
     public static void resetTime() {
-        getInstance().timeRemaining = TIME_START;
+        getInstance().timeRemaining = TIME_DEFAULT;
     }
 
     public static List<Player> getPlayers() {
@@ -269,7 +281,7 @@ public class GameDuration implements Serializable, Packable {
 
     /**
      * Serialized instance as JSON
-     * @return
+     * @return a JSONified version of this object
      */
     public static String packAsJson() {
         return getInstance().pack();

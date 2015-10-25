@@ -18,7 +18,7 @@ public class GameConfigs implements Serializable, Packable {
     private Difficulty gameDifficulty;
     private int numPlayers;
     private MapType mapType;
-    private static GameConfigs instance;
+    private transient static GameConfigs instance;
 
     private GameConfigs() {
         gameDifficulty = Difficulty.Standard;
@@ -77,7 +77,7 @@ public class GameConfigs implements Serializable, Packable {
 
     /**
      * Serialized instance as JSON
-     * @return
+     * @return a JSONified version of this object
      */
     public static String packAsJson() {
         return getInstance().pack();

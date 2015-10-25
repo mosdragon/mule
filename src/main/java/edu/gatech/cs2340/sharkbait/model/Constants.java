@@ -17,4 +17,13 @@ public interface Constants {
 
     String CSS_TRANSPARENT = "-fx-background-color:rgba(0,0,0,0);";
     String BG_COLOR_TEMPLATE = "-fx-background-color:%s;";
+
+//    Mongo Credentials
+    String DB_USER = "app";
+    String DB_PASS = "sharkbait";
+    String MONGO_CONNECTION = String.format("mongodb://%s:%s@ds042138.mongolab.com:42138/mule",
+            DB_USER, DB_PASS);
+
+    String DB_NAME = "mule";
+    String GAME_SAVES = "gamesaves";
 }
