@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by osama on 9/12/15.
  */
-public class GameConfigs implements Serializable, Packable<GameConfigs> {
+public class GameConfigs implements Serializable, Packable {
 
     private Difficulty gameDifficulty;
     private int numPlayers;

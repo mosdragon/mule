@@ -10,6 +10,13 @@ import java.io.Serializable;
 public class Packer {
 
     /**
+     * Prevents this class from being initialized
+     */
+    private Packer() {
+
+    }
+
+    /**
      * Pass in the object and get a JSON string representation
      * @param source, the object to pack/serialize into a JSON string
      * @return

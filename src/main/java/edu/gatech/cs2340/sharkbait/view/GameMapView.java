@@ -74,9 +74,6 @@ public class GameMapView implements Initializable {
     @FXML
     private Label ore1, ore2, ore3, ore4;
 
-    private Timeline timeline;
-
-
     private static final String PHASE = "Phase: ";
     private static final String PLAYER = "Active Player: ";
 

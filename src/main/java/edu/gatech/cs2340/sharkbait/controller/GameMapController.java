@@ -34,8 +34,6 @@ public class GameMapController {
         boolean isLandBuyPhase = GameDuration.getPhase() == GamePhase.LandBuyPhase;
         boolean isMulePlacementPhase = GameDuration.getPhase() == GamePhase.MulePlacementPhase;
 
-        Player deserializedPlayer = null;
-
         if (isLandBuyPhase) {
 
             if (available) {
@@ -69,7 +67,8 @@ public class GameMapController {
                 Log.debug("Player messed up. Lost MULE. Sorry");
             }
 
-//            Serialize
+
+//          TODO: Remove serialization code
             Gson gson = new Gson();
 
             String configsJson = GameConfigs.packAsJson();

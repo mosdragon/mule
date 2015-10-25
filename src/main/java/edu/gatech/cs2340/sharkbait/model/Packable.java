@@ -12,7 +12,7 @@ import java.io.Serializable;
  * Interface for classes to serialize themselves using JSON
  * Default implementation provided
  */
-public interface Packable<T extends Serializable> {
+public interface Packable extends Serializable {
 
     default String pack() {
         Gson gson = new Gson();

@@ -8,7 +8,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        MasterController.getInstance().initialize(primaryStage);
+        MasterController.initialize(primaryStage);
     }
 
     public static void main(String[] args) {

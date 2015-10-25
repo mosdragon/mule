@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by osama on 9/12/15.
  */
-public class Player implements Comparable<Player>, Serializable, Packable<Player> {
+public class Player implements Comparable<Player>, Serializable, Packable {
 
     private String name;
     private String color;

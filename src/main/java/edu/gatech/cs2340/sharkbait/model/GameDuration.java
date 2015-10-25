@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * Created by osama on 9/22/15.
  */
-public class GameDuration implements Serializable {
+public class GameDuration implements Serializable, Packable {
 
 //    Start with 50 second turns
     private static final int TIME_START = 50;
@@ -247,6 +247,32 @@ public class GameDuration implements Serializable {
 
     public static void endMulePlacementPhase() {
         getInstance().phase = GamePhase.PlayerTurnPhase;
+    }
+
+
+    /**
+     * Redefine the single instance of a singleton using the provided source
+     * @param source, the source object
+     */
+    public static void unpack(GameDuration source) {
+        instance = source;
+    }
+
+    /**
+     * Redefine the single instance of a singleton using the provided source, which is JSON
+     * @param jsonSource
+     */
+    public static void unpackfromJson(String jsonSource) {
+        GameDuration source = Packer.unpack(jsonSource, GameDuration.class);
+        unpack(source);
+    }
+
+    /**
+     * Serialized instance as JSON
+     * @return
+     */
+    public static String packAsJson() {
+        return getInstance().pack();
     }
 
 }

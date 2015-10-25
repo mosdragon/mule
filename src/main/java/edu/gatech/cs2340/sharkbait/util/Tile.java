@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.sharkbait.util;
 
 import edu.gatech.cs2340.sharkbait.model.Constants;
+import edu.gatech.cs2340.sharkbait.model.Packable;
 import javafx.scene.control.Button;
 
 import javax.swing.text.html.CSS;
@@ -9,7 +10,7 @@ import java.io.Serializable;
 /**
  * Created by osama on 10/15/15.
  */
-public class Tile implements Serializable {
+public class Tile implements Serializable, Packable {
 
     private static final String CSS_TRANSPARENT = Constants.CSS_TRANSPARENT;
     private static final String BG_COLOR_TEMPLATE = Constants.BG_COLOR_TEMPLATE;

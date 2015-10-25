@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import edu.gatech.cs2340.sharkbait.model.Packable;
 import edu.gatech.cs2340.trydent.log.Log;
 
 import java.io.Serializable;
@@ -7,7 +8,7 @@ import java.io.Serializable;
 /**
  * Created by osama on 9/22/15.
  */
-public class Mule implements Serializable {
+public class Mule implements Serializable, Packable {
 
     private static final int R_FOOD = 4;
     private static final int R_ENERGY = 2;

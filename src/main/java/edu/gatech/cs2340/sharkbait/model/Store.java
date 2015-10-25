@@ -10,13 +10,13 @@ import java.io.Serializable;
 /**
  * Created by osama on 9/22/15.
  */
-public class Store implements Serializable{
+public class Store implements Serializable, Packable {
 
 //    TODO: Add all resource counts
-    private static int energyCount;
-    private static int muleCount;
-    private static int foodCount;
-    private static int oreCount;
+    private int energyCount;
+    private int muleCount;
+    private int foodCount;
+    private int oreCount;
 
     private static final int ENERGY = Constants.ENERGY;
     private static final int FOOD = Constants.FOOD;
@@ -46,7 +46,7 @@ public class Store implements Serializable{
             getInstance().oreCount = 0;
             getInstance().muleCount = 25;
 
-//            TODO: Extra Credit initial store amounts for Standard & Tournament difficulties
+//        TODO: Extra Credit initial store amounts for Standard & Tournament difficulties
         } else {
             getInstance().energyCount = 8;
             getInstance().foodCount = 8;
@@ -230,5 +230,30 @@ public class Store implements Serializable{
     public static int getFoodMuleCost() {return Constants.FOOD_MULE; }
 
     public static int getEnergyMuleCost() {return Constants.ENERGY_MULE; }
+
+    /**
+     * Redefine the single instance of a singleton using the provided source
+     * @param source, the source object
+     */
+    public static void unpack(Store source) {
+        instance = source;
+    }
+
+    /**
+     * Redefine the single instance of a singleton using the provided source, which is JSON
+     * @param jsonSource
+     */
+    public static void unpackfromJson(String jsonSource) {
+        Store source = Packer.unpack(jsonSource, Store.class);
+        unpack(source);
+    }
+
+    /**
+     * Serialized instance as JSON
+     * @return
+     */
+    public static String packAsJson() {
+        return getInstance().pack();
+    }
 
 }

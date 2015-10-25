@@ -3,6 +3,8 @@ package edu.gatech.cs2340.sharkbait.controller;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 
+import edu.gatech.cs2340.sharkbait.model.Packable;
+import edu.gatech.cs2340.sharkbait.model.Packer;
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.MapType;
@@ -21,12 +23,13 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  * Created by osama on 9/23/15.
  */
-public class MasterController {
+public class MasterController implements Serializable, Packable {
 
 //    Used to update timers
     private static final String TIME_LEFT = "Time Remaining: ";
@@ -34,18 +37,21 @@ public class MasterController {
 //    For random events, which must occur 27% of the time to players that are not in last place
     private static final double CHANCE =  0.27;
 
-    private static final Random random = new Random();
+//    Interval for timeline in milliseconds
+    private static final int INTERVAL = 1000;
 
-    private static Scene configScene;
-    private static Scene gameMapScene;
-    private static Scene townMapScene;
+    private final Random random = new Random();
 
-    private static Stage gameStage;
+    private transient Scene configScene;
+    private transient Scene gameMapScene;
+    private transient Scene townMapScene;
+
+    private transient Stage gameStage;
+
+    private transient GameMapView gameMapView;
+    private transient TownMapView townMapView;
 
     private static MasterController instance;
-
-    private static GameMapView gameMapView;
-    private static TownMapView townMapView;
 
 
     private Timeline timeline;
@@ -53,7 +59,7 @@ public class MasterController {
     private MasterController() {
 //          Used to pass time every second
         timeline = new Timeline(new KeyFrame(
-                Duration.millis(1000),
+                Duration.millis(INTERVAL),
                 ae -> passTime()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
@@ -77,23 +83,23 @@ public class MasterController {
     private static void updateTimers() {
         if (GameDuration.hasBegun()) {
             int time = GameDuration.getTimeRemaining();
-            gameMapView.updateTimer(TIME_LEFT + time);
-            townMapView.updateTimer(TIME_LEFT + time);
+            getInstance().gameMapView.updateTimer(TIME_LEFT + time);
+            getInstance().townMapView.updateTimer(TIME_LEFT + time);
             updateMessages();
         }
     }
 
     public static void clearRandomEvent() {
         String event = "";
-        gameMapView.handleRandomEvent(event);
-        townMapView.handleRandomEvent(event);
+        getInstance().gameMapView.handleRandomEvent(event);
+        getInstance().townMapView.handleRandomEvent(event);
 
     }
 
     public static void generateRandomEvent() {
         String event = "";
 
-        double chanceOfEvent = random.nextDouble();
+        double chanceOfEvent = getInstance().random.nextDouble();
         GamePhase phase = GameDuration.getPhase();
         Player player = GameDuration.getActivePlayer();
 
@@ -120,7 +126,7 @@ public class MasterController {
                 case 12: m = 100; break;
             }
 
-            int eventId = random.nextInt(7) + 1;
+            int eventId = getInstance().random.nextInt(7) + 1;
 
             switch(eventId) {
                 case 1:
@@ -154,8 +160,8 @@ public class MasterController {
                     break;
             }
         }
-        gameMapView.handleRandomEvent(event);
-        townMapView.handleRandomEvent(event);
+        getInstance().gameMapView.handleRandomEvent(event);
+        getInstance().townMapView.handleRandomEvent(event);
     }
 
     public static void generateRandomGoodEvent() {
@@ -211,13 +217,13 @@ public class MasterController {
                     break;
             }
         }
-        gameMapView.handleRandomEvent(event);
-        townMapView.handleRandomEvent(event);
+        getInstance().gameMapView.handleRandomEvent(event);
+        getInstance().townMapView.handleRandomEvent(event);
     }
 
     public static void updateMessages() {
-        gameMapView.updateMessages();
-        townMapView.updateMessages();
+        getInstance().gameMapView.updateMessages();
+        getInstance().townMapView.updateMessages();
     }
 
     private static void passOneSecond() {
@@ -233,29 +239,29 @@ public class MasterController {
 
 
 
-    public void initialize(Stage gameStage) {
-        MasterController.gameStage = gameStage;
+    public static void initialize(Stage gameStage) {
+        getInstance().gameStage = gameStage;
 
         try {
-            Parent configRoot = new FXMLLoader(getClass().getResource
+            Parent configRoot = new FXMLLoader(getInstance().getClass().getResource
                     ("/fxml/config/config_screen.fxml")).load();
             gameStage.setTitle("M.U.L.E");
-            configScene = new Scene(configRoot);
+            getInstance().configScene = new Scene(configRoot);
 
-            gameStage.setScene(configScene);
+            gameStage.setScene(getInstance().configScene);
             gameStage.show();
 
             FXMLLoader gameMapLoader = new FXMLLoader(getInstance().getClass().getResource
                     ("/fxml/game_map.fxml"));
             Parent gameMapRoot = gameMapLoader.load();
-            gameMapScene = new Scene(gameMapRoot);
-            gameMapView = gameMapLoader.getController();
+            getInstance().gameMapScene = new Scene(gameMapRoot);
+            getInstance().gameMapView = gameMapLoader.getController();
 
             FXMLLoader townMapLoader = new FXMLLoader(getInstance().getClass().getResource
                     ("/fxml/town_map.fxml"));
             Parent townMapRoot = townMapLoader.load();
-            townMapScene = new Scene(townMapRoot);
-            townMapView = townMapLoader.getController();
+            getInstance().townMapScene = new Scene(townMapRoot);
+            getInstance().townMapView = townMapLoader.getController();
 
 
 
@@ -265,23 +271,23 @@ public class MasterController {
     }
 
     public static void changeSceneToGameMap() {
-        gameStage.setScene(gameMapScene);
+        getInstance().gameStage.setScene(getInstance().gameMapScene);
     }
 
     public static void changeSceneToTownMap() {
-        gameStage.setScene(townMapScene);
+        getInstance().gameStage.setScene(getInstance().townMapScene);
     }
 
     public static void changeSceneToConfig() {
-        gameStage.setScene(configScene);
+        getInstance().gameStage.setScene(getInstance().configScene);
     }
 
     public static GameMapView getGameMapView() {
-        return gameMapView;
+        return getInstance().gameMapView;
     }
 
     public static TownMapView getTownMapView() {
-        return townMapView;
+        return getInstance().townMapView;
     }
 
     public static void saveConfigs(int numPlayers, Difficulty difficulty, MapType mapType) {
@@ -289,6 +295,33 @@ public class MasterController {
         GameConfigs.setMapType(mapType);
         GameConfigs.setNumPlayers(numPlayers);
     }
+
+
+    /**
+     * Redefine the single instance of a singleton using the provided source
+     * @param source, the source object
+     */
+    public static void unpack(MasterController source) {
+        instance = source;
+    }
+
+    /**
+     * Redefine the single instance of a singleton using the provided source, which is JSON
+     * @param jsonSource
+     */
+    public static void unpackfromJson(String jsonSource) {
+        MasterController source = Packer.unpack(jsonSource, MasterController.class);
+        unpack(source);
+    }
+
+    /**
+     * Serialized instance as JSON
+     * @return
+     */
+    public static String packAsJson() {
+        return getInstance().pack();
+    }
+
 
 
 
