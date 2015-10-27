@@ -92,12 +92,12 @@ public class TownMapView implements Initializable {
     private static final String SELL_FOOD_TEXT = "Sell Food: $";
     private static final String BUY_ENERGY_TEXT = "Buy Energy: $";
     private static final String SELL_ENERGY_TEXT = "Sell Energy: $";
-    private static final String BUY_ORE_MULE_TEXT = "Buy Ore Mule: $";
-    private static final String SELL_ORE_MULE_TEXT = "Sell Ore Mule: $";
-    private static final String BUY_FOOD_MULE_TEXT = "Buy Food Mule: $";
-    private static final String SELL_FOOD_MULE_TEXT = "Sell Food Mule: $";
-    private static final String BUY_ENERGY_MULE_TEXT = "Buy Energy Mule: $";
-    private static final String SELL_ENERGY_MULE_TEXT = "Sell Energy Mule: $";
+    private static final String BUY_ORE_MULE_TEXT = "Buy Ore AbstractMule: $";
+    private static final String SELL_ORE_MULE_TEXT = "Sell Ore AbstractMule: $";
+    private static final String BUY_FOOD_MULE_TEXT = "Buy Food AbstractMule: $";
+    private static final String SELL_FOOD_MULE_TEXT = "Sell Food AbstractMule: $";
+    private static final String BUY_ENERGY_MULE_TEXT = "Buy Energy AbstractMule: $";
+    private static final String SELL_ENERGY_MULE_TEXT = "Sell Energy AbstractMule: $";
 
 
     @Override

@@ -1,7 +1,6 @@
 package edu.gatech.cs2340.sharkbait.util;
 
 
-import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.trydent.log.Log;
 import javafx.scene.control.Button;
 
@@ -12,7 +11,7 @@ import java.io.Serializable;
  */
 public class Property implements Serializable {
 
-    private static final String MULE = "Mule";
+    private static final String MULE = "AbstractMule";
     private static final String MULE_TEMPLATE = "\n%s "+ MULE;
 
     private Tile tile;

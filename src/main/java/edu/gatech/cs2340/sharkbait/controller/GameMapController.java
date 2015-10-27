@@ -1,15 +1,11 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
-import edu.gatech.cs2340.sharkbait.model.Packer;
 import edu.gatech.cs2340.sharkbait.util.*;
 import edu.gatech.cs2340.trydent.log.Log;
 import javafx.scene.control.Button;
-
-import java.lang.reflect.Type;
 
 /**
  * Created by osama on 10/8/15.
@@ -61,7 +57,19 @@ public class GameMapController {
             boolean tileBought = !available;
 
             if (tileBought && isOwnedByPlayer && noMuleHere) {
-                Mule mule = new Mule(property, GameDuration.getActiveMuleType());
+                Mule mule = null;
+                Resource muleType = GameDuration.getActiveMuleType();
+
+                if (muleType == Resource.Food) {
+                    mule = new FoodMule(property);
+
+                } else if (muleType == Resource.Ore) {
+                    mule = new OreMule(property);
+
+                } else if (muleType == Resource.Energy) {
+                    mule = new EnergyMule(property);
+                }
+
                 property.addMule(mule);
                 activePlayer.addMule(mule);
 

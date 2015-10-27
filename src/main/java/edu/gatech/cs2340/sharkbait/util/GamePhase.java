@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by sayem on 9/24/2015.
  */
 public enum GamePhase implements Serializable {
-    LandBuyPhase("Land Buy"), PlayerTurnPhase("Player Turn"), MulePlacementPhase("Mule Placement");
+    LandBuyPhase("Land Buy"), PlayerTurnPhase("Player Turn"), MulePlacementPhase("AbstractMule Placement");
 
     private String name;
 
