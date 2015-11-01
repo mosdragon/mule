@@ -3,27 +3,19 @@ package edu.gatech.cs2340.sharkbait.view;
 import edu.gatech.cs2340.sharkbait.controller.GameMapController;
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.model.Constants;
-import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
-import edu.gatech.cs2340.sharkbait.util.Property;
-import edu.gatech.cs2340.sharkbait.util.PropertyType;
 import edu.gatech.cs2340.trydent.log.Log;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.*;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.List;
@@ -40,6 +32,8 @@ public class GameMapView implements Initializable {
     private GridPane grid;
     @FXML
     private Button passButton;
+    @FXML
+    private Button pauseButton;
 
     @FXML
     private Label phaseMsg;
@@ -88,6 +82,10 @@ public class GameMapView implements Initializable {
 
         passButton.setOnMouseClicked(event -> {
             GameMapController.pass();
+        });
+
+        pauseButton.setOnMouseClicked(event -> {
+            MasterController.changeSceneToSave();
         });
     }
 

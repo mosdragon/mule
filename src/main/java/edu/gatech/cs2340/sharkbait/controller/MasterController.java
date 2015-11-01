@@ -241,6 +241,7 @@ public class MasterController {
                     player.changeMoney(2*m);
                     break;
             }
+            changeSceneToEvent(event);
         }
         gameMapView.handleRandomEvent(event);
         townMapView.handleRandomEvent(event);
