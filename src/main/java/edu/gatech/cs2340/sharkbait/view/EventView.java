@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.sharkbait.view;
 
+import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,11 +19,13 @@ public class EventView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         okayButton.setOnMouseClicked(event -> {
-            //Return to the main screen.
+            MasterController.resumeTime();
+            MasterController.changeSceneToGameMap();
         });
     }
 
-    public void setEventText(String input) {
+    public void setText(String input) {
+        eventText.setWrapText(true);
         eventText.setText(input);
     }
 }

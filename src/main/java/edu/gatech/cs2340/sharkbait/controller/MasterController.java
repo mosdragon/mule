@@ -111,24 +111,48 @@ public class MasterController {
 //            m is the calculation factor
             int m = 0;
 
-            switch(round) {
-                case 1: m = 25; break;
-                case 2: m = 25; break;
-                case 3: m = 25; break;
-                case 4: m = 50; break;
-                case 5: m = 50; break;
-                case 6: m = 50; break;
-                case 7: m = 50; break;
-                case 8: m = 75; break;
-                case 9: m = 75; break;
-                case 10: m = 75; break;
-                case 11: m = 75; break;
-                case 12: m = 100; break;
+            switch (round) {
+                case 1:
+                    m = 25;
+                    break;
+                case 2:
+                    m = 25;
+                    break;
+                case 3:
+                    m = 25;
+                    break;
+                case 4:
+                    m = 50;
+                    break;
+                case 5:
+                    m = 50;
+                    break;
+                case 6:
+                    m = 50;
+                    break;
+                case 7:
+                    m = 50;
+                    break;
+                case 8:
+                    m = 75;
+                    break;
+                case 9:
+                    m = 75;
+                    break;
+                case 10:
+                    m = 75;
+                    break;
+                case 11:
+                    m = 75;
+                    break;
+                case 12:
+                    m = 100;
+                    break;
             }
 
             int eventId = random.nextInt(7) + 1;
 
-            switch(eventId) {
+            switch (eventId) {
                 case 1:
                     event = ("YOU JUST RECEIVED A PACKAGE FROM THE GT ALUMNI CONTAINING 3 FOOD AND 2 ENERGY UNITS.");
                     player.changeFood(3);
@@ -139,26 +163,27 @@ public class MasterController {
                     player.changeOre(2);
                     break;
                 case 3:
-                    event = ("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $" + 8*m);
-                    player.changeMoney(8*m);
+                    event = ("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $" + 8 * m);
+                    player.changeMoney(8 * m);
                     break;
                 case 4:
-                    event = ("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $" + 2*m);
-                    player.changeMoney(2*m);
+                    event = ("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $" + 2 * m);
+                    player.changeMoney(2 * m);
                     break;
                 case 5:
-                    event = ("FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $" + 4*m);
-                    player.changeMoney(-4*m);
+                    event = ("FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $" + 4 * m);
+                    player.changeMoney(-4 * m);
                     break;
                 case 6:
                     event = ("MISCHIEVOUS UGA STUDENTS BROKE INTO YOUR STORAGE SHED AND STOLE HALF YOUR FOOD.");
-                    player.changeFood(-player.getFood()/2);
+                    player.changeFood(-player.getFood() / 2);
                     break;
                 case 7:
-                    event = ("YOUR SPACE GYPSY IN-LAWS MADE A MESS OF THE TOWN. IT COST YOU $" + 6*m + " TO CLEAN IT UP.");
-                    player.changeMoney(-6*m);
+                    event = ("YOUR SPACE GYPSY IN-LAWS MADE A MESS OF THE TOWN. IT COST YOU $" + 6 * m + " TO CLEAN IT UP.");
+                    player.changeMoney(-6 * m);
                     break;
             }
+            changeSceneToEvent(event);
         }
         gameMapView.handleRandomEvent(event);
         townMapView.handleRandomEvent(event);
@@ -316,9 +341,10 @@ public class MasterController {
         gameStage.setScene(saveScene);
     }
 
-    public static void changeSceneToEvent() {
+    public static void changeSceneToEvent(String event) {
         pauseTime();
         gameStage.setScene(eventScene);
+        eventView.setText(event);
     }
 
     public static void changeSceneToProduction() {
