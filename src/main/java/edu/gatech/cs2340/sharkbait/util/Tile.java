@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 
+import javax.swing.text.Style;
 import javax.swing.text.html.CSS;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class Tile implements Serializable {
 
     private int row;
     private int column;
+    private Style tileStyle;
+    private String tileText;
 
 
 
