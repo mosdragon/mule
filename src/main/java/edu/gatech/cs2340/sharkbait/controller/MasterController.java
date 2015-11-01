@@ -2,26 +2,26 @@ package edu.gatech.cs2340.sharkbait.controller;
 
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
-
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.MapType;
 import edu.gatech.cs2340.sharkbait.util.Player;
-
-import edu.gatech.cs2340.sharkbait.view.GameMapView;
-import edu.gatech.cs2340.sharkbait.view.TownMapView;
+import edu.gatech.cs2340.sharkbait.view.*;
 import edu.gatech.cs2340.trydent.log.Log;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Random;
+//import java.awt.event.KeyEvent;
 
 /**
  * Created by osama on 9/23/15.
@@ -39,6 +39,9 @@ public class MasterController {
     private static Scene configScene;
     private static Scene gameMapScene;
     private static Scene townMapScene;
+    private static Scene saveScene;
+    private static Scene eventScene;
+    private static Scene productionScene;
 
     private static Stage gameStage;
 
@@ -46,6 +49,9 @@ public class MasterController {
 
     private static GameMapView gameMapView;
     private static TownMapView townMapView;
+    private static SaveView saveView;
+    private static EventView eventView;
+    private static ProductionView productionView;
 
 
     private Timeline timeline;
@@ -67,7 +73,7 @@ public class MasterController {
     }
 
     private static void passTime() {
-        if (GameDuration.hasBegun()) {
+        if (GameDuration.hasBegun() && !GameDuration.isPaused()) {
             passOneSecond();
             updateTimers();
             updateMessages();
@@ -257,8 +263,37 @@ public class MasterController {
             townMapScene = new Scene(townMapRoot);
             townMapView = townMapLoader.getController();
 
+            FXMLLoader saveLoader = new FXMLLoader(getInstance().getClass().getResource("/fxml/save.fxml"));
+            Parent saveRoot = saveLoader.load();
+            saveScene = new Scene(saveRoot);
+            saveView = saveLoader.getController();
 
+            FXMLLoader eventLoader = new FXMLLoader(getInstance().getClass().getResource("/fxml/event.fxml"));
+            Parent eventRoot = eventLoader.load();
+            eventScene = new Scene(eventRoot);
+            eventView = eventLoader.getController();
 
+            FXMLLoader productionLoader = new FXMLLoader(getInstance().getClass().getResource("/fxml/production.fxml"));
+            Parent productionRoot = productionLoader.load();
+            productionScene = new Scene(productionRoot);
+            productionView = productionLoader.getController();
+
+            gameMapScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent event) {
+                    if (event.getText().toLowerCase().equals("p")) {
+                        changeSceneToSave();
+                    }
+                }
+            });
+            townMapScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent event) {
+                    if (event.getText().toLowerCase().equals("p")) {
+                        changeSceneToSave();
+                    }
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -274,6 +309,29 @@ public class MasterController {
 
     public static void changeSceneToConfig() {
         gameStage.setScene(configScene);
+    }
+
+    public static void changeSceneToSave() {
+        pauseTime();
+        gameStage.setScene(saveScene);
+    }
+
+    public static void changeSceneToEvent() {
+        pauseTime();
+        gameStage.setScene(eventScene);
+    }
+
+    public static void changeSceneToProduction() {
+        pauseTime();
+        gameStage.setScene(productionScene);
+    }
+
+    public static void pauseTime() {
+        GameDuration.pause();
+    }
+
+    public static void resumeTime() {
+        GameDuration.resume();
     }
 
     public static GameMapView getGameMapView() {

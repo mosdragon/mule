@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gatech.cs2340.sharkbait.view.ProductionView">
+   <children>
+      <Text layoutX="471.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Production:">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Button fx:id="okayButton" layoutX="482.0" layoutY="548.0" mnemonicParsing="false" text="OKAY">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <TextField fx:id="player1Name" layoutX="305.0" layoutY="210.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player1Food" layoutX="305.0" layoutY="245.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player1Energy" layoutX="305.0" layoutY="279.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player1Ore" layoutX="305.0" layoutY="314.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player2Ore" layoutX="568.0" layoutY="314.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player2Energy" layoutX="568.0" layoutY="279.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player2Food" layoutX="568.0" layoutY="244.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player2Name" layoutX="568.0" layoutY="210.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player4Name" layoutX="568.0" layoutY="376.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player4Food" layoutX="568.0" layoutY="413.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player4Energy" layoutX="568.0" layoutY="448.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player4Ore" layoutX="568.0" layoutY="483.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player3Ore" layoutX="305.0" layoutY="483.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player3Energy" layoutX="305.0" layoutY="448.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player3Food" layoutX="305.0" layoutY="413.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="player3Name" layoutX="305.0" layoutY="376.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+   </children>
+</Pane>
