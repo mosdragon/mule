@@ -1,10 +1,18 @@
 package edu.gatech.cs2340.sharkbait.util;
 
 import edu.gatech.cs2340.sharkbait.model.Constants;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+
 
 import javax.swing.text.html.CSS;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+
 
 /**
  * Created by osama on 10/15/15.
@@ -24,6 +32,13 @@ public class Tile implements Serializable {
 //    including color, text, etc
     private transient Button holder;
     private PropertyType type;
+
+    @FXML
+    private GridPane grid;
+
+    private int row;
+    private int column;
+
 
 
     public Tile(Button holder) {
@@ -45,6 +60,18 @@ public class Tile implements Serializable {
             type = PropertyType.Mountain3;
         }
     }
+
+
+    // goes thru gridPane at specified column and row and gets the node
+    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
+        for (Node node : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+                return node;
+            }
+        }
+        return null;
+    }
+
 
     public Button getHolder() {
         return holder;
