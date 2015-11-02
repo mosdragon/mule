@@ -28,10 +28,8 @@ public class ConfigScreenController {
         GameDuration.begin();
     }
 
-    public static void gameStateNotConfigured(Pane configBox, Button nextButton) {
+    public static void gameStateNotConfigured(Pane configBox, Button nextButton, FXMLLoader fxmlLoader) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(this.getClass()
-                    .getResource("/fxml/config/players_config.fxml"));
             Parent root = fxmlLoader.load();
             ConfigScreenView.setGameConfigView(fxmlLoader.getController());
 
