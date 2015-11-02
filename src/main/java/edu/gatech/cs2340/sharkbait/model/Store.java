@@ -114,7 +114,7 @@ public class Store implements Serializable{
     }
 
     public static void sellMule(Player player, Resource type) {
-
+//        TODO: IMPLEMENT
 //        AbstractMule mule = new AbstractMule(player, type);
 //
 //

@@ -57,18 +57,9 @@ public class GameMapController {
             boolean tileBought = !available;
 
             if (tileBought && isOwnedByPlayer && noMuleHere) {
-                Mule mule = null;
+
                 Resource muleType = GameDuration.getActiveMuleType();
-
-                if (muleType == Resource.Food) {
-                    mule = new FoodMule(property);
-
-                } else if (muleType == Resource.Ore) {
-                    mule = new OreMule(property);
-
-                } else if (muleType == Resource.Energy) {
-                    mule = new EnergyMule(property);
-                }
+                Mule mule = MuleFactory.createMule(property, muleType);
 
                 property.addMule(mule);
                 activePlayer.addMule(mule);
