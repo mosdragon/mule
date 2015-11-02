@@ -238,7 +238,8 @@ public class MasterController {
 
         try {
             Parent configRoot = new FXMLLoader(getClass().getResource
-                    ("/fxml/config/config_screen.fxml")).load();
+                    ("/fxml/config/load_screen.fxml")).load();
+//                    ("/fxml/config/config_screen.fxml")).load();
             gameStage.setTitle("M.U.L.E");
             configScene = new Scene(configRoot);
 

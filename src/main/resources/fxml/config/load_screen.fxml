@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane id="splitter_main" dividerPositions="0.7993311036789298" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="1080.0" style="-fx-background-color: #ADD6AD;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gatech.cs2340.sharkbait.view.LoadScreenView">
+  <effect>
+	<InnerShadow color="#00000020" height="60.07692307692308" radius="29.53846153846154" width="60.07692307692308" />
+  </effect>
+  <items>
+	<AnchorPane id="canvas" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="">
+	  <children>
+		<Button fx:id="newGameButton" layoutX="439.0" layoutY="237.0" mnemonicParsing="false" prefHeight="-1.0" prefWidth="200" style="-fx-background-color: #DDE1DD;" text="Start New Game">
+		  <font>
+			<Font size="20.0" />
+		  </font>
+		</Button>
+		  <Button fx:id="loadGameButton" layoutX="439.0" layoutY="167.0" mnemonicParsing="false" prefHeight="-1.0" prefWidth="200" style="-fx-background-color: #DDE1DD;" text="Load Saved Game">
+			  <font>
+				  <Font size="20.0" />
+			  </font>
+		  </Button>
+		<Text fx:id="mainGameMessage" fill="WHITE" layoutX="430.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to MULE!">
+		  <font>
+			<Font size="24.0" />
+		  </font>
+		</Text>
+	  </children>
+	</AnchorPane>
+	<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #799679;">
+
+		<children>
+
+			<SplitPane fx:id="infoPane" prefHeight="120.0" prefWidth="1080" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+			</SplitPane>
+
+		</children>
+	</AnchorPane>
+  </items>
+</SplitPane>
