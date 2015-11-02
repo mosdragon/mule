@@ -2,7 +2,6 @@ package edu.gatech.cs2340.sharkbait.model;
 
 
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
-
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Property;
@@ -11,7 +10,6 @@ import edu.gatech.cs2340.sharkbait.view.GameMapView;
 import edu.gatech.cs2340.sharkbait.view.TownMapView;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 import java.io.Serializable;
 import java.util.*;
@@ -36,6 +34,7 @@ public class GameDuration implements Serializable {
     private int turn = 0;
 
     private boolean begun = false;
+    private boolean paused = false;
     private GamePhase phase = GamePhase.LandBuyPhase;
 
 //    Time left of the turn, in seconds
@@ -65,6 +64,12 @@ public class GameDuration implements Serializable {
     public static boolean hasBegun() {
         return getInstance().begun;
     }
+
+    public static boolean isPaused() {return getInstance().paused; }
+
+    public static void pause() { getInstance().paused = true; }
+
+    public static void resume() { getInstance().paused = false; }
 
     public static void begin() {
         getInstance().begun = true;

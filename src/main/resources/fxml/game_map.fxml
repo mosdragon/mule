@@ -619,6 +619,8 @@
 
                        <Button fx:id="passButton" text="Pass" prefWidth="200"
                                styleClass="turnMessages"/>
+                        <Button fx:id="pauseButton" text="Pause/Save" prefWidth="200"
+                                styleClass="turnMessages"/>
                         <Label fx:id="phaseMsg" styleClass="turnMessages"></Label>
                         <Label fx:id="playerMsg" styleClass="turnMessages"></Label>
                         <Label fx:id="timerMsg" styleClass="turnMessages"></Label>
