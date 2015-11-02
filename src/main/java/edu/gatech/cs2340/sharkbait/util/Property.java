@@ -14,7 +14,6 @@ import java.io.Serializable;
 public class Property implements Serializable, Packable {
 
     private static final String MULE = "Mule";
-    private static final String MULE_TEMPLATE = "\n%s "+ MULE;
 
     private Tile tile;
     private PropertyType type;
@@ -22,7 +21,6 @@ public class Property implements Serializable, Packable {
     public Property(Button tileHolder) {
         tile = new Tile(tileHolder);
         type = tile.getType();
-        Log.debug(toString());
     }
 
     public Tile getTile() {
@@ -39,12 +37,11 @@ public class Property implements Serializable, Packable {
     }
 
     public void addMule(Mule mule) {
-        String muleText = createMuleText(mule);
-        tile.setText(muleText);
+        tile.setText(mule.toString());
     }
 
     public void removeMule() {
-        tile.setText("");
+        tile.setText(new String());
     }
 
     public boolean isAvailable() {
@@ -82,10 +79,6 @@ public class Property implements Serializable, Packable {
             return true;
         }
         return false;
-    }
-
-    private String createMuleText(Mule mule) {
-        return String.format(MULE_TEMPLATE, mule.getType());
     }
 
     @Override

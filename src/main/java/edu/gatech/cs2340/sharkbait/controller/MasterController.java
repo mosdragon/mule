@@ -2,16 +2,14 @@ package edu.gatech.cs2340.sharkbait.controller;
 
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
-
 import edu.gatech.cs2340.sharkbait.model.Packable;
 import edu.gatech.cs2340.sharkbait.model.Packer;
+
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.MapType;
 import edu.gatech.cs2340.sharkbait.util.Player;
-
-import edu.gatech.cs2340.sharkbait.view.GameMapView;
-import edu.gatech.cs2340.sharkbait.view.TownMapView;
+import edu.gatech.cs2340.sharkbait.view.*;
 import edu.gatech.cs2340.trydent.log.Log;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -25,6 +23,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Random;
+//import java.awt.event.KeyEvent;
 
 /**
  * Created by osama on 9/23/15.
@@ -40,18 +39,26 @@ public class MasterController implements Serializable, Packable {
 //    Interval for timeline in milliseconds
     private static final int INTERVAL = 1000;
 
+
     private transient Random random;
+
 
     private transient Timeline timeline;
 
     private transient Scene configScene;
     private transient Scene gameMapScene;
     private transient Scene townMapScene;
+    private transient Scene saveScene;
+    private transient Scene eventScene;
+    private transient Scene productionScene;
 
     private transient Stage gameStage;
 
     private transient GameMapView gameMapView;
     private transient TownMapView townMapView;
+    private transient PauseScreenView pauseScreenView;
+    private transient PopupEventView popupEventView;
+    private transient ProductionView productionView;
 
     private transient static MasterController instance;
 
@@ -80,7 +87,7 @@ public class MasterController implements Serializable, Packable {
     }
 
     private static void passTime() {
-        if (GameDuration.hasBegun()) {
+        if (GameDuration.hasBegun() && !GameDuration.isPaused()) {
             passOneSecond();
             updateTimers();
             updateMessages();
@@ -122,24 +129,48 @@ public class MasterController implements Serializable, Packable {
 //            m is the calculation factor
             int m = 0;
 
-            switch(round) {
-                case 1: m = 25; break;
-                case 2: m = 25; break;
-                case 3: m = 25; break;
-                case 4: m = 50; break;
-                case 5: m = 50; break;
-                case 6: m = 50; break;
-                case 7: m = 50; break;
-                case 8: m = 75; break;
-                case 9: m = 75; break;
-                case 10: m = 75; break;
-                case 11: m = 75; break;
-                case 12: m = 100; break;
+            switch (round) {
+                case 1:
+                    m = 25;
+                    break;
+                case 2:
+                    m = 25;
+                    break;
+                case 3:
+                    m = 25;
+                    break;
+                case 4:
+                    m = 50;
+                    break;
+                case 5:
+                    m = 50;
+                    break;
+                case 6:
+                    m = 50;
+                    break;
+                case 7:
+                    m = 50;
+                    break;
+                case 8:
+                    m = 75;
+                    break;
+                case 9:
+                    m = 75;
+                    break;
+                case 10:
+                    m = 75;
+                    break;
+                case 11:
+                    m = 75;
+                    break;
+                case 12:
+                    m = 100;
+                    break;
             }
 
             int eventId = getInstance().random.nextInt(7) + 1;
 
-            switch(eventId) {
+            switch (eventId) {
                 case 1:
                     event = ("YOU JUST RECEIVED A PACKAGE FROM THE GT ALUMNI CONTAINING 3 FOOD AND 2 ENERGY UNITS.");
                     player.changeFood(3);
@@ -150,26 +181,27 @@ public class MasterController implements Serializable, Packable {
                     player.changeOre(2);
                     break;
                 case 3:
-                    event = ("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $" + 8*m);
-                    player.changeMoney(8*m);
+                    event = ("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $" + 8 * m);
+                    player.changeMoney(8 * m);
                     break;
                 case 4:
-                    event = ("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $" + 2*m);
-                    player.changeMoney(2*m);
+                    event = ("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $" + 2 * m);
+                    player.changeMoney(2 * m);
                     break;
                 case 5:
-                    event = ("FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $" + 4*m);
-                    player.changeMoney(-4*m);
+                    event = ("FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $" + 4 * m);
+                    player.changeMoney(-4 * m);
                     break;
                 case 6:
                     event = ("MISCHIEVOUS UGA STUDENTS BROKE INTO YOUR STORAGE SHED AND STOLE HALF YOUR FOOD.");
-                    player.changeFood(-player.getFood()/2);
+                    player.changeFood(-player.getFood() / 2);
                     break;
                 case 7:
-                    event = ("YOUR SPACE GYPSY IN-LAWS MADE A MESS OF THE TOWN. IT COST YOU $" + 6*m + " TO CLEAN IT UP.");
-                    player.changeMoney(-6*m);
+                    event = ("YOUR SPACE GYPSY IN-LAWS MADE A MESS OF THE TOWN. IT COST YOU $" + 6 * m + " TO CLEAN IT UP.");
+                    player.changeMoney(-6 * m);
                     break;
             }
+            changeSceneToEvent(event);
         }
         getInstance().gameMapView.handleRandomEvent(event);
         getInstance().townMapView.handleRandomEvent(event);
@@ -227,6 +259,7 @@ public class MasterController implements Serializable, Packable {
                     player.changeMoney(2*m);
                     break;
             }
+            changeSceneToEvent(event);
         }
         getInstance().gameMapView.handleRandomEvent(event);
         getInstance().townMapView.handleRandomEvent(event);
@@ -269,8 +302,32 @@ public class MasterController implements Serializable, Packable {
             getInstance().townMapScene = new Scene(townMapRoot);
             getInstance().townMapView = townMapLoader.getController();
 
+            FXMLLoader saveLoader = new FXMLLoader(getInstance().getClass().getResource("/fxml/save.fxml"));
+            Parent saveRoot = saveLoader.load();
+            getInstance().saveScene = new Scene(saveRoot);
+            getInstance().pauseScreenView = saveLoader.getController();
 
+            FXMLLoader eventLoader = new FXMLLoader(getInstance().getClass().getResource("/fxml/event.fxml"));
+            Parent eventRoot = eventLoader.load();
+            getInstance().eventScene = new Scene(eventRoot);
+            getInstance().popupEventView = eventLoader.getController();
 
+            FXMLLoader productionLoader = new FXMLLoader(getInstance().getClass().getResource("/fxml/production.fxml"));
+            Parent productionRoot = productionLoader.load();
+            getInstance().productionScene = new Scene(productionRoot);
+            getInstance().productionView = productionLoader.getController();
+
+            getInstance().gameMapScene.setOnKeyPressed(event -> {
+                if (event.getText().toLowerCase().equals("p")) {
+                    changeSceneToSave();
+                }
+            });
+
+            getInstance().townMapScene.setOnKeyPressed(event -> {
+                if (event.getText().toLowerCase().equals("p")) {
+                    changeSceneToSave();
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -294,6 +351,30 @@ public class MasterController implements Serializable, Packable {
 
     public static void changeSceneToConfig() {
         getInstance().gameStage.setScene(getInstance().configScene);
+    }
+
+    public static void changeSceneToSave() {
+        pauseTime();
+        getInstance().gameStage.setScene(getInstance().saveScene);
+    }
+
+    public static void changeSceneToEvent(String event) {
+        pauseTime();
+        getInstance().gameStage.setScene(getInstance().eventScene);
+        getInstance().popupEventView.setText(event);
+    }
+
+    public static void changeSceneToProduction() {
+        pauseTime();
+        getInstance().gameStage.setScene(getInstance().productionScene);
+    }
+
+    public static void pauseTime() {
+        GameDuration.pause();
+    }
+
+    public static void resumeTime() {
+        GameDuration.resume();
     }
 
     public static GameMapView getGameMapView() {

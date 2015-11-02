@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     compile files('libs/Trydent.jar')
+    compile files('libs/gson.jar')
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
