@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.sharkbait.util;
 
 import edu.gatech.cs2340.sharkbait.model.Constants;
+import edu.gatech.cs2340.trydent.log.Log;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -34,12 +35,12 @@ public class Tile implements Serializable {
     private transient Button holder;
     private PropertyType type;
 
-    @FXML
-    private GridPane grid;
-
     private int row;
     private int column;
-    private Style tileStyle;
+
+
+
+    private String tileStyle;
     private String tileText;
 
 
@@ -62,17 +63,40 @@ public class Tile implements Serializable {
         } else if (buttonClass.contains(MOUNTAIN3)) {
             type = PropertyType.Mountain3;
         }
+        this.row = GridPane.getRowIndex(holder);
+        this.column = GridPane.getColumnIndex(holder);
+        this.tileStyle = holder.getStyle();
+        this.tileText = holder.getText();
+
+//        Log.debug(String.format("Row: %d\tCol: %d\tTitleStyle: %s\tTileText: %s", row, column, tileStyle, tileText));
+
     }
 
 
     // goes thru gridPane at specified column and row and gets the node
-    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
+    private Button getNodeFromGridPane(GridPane gridPane, int col, int row) {
         for (Node node : gridPane.getChildren()) {
             if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
-                return node;
+                return (Button)node;
             }
         }
         return null;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public String getTileStyle() {
+        return tileStyle;
+    }
+
+    public String getTileText() {
+        return tileText;
     }
 
 
@@ -103,6 +127,7 @@ public class Tile implements Serializable {
         String styleText = holder.getStyle();
         styleText = styleText.replace(originalColor, replacementColor);
         holder.setStyle(styleText);
+        this.tileStyle = styleText;
     }
 
     public boolean containsColor(String color) {
@@ -112,6 +137,7 @@ public class Tile implements Serializable {
 
     public void setText(String text) {
         holder.setText(text);
+        this.tileText = text;
     }
 
     public String getText() {
