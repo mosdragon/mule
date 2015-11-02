@@ -1,6 +1,8 @@
 package edu.gatech.cs2340.sharkbait.view;
 
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
+import edu.gatech.cs2340.sharkbait.model.GameSave;
+import edu.gatech.cs2340.sharkbait.model.LocalGameSaves;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,6 +24,8 @@ public class PauseScreenView implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         saveButton.setOnMouseClicked(event -> {
             //DO save
+            GameSave save = new GameSave();
+            LocalGameSaves.saveGameSave(save);
         });
 
         resumeButton.setOnMouseClicked(event -> {

@@ -23,7 +23,7 @@ sourceSets {
         }
         resources {
             srcDir 'src/main/resources'
-            includes = ["fxml/", "images/", "css/"]
+            includes = ["fxml/", "images/", "css/", "gamesaves.json"]
 
         }
     }

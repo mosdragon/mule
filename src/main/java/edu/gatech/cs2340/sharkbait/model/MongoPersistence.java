@@ -13,8 +13,6 @@ import com.mongodb.client.MongoDatabase;
 
 import org.bson.Document;
 
-import javax.print.Doc;
-
 /**
  * Created by osama on 10/25/15.
  */
