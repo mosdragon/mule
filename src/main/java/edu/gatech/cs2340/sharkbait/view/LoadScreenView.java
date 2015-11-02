@@ -54,14 +54,8 @@ public class LoadScreenView implements Initializable {
 
         playerConfigViews = new ArrayList<>();
 
-        newGameButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                        .getResource("/fxml/config/config_screen.fxml"));
-                gameConfigView = fxmlLoader.getController();
-                gameState = State.ConfigGame;
-            }
+        newGameButton.setOnMouseClicked(event -> {
+            MasterController.changeSceneToConfig();
         });
     }
 }

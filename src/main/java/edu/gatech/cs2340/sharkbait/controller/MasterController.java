@@ -237,14 +237,20 @@ public class MasterController {
         MasterController.gameStage = gameStage;
 
         try {
-            Parent configRoot = new FXMLLoader(getClass().getResource
+            Parent loadScreenRoot = new FXMLLoader(getClass().getResource
                     ("/fxml/config/load_screen.fxml")).load();
 //                    ("/fxml/config/config_screen.fxml")).load();
             gameStage.setTitle("M.U.L.E");
-            configScene = new Scene(configRoot);
+            Scene loadScreenScene = new Scene(loadScreenRoot);
 
-            gameStage.setScene(configScene);
+            gameStage.setScene(loadScreenScene);
             gameStage.show();
+
+            FXMLLoader configScreenLoader = new FXMLLoader(getInstance().getClass().getResource
+                    ("/fxml/config/config_screen.fxml"));
+            Parent configSceneRoot = configScreenLoader.load();
+            configScene = new Scene(configSceneRoot);
+//            configSceneView = configScreenLoader.getController();
 
             FXMLLoader gameMapLoader = new FXMLLoader(getInstance().getClass().getResource
                     ("/fxml/game_map.fxml"));
