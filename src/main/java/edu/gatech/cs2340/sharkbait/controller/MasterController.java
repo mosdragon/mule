@@ -10,6 +10,7 @@ import edu.gatech.cs2340.sharkbait.util.Player;
 
 import edu.gatech.cs2340.sharkbait.view.GameMapView;
 import edu.gatech.cs2340.sharkbait.view.TownMapView;
+import edu.gatech.cs2340.sharkbait.view.ConfigScreenView;
 import edu.gatech.cs2340.trydent.log.Log;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -256,8 +257,6 @@ public class MasterController {
             Parent townMapRoot = townMapLoader.load();
             townMapScene = new Scene(townMapRoot);
             townMapView = townMapLoader.getController();
-
-
 
         } catch (IOException e) {
             e.printStackTrace();

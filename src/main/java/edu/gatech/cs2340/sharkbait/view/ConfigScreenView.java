@@ -3,6 +3,7 @@ package edu.gatech.cs2340.sharkbait.view;
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
+import edu.gatech.cs2340.sharkbait.controller.ConfigScreenController;
 import edu.gatech.cs2340.sharkbait.util.State;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -35,79 +36,18 @@ public class ConfigScreenView implements Initializable {
     private SplitPane infoPane;
     @FXML private Text mainGameMessage;
 
-//    /**
-//     * Possible game states. Must find a better way to implement this
-//     */
-//    private enum State {
-//        NotConfigured, ConfigGame, ConfigPlayers, BeginGame
-//    }
 
-    private State gameState;
+    private static State gameState;
 
-    private GameConfigView gameConfigView;
+    private static GameConfigView gameConfigView;
     private List<PlayerConfigView> playerConfigViews;
 
-
-    public void gameStateNotConfigured() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                    .getResource("/fxml/config/game_config.fxml"));
-
-            Parent root = fxmlLoader.load();
-            gameConfigView = fxmlLoader.getController();
-
-            configBox.getChildren().add(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        gameState = State.ConfigGame;
-        nextButton.setText("Add Players");
+    public static void setGameState(State gS) {
+        gameState = gS;
     }
 
-    public void gameStateConfigGame(){
-        try {
-
-            gameConfigView.saveConfigs();
-            int numPlayers = GameConfigs.getNumPlayers();
-
-            for (int i = 1; i <= numPlayers; i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                        .getResource("/fxml/config/players_config.fxml"));
-                Node playerPrompt = fxmlLoader.load();
-                PlayerConfigView playerConfigView = fxmlLoader.getController();
-
-                playerConfigViews.add(playerConfigView);
-
-                playerPrompt.setId("pane" + i);
-
-                infoPane.getItems().add(playerPrompt);
-                String defaultName = "Player " + i;
-                playerConfigView.selectName.setText(defaultName);
-
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        gameState = State.ConfigPlayers;
-        nextButton.setText("Begin Game");
-    }
-
-    public void gameStateConfigPlayers() {
-
-        for (PlayerConfigView controller : playerConfigViews) {
-            controller.makePlayer();
-        }
-
-        infoPane.getItems().clear();
-
-        nextButton.setVisible(false);
-        gameState = State.BeginGame;
-        mainGameMessage.setText("Loading your game...");
-
-        MasterController.changeSceneToGameMap();
-        GameDuration.begin();
+    public static void setGameConfigView(GameConfigView gCV) {
+        gameConfigView = gCV;
     }
 
     @Override
@@ -122,12 +62,13 @@ public class ConfigScreenView implements Initializable {
             public void handle(MouseEvent event) {
                 configBox.getChildren().clear();
                 if (gameState == State.NotConfigured) {
-                    gameStateNotConfigured();
+                    ConfigScreenController.gameStateNotConfigured(configBox, nextButton);
                 }
                 else if (gameState == State.ConfigGame) {
-                    gameStateConfigGame();
+                    ConfigScreenController.gameStateConfigGame(gameConfigView, playerConfigViews, infoPane, nextButton);
                 } else if (gameState == State.ConfigPlayers) {
-                    gameStateConfigPlayers();
+                    ConfigScreenController.gameStateConfigPlayers(playerConfigViews, infoPane,
+                            nextButton, mainGameMessage);
                 }
             }
         });

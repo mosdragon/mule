@@ -61,6 +61,10 @@ public class PlayerConfigView implements Initializable {
 
     }
 
+    public TextField getSelectName() {
+        return selectName;
+    }
+
     /**
      * Called by an external class to create a Player object and save it to configs
      */
