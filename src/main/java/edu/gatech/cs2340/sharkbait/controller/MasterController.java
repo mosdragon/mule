@@ -9,7 +9,9 @@ import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.MapType;
 import edu.gatech.cs2340.sharkbait.util.Player;
+
 import edu.gatech.cs2340.sharkbait.view.*;
+
 import edu.gatech.cs2340.trydent.log.Log;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -300,6 +302,7 @@ public class MasterController implements Serializable, Packable {
             FXMLLoader townMapLoader = new FXMLLoader(getInstance().getClass().getResource
                     ("/fxml/town_map.fxml"));
             Parent townMapRoot = townMapLoader.load();
+
             getInstance().townMapScene = new Scene(townMapRoot);
             getInstance().townMapView = townMapLoader.getController();
 
@@ -329,6 +332,8 @@ public class MasterController implements Serializable, Packable {
                     changeSceneToSave();
                 }
             });
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
