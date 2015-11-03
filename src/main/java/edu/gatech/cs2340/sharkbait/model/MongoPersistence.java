@@ -34,6 +34,9 @@ public class MongoPersistence implements Persistence {
 
         connect();
 
+        GameSave save = new GameSave();
+        LocalGameSaves.addGameSave(save);
+
         JsonObject gameState = new JsonObject();
 
         gameState.addProperty(MASTER_CONTROLLER, MasterController.packAsJson());
@@ -42,15 +45,15 @@ public class MongoPersistence implements Persistence {
         gameState.addProperty(STORE, Store.packAsJson());
         gameState.addProperty(GAME_ID, MasterController.getGameId());
 
-        String gameSave = gameState.toString();
+        String gameStateJson = gameState.toString();
 
         Log.debug("SAVE GAME - MongoPersistence");
-        Log.debug(gameSave);
+        Log.debug(gameStateJson);
 
 //        TODO: Add code to save to DB using gameId
         MongoDatabase database = client.getDatabase(Constants.DB_NAME);
 
-        Document document = Document.parse(gameSave);
+        Document document = Document.parse(gameStateJson);
 
         MongoCollection<Document> collection = database.getCollection(Constants.GAME_SAVES);
 

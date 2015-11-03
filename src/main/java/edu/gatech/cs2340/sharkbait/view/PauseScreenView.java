@@ -25,7 +25,7 @@ public class PauseScreenView implements Initializable {
         saveButton.setOnMouseClicked(event -> {
             //DO save
             GameSave save = new GameSave();
-            LocalGameSaves.saveGameSave(save);
+            LocalGameSaves.addGameSave(save);
         });
 
         resumeButton.setOnMouseClicked(event -> {

@@ -1,117 +1,50 @@
 package edu.gatech.cs2340.sharkbait.model;
 
 import com.google.gson.*;
-import com.google.gson.stream.JsonWriter;
+import com.google.gson.reflect.TypeToken;
 import edu.gatech.cs2340.trydent.log.Log;
 
-import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 
 /**
  * Created by osama on 11/2/15.
  */
 public class LocalGameSaves {
 
-    private static final String FILEPATH = "/gamesaves.json";
-    private static final String GAME_SAVES_FIELD = "gameSaves";
-
-    private static LocalGameSaves instance;
+    private static final String GAME_SAVES = "gameSaves";
+    private static final String EMPTY_ARRAY = "[]";
 
     private LocalGameSaves() {}
 
-    private static LocalGameSaves getInstance() {
-        if (instance == null) {
-            instance = new LocalGameSaves();
-        }
-        return instance;
-    }
+    public static List<GameSave> loadGameSaves() {
+        Preferences prefs = Preferences.userRoot();
+        String gameSavesArray = prefs.get(GAME_SAVES, EMPTY_ARRAY);
 
-    private JsonElement readFile() {
-        URI filepath;
-        FileReader fileReader;
-        JsonElement json = null;
-
-        try {
-            filepath = getClass().getResource(FILEPATH).toURI();
-            File file = new File(filepath);
-            if (file.exists()) {
-                Log.debug("FILE EXISTS");
-                fileReader = new FileReader(new File(filepath));
-
-                JsonParser parser = new JsonParser();
-                json = parser.parse(fileReader);
-                fileReader.close();
-            } else {
-                Log.debug("FILE DOES NOT EXIST");
-                json = new JsonObject();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if (json != null) {
-            Log.debug(json.toString());
-        } else {
-            Log.debug("JSON NULL");
-        }
-
-        return json;
-
-    }
-
-    private void writeFile(JsonElement fileContents) {
-        URI filepath;
-        FileWriter fileWriter;
-
-        try {
-            filepath = getClass().getResource(FILEPATH).toURI();
-            fileWriter = new FileWriter(new File(filepath));
-            fileWriter.write(fileContents.toString());
-            fileWriter.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static List<GameSave> getGameSaves() {
         Gson gson = new Gson();
-        JsonElement fileContentsJson = getInstance().readFile();
-        List<GameSave> saves = new ArrayList<>();
-
-        if (!fileContentsJson.isJsonNull()) {
-
-            JsonObject fileContents = fileContentsJson.getAsJsonObject();
-
-            if (fileContents.has(GAME_SAVES_FIELD)) {
-                JsonArray gameSaves = fileContents.getAsJsonArray(GAME_SAVES_FIELD);
-
-                for (JsonElement gameSave : gameSaves) {
-                    if (gameSave != null && !gameSave.isJsonNull()) {
-                        GameSave tempSave = gson.fromJson(gameSave, GameSave.class);
-                        saves.add(tempSave);
-                    }
-                }
-            }
-        }
+        Type typeOfList = new TypeToken<List<GameSave>>(){}.getType();
+        List<GameSave> saves = gson.fromJson(gameSavesArray, typeOfList);
 
         return saves;
     }
 
-    public static void saveGameSave(GameSave latestGameSave) {
-        List<GameSave> saves = getGameSaves();
+    private static void storeGameSaves(List<GameSave> saves) {
+        Preferences prefs = Preferences.userRoot();
+        Gson gson = new Gson();
+        String gameSavesArray = gson.toJson(saves);
+
+        prefs.put(GAME_SAVES, gameSavesArray);
+        try {
+            prefs.flush();
+        } catch (BackingStoreException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addGameSave(GameSave latestGameSave) {
+        List<GameSave> saves = loadGameSaves();
         saves.add(latestGameSave);
         Gson gson = new Gson();
         JsonArray gameSaves = new JsonArray();
@@ -119,9 +52,7 @@ public class LocalGameSaves {
             JsonElement saveJson = gson.toJsonTree(save);
             gameSaves.add(saveJson);
         }
+        storeGameSaves(saves);
 
-        JsonObject fileContents = new JsonObject();
-        fileContents.add(GAME_SAVES_FIELD, gameSaves);
-        getInstance().writeFile(fileContents);
     }
 }

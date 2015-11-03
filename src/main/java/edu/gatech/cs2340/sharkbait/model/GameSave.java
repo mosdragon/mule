@@ -12,6 +12,8 @@ public class GameSave implements Serializable {
     private long gameId;
     private long timeStamp;
 
+    private static final String TEMPLATE = "gameId:%d, timeStamp:%d";
+
     public GameSave() {
         gameId = MasterController.getGameId();
         timeStamp = System.currentTimeMillis();
@@ -37,5 +39,11 @@ public class GameSave implements Serializable {
 
     public void setTimeStamp(long timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    @Override
+    public String toString() {
+        String representation = String.format(TEMPLATE, getGameId(), getTimeStamp());
+        return representation;
     }
 }
