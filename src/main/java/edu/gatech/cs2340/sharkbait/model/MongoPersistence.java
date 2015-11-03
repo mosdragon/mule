@@ -88,22 +88,20 @@ public class MongoPersistence implements Persistence {
 
         if (gameSaveDocument != null) {
 
-            String gameConfigs = gameSaveDocument.getString(GAME_CONFIGS);
-            GameConfigs.unpackfromJson(gameConfigs);
-
             String gameDuration = gameSaveDocument.getString(GAME_DURATION);
             GameDuration.unpackfromJson(gameDuration);
+
+            String gameConfigs = gameSaveDocument.getString(GAME_CONFIGS);
+            GameConfigs.unpackfromJson(gameConfigs);
 
             String masterController = gameSaveDocument.getString(MASTER_CONTROLLER);
             MasterController.unpackfromJson(masterController);
 
-            MasterController.initializeTimeline();
             for (Player player : GameDuration.getPlayers()) {
                 player.unpack();
             }
-            MasterController.updateMessages();
-
-
+            MasterController.initializeTimeline();
+            MasterController.resumeTime();
 
             Log.debug("Everything deserialized");
 

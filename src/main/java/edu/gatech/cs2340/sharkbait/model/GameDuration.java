@@ -36,8 +36,8 @@ public class GameDuration implements Serializable, Packable {
     private transient TownMapView townMapView;
 
     private List<Player> players;
-    private int round = 1;
-    private int turn = 0;
+    private int round;
+    private int turn;
 
     private boolean begun = false;
     private boolean paused = false;
@@ -58,6 +58,8 @@ public class GameDuration implements Serializable, Packable {
 
     private GameDuration() {
         activePlayer = null;
+        round = 1;
+        turn = 0;
     }
 
     public static GameDuration getInstance() {
@@ -170,11 +172,12 @@ public class GameDuration implements Serializable, Packable {
     private static void determineTimeRemaining() {
 //        TODO: Consider food and energy minimums
 
-        Player player = getActivePlayer();
-        int foodCount = player.getFood();
+        if (getInstance().round >= MAX_ROUNDS) {
+            endGame();
+        } else if (getInstance().phase == GamePhase.PlayerTurnPhase) {
+            Player player = getActivePlayer();
+            int foodCount = player.getFood();
 
-        int round = getRound();
-        if (round > MAX_ROUNDS) {
             int foodRequirement = FOOD_REQUIREMENTS[getRound() - 1];
 
             if (foodCount == 0) {
@@ -187,8 +190,9 @@ public class GameDuration implements Serializable, Packable {
                 getInstance().timeRemaining = TIME_DEFAULT;
             }
         } else {
-            endGame();
+            getInstance().timeRemaining = TIME_DEFAULT;
         }
+
     }
 
     /**
