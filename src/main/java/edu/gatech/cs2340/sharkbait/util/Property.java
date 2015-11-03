@@ -34,7 +34,7 @@ public class Property implements Serializable, Packable {
         return tileText.contains(MULE);
     }
 
-    public void addMule(MuleInterface mule) {
+    public void addMule(Mule mule) {
         tile.setText(mule.toString());
     }
 

@@ -1,12 +1,16 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import com.google.gson.InstanceCreator;
+
+import java.lang.reflect.Type;
+
 /**
  * Created by osama on 11/2/15.
  */
 public class MuleFactory {
 
-    public static MuleInterface createMule(Property property, Resource muleType) {
-        MuleInterface created = null;
+    public static Mule createMule(Property property, Resource muleType) {
+        Mule created = null;
 
         if (muleType == Resource.Ore) {
             created = new OreMule(property);

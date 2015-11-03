@@ -56,7 +56,7 @@ public class GameMapController {
             if (tileBought && isOwnedByPlayer && noMuleHere) {
 
                 Resource muleType = GameDuration.getActiveMuleType();
-                MuleInterface mule = MuleFactory.createMule(property, muleType);
+                Mule mule = MuleFactory.createMule(property, muleType);
 
                 property.addMule(mule);
                 activePlayer.addMule(mule);
