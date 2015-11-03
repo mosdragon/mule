@@ -1,48 +1,53 @@
 package edu.gatech.cs2340.sharkbait.util;
 
 import edu.gatech.cs2340.sharkbait.model.Packable;
-import edu.gatech.cs2340.trydent.log.Log;
 
 import java.io.Serializable;
 
 /**
- * Created by osama on 10/27/15.
+ * Created by osama on 9/22/15.
  */
+public abstract class Mule implements Serializable, Packable, MuleInterface {
 
-public interface Mule extends Packable {
+    private Resource type;
+    private Property property;
 
+    public Mule(Property property, Resource type) {
+        this.property = property;
+        this.type = type;
+    }
 
-    int R_FOOD = 4;
-    int R_ENERGY = 2;
-    int R_ORE = 0;
+    @Override
+    public Resource getType() {
+        return type;
+    }
 
-    int P_FOOD = 2;
-    int P_ENERGY = 3;
-    int P_ORE = 1;
+    @Override
+    public void setType(Resource type) {
+        this.type = type;
+    }
 
-    int M1_FOOD = 1;
-    int M1_ENERGY = 1;
-    int M1_ORE = 2;
+    @Override
+    public Property getProperty() {
+        return property;
+    }
 
-    int M2_FOOD = 1;
-    int M2_ENERGY = 1;
-    int M2_ORE = 3;
+    @Override
+    public void setProperty(Property property) {
+        this.property = property;
+    }
 
-    int M3_FOOD = 1;
-    int M3_ENERGY = 1;
-    int M3_ORE = 4;
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Mule)) {
+            return false;
+        }
+        Mule other = (Mule) obj;
+        return this.type == other.type;
+    }
 
-    Resource getType();
-
-    void setType(Resource type);
-
-    Property getProperty();
-
-    void setProperty(Property property);
-
-    /**
-     * Called for every MULE at the beginning of a player's turn. Updates quantities of resources
-     * @param player, the player whose turn it is right now
-     */
-    void handleProduction(Player player);
+    @Override
+    public String toString() {
+        return type.toString() + " Mule";
+    }
 }

@@ -3,7 +3,7 @@ package edu.gatech.cs2340.sharkbait.util;
 /**
  * Created by osama on 10/27/15.
  */
-public class EnergyMule extends AbstractMule {
+public class EnergyMule extends Mule {
 
     public EnergyMule(Property property) {
         super(property, Resource.Energy);

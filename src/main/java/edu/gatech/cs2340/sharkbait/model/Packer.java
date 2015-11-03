@@ -42,6 +42,7 @@ public class Packer {
 
         Gson gson = new Gson();
         T unpacked = gson.fromJson(jsonSource, type);
+        unpacked.unpack();
         return unpacked;
     }
 

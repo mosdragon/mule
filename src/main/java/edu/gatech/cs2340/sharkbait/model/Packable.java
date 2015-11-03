@@ -23,4 +23,6 @@ public interface Packable extends Serializable {
         return null;
     }
 
+    default void unpack() {};
+
 }

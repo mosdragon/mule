@@ -176,4 +176,7 @@ public class GameMapView implements Initializable {
     }
 
 
+    public GridPane getGrid() {
+        return grid;
+    }
 }

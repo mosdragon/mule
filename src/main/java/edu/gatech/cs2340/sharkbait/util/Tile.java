@@ -1,11 +1,18 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.model.Constants;
-import edu.gatech.cs2340.sharkbait.model.Packable;
-import javafx.scene.control.Button;
 
-import javax.swing.text.html.CSS;
+import edu.gatech.cs2340.sharkbait.model.Packable;
+
+
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+
+
 import java.io.Serializable;
+import javafx.scene.Node;
+
 
 /**
  * Created by osama on 10/15/15.
@@ -26,6 +33,11 @@ public class Tile implements Serializable, Packable {
     private transient Button holder;
     private PropertyType type;
 
+    private int row;
+    private int column;
+
+    private String tileStyle;
+    private String tileText;
 
     public Tile(Button holder) {
         this.holder = holder;
@@ -45,7 +57,46 @@ public class Tile implements Serializable, Packable {
         } else if (buttonClass.contains(MOUNTAIN3)) {
             type = PropertyType.Mountain3;
         }
+        this.row = GridPane.getRowIndex(holder);
+        this.column = GridPane.getColumnIndex(holder);
+        this.tileStyle = holder.getStyle();
+        this.tileText = holder.getText();
     }
+
+    public void setTileStyle(String tileStyle) {
+        holder.setStyle(tileStyle);
+        this.tileStyle = tileStyle;
+    }
+
+
+    // goes through gridPane at specified column and row and gets the node
+    private static Button getButtonFromGrid(GridPane gridPane, int row, int column) {
+        for (Node node : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(node) == column && GridPane.getRowIndex(node) == row) {
+                if (node instanceof Button) {
+                    return (Button) node;
+                }
+            }
+        }
+        return null;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public String getTileStyle() {
+        return tileStyle;
+    }
+
+    public String getTileText() {
+        return tileText;
+    }
+
 
     public Button getHolder() {
         return holder;
@@ -74,6 +125,7 @@ public class Tile implements Serializable, Packable {
         String styleText = holder.getStyle();
         styleText = styleText.replace(originalColor, replacementColor);
         holder.setStyle(styleText);
+        this.tileStyle = styleText;
     }
 
     public boolean containsColor(String color) {
@@ -83,6 +135,7 @@ public class Tile implements Serializable, Packable {
 
     public void setText(String text) {
         holder.setText(text);
+        this.tileText = text;
     }
 
     public String getText() {
@@ -95,6 +148,17 @@ public class Tile implements Serializable, Packable {
 
     public void setType(PropertyType type) {
         this.type = type;
+    }
+
+    @Override
+    public void unpack() {
+        GridPane gridPane = MasterController.getGrid();
+        Button holderFromGrid = getButtonFromGrid(gridPane, row, column);
+        if (holderFromGrid != null) {
+            this.holder = holderFromGrid;
+            setText(tileText);
+            setTileStyle(tileStyle);
+        }
     }
 
     @Override

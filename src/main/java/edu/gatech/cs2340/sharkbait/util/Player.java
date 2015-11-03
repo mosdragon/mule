@@ -22,7 +22,7 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     private int energy;
     private int food;
     private int ore;
-    private List<Mule> mules;
+    private List<MuleInterface> mules;
     private List<Property> properties;
 
     private static final int LAND_COST = Constants.LAND;
@@ -169,15 +169,15 @@ public class Player implements Comparable<Player>, Serializable, Packable {
         return mules.size();
     }
 
-    public List<Mule> getMules() {
+    public List<MuleInterface> getMules() {
         return mules;
     }
 
-    public void addMule(Mule mule) {
+    public void addMule(MuleInterface mule) {
         mules.add(mule);
     }
 
-    public void removeMule(Mule mule) {
+    public void removeMule(MuleInterface mule) {
         mules.remove(mule);
     }
 
@@ -187,7 +187,7 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     public void handleProduction() {
         Log.debug("Computing Production");
         if (getEnergy() >= MIN_PRODUCTION_ENERGY) {
-            for (Mule mule : mules) {
+            for (MuleInterface mule : mules) {
                 mule.handleProduction(this);
             }
         } else {

@@ -3,7 +3,7 @@ package edu.gatech.cs2340.sharkbait.util;
 /**
  * Created by osama on 10/27/15.
  */
-public class OreMule extends AbstractMule {
+public class OreMule extends Mule {
 
 
     public OreMule(Property property) {

@@ -3,11 +3,14 @@ package edu.gatech.cs2340.sharkbait.view;
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.model.GameSave;
 import edu.gatech.cs2340.sharkbait.model.LocalGameSaves;
+import edu.gatech.cs2340.sharkbait.model.MongoPersistence;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 import java.net.URL;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PauseScreenView implements Initializable {
@@ -26,6 +29,7 @@ public class PauseScreenView implements Initializable {
             //DO save
             GameSave save = new GameSave();
             LocalGameSaves.addGameSave(save);
+            MongoPersistence.saveGame();
         });
 
         resumeButton.setOnMouseClicked(event -> {
@@ -35,6 +39,13 @@ public class PauseScreenView implements Initializable {
 
         loadButton.setOnMouseClicked(event -> {
             //Load game
+            List<GameSave> gameSaves = LocalGameSaves.loadGameSaves();
+            if (gameSaves.size() > 0) {
+                Collections.sort(gameSaves);
+                Collections.reverse(gameSaves);
+                GameSave gameSave = gameSaves.get(0);
+                MongoPersistence.loadGame(gameSave);
+            }
         });
     }
 }

@@ -67,33 +67,33 @@ public class MongoPersistence implements Persistence {
     /**
      * Pass in a gameId, and the fetch will be made from Mongo to get all the needed fields to
      * reconstruct the game again
-     * @param gameId
+     * @param gameSave, the actual gameSave used to retrieve the game
      */
-    public static void loadGame(long gameId) {
+    public static void loadGame(GameSave gameSave) {
         connect();
         MongoDatabase database = client.getDatabase(Constants.DB_NAME);
         MongoCollection<Document> collection = database.getCollection(Constants.GAME_SAVES);
 
 
         FindIterable<Document> foundDocuments = collection
-                .find(new Document(GAME_ID, gameId))
+                .find(new Document(GAME_ID, gameSave.getGameId()))
                 .limit(SINGLE_RESULT);
 
-        Document gameSave = null;
+        Document gameSaveDocument = null;
 //        There will only be one document matching the gameId at most
         for (Document doc : foundDocuments) {
-            gameSave = doc;
+            gameSaveDocument = doc;
         }
 
-        if (gameSave != null) {
+        if (gameSaveDocument != null) {
 
-            String gameConfigs = gameSave.getString(GAME_CONFIGS);
+            String gameConfigs = gameSaveDocument.getString(GAME_CONFIGS);
             GameConfigs.unpackfromJson(gameConfigs);
 
-            String gameDuration = gameSave.getString(GAME_DURATION);
+            String gameDuration = gameSaveDocument.getString(GAME_DURATION);
             GameDuration.unpackfromJson(gameDuration);
 
-            String masterController = gameSave.getString(MASTER_CONTROLLER);
+            String masterController = gameSaveDocument.getString(MASTER_CONTROLLER);
             MasterController.unpackfromJson(masterController);
 
             Log.debug("Everything deserialized");

@@ -3,7 +3,7 @@ package edu.gatech.cs2340.sharkbait.util;
 /**
  * Created by osama on 10/27/15.
  */
-public class FoodMule extends AbstractMule {
+public class FoodMule extends Mule {
 
     public FoodMule(Property property) {
         super(property, Resource.Food);

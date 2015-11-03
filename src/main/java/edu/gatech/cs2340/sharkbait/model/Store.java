@@ -78,7 +78,7 @@ public class Store implements Serializable, Packable {
 
     public static void buyMule(Player player, Resource type) {
         boolean canAfford = false;
-        Log.debug("AbstractMule Type: " + type.toString());
+        Log.debug("Mule Type: " + type.toString());
         if (hasMules()) {
             if (type == Resource.Ore) {
                 if (player.getMoney() >= getInstance().ORE_MULE) {
@@ -105,7 +105,7 @@ public class Store implements Serializable, Packable {
 
             if (canAfford) {
 //                player.changeMules(1);
-//                AbstractMule mule = new AbstractMule(player, type);
+//                Mule mule = new Mule(player, type);
 //                p.addMule(p.getMules(), mule);
                 getInstance().muleCount--;
             }
@@ -116,7 +116,7 @@ public class Store implements Serializable, Packable {
 
     public static void sellMule(Player player, Resource type) {
 //        TODO: IMPLEMENT
-//        AbstractMule mule = new AbstractMule(player, type);
+//        Mule mule = new Mule(player, type);
 //
 //
 //        if (type == Resource.Ore) {

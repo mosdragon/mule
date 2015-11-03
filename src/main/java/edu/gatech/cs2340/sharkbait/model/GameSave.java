@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by osama on 11/2/15.
  */
-public class GameSave implements Serializable {
+public class GameSave implements Serializable, Comparable<GameSave> {
 
     private long gameId;
     private long timeStamp;
@@ -45,5 +45,12 @@ public class GameSave implements Serializable {
     public String toString() {
         String representation = String.format(TEMPLATE, getGameId(), getTimeStamp());
         return representation;
+    }
+
+    @Override
+    public int compareTo(GameSave o) {
+        Long myTimestamp = timeStamp;
+        Long otherTimestamp = o.timeStamp;
+        return myTimestamp.compareTo(otherTimestamp);
     }
 }

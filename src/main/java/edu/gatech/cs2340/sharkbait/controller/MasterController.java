@@ -17,6 +17,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -422,6 +423,9 @@ public class MasterController implements Serializable, Packable {
         return getInstance().pack();
     }
 
+    public static GridPane getGrid() {
+        return getInstance().gameMapView.getGrid();
+    }
 
     public static long getGameId() {
         return getInstance().gameId;

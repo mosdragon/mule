@@ -1,10 +1,6 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
-import com.google.gson.Gson;
-import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
-import edu.gatech.cs2340.sharkbait.model.MongoPersistence;
-import edu.gatech.cs2340.sharkbait.model.Packer;
 
 import edu.gatech.cs2340.sharkbait.util.*;
 import edu.gatech.cs2340.trydent.log.Log;
@@ -60,7 +56,7 @@ public class GameMapController {
             if (tileBought && isOwnedByPlayer && noMuleHere) {
 
                 Resource muleType = GameDuration.getActiveMuleType();
-                Mule mule = MuleFactory.createMule(property, muleType);
+                MuleInterface mule = MuleFactory.createMule(property, muleType);
 
                 property.addMule(mule);
                 activePlayer.addMule(mule);

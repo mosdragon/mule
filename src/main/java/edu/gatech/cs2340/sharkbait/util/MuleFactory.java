@@ -5,8 +5,8 @@ package edu.gatech.cs2340.sharkbait.util;
  */
 public class MuleFactory {
 
-    public static Mule createMule(Property property, Resource muleType) {
-        Mule created = null;
+    public static MuleInterface createMule(Property property, Resource muleType) {
+        MuleInterface created = null;
 
         if (muleType == Resource.Ore) {
             created = new OreMule(property);

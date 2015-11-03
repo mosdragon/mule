@@ -1,9 +1,7 @@
 package edu.gatech.cs2340.sharkbait.util;
 
 
-import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.model.Packable;
-import edu.gatech.cs2340.trydent.log.Log;
 import javafx.scene.control.Button;
 
 import java.io.Serializable;
@@ -36,7 +34,7 @@ public class Property implements Serializable, Packable {
         return tileText.contains(MULE);
     }
 
-    public void addMule(Mule mule) {
+    public void addMule(MuleInterface mule) {
         tile.setText(mule.toString());
     }
 
