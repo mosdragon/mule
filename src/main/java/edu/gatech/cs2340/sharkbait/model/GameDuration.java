@@ -106,6 +106,9 @@ public class GameDuration implements Serializable, Packable {
     }
 
     public static void addProperty(Button button, Property property) {
+        if (getInstance().propertiesMap == null) {
+            getInstance().propertiesMap = new HashMap<>();
+        }
         getInstance().propertiesMap.put(button, property);
     }
 
@@ -273,6 +276,9 @@ public class GameDuration implements Serializable, Packable {
      */
     public static void unpack(GameDuration source) {
         instance = source;
+        if (getInstance().propertiesMap == null) {
+            getInstance().propertiesMap = new HashMap<>();
+        }
     }
 
     /**

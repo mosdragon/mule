@@ -54,6 +54,7 @@ public class MasterController implements Serializable, Packable {
     private transient Scene saveScene;
     private transient Scene eventScene;
     private transient Scene productionScene;
+    private transient Scene loadScreenScene;
 
     private transient Stage gameStage;
 
@@ -70,16 +71,16 @@ public class MasterController implements Serializable, Packable {
 
     private MasterController() {
         gameId = System.currentTimeMillis();
-        initializeTimeline();
     }
 
-    private void initializeTimeline() {
-//        Used to pass time every second
-        timeline = new Timeline(new KeyFrame(
+    public static void initializeTimeline() {
+
+//    Used to pass time every second
+        getInstance().timeline = new Timeline(new KeyFrame(
                 Duration.millis(INTERVAL),
                 ae -> passTime()));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        getInstance().timeline.setCycleCount(Animation.INDEFINITE);
+        getInstance().timeline.play();
     }
 
     public static MasterController getInstance() {
@@ -288,10 +289,24 @@ public class MasterController implements Serializable, Packable {
         getInstance().gameStage = gameStage;
 
         try {
+
             Parent configRoot = new FXMLLoader(getInstance().getClass().getResource
                     ("/fxml/config/config_screen.fxml")).load();
             gameStage.setTitle("M.U.L.E");
             getInstance().configScene = new Scene(configRoot);
+
+            Parent loadScreenRoot = new FXMLLoader(getInstance().getClass().getResource
+                    ("/fxml/config/load_screen.fxml")).load();
+//                    ("/fxml/config/config_screen.fxml")).load();
+            gameStage.setTitle("M.U.L.E");
+            getInstance().loadScreenScene = new Scene(loadScreenRoot);
+
+
+            FXMLLoader configScreenLoader = new FXMLLoader(getInstance().getClass().getResource
+                    ("/fxml/config/config_screen.fxml"));
+            Parent configSceneRoot = configScreenLoader.load();
+            getInstance().configScene = new Scene(configSceneRoot);
+//            configSceneView = configScreenLoader.getController();
 
             FXMLLoader gameMapLoader = new FXMLLoader(getInstance().getClass().getResource
                     ("/fxml/game_map.fxml"));
@@ -342,7 +357,8 @@ public class MasterController implements Serializable, Packable {
     public static void initialize(Stage gameStage) {
         constructScenes(gameStage);
 
-        gameStage.setScene(getInstance().configScene);
+        initializeTimeline();
+        gameStage.setScene(getInstance().loadScreenScene);
         gameStage.show();
 
     }
@@ -405,7 +421,6 @@ public class MasterController implements Serializable, Packable {
         Stage currentStage = getInstance().gameStage;
         instance = source;
         constructScenes(currentStage);
-        instance.initializeTimeline();
     }
 
     /**

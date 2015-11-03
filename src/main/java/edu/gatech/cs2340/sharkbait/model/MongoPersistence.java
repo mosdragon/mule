@@ -6,6 +6,7 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
+import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.trydent.log.Log;
 
 import com.mongodb.MongoClient;
@@ -95,6 +96,14 @@ public class MongoPersistence implements Persistence {
 
             String masterController = gameSaveDocument.getString(MASTER_CONTROLLER);
             MasterController.unpackfromJson(masterController);
+
+            MasterController.initializeTimeline();
+            for (Player player : GameDuration.getPlayers()) {
+                player.unpack();
+            }
+            MasterController.updateMessages();
+
+
 
             Log.debug("Everything deserialized");
 

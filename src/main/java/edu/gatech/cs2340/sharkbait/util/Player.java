@@ -195,6 +195,15 @@ public class Player implements Comparable<Player>, Serializable, Packable {
         }
     }
 
+    @Override
+    public void unpack() {
+        if (properties != null) {
+            for (Property property : properties) {
+                property.unpack();
+            }
+        }
+    }
+
     public List<Property> getProperties() {
         return properties;
     }
