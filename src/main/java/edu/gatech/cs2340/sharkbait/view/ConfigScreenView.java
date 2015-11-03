@@ -62,9 +62,7 @@ public class ConfigScreenView implements Initializable {
             public void handle(MouseEvent event) {
                 configBox.getChildren().clear();
                 if (gameState == State.NotConfigured) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                            .getResource("/fxml/config/players_config.fxml"));
-                    ConfigScreenController.gameStateNotConfigured(configBox, nextButton, fxmlLoader);
+                    ConfigScreenController.gameStateNotConfigured(configBox, nextButton);
                 }
                 else if (gameState == State.ConfigGame) {
                     ConfigScreenController.gameStateConfigGame(gameConfigView, playerConfigViews, infoPane, nextButton);
