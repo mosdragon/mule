@@ -1,6 +1,8 @@
 package edu.gatech.cs2340.sharkbait.model;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import edu.gatech.cs2340.trydent.log.Log;
 
@@ -12,25 +14,45 @@ import java.util.prefs.Preferences;
 /**
  * Created by osama on 11/2/15.
  */
-public class LocalGameSaves {
+public final class LocalGameSaves {
 
+    /**
+     * Game Saves string.
+     */
     private static final String GAME_SAVES = "gameSaves";
+
+    /**
+     * Empty array.
+     */
     private static final String EMPTY_ARRAY = "[]";
 
-    private LocalGameSaves() {}
+    /**
+     * Empty constructor.
+     */
+    private LocalGameSaves() {
+    }
 
+    /**
+     * Loads saved games.
+     * @return the list of the games
+     */
     public static List<GameSave> loadGameSaves() {
         Preferences prefs = Preferences.userRoot();
         String gameSavesArray = prefs.get(GAME_SAVES, EMPTY_ARRAY);
 
         Gson gson = new Gson();
-        Type typeOfList = new TypeToken<List<GameSave>>(){}.getType();
+        Type typeOfList = new TypeToken<List<GameSave>>() {
+        }.getType();
         List<GameSave> saves = gson.fromJson(gameSavesArray, typeOfList);
 
         return saves;
     }
 
-    private static void storeGameSaves(List<GameSave> saves) {
+    /**
+     * Stores the saved games.
+     * @param saves the saves.
+     */
+    private static void storeGameSaves(final List<GameSave> saves) {
         Preferences prefs = Preferences.userRoot();
         Gson gson = new Gson();
         String gameSavesArray = gson.toJson(saves);
@@ -39,11 +61,15 @@ public class LocalGameSaves {
         try {
             prefs.flush();
         } catch (BackingStoreException e) {
-            e.printStackTrace();
+            Log.debug(e.toString());
         }
     }
 
-    public static void addGameSave(GameSave latestGameSave) {
+    /**
+     * Adds a saved game.
+     * @param latestGameSave the latest game save.
+     */
+    public static void addGameSave(final GameSave latestGameSave) {
         List<GameSave> saves = loadGameSaves();
         saves.add(latestGameSave);
         Gson gson = new Gson();

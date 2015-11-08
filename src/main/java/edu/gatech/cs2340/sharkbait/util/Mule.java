@@ -9,12 +9,29 @@ import java.io.Serializable;
  */
 public abstract class Mule implements Serializable, Packable, MuleInterface {
 
+    /**
+     * The mule type.
+     */
     private Resource type;
+
+    /**
+     * The mule property.
+     */
     private Property property;
 
-    public Mule(Property property, Resource type) {
-        this.property = property;
-        this.type = type;
+    /**
+     * The hash constant for .hashCode().
+     */
+    private static final int HASH_CONSTANT = 42;
+
+    /**
+     * Constructor.
+     * @param propertyInput the property for the mule.
+     * @param typeInput the type of the mule.
+     */
+    public Mule(final Property propertyInput, final Resource typeInput) {
+        property = propertyInput;
+        type = typeInput;
     }
 
     @Override
@@ -23,8 +40,8 @@ public abstract class Mule implements Serializable, Packable, MuleInterface {
     }
 
     @Override
-    public void setType(Resource type) {
-        this.type = type;
+    public void setType(final Resource typeInput) {
+        type = typeInput;
     }
 
     @Override
@@ -33,17 +50,23 @@ public abstract class Mule implements Serializable, Packable, MuleInterface {
     }
 
     @Override
-    public void setProperty(Property property) {
-        this.property = property;
+    public void setProperty(final Property propertyInput) {
+        property = propertyInput;
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (!(obj instanceof Mule)) {
             return false;
         }
         Mule other = (Mule) obj;
         return this.type == other.type;
+    }
+
+    @Override
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return HASH_CONSTANT;
     }
 
     @Override

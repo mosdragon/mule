@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * ProductionView class
+ */
 public class ProductionView implements Initializable {
 
     @FXML
