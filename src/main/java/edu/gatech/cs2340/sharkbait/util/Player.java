@@ -244,4 +244,20 @@ public class Player implements Comparable<Player>, Serializable, Packable {
         return myMoney.compareTo(thatMoney);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof  Player)) {
+            return false;
+        }
+        Player other = (Player) obj;
+        return name.equals(other.name) && color.equals(other.color) && race.equals(other.race)
+                && money == other.money;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 41;
+        return name.hashCode() * prime + color.hashCode() * ((int) Math.pow(prime, 2)) +
+                race.hashCode() * ((int) Math.pow(prime, 3)) + (int) (money * Math.pow(prime, 4));
+    }
 }

@@ -17,12 +17,17 @@ import static org.junit.Assert.*;
  */
 public class PlayerTest {
 
-    Player player1 = new Player("Zayn", "Brown", Race.Human);
+    Player player1;
 //    player1.initializeMoney();
 
     @After
     public void tearDown() throws Exception {
 
+    }
+
+    @Before
+    public void before() {
+        player1 = new Player("Zayn", "Brown", Race.Human);
     }
 
     @Test
