@@ -14,11 +14,9 @@ public class JosiahInitResources {
     private static final int BEGINNER_FOOD = 8;
     private static final int BEGINNER_ENERGY = 4;
     private static final int BEGINNER_ORE = 0;
-
     private static final int STANDARD_FOOD = 4;
     private static final int STANDARD_ENERGY = 2;
     private static final int STANDARD_ORE = 0;
-
     private static final int TOURNAMENT_FOOD = 4;
     private static final int TOURNAMENT_ENERGY = 2;
     private static final int TOURNAMENT_ORE = 0;
