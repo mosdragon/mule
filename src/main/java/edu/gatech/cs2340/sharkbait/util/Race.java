@@ -34,10 +34,10 @@ public enum Race implements Serializable, Packable {
     private String name;
     /**
      * Race Constructor.
-     * @param name name of the race.
+     * @param newName name of the race.
      */
-    Race(final String name) {
-        this.name = name;
+    Race(final String newName) {
+        name = newName;
     }
 
     @Override

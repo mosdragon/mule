@@ -123,15 +123,28 @@ public class Player implements Comparable<Player>, Serializable, Packable {
      */
     private static final int TOURNAMENT_ORE = 0;
     /**
-     * Player constructor.
-     * @param color color of the player
-     * @param name name of the player
-     * @param race race of the player
+     * int FLAPPER_MONEY.
      */
-    public Player(final String name, final String color, final Race race) {
-        this.name = name;
-        this.color = color;
-        this.race = race;
+    private static final int FLAPPER_MONEY = 1600;
+    /**
+     * int HUMAN_MONEY.
+     */
+    private static final int HUMAN_MONEY = 600;
+    /**
+     * int MONEY.
+     */
+    private static final int MONEY = 1600;
+    /**
+     * Player constructor.
+     * @param newColor color of the player
+     * @param newName name of the player
+     * @param newRace race of the player
+     */
+    public Player(final String newName, final String newColor,
+                  final Race newRace) {
+        name = newName;
+        color = newColor;
+        race = newRace;
 
         initializeMoney();
         initializeResources();
@@ -144,13 +157,13 @@ public class Player implements Comparable<Player>, Serializable, Packable {
      */
     private void initializeMoney() {
         if (race == Race.Flapper) {
-            money = 1600;
+            money = FLAPPER_MONEY;
 
         } else if (race == Race.Human) {
-            money = 600;
+            money = HUMAN_MONEY;
 
         } else {
-            money = 1000;
+            money = MONEY;
         }
     }
     /**
@@ -184,10 +197,10 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     }
     /**
      * setName setter.
-     * @param name name of the player
+     * @param nameInput name of the player
      */
-    public final void setName(final String name) {
-        this.name = name;
+    public final void setName(final String nameInput) {
+        name = nameInput;
     }
     /**
      * getColor getter.
@@ -198,10 +211,10 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     }
     /**
      * setColor setter.
-     * @param color color of the player
+     * @param colorInput color of the player
      */
-    public final void setColor(final String color) {
-        this.color = color;
+    public final void setColor(final String colorInput) {
+        color = colorInput;
     }
     /**
      * getRace getter.
@@ -370,9 +383,9 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     }
 
     @Override
-    public int compareTo(final Player o) {
+    public final int compareTo(final Player object) {
         Double myMoney = this.money;
-        Double thatMoney = o.money;
+        Double thatMoney = object.money;
         return myMoney.compareTo(thatMoney);
     }
 

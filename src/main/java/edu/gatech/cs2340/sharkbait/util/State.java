@@ -27,11 +27,11 @@ public enum State implements Serializable {
      */
     private String name;
     /**
-     * State constructor
-     * @param name name of the state.
+     * State constructor.
+     * @param nameInput name of the state.
      */
-    State(final String name) {
-        this.name = name;
+    State(final String nameInput) {
+        name = nameInput;
     }
 
     @Override
