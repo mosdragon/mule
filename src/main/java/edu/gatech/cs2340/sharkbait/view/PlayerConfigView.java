@@ -35,10 +35,10 @@ public class PlayerConfigView implements Initializable {
      * ComboBox<Race> Race.
      */
     @FXML private ComboBox<Race> selectRace;
-    /**
-     * ObservableList<String> colorOptions.
-     */
-    private ObservableList<String> colorOptions;
+//    /**
+//     * ObservableList<String> colorOptions.
+//     */
+//    private ObservableList<String> colorOptions;
     /**
      * Map<String, String> colorMap.
      */
@@ -49,6 +49,7 @@ public class PlayerConfigView implements Initializable {
                                  final ResourceBundle resources) {
 
         colorMap = new HashMap<>();
+        ObservableList<String> colorOptions;
 
 //        These are the tinted versions of the colors
         colorMap.put("Aqua", String.format("rgba(0,255,255,%f)", ALPHA));
