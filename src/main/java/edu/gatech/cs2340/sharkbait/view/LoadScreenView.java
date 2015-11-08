@@ -62,7 +62,8 @@ public class LoadScreenView implements Initializable {
         BeginGame
     }
     @Override
-    public void initialize(final URL location, final ResourceBundle resources) {
+    public final void initialize(
+            final URL location, final ResourceBundle resources) {
         newGameButton.setText("New Game");
 
         newGameButton.setOnMouseClicked(event -> {

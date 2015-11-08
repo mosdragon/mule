@@ -9,22 +9,35 @@ import javafx.scene.control.TextArea;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Popup even view class.
+ */
 public class PopupEventView implements Initializable {
-
+    /**
+     * Okay button.
+     */
     @FXML
     private Button okayButton;
+    /**
+     * Event text area.
+     */
     @FXML
     private TextArea eventText;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public final void initialize(
+            final URL location, final ResourceBundle resources) {
         okayButton.setOnMouseClicked(event -> {
             MasterController.resumeTime();
             MasterController.changeSceneToGameMap();
         });
     }
 
-    public void setText(String input) {
+    /**
+     * Set text method.
+     * @param input input for text.
+     */
+    public final void setText(final String input) {
         eventText.setWrapText(true);
         eventText.setText(input);
     }

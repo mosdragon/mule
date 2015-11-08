@@ -13,18 +13,31 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Pause screen view class.
+ */
 public class PauseScreenView implements Initializable {
 
+    /**
+     * Save button.
+     */
     @FXML
     private Button saveButton;
+    /**
+     * Resume button.
+     */
     @FXML
     private Button resumeButton;
+    /**
+     * Load button.
+     */
     @FXML
     private Button loadButton;
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public final void initialize(
+            final URL location, final ResourceBundle resources) {
         saveButton.setOnMouseClicked(event -> {
             //DO save
             GameSave save = new GameSave();
