@@ -1,16 +1,12 @@
 package edu.gatech.cs2340.sharkbait.util;
 
-import edu.gatech.cs2340.sharkbait.model.GameDuration;
-import edu.gatech.cs2340.sharkbait.util.*;
-import javafx.scene.control.Button;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by sayem on 10/31/2015.
@@ -18,7 +14,6 @@ import static org.junit.Assert.*;
 public class PlayerTest {
 
     Player player1 = new Player("Zayn", "Brown", Race.Human);
-//    player1.initializeMoney();
 
     @After
     public void tearDown() throws Exception {
