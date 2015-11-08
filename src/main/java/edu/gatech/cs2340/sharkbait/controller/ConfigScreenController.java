@@ -22,13 +22,22 @@ import java.util.List;
  */
 
 public class ConfigScreenController {
-
+    /**
+     * endConfigScreen method.
+     * Changes the scene to GameMap and begins GameDuration.
+     */
     public static void endConfigScreen() {
         MasterController.changeSceneToGameMap();
         GameDuration.begin();
     }
-
-    public static void gameStateNotConfigured(Pane configBox, Button nextButton) {
+    /**
+     * endConfigScreen method.
+     * Game state for NotConfigured
+     * @param configBox The configBox Pane
+     * @param nextButton The nextButton Button
+     */
+    public static void gameStateNotConfigured(final Pane configBox,
+                                              final Button nextButton) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MasterController.class
                     .getResource("/fxml/config/game_config.fxml"));
@@ -42,39 +51,52 @@ public class ConfigScreenController {
         ConfigScreenView.setGameState(State.ConfigGame);
         nextButton.setText("Add Players");
     }
-
-    public static void gameStateConfigGame(GameConfigView gameConfigView, List<PlayerConfigView> playerConfigViews,
-                                           SplitPane infoPane, Button nextButton) {
+    /**
+     * gameStateConfigGame method.
+     * Game state for ConfigGame
+     * @param gameConfigView The configBox Pane
+     * @param playerConfigViews The list of PlayerConfigViews
+     * @param infoPane The infoPane SplitPane
+     * @param nextButton The nextButton Button
+     */
+    public static void gameStateConfigGame(final GameConfigView gameConfigView,
+                                           final List<PlayerConfigView>
+                                                   playerConfigViews,
+                                           final SplitPane infoPane,
+                                           final Button nextButton) {
         try {
-
             gameConfigView.saveConfigs();
             int numPlayers = GameConfigs.getNumPlayers();
-
             for (int i = 1; i <= numPlayers; i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader(MasterController.class
                         .getResource("/fxml/config/players_config.fxml"));
                 Node playerPrompt = fxmlLoader.load();
                 PlayerConfigView playerConfigView = fxmlLoader.getController();
-
                 playerConfigViews.add(playerConfigView);
-
                 playerPrompt.setId("pane" + i);
-
                 infoPane.getItems().add(playerPrompt);
                 String defaultName = "Player " + i;
                 playerConfigView.getSelectName().setText(defaultName);
-
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
         ConfigScreenView.setGameState(State.ConfigPlayers);
         nextButton.setText("Begin Game");
     }
-
-    public static void gameStateConfigPlayers(List<PlayerConfigView> playerConfigViews, SplitPane infoPane,
-                                              Button nextButton, Text mainGameMessage) {
+    /**
+     * gameStateConfigPlayers method.
+     * Game state for ConfigPlayers
+     * @param mainGameMessage The mainGameMessageText
+     * @param playerConfigViews The list of PlayerConfigViews
+     * @param infoPane The infoPane SplitPane
+     * @param nextButton The nextButton Button
+     */
+    public static void gameStateConfigPlayers(final List<PlayerConfigView>
+                                                      playerConfigViews,
+                                              final SplitPane infoPane,
+                                              final Button nextButton,
+                                              final Text mainGameMessage) {
 
         for (PlayerConfigView controller : playerConfigViews) {
             controller.makePlayer();

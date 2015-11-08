@@ -19,25 +19,41 @@ import java.util.*;
  * Created by osama on 9/13/15.
  */
 public class PlayerConfigView implements Initializable {
-
+    /**
+     * double ALPHA.
+     */
     private static final double ALPHA = 0.5;
-
-    @FXML protected TextField selectName;
+    /**
+     * TextField selectName.
+     */
+    @FXML private TextField selectName;
+    /**
+     * ComboBox<String> selectColor.
+     */
     @FXML private ComboBox<String> selectColor;
+    /**
+     * ComboBox<Race> Race.
+     */
     @FXML private ComboBox<Race> selectRace;
-
+    /**
+     * ObservableList<String> colorOptions.
+     */
     private ObservableList<String> colorOptions;
-
+    /**
+     * Map<String, String> colorMap.
+     */
     private Map<String, String> colorMap;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public final void initialize(final URL location,
+                                 final ResourceBundle resources) {
 
         colorMap = new HashMap<>();
 
 //        These are the tinted versions of the colors
         colorMap.put("Aqua", String.format("rgba(0,255,255,%f)", ALPHA));
-        colorMap.put("DarkSeaGreen", String.format("rgba(143,188,143,%f)", ALPHA));
+        colorMap.put("DarkSeaGreen", String.format("rgba(143,188,143,%f)",
+                ALPHA));
         colorMap.put("FireBrick", String.format("rgba(178,34,34,%f)", ALPHA));
         colorMap.put("Gold", String.format("rgba(255,215,0,%f)", ALPHA));
         colorMap.put("Violet", String.format("rgba(238,130,238,%f)", ALPHA));
@@ -60,15 +76,19 @@ public class PlayerConfigView implements Initializable {
 
 
     }
-
-    public TextField getSelectName() {
+    /**
+     * getSelectName method.
+     * @return selectName
+     */
+    public final TextField getSelectName() {
         return selectName;
     }
 
     /**
-     * Called by an external class to create a Player object and save it to configs
+     * Called by an external class to create a Player object and save
+     * it to configs.
      */
-    public void makePlayer() {
+    public final void makePlayer() {
         String color = selectColor.getValue();
 
         PlayerConfigController.createPlayer(selectName.getText(),

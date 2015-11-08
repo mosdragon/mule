@@ -8,12 +8,35 @@ import java.io.Serializable;
  * Created by osama on 9/12/15.
  */
 public enum Race implements Serializable, Packable {
-    Human("Human"), Flapper("Flapper"), Buzzite("Buzzite"), Ugaite("Ugaite"),
+    /**
+     * Human.
+     */
+    Human("Human"),
+    /**
+     * Flapper.
+     */
+    Flapper("Flapper"),
+    /**
+     * Buzzite.
+     */
+    Buzzite("Buzzite"),
+    /**
+     * Ugaite.
+     */
+    Ugaite("Ugaite"),
+    /**
+     * Bonzoid.
+     */
     Bonzoid("Bonzoid");
-
+    /**
+     * String name.
+     */
     private String name;
-
-    Race(String name) {
+    /**
+     * Race Constructor.
+     * @param name name of the race.
+     */
+    Race(final String name) {
         this.name = name;
     }
 
