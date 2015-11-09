@@ -39,10 +39,10 @@ public enum PropertyType implements Serializable, Packable {
 
     /**
      * constructs a property type.
-     * @param text the text belonging to the propertyType
+     * @param textInput the text belonging to the propertyType
      */
-    PropertyType(final String text) {
-        this.text = text;
+    PropertyType(final String textInput) {
+        text = textInput;
     }
 
     /**

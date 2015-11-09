@@ -81,10 +81,10 @@ public class Tile implements Serializable, Packable {
 
     /**
      * initializes a Tile with a button holder.
-     * @param holder the button holder of the tile
+     * @param holderButton the button holder of the tile
      */
-    public Tile(final Button holder) {
-        this.holder = holder;
+    public Tile(final Button holderButton) {
+        holder = holderButton;
         String buttonClass = holder.getStyleClass().toString();
         if (buttonClass.contains(PLAIN)) {
             type = PropertyType.Plains;
@@ -109,11 +109,11 @@ public class Tile implements Serializable, Packable {
 
     /**
      * sets tileStyle to String passed in.
-     * @param tileStyle the style to set the tileStyle to
+     * @param tileStyleInput the style to set the tileStyle to
      */
-    private void setTileStyle(final String tileStyle) {
-        holder.setStyle(tileStyle);
-        this.tileStyle = tileStyle;
+    private void setTileStyle(final String tileStyleInput) {
+        holder.setStyle(tileStyleInput);
+        tileStyle = tileStyleInput;
     }
 
     /**
