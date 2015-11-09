@@ -187,17 +187,11 @@ public class GameMapView implements Initializable {
 
 
     /**
-     * max number of players.
-     */
-    private final int maxPlayers = 4;
-    /**
-     * if there are three players creates third panel.
-     */
-    private final int panel3 = 3;
-    /**
-     * updates scorePanels in GameMapView.
+     * updates the score panel in the game map view.
      */
     private void updateScorePanels() {
+        final int maxPlayers = 4;
+        final int panel3 = 3;
         final String bgColorTemplate = Constants.BG_COLOR_TEMPLATE;
         List<Player> players = GameDuration.getPlayers();
         int numPlayers = players.size();

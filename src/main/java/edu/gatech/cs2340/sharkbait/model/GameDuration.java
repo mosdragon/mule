@@ -246,6 +246,8 @@ public final class GameDuration implements Serializable, Packable {
 
         if (getInstance().round >= MAX_ROUNDS) {
             endGame();
+
+
         } else if (getInstance().phase == GamePhase.PlayerTurnPhase) {
             Player player = getActivePlayer();
             int foodCount = player.getFood();
@@ -297,6 +299,7 @@ public final class GameDuration implements Serializable, Packable {
      */
     private static void endGame() {
 //       End game somehow
+        endMulePlacementPhase();
     }
 
     /**
@@ -398,7 +401,7 @@ public final class GameDuration implements Serializable, Packable {
      * the provided source, which is JSON.
      * @param jsonSource the jsonSource
      */
-    public static void unpackfromJson(final String jsonSource) {
+    public static void unpackFromJson(final String jsonSource) {
         GameDuration source = Packer.unpack(jsonSource, GameDuration.class);
         unpack(source);
     }

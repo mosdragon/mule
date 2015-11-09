@@ -2,7 +2,7 @@ package edu.gatech.cs2340.sharkbait.controller;
 
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 
-//import edu.gatech.cs2340.sharkbait.util.*;
+
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Property;
 import edu.gatech.cs2340.sharkbait.util.Player;
@@ -13,7 +13,10 @@ import edu.gatech.cs2340.trydent.log.Log;
 import javafx.scene.control.Button;
 
 /**
- * Created by osama on 10/8/15.
+ * Controller class for GameMap.
+ * Created on 10/8/15.
+ * @author Osama
+ * @version 1.0
  */
 public class GameMapController {
 
@@ -89,8 +92,7 @@ public class GameMapController {
             GameDuration.clearActiveMuleType();
             GameDuration.endMulePlacementPhase();
             MasterController.updateMessages();
-//            MongoPersistence.saveGame();
-//            MongoPersistence.loadGame(1445811031661L);
+
         }
 
     }

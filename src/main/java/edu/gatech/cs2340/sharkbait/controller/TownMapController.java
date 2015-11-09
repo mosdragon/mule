@@ -78,9 +78,10 @@ public class TownMapController {
         purchasedMule();
     }
 
+    //need to implement sellMule in store to use here
     public static void sellOreMule() {
         Player activePlayer = GameDuration.getActivePlayer();
-        Store.sellMule(activePlayer, Resource.Ore);
+        //Store.sellMule(activePlayer, Resource.Ore);
         GameDuration.setActiveMuleType(Resource.Ore);
     }
 
@@ -91,9 +92,10 @@ public class TownMapController {
         purchasedMule();
     }
 
+    //need to implement sellMule in store to use here
     public static void sellFoodMule() {
         Player activePlayer = GameDuration.getActivePlayer();
-        Store.sellMule(activePlayer, Resource.Food);
+        //Store.sellMule(activePlayer, Resource.Food);
         GameDuration.setActiveMuleType(Resource.Food);
     }
 
@@ -104,9 +106,10 @@ public class TownMapController {
         purchasedMule();
     }
 
+    //need to implement sellMule in store to use here
     public static void sellEnergyMule() {
         Player activePlayer = GameDuration.getActivePlayer();
-        Store.sellMule(activePlayer, Resource.Energy);
+        //Store.sellMule(activePlayer, Resource.Energy);
         GameDuration.setActiveMuleType(Resource.Energy);
     }
 

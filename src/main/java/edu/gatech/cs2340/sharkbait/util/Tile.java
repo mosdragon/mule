@@ -159,18 +159,16 @@ public class Tile implements Serializable, Packable {
      */
     public final void setColor(final String replacementColor) {
         String replacement = String.format(BG_COLOR_TEMPLATE, replacementColor);
-        replaceColor(CSS_TRANSPARENT, replacement);
+        replaceColor(replacement);
     }
 
     /**
      * replaces the color of Tile to  replacement color passed in.
-     * @param originalColor the original color of the Tile
      * @param replacementColor the color to replace Tile color too
      */
-    private void replaceColor(final String originalColor,
-                              final String replacementColor) {
+    private void replaceColor(final String replacementColor) {
         String styleText = holder.getStyle();
-        styleText = styleText.replace(originalColor, replacementColor);
+        styleText = styleText.replace(CSS_TRANSPARENT, replacementColor);
         holder.setStyle(styleText);
         this.tileStyle = styleText;
     }

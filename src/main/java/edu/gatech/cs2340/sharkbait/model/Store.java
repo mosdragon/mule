@@ -8,9 +8,11 @@ import edu.gatech.cs2340.trydent.log.Log;
 import java.io.Serializable;
 
 /**
- * Created by osama on 9/22/15.
+ * Handles logistic of the store, selling/buying mules, energy,..etc.
+ * Created on 9/22/15.
+ * @author Osama
  */
-public class Store implements Serializable, Packable {
+public final class Store implements Serializable, Packable {
 
 //    TODO: Add all resource counts
     /**
@@ -41,10 +43,6 @@ public class Store implements Serializable, Packable {
      * ore constant for store.
      */
     private static final int ORE = Constants.ORE;
-    /**\
-     * mule constant for store.
-     */
-    private static final int MULE = Constants.MULE;
     /**
      * oreMule constant for store.
      */
@@ -58,7 +56,7 @@ public class Store implements Serializable, Packable {
      */
     private static final int ENERGY_MULE = Constants.ENERGY_MULE;
     /**
-     * creates intance of store.
+     * creates instance of store.
      */
     private static transient  Store instance;
 
@@ -74,7 +72,7 @@ public class Store implements Serializable, Packable {
      * if instance is null creates a new instance of store
      * @return the instance of store
      */
-    public static Store getInstance() {
+    private static Store getInstance() {
         if (instance == null) {
             instance = new Store();
         }
@@ -86,14 +84,14 @@ public class Store implements Serializable, Packable {
      */
     public static void initializeStore() {
 
-        if (GameConfigs.getInstance().getGameDifficulty()
+        if (GameConfigs.getGameDifficulty()
                 == Difficulty.Beginner) {
             getInstance().energyCount = 16;
             getInstance().foodCount = 16;
             getInstance().oreCount = 0;
             getInstance().muleCount = 25;
 
-//  TODO:ExtrCredit initial store amounts for Standard & Tournament difficulties
+//To do: ExtraCredit initial store amounts forStandard & Tournament difficulties
         } else {
             getInstance().energyCount = 8;
             getInstance().foodCount = 8;
@@ -108,9 +106,9 @@ public class Store implements Serializable, Packable {
      * increments player Energy by one
      * @param player player that is buying the energy
      */
-    public static void buyEnergy (Player player) {
-        if (player.getMoney() >= (getInstance().ENERGY) && hasEnergy()) {
-            player.changeMoney(-getInstance().ENERGY);
+    public static void buyEnergy(final Player player) {
+        if (player.getMoney() >= (ENERGY) && hasEnergy()) {
+            player.changeMoney(-ENERGY);
             player.changeEnergy(1);
             getInstance().energyCount--;
         } else {
@@ -124,10 +122,10 @@ public class Store implements Serializable, Packable {
      * decrements player Energy by one
      * @param player player that is selling the energy
      */
-    public static void sellEnergy (Player player) {
+    public static void sellEnergy(final Player player) {
         if (player.getEnergy() > 0) {
             player.changeEnergy(-1);
-            player.changeMoney(getInstance().ENERGY);
+            player.changeMoney(ENERGY);
             getInstance().energyCount++;
         } else {
             Log.debug("Not enough energy!");
@@ -141,27 +139,27 @@ public class Store implements Serializable, Packable {
      * @param player player that is buying the Mule
      * @param type the type of mule to buy
      */
-    public static void buyMule(Player player, Resource type) {
+    public static void buyMule(final Player player, final Resource type) {
         boolean canAfford = false;
         Log.debug("Mule Type: " + type.toString());
         if (hasMules()) {
             if (type == Resource.Ore) {
-                if (player.getMoney() >= getInstance().ORE_MULE) {
-                    player.changeMoney(-getInstance().ORE_MULE);
+                if (player.getMoney() >= ORE_MULE) {
+                    player.changeMoney(-ORE_MULE);
                     canAfford = true;
                 } else {
                     Log.debug("Not enough money!");
                 }
             } else if (type == Resource.Energy) {
-                if (player.getMoney() >= getInstance().ENERGY_MULE) {
-                    player.changeMoney(-getInstance().ENERGY_MULE);
+                if (player.getMoney() >= ENERGY_MULE) {
+                    player.changeMoney(-ENERGY_MULE);
                     canAfford = true;
                 } else {
                     Log.debug("Not enough money!");
                 }
             } else {
-                if (player.getMoney() >= getInstance().FOOD_MULE) {
-                    player.changeMoney(-getInstance().FOOD_MULE);
+                if (player.getMoney() >= FOOD_MULE) {
+                    player.changeMoney(-FOOD_MULE);
                     canAfford = true;
                 } else {
                     Log.debug("Not enough money!");
@@ -179,44 +177,45 @@ public class Store implements Serializable, Packable {
         }
     }
 
-    /**
-     * lets player sell Mule.
-     * @param player player that is buying the Mule
-     * @param type the type of mule to buy
-     */
-    public static void sellMule(Player player, Resource type) {
-//        TODO: IMPLEMENT
-//        Mule mule = new Mule(player, type);
+//    /**
+//     * lets player sell Mule.
+//     * @param player player that is buying the Mule
+//     * @param type the type of mule to buy
+//     */
+//    public static void sellMule(Player player, Resource type) {
+////       to do: IMPLEMENT
+////        Mule mule = new Mule(player, type);
+////
+////
+////        if (type == Resource.Ore) {
+////            if (player.getMuleCount() > 0) {
+////                player.changeMoney(ORE_MULE);
+////                player.removeMule(mule);
+////                muleCount++;
+////            } else {
+////                Log.debug("Not enough mules!");
+////            }
+////
+////        } else if (type == Resource.Food) {
+////            if (player.getMuleCount() > 0) {
+////                player.changeMoney(FOOD_MULE);
+////                player.removeMule(mule);
+////                muleCount++;
+////            } else {
+////                Log.debug("Not enough mules!");
+////            }
+////
+////        } else if (type == Resource.Energy) {
+////            if (player.getMuleCount() > 0) {
+////                player.changeMoney(ENERGY_MULE);
+////                player.removeMule(mule);
+////                muleCount++;
+////            } else {
+////                Log.debug("Not enough mules!");
+////            }
+////        }
 //
-//
-//        if (type == Resource.Ore) {
-//            if (player.getMuleCount() > 0) {
-//                player.changeMoney(ORE_MULE);
-//                player.removeMule(mule);
-//                muleCount++;
-//            } else {
-//                Log.debug("Not enough mules!");
-//            }
-//
-//        } else if (type == Resource.Food) {
-//            if (player.getMuleCount() > 0) {
-//                player.changeMoney(FOOD_MULE);
-//                player.removeMule(mule);
-//                muleCount++;
-//            } else {
-//                Log.debug("Not enough mules!");
-//            }
-//
-//        } else if (type == Resource.Energy) {
-//            if (player.getMuleCount() > 0) {
-//                player.changeMoney(ENERGY_MULE);
-//                player.removeMule(mule);
-//                muleCount++;
-//            } else {
-//                Log.debug("Not enough mules!");
-//            }
-//        }
-    }
+//    }
 
     /**
      * lets player buy Food.
@@ -225,9 +224,9 @@ public class Store implements Serializable, Packable {
      * decrements food count from store
      * @param player player that is buying the food
      */
-    public static void buyFood (Player player) {
-        if (player.getMoney() >= (getInstance().FOOD) && hasFood()) {
-            player.changeMoney(-getInstance().FOOD);
+    public static void buyFood(final Player player) {
+        if (player.getMoney() >= (FOOD) && hasFood()) {
+            player.changeMoney(-FOOD);
             player.changeFood(1);
             getInstance().foodCount--;
         } else {
@@ -242,10 +241,10 @@ public class Store implements Serializable, Packable {
      * increments food count in store
      * @param player player that is selling the food
      */
-    public static void sellFood(Player player) {
+    public static void sellFood(final Player player) {
         if (player.getFood() > 0) {
             player.changeFood(-1);
-            player.changeMoney(getInstance().FOOD);
+            player.changeMoney(FOOD);
             getInstance().foodCount++;
         } else {
             Log.debug("Not enough food!");
@@ -259,9 +258,9 @@ public class Store implements Serializable, Packable {
      * decrements ore count from store
      * @param player player that is buying the energy
      */
-    public static void buyOre(Player player) {
-        if (player.getMoney() >= (getInstance().ORE) && hasOre()) {
-            player.changeMoney(-getInstance().ORE);
+    public static void buyOre(final Player player) {
+        if (player.getMoney() >= (ORE) && hasOre()) {
+            player.changeMoney(-ORE);
             player.changeOre(1);
             getInstance().oreCount--;
         } else {
@@ -276,10 +275,10 @@ public class Store implements Serializable, Packable {
      * increments ore count in store
      * @param player player that is selling the ore
      */
-    public static void sellOre(Player player) {
+    public static void sellOre(final Player player) {
         if (player.getOre() > 0) {
             player.changeOre(-1);
-            player.changeMoney(getInstance().ORE);
+            player.changeMoney(ORE);
             getInstance().oreCount++;
         } else {
             Log.debug("Not enough Ore!");
@@ -290,7 +289,7 @@ public class Store implements Serializable, Packable {
      * determines if the store has mules left.
      * @return true if store has mules left, false if store has no more mules
      */
-    public static boolean hasMules() {
+    private static boolean hasMules() {
         return getInstance().muleCount > 0;
     }
 
@@ -298,7 +297,7 @@ public class Store implements Serializable, Packable {
      * determines if the store has energy left.
      * @return true if store has energy left, false if store has no more energy
      */
-    public static boolean hasEnergy() {
+    private static boolean hasEnergy() {
         return getInstance().energyCount > 0;
     }
 
@@ -306,7 +305,7 @@ public class Store implements Serializable, Packable {
      * determines if the store has ore left.
      * @return true if store has ore left, false if store has no more ore
      */
-    public static boolean hasOre() {
+    private static boolean hasOre() {
         return getInstance().oreCount > 0;
     }
 
@@ -314,7 +313,7 @@ public class Store implements Serializable, Packable {
      * determines if the store has food left.
      * @return true if store has food left, false if store has no more food
      */
-    public static boolean hasFood() {
+    private static boolean hasFood() {
         return getInstance().foodCount > 0;
     }
 
@@ -354,59 +353,71 @@ public class Store implements Serializable, Packable {
      * gets the cost of an ore.
      * @return the cost of an ore
      */
-    public static int getOreCost() {return Constants.ORE; }
+    public static int getOreCost() {
+        return Constants.ORE;
+    }
 
     /**
      * gets the cost of food.
      * @return the cost of food
      */
-    public static int getFoodCost() {return Constants.FOOD; }
+    public static int getFoodCost() {
+        return Constants.FOOD;
+    }
 
     /**
      * gets the cost of Energy.
      * @return the cost of Energy
      */
-    public static int getEnergyCost() {return Constants.ENERGY; }
+    public static int getEnergyCost() {
+        return Constants.ENERGY;
+    }
 
     /**
      * gets the cost of an oreMule.
      * @return the cost of an oreMule
      */
-    public static int getOreMuleCost() {return Constants.ORE_MULE; }
+    public static int getOreMuleCost() {
+        return Constants.ORE_MULE;
+    }
 
     /**
      * gets the cost of a foodMule.
      * @return the cost of a foodMule
      */
-    public static int getFoodMuleCost() {return Constants.FOOD_MULE; }
+    public static int getFoodMuleCost() {
+        return Constants.FOOD_MULE;
+    }
 
     /**
      * gets the cost of an energyMule.
      * @return the cost of an energyMule
      */
-    public static int getEnergyMuleCost() {return Constants.ENERGY_MULE; }
-
-    /**
-     * Redefine the single instance of a singleton using the provided source
-     * @param source, the source object
-     */
-    public static void unpack(Store source) {
-        instance = source;
+    public static int getEnergyMuleCost() {
+        return Constants.ENERGY_MULE;
     }
 
-    /**
-     * Redefine the single instance of a singleton using
-     * the provided source, which is JSON
-     * @param jsonSource
-     */
-    public static void unpackfromJson(String jsonSource) {
-        Store source = Packer.unpack(jsonSource, Store.class);
-        unpack(source);
-    }
+//    /**
+//     * Redefine the single instance of a singleton using the provided source
+//     * @param source, the source object
+//     */
+//    private static void unpack(Store source) {
+//        instance = source;
+//    }
+
+//    /**
+//     * Redefine the single instance of a singleton using
+//     * the provided source, which is JSON
+//     * @param jsonSource a String representing the jsonSource
+//     */
+//    public static void unpackFromJson(String jsonSource) {
+//        Store source = Packer.unpack(jsonSource, Store.class);
+//        unpack(source);
+//    }
 
     /**
-     * Serialized instance as JSON
-     * @return a JSONified version of this object
+     * Serialized instance as JSON.
+     * @return a JSON version of this object
      */
     public static String packAsJson() {
         return getInstance().pack();
