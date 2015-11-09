@@ -1,8 +1,8 @@
 package edu.gatech.cs2340.sharkbait.util;
 
+import edu.gatech.cs2340.sharkbait.model.Constants;
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
-import edu.gatech.cs2340.sharkbait.model.Constants;
 import edu.gatech.cs2340.sharkbait.model.Packable;
 import edu.gatech.cs2340.trydent.log.Log;
 

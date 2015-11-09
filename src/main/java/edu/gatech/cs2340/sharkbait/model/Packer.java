@@ -6,8 +6,6 @@ import com.google.gson.JsonElement;
 import edu.gatech.cs2340.sharkbait.util.Mule;
 import edu.gatech.cs2340.sharkbait.util.MuleDeserializer;
 
-import java.io.Serializable;
-
 /**
  * Created by osama on 10/25/15.
  */

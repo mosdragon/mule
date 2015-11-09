@@ -1,14 +1,9 @@
 package edu.gatech.cs2340.sharkbait.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.MapType;
-import edu.gatech.cs2340.sharkbait.util.Player;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by osama on 9/12/15.

@@ -1,9 +1,6 @@
 package edu.gatech.cs2340.sharkbait.util;
 
 import edu.gatech.cs2340.sharkbait.model.Packable;
-import edu.gatech.cs2340.trydent.log.Log;
-
-import java.io.Serializable;
 
 /**
  * Created by osama on 10/27/15.

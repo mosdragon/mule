@@ -1,17 +1,14 @@
 package edu.gatech.cs2340.sharkbait.model;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.trydent.log.Log;
-
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
-
 import org.bson.Document;
 
 /**

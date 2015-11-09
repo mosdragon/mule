@@ -4,14 +4,11 @@ import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.model.Packable;
 import edu.gatech.cs2340.sharkbait.model.Packer;
-
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.MapType;
 import edu.gatech.cs2340.sharkbait.util.Player;
-
 import edu.gatech.cs2340.sharkbait.view.*;
-
 import edu.gatech.cs2340.trydent.log.Log;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;

@@ -6,9 +6,6 @@ import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Property;
 import edu.gatech.cs2340.sharkbait.util.Resource;
-import edu.gatech.cs2340.sharkbait.view.GameMapView;
-import edu.gatech.cs2340.sharkbait.view.TownMapView;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 import java.io.Serializable;

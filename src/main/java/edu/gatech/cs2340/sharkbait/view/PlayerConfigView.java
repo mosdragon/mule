@@ -1,8 +1,6 @@
 package edu.gatech.cs2340.sharkbait.view;
 
 import edu.gatech.cs2340.sharkbait.controller.PlayerConfigController;
-import edu.gatech.cs2340.sharkbait.model.GameConfigs;
-import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Race;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,10 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 
 import java.net.URL;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Created by osama on 9/13/15.

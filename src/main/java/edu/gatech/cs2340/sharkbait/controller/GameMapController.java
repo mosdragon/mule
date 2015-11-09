@@ -1,7 +1,6 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
-
 import edu.gatech.cs2340.sharkbait.util.*;
 import edu.gatech.cs2340.trydent.log.Log;
 import javafx.scene.control.Button;

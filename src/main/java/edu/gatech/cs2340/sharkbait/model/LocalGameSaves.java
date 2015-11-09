@@ -1,8 +1,9 @@
 package edu.gatech.cs2340.sharkbait.model;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
-import edu.gatech.cs2340.trydent.log.Log;
 
 import java.lang.reflect.Type;
 import java.util.List;

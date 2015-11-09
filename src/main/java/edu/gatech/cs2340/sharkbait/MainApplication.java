@@ -1,19 +1,29 @@
 package edu.gatech.cs2340.sharkbait;
 
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
-import edu.gatech.cs2340.sharkbait.model.Constants;
-import edu.gatech.cs2340.trydent.log.Log;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class MainApplication extends Application {
-
+/**
+ * Entry point for the entire Mule game.
+ */
+public final class MainApplication extends Application {
+    /**
+     * Starts the application.
+     * @param primaryStage, a stage generated using JavaFX Application class.
+     * @throws Exception
+     */
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws Exception {
         MasterController.initialize(primaryStage);
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    /**
+     * Runs and instantiates application.
+     * @param args, the args
+     */
+    public static void main(final String[] args) {
+        String[] launchArgs = args;
+        launch(launchArgs);
     }
 }
