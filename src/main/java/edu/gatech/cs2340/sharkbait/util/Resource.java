@@ -5,22 +5,29 @@ import edu.gatech.cs2340.sharkbait.model.Packable;
 import java.io.Serializable;
 
 /**
- * Created by osama on 9/22/15.
+ * Resource class
+ * Created on 9/22/15.
+ * @author Osama
  */
 public enum Resource implements Serializable, Packable {
+    /**
+     * sets Energy to "Energy".
+     */
     Energy("Energy"),
+    /**
+     * sets Food to "food".
+     */
     Food("Food"),
-    Ore("Ore"),
-    Crystite("Crystite"),;
+    /**
+     * sets ore to "Ore".
+     */
+    Ore("Ore");
 
-    private String name;
-
-    Resource(String name) {
-        this.name = name;
+    /**
+     * Constructs a Resource with a String name.
+     * @param name the name of the Resource
+     */
+    Resource(final String name) {
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }

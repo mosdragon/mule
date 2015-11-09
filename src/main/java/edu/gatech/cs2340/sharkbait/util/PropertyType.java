@@ -5,21 +5,50 @@ import edu.gatech.cs2340.sharkbait.model.Packable;
 import java.io.Serializable;
 
 /**
- * Created by arihanshah on 9/22/15.
+ * PropertyType class.
+ * created 9/22/15
+ * @author Arihan Shah
+ * @version 1.0
  */
 public enum PropertyType implements Serializable, Packable {
+    /**
+     * sets mountain1 to "M1".
+     */
     Mountain1("M1"),
+    /**
+     * sets mountain2 to "M2".
+     */
     Mountain2("M2"),
+    /**
+     * sets mountain3 to "M3".
+     */
     Mountain3("M3"),
+    /**
+     * sets Plains to "P".
+     */
     Plains("P"),
-    River("R"),;
+    /**
+     * sets River to "R".
+     */
+    River("R");
 
-    private String text;
+    /**
+     * initializes a String text.
+     */
+    private final String text;
 
-    PropertyType(String text) {
+    /**
+     * constructs a property type.
+     * @param text the text belonging to the propertyType
+     */
+    PropertyType(final String text) {
         this.text = text;
     }
 
+    /**
+     * gets the text of the property.
+     * @return the text of the property
+     */
     public String getText() {
         return text;
     }
