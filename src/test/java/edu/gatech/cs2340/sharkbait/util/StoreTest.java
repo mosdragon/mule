@@ -21,6 +21,8 @@ public class StoreTest {
     @Test
     public void testSellFood() throws Exception {
         Player player1 =  new Player("Bruck", "Brown", Race.Human);
+        store.initializeStore();
+        player1.changeMoney(600);
         if(GameConfigs.getInstance().getGameDifficulty() == Difficulty.Beginner) {
             assertEquals(store.getFoodCount(), 16);
             assertEquals(player1.getFood(), 0);
@@ -28,16 +30,14 @@ public class StoreTest {
             assertEquals(player1.getFood(), 1);
             assertEquals(store.getFoodCount(), 15);
         } else {
-            assertEquals(8, store.getFoodCount(),8);
-            assertEquals(player1.getFood(), 0);
+            assertEquals(8, store.getFoodCount());
+            assertEquals(4, player1.getFood());
             store.sellFood(player1);
-            assertEquals(player1.getFood(), 1);
-            assertEquals(store.getFoodCount(), 7);
-
+            assertEquals(player1.getFood(), 3);
+            assertEquals(store.getFoodCount(), 9);
         }
-        // Should throw exception if not enough money.
-        Player pLayer2 = new Player("Michael", "Brown", Race.Human);
-        pLayer2.changeMoney(-600);
+
+
 
     }
 
