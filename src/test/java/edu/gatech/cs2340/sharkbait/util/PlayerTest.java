@@ -124,4 +124,13 @@ public class PlayerTest {
     public void testCompareTo() throws Exception {
 
     }
+
+    @Test
+    public void testGetActivePlayer() throws Exception {
+        GameDuration.setActivePlayer(player1);
+        assertEquals(GameDuration.getActivePlayer(), player1);
+        GameDuration.setActivePlayer(null);
+        assertEquals(GameDuration.getActivePlayer(), null);
+    }
+
 }
