@@ -1,17 +1,11 @@
 package edu.gatech.cs2340.sharkbait.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.MapType;
-import edu.gatech.cs2340.sharkbait.util.Player;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by osama on 9/12/15.
+ * Created on 9/12/15 by osama.
  */
 public final class GameConfigs implements Serializable, Packable {
     /**
@@ -96,7 +90,7 @@ public final class GameConfigs implements Serializable, Packable {
      * Redefine the single instance of a singleton using the provided source.
      * @param source the source object
      */
-    public static void unpack(final GameConfigs source) {
+    private static void unpack(final GameConfigs source) {
         instance = source;
     }
 
@@ -112,7 +106,7 @@ public final class GameConfigs implements Serializable, Packable {
 
     /**
      * Serialized instance as JSON.
-     * @return a JSONified version of this object
+     * @return a JSON-ified version of this object
      */
     public static String packAsJson() {
         return getInstance().pack();

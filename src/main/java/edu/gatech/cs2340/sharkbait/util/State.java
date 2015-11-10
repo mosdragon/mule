@@ -3,7 +3,7 @@ package edu.gatech.cs2340.sharkbait.util;
 import java.io.Serializable;
 
 /**
- * Created by arihanshah on 11/1/15.
+ * Created on 11/1/15 by arihanshah.
  */
 public enum State implements Serializable {
     /**
@@ -22,20 +22,19 @@ public enum State implements Serializable {
      * BeginGame.
      */
     BeginGame("BeginGame");
-    /**
-     * String name.
-     */
-    private String name;
+
     /**
      * State constructor.
      * @param nameInput name of the state.
      */
     State(final String nameInput) {
-        name = nameInput;
+        /*
+      String name.
+     */
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
+//    @Override
+//    public String toString() {
+//        return super.toString();
+//    }
 }

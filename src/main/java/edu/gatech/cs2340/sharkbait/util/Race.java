@@ -5,7 +5,7 @@ import edu.gatech.cs2340.sharkbait.model.Packable;
 import java.io.Serializable;
 
 /**
- * Created by osama on 9/12/15.
+ * Created on 9/12/15 by osama.
  */
 public enum Race implements Serializable, Packable {
     /**
@@ -28,20 +28,20 @@ public enum Race implements Serializable, Packable {
      * Bonzoid.
      */
     Bonzoid("Bonzoid");
-    /**
-     * String name.
-     */
-    private String name;
+
     /**
      * Race Constructor.
      * @param newName name of the race.
      */
     Race(final String newName) {
-        name = newName;
+        /*
+      String name.
+     */
+        //String name = newName;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
+//    @Override
+//    public String toString() {
+//        return super.toString();
+//    }
 }

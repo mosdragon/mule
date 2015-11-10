@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by arihanshah on 11/1/15.
+ * Created on 11/1/15 by arihanshah.
  */
 
 public class ConfigScreenController {
@@ -26,7 +26,7 @@ public class ConfigScreenController {
      * endConfigScreen method.
      * Changes the scene to GameMap and begins GameDuration.
      */
-    public static void endConfigScreen() {
+    private static void endConfigScreen() {
         MasterController.changeSceneToGameMap();
         GameDuration.begin();
     }

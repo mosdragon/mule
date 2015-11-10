@@ -11,21 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by osama on 9/12/15.
+ * Created on 9/12/15 by osama.
  */
 public class Player implements Comparable<Player>, Serializable, Packable {
     /**
      * String name.
      */
-    private String name;
+    private final String name;
     /**
      * String color.
      */
-    private String color;
+    private final String color;
     /**
      * Race race.
      */
-    private Race race;
+    private final Race race;
     /**
      * double money.
      */
@@ -45,43 +45,43 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     /**
      * List<Mule> mules.
      */
-    private List<Mule> mules;
+    private final List<Mule> mules;
     /**
      * List<Property> properties.
      */
-    private List<Property> properties;
+    private final List<Property> properties;
     /**
      * int LAND_COST.
      */
     private static final int LAND_COST = Constants.LAND;
-    /**
-     * int ENERGY.
-     */
-    private static final int ENERGY = Constants.ENERGY;
-    /**
-     * int FOOD.
-     */
-    private static final int FOOD = Constants.FOOD;
-    /**
-     * int ORE.
-     */
-    private static final int ORE = Constants.ORE;
-    /**
-     * int MULE.
-     */
-    private static final int MULE = Constants.MULE;
-    /**
-     * int ORE_MULE.
-     */
-    private static final int ORE_MULE = Constants.ORE_MULE;
-    /**
-     * int FOOD_MULE.
-     */
-    private static final int FOOD_MULE = Constants.FOOD_MULE;
-    /**
-     * int ENERGY_MULE.
-     */
-    private static final int ENERGY_MULE = Constants.ENERGY_MULE;
+//    /**
+//     * int ENERGY.
+//     */
+//    private static final int ENERGY = Constants.ENERGY;
+//    /**
+//     * int FOOD.
+//     */
+//    private static final int FOOD = Constants.FOOD;
+//    /**
+//     * int ORE.
+//     */
+//    private static final int ORE = Constants.ORE;
+//    /**
+//     * int MULE.
+//     */
+//    private static final int MULE = Constants.MULE;
+//    /**
+//     * int ORE_MULE.
+//     */
+//    private static final int ORE_MULE = Constants.ORE_MULE;
+//    /**
+//     * int FOOD_MULE.
+//     */
+//    private static final int FOOD_MULE = Constants.FOOD_MULE;
+//    /**
+//     * int ENERGY_MULE.
+//     */
+//    private static final int ENERGY_MULE = Constants.ENERGY_MULE;
     /**
      * int MIN_PRODUCTION_ENERGY.
      */
@@ -195,13 +195,13 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     public final String getName() {
         return name;
     }
-    /**
-     * setName setter.
-     * @param nameInput name of the player
-     */
-    public final void setName(final String nameInput) {
-        name = nameInput;
-    }
+//    /**
+//     * setName setter.
+//     * @param nameInput name of the player
+//     */
+//    public final void setName(final String nameInput) {
+//        name = nameInput;
+//    }
     /**
      * getColor getter.
      * @return color
@@ -209,27 +209,27 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     public final String getColor() {
         return color;
     }
-    /**
-     * setColor setter.
-     * @param colorInput color of the player
-     */
-    public final void setColor(final String colorInput) {
-        color = colorInput;
-    }
-    /**
-     * getRace getter.
-     * @return race
-     */
-    public final Race getRace() {
-        return race;
-    }
-    /**
-     * setRace setter.
-     * @param race race of the player
-     */
-    public final void setRace(final Race race) {
-        this.race = race;
-    }
+//    /**
+//     * setColor setter.
+//     * @param colorInput color of the player
+//     */
+//    public final void setColor(final String colorInput) {
+//        color = colorInput;
+//    }
+//    /**
+//     * getRace getter.
+//     * @return race
+//     */
+//    public final Race getRace() {
+//        return race;
+//    }
+//    /**
+//     * setRace setter.
+//     * @param raceInput race of the player
+//     */
+//    public final void setRace(final Race raceInput) {
+//        race = raceInput;
+//    }
     /**
      * changeMoney method.
      * @param amount positive or negative amount of money
@@ -293,13 +293,13 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     public final int getMuleCount() {
         return mules.size();
     }
-    /**
-     * getMules method.
-     * @return list of mules
-     */
-    public final List<Mule> getMules() {
-        return mules;
-    }
+//    /**
+//     * getMules method.
+//     * @return list of mules
+//     */
+//    public final List<Mule> getMules() {
+//        return mules;
+//    }
     /**
      * addMule method.
      * @param mule mule to be added
@@ -307,13 +307,13 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     public final void addMule(final Mule mule) {
         mules.add(mule);
     }
-    /**
-     * removeMule method.
-     * @param mule mule to be removed
-     */
-    public final void removeMule(final Mule mule) {
-        mules.remove(mule);
-    }
+//    /**
+//     * removeMule method.
+//     * @param mule mule to be removed
+//     */
+//    public final void removeMule(final Mule mule) {
+//        mules.remove(mule);
+//    }
     /**
      * Called at the beginning of every PlayerTurnPhase to update
      * counts of resources.
@@ -337,13 +337,13 @@ public class Player implements Comparable<Player>, Serializable, Packable {
             }
         }
     }
-    /**
-     * getProperties method.
-     * @return properties
-     */
-    public final List<Property> getProperties() {
-        return properties;
-    }
+//    /**
+//     * getProperties method.
+//     * @return properties
+//     */
+//    public final List<Property> getProperties() {
+//        return properties;
+//    }
     /**
      * purchaseProperties method.
      * @param property to be purchased
@@ -362,20 +362,20 @@ public class Player implements Comparable<Player>, Serializable, Packable {
         }
         return false;
     }
-    /**
-     * sellProperty method.
-     * @param property property to be sold.
-     * @return boolean
-     */
-    public final boolean sellProperty(final Property property) {
-
-        if (property.isOwner(this)) {
-            properties.remove(property);
-            changeMoney(LAND_COST);
-            return true;
-        }
-        return false;
-    }
+//    /**
+//     * sellProperty method.
+//     * @param property property to be sold.
+//     * @return boolean
+//     */
+//    public final boolean sellProperty(final Property property) {
+//
+//        if (property.isOwner(this)) {
+//            properties.remove(property);
+//            changeMoney(LAND_COST);
+//            return true;
+//        }
+//        return false;
+//    }
 
     @Override
     public final String toString() {
