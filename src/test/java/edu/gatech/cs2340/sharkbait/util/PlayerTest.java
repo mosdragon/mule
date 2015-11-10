@@ -126,11 +126,12 @@ public class PlayerTest {
     }
 
     @Test
-    public void testGetActivePlayer() throws Exception {
-        GameDuration.setActivePlayer(player1);
-        assertEquals(GameDuration.getActivePlayer(), player1);
-        GameDuration.setActivePlayer(null);
-        assertEquals(GameDuration.getActivePlayer(), null);
+    public void testInitializeMoney() throws Exception {
+        Player player1 = new Player("Arihan", "Brown", Race.Human);
+        assertEquals((int) player1.getMoney(), 600);
+        Player player2 = new Player("Josiah", "Brown", Race.Flapper);
+        assertEquals((int) player2.getMoney(), 1600);
+        Player player3 = new Player("Bruck", "Brown", Race.Bonzoid);
+        assertEquals((int) player3.getMoney(), 1000);
     }
-
 }
