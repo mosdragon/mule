@@ -7,23 +7,23 @@ import edu.gatech.cs2340.sharkbait.util.Mule;
 import edu.gatech.cs2340.sharkbait.util.MuleDeserializer;
 
 /**
- * Created by osama on 10/25/15.
+ * Packs and unpacks classes.
  */
-public class Packer {
+public final class Packer {
 
     /**
-     * Prevents this class from being initialized
+     * Prevents this class from being initialized.
      */
     private Packer() {
 
     }
 
     /**
-     * Pass in the object and get a JSON string representation
-     * @param source, the object to pack/serialize into a JSON string
-     * @return
+     * Pass in the object and get a JSON string representation.
+     * @param source the object to pack/serialize into a JSON string.
+     * @return the json string representation of the source object.
      */
-    public static String pack(Packable source) {
+    public static String pack(final Packable source) {
         String serialized = null;
         if (source != null) {
             serialized = source.pack();
@@ -32,15 +32,15 @@ public class Packer {
     }
 
     /**
-     * Pass in the source for a packable object along with its type and get the unpacked object
-     * back
-     * @param jsonSource, the JSON string of the object
-     * @param type, the class type of the object
-     * @param <T>, the type of object that will be returned
-     * @return
+     * Pass in the source for a packable object along with its type
+     * and get the unpacked object.
+     * @param jsonSource the JSON string of the object
+     * @param type the class type of the object
+     * @param <T> the type of object that will be returned
+     * @return the unpacked object
      */
-    public static <T extends Packable> T unpack(String jsonSource, Class<T>
-            type) {
+    public static <T extends Packable> T unpack(final String jsonSource,
+                                                final Class<T> type) {
 
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(Mule.class, new MuleDeserializer());
@@ -52,15 +52,16 @@ public class Packer {
     }
 
     /**
-     * Pass in the source for a packable object along with its type and get the unpacked object
-     * back
-     * @param jsonSource, the JSON string of the object
-     * @param type, the class type of the object
-     * @param <T>, the type of object that will be returned
-     * @return
+     * Pass in the source for a packable object along with its type
+     * and get the unpacked object back. Here we use @link{JsonElement}
+     * rather tahn just Strings.
+     * @param jsonSource the JSON string of the object
+     * @param type the class type of the object
+     * @param <T> the type of object that will be returned
+     * @return the unpacked object
      */
-    public static <T extends Packable> T unpack(JsonElement jsonSource, Class<T>
-            type) {
+    public static <T extends Packable> T unpack(final JsonElement jsonSource,
+                                                final Class<T> type) {
 
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(Mule.class, new MuleDeserializer());
