@@ -18,8 +18,13 @@ import javafx.scene.control.Button;
  * @author Osama
  * @version 1.0
  */
-public class GameMapController {
+public final class GameMapController {
 
+    /**
+     * Constructs a GameMapController.
+     */
+    private GameMapController() {
+    }
     /**
      * if in playerTurnPhase changes the scene to TownMap.
      */

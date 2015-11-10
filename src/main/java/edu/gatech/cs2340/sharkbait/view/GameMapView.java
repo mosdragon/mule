@@ -70,7 +70,7 @@ public class GameMapView implements Initializable {
     @FXML
     private Label timerMsg;
     /**
-     * Initializes Vbox for scorePanels.
+     * Initializes VBox for scorePanels.
      */
     @FXML
     private VBox scorePanel1, scorePanel2, scorePanel3,
@@ -129,13 +129,10 @@ public class GameMapView implements Initializable {
 
         town.setOnMouseClicked(event -> GameMapController.townClicked());
 
-        passButton.setOnMouseClicked(event -> {
-            GameMapController.pass();
-        });
+        passButton.setOnMouseClicked(event -> GameMapController.pass());
 
-        pauseButton.setOnMouseClicked(event -> {
-            MasterController.changeSceneToSave();
-        });
+        pauseButton.setOnMouseClicked(event ->
+                MasterController.changeSceneToSave());
     }
 
     /**

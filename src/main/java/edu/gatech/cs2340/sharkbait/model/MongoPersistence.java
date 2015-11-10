@@ -89,7 +89,7 @@ public class MongoPersistence implements Persistence {
         if (gameSaveDocument != null) {
 
             String gameDuration = gameSaveDocument.getString(GAME_DURATION);
-            GameDuration.unpackfromJson(gameDuration);
+            GameDuration.unpackFromJson(gameDuration);
 
             String gameConfigs = gameSaveDocument.getString(GAME_CONFIGS);
             GameConfigs.unpackfromJson(gameConfigs);

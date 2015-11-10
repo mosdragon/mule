@@ -14,7 +14,38 @@ import java.io.Serializable;
  */
 public final class Store implements Serializable, Packable {
 
-//    TODO: Add all resource counts
+    /**
+     * initial energy count.
+     */
+    private static final int INITIAL_ENERGY_COUNT = 16;
+    /**
+     * second energy count.
+     */
+    private static final int INITIAL_ENERGY_COUNT2 = 8;
+    /**
+     * initial food count.
+     */
+    private static final int INITIAL_FOOD_COUNT = 16;
+    /**
+     * second food count.
+     */
+    private static final int INITIAL_FOOD_COUNT2 = 8;
+    /**
+     * initial ore count.
+     */
+    private static final int INITIAL_ORE_COUNT = 0;
+    /**
+     * initial mule count.
+     */
+    private static final int INITIAL_MULE_COUNT = 25;
+    /**
+     * second ore count.
+     */
+    private static final int INITIAL_ORE_COUNT2 = 8;
+    /**
+     * second mule count.
+     */
+    private static final int INITIAL_MULE_COUNT2 = 14;
     /**
      * the energy count of the store.
      */
@@ -86,17 +117,17 @@ public final class Store implements Serializable, Packable {
 
         if (GameConfigs.getGameDifficulty()
                 == Difficulty.Beginner) {
-            getInstance().energyCount = 16;
-            getInstance().foodCount = 16;
-            getInstance().oreCount = 0;
-            getInstance().muleCount = 25;
+            getInstance().energyCount = INITIAL_ENERGY_COUNT;
+            getInstance().foodCount = INITIAL_FOOD_COUNT;
+            getInstance().oreCount = INITIAL_ORE_COUNT;
+            getInstance().muleCount = INITIAL_MULE_COUNT;
 
 //To do: ExtraCredit initial store amounts forStandard & Tournament difficulties
         } else {
-            getInstance().energyCount = 8;
-            getInstance().foodCount = 8;
-            getInstance().oreCount = 8;
-            getInstance().muleCount = 14;
+            getInstance().energyCount = INITIAL_ENERGY_COUNT2;
+            getInstance().foodCount = INITIAL_FOOD_COUNT2;
+            getInstance().oreCount = INITIAL_ORE_COUNT2;
+            getInstance().muleCount = INITIAL_MULE_COUNT2;
         }
     }
 
