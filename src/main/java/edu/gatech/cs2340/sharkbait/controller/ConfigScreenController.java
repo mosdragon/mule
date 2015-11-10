@@ -21,7 +21,11 @@ import java.util.List;
  * Created by arihanshah on 11/1/15.
  */
 
-public class ConfigScreenController {
+public final class ConfigScreenController {
+
+  private ConfigScreenController() {
+
+  }
 
     public static void endConfigScreen() {
         MasterController.changeSceneToGameMap();
