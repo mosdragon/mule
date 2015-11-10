@@ -61,7 +61,7 @@ public class Player implements Comparable<Player>, Serializable, Packable {
         this.mules = new ArrayList<>();
     }
 
-    public void initializeMoney() {
+    private void initializeMoney() {
         if (race == Race.Flapper) {
             money = 1600;
 

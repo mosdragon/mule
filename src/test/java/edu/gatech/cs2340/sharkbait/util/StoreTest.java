@@ -19,23 +19,27 @@ import static org.junit.Assert.*;
 public class StoreTest {
     Store store = new Store();
     @Test
-    public void testSellFood() throws Exception {
+    public void testSellFood() {
+        GameConfigs.setGameDifficulty(Difficulty.Beginner);
         Player player1 =  new Player("Bruck", "Brown", Race.Human);
         store.initializeStore();
-        player1.changeMoney(600);
-        if(GameConfigs.getInstance().getGameDifficulty() == Difficulty.Beginner) {
-            assertEquals(store.getFoodCount(), 16);
-            assertEquals(player1.getFood(), 0);
-            store.sellFood(player1);
-            assertEquals(player1.getFood(), 1);
-            assertEquals(store.getFoodCount(), 15);
-        } else {
-            assertEquals(8, store.getFoodCount());
-            assertEquals(4, player1.getFood());
-            store.sellFood(player1);
-            assertEquals(player1.getFood(), 3);
-            assertEquals(store.getFoodCount(), 9);
-        }
+//        player1.changeMoney(600);
+
+        assertEquals(store.getFoodCount(), 16);
+        assertEquals(player1.getFood(), 8);
+        store.sellFood(player1);
+        assertEquals(player1.getFood(), 7);
+        assertEquals(store.getFoodCount(), 17);
+
+//        Get rid of all player's food, watch it do nothing
+        player1.changeFood(-player1.getFood());
+        assertEquals(0, player1.getFood());
+        int playerFood = player1.getFood();
+        int storeFood = Store.getFoodCount();
+        store.sellFood(player1);
+        assertEquals(storeFood, store.getFoodCount());
+        assertEquals(playerFood, player1.getFood());
+
 
 
 
