@@ -5,11 +5,24 @@ import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Race;
 
 /**
- * Created by osama on 10/7/15.
+ * PlayerConfigController class.
  */
-public class PlayerConfigController {
+public final class PlayerConfigController {
 
-    public static void createPlayer(String name, String color, Race race) {
+    /**
+     * Empty constructor.
+     */
+    private PlayerConfigController() {
+    }
+
+    /**
+     * Creates a player.
+     * @param name player name
+     * @param color player color
+     * @param race player race
+     */
+    public static void createPlayer(
+            final String name, final String color, final Race race) {
         Player player = new Player(name, color, race);
         GameDuration.addPlayer(player);
     }

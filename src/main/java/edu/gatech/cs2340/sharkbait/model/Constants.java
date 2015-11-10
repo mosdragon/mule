@@ -3,27 +3,91 @@ package edu.gatech.cs2340.sharkbait.model;
 /**
  * Created by osama on 10/17/15.
  */
-public interface Constants {
+public final class Constants {
 
-//    Prices
-    int LAND = 300;
-    int ENERGY = 25;
-    int FOOD = 30;
-    int ORE = 50;
-    int MULE = 100;
-    int ORE_MULE = MULE + ORE;
-    int FOOD_MULE = MULE + FOOD;
-    int ENERGY_MULE = MULE + ENERGY;
+    /**
+     * Empty constructor.
+     */
+    private Constants() {
+    }
 
-    String CSS_TRANSPARENT = "-fx-background-color:rgba(0,0,0,0);";
-    String BG_COLOR_TEMPLATE = "-fx-background-color:%s;";
+    // Store prices.
+    /**
+     * Land cost.
+     */
+    public static final int LAND = 300;
+
+    /**
+     * Energy cost.
+     */
+    public static final int ENERGY = 25;
+
+    /**
+     * Food cost.
+     */
+    public static final int FOOD = 30;
+
+    /**
+     * Ore cost.
+     */
+    public static final int ORE = 50;
+
+    /**
+     * Mule cost.
+     */
+    public static final int MULE = 100;
+
+    /**
+     * Ore mule cost.
+     */
+    public static final int ORE_MULE = MULE + ORE;
+
+    /**
+     * Food mule cost.
+     */
+    public static final int FOOD_MULE = MULE + FOOD;
+
+    /**
+     * Energy mule cost.
+     */
+    public static final int ENERGY_MULE = MULE + ENERGY;
+
+    /**
+     * CSS transparent.
+     */
+    public static final String CSS_TRANSPARENT
+            = "-fx-background-color:rgba(0,0,0,0);";
+
+    /**
+     * BG color.
+     */
+    public static final String BG_COLOR_TEMPLATE = "-fx-background-color:%s;";
 
 //    Mongo Credentials
-    String DB_USER = "app";
-    String DB_PASS = "sharkbait";
-    String MONGO_CONNECTION = String.format("mongodb://%s:%s@ds042138.mongolab.com:42138/mule",
+    /**
+     * Database user.
+     */
+    public static final String DB_USER = "app";
+
+    /**
+     * Database password.
+     */
+    public static final String DB_PASS = "sharkbait";
+
+    /**
+     * Mongo connection.
+     */
+    public static final String MONGO_CONNECTION
+            = String.format("mongodb://%s:%s@ds042138.mongolab.com:42138/mule",
             DB_USER, DB_PASS);
 
-    String DB_NAME = "mule";
-    String GAME_SAVES = "gamesaves";
+    /**
+     * Database Name.
+     */
+    public static final String DB_NAME = "mule";
+
+    /**
+     * Game saves.
+     */
+    public static final String GAME_SAVES = "gamesaves";
 }

@@ -9,36 +9,53 @@ import java.io.Serializable;
  */
 public abstract class Mule implements Serializable, Packable, MuleInterface {
 
+    /**
+     * The mule type.
+     */
     private Resource type;
+
+    /**
+     * The mule property.
+     */
     private Property property;
 
-    public Mule(Property property, Resource type) {
-        this.property = property;
-        this.type = type;
+    /**
+     * The hash constant for hashCode().
+     */
+    private static final int HASH_CONSTANT = 41;
+
+    /**
+     * Constructor.
+     * @param propertyInput the property for the mule.
+     * @param typeInput the type of the mule.
+     */
+    public Mule(final Property propertyInput, final Resource typeInput) {
+        property = propertyInput;
+        type = typeInput;
     }
 
     @Override
-    public Resource getType() {
+    public final Resource getType() {
         return type;
     }
 
     @Override
-    public void setType(Resource type) {
-        this.type = type;
+    public final void setType(final Resource typeInput) {
+        type = typeInput;
     }
 
     @Override
-    public Property getProperty() {
+    public final Property getProperty() {
         return property;
     }
 
     @Override
-    public void setProperty(Property property) {
-        this.property = property;
+    public final void setProperty(final Property propertyInput) {
+        property = propertyInput;
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public final boolean equals(final Object obj) {
         if (!(obj instanceof Mule)) {
             return false;
         }
@@ -47,7 +64,13 @@ public abstract class Mule implements Serializable, Packable, MuleInterface {
     }
 
     @Override
-    public String toString() {
+    public final int hashCode() {
+      return HASH_CONSTANT * type.hashCode()
+          + HASH_CONSTANT * HASH_CONSTANT * property.hashCode();
+    }
+
+    @Override
+    public final String toString() {
         return type.toString() + " Mule";
     }
 }
