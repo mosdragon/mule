@@ -23,8 +23,6 @@ public class StoreTest {
         GameConfigs.setGameDifficulty(Difficulty.Beginner);
         Player player1 =  new Player("Bruck", "Brown", Race.Human);
         store.initializeStore();
-//        player1.changeMoney(600);
-
         assertEquals(store.getFoodCount(), 16);
         assertEquals(player1.getFood(), 8);
         store.sellFood(player1);
