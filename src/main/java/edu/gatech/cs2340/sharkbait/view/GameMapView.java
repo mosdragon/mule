@@ -81,7 +81,7 @@ public class GameMapView implements Initializable {
         });
 
         pauseButton.setOnMouseClicked(event -> {
-            MasterController.changeSceneToSave();
+            MasterController.changeSceneToPauseScreen();
         });
     }
 
