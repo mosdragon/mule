@@ -28,7 +28,7 @@ public class Store implements Serializable, Packable {
 
     private transient static Store instance;
 
-    private Store() {
+    public Store() {
 
     }
 
