@@ -2,32 +2,61 @@ package edu.gatech.cs2340.sharkbait.controller;
 
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 
-import edu.gatech.cs2340.sharkbait.util.*;
+
+import edu.gatech.cs2340.sharkbait.util.GamePhase;
+import edu.gatech.cs2340.sharkbait.util.Property;
+import edu.gatech.cs2340.sharkbait.util.Player;
+import edu.gatech.cs2340.sharkbait.util.Resource;
+import edu.gatech.cs2340.sharkbait.util.Mule;
+import edu.gatech.cs2340.sharkbait.util.MuleFactory;
 import edu.gatech.cs2340.trydent.log.Log;
 import javafx.scene.control.Button;
 
 /**
- * Created by osama on 10/8/15.
+ * Controller class for GameMap.
+ * Created on 10/8/15.
+ * @author Osama
+ * @version 1.0
  */
-public class GameMapController {
+public final class GameMapController {
 
+    /**
+     * Constructs a GameMapController.
+     */
+    private GameMapController() {
+    }
+    /**
+     * if in playerTurnPhase changes the scene to TownMap.
+     */
     public static void townClicked() {
         if (GameDuration.getPhase() == GamePhase.PlayerTurnPhase) {
             MasterController.changeSceneToTownMap();
         }
     }
-
+    /**
+     * ends turn.
+     */
     public static void pass() {
         GameDuration.endTurn();
     }
 
-    public static void attemptGridButtonClick(Button button) {
+    /**
+     * Attempts to press a gird button.
+     * if in landBuyPhase and property is available,
+     * sets the property to activePlayer.
+     * If in MuleBuyPhase and property is owned by player,
+     * sets the mule on the button(property)
+     * @param button the button that is clicked
+     */
+    public static void attemptGridButtonClick(final Button button) {
 
         Property property = GameDuration.fetchProperty(button);
         boolean available = property.isAvailable();
 
-        boolean isLandBuyPhase = GameDuration.getPhase() == GamePhase.LandBuyPhase;
-        boolean isMulePlacementPhase = GameDuration.getPhase() == GamePhase.MulePlacementPhase;
+        boolean isLandBuyPhase = GameDuration.getPhase()
+                == GamePhase.LandBuyPhase;
+        boolean isMulePlacementPhase = GameDuration.getPhase()
+                == GamePhase.MulePlacementPhase;
 
         if (isLandBuyPhase) {
 
@@ -45,7 +74,7 @@ public class GameMapController {
             }
 
         } else if (isMulePlacementPhase) {
-//            Else if bought and owned by active player and in mule buy phase do this
+//       Else if bought and owned by active player and in mule buy phase do this
 
             Player activePlayer = GameDuration.getActivePlayer();
 
@@ -67,11 +96,8 @@ public class GameMapController {
 
             GameDuration.clearActiveMuleType();
             GameDuration.endMulePlacementPhase();
-            MasterController.getInstance().updateMessages();
+            MasterController.updateMessages();
 
-            //          TODO: Remove serialization code
-//            MongoPersistence.saveGame();
-//            MongoPersistence.loadGame(1445811031661L);
         }
 
     }
