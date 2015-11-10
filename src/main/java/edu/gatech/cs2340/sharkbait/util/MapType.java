@@ -8,16 +8,16 @@ import java.io.Serializable;
  * Created by osama on 9/12/15.
  */
 public enum MapType implements Serializable, Packable {
-    StandardMap("Standard Map"), RandomMap("Random Map");
+  StandardMap("Standard Map"), RandomMap("Random Map");
 
-    private String mapName;
+  private String mapName;
 
-    MapType(String mapName) {
-        this.mapName = mapName;
-    }
+  MapType(String mapName) {
+    this.mapName = mapName;
+  }
 
-    @Override
-    public String toString() {
-        return mapName;
-    }
+  @Override
+  public String toString() {
+    return mapName;
+  }
 }

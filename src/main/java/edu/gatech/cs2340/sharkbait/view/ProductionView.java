@@ -15,49 +15,50 @@ import java.util.ResourceBundle;
  */
 public class ProductionView implements Initializable {
 
-    /**
-     * Okay button.
-     */
-    @FXML
-    private Button okayButton;
-    /**
-     * Player name text field.
-     */
-    @FXML
-    private TextField player1Name;
-    /**
-     * Player food text field.
-     */
-    @FXML
-    private TextField player1Food;
-    /**
-     * Player energy text field.
-     */
-    @FXML
-    private TextField player1Energy;
-    /**
-     * Player ore text field.
-     */
-    @FXML
-    private TextField player1Ore;
+  /**
+   * Okay button.
+   */
+  @FXML
+  private Button okayButton;
+  /**
+   * Player name text field.
+   */
+  @FXML
+  private TextField player1Name;
+  /**
+   * Player food text field.
+   */
+  @FXML
+  private TextField player1Food;
+  /**
+   * Player energy text field.
+   */
+  @FXML
+  private TextField player1Energy;
+  /**
+   * Player ore text field.
+   */
+  @FXML
+  private TextField player1Ore;
 
-    @Override
-    public final void initialize(
-            final URL location, final ResourceBundle resources) {
-        okayButton.setOnMouseClicked(event -> {
-            MasterController.resumeTime();
-            MasterController.changeSceneToGameMap();
-        });
-    }
+  @Override
+  public final void initialize(
+      final URL location, final ResourceBundle resources) {
+    okayButton.setOnMouseClicked(event -> {
+      MasterController.resumeTime();
+      MasterController.changeSceneToGameMap();
+    });
+  }
 
-    /**
-     * Sets the player production.
-     * @param player the current player
-     */
-    public final void setPlayerProduction(final Player player) {
-        player1Name.setText(player.getName());
-        player1Food.setText(Integer.toString(player.getFood()));
-        player1Energy.setText(Integer.toString(player.getEnergy()));
-        player1Ore.setText(Integer.toString(player.getOre()));
-    }
+  /**
+   * Sets the player production.
+   *
+   * @param player the current player
+   */
+  public final void setPlayerProduction(final Player player) {
+    player1Name.setText(player.getName());
+    player1Food.setText(Integer.toString(player.getFood()));
+    player1Energy.setText(Integer.toString(player.getEnergy()));
+    player1Ore.setText(Integer.toString(player.getOre()));
+  }
 }

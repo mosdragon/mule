@@ -21,70 +21,73 @@ import java.util.ResourceBundle;
  */
 public class LoadScreenView implements Initializable {
 
-    /**
-     * New game button.
-     */
-    @FXML
-    private Button newGameButton;
-    /**
-     * load game button.
-     */
-    @FXML
-    private Button loadGameButton;
-    /**
-     * Infopane.
-     */
-    @FXML
-    private SplitPane infoPane;
-    /**
-     * main game message.
-     */
-    @FXML private Text mainGameMessage;
-    /**
-     * Possible game states. Must find a better way to implement this
-     */
-    private enum State {
-        /**
-         * Not configured state.
-         */
-        NotConfigured,
-        /**
-         * Config game state.
-         */
-        ConfigGame,
-        /**
-         * Config players state.
-         */
-        ConfigPlayers,
-        /**
-         * Begin game state.
-         */
-        BeginGame
-    }
-    @Override
-    public final void initialize(
-            final URL location, final ResourceBundle resources) {
-        newGameButton.setText("New Game");
+  /**
+   * New game button.
+   */
+  @FXML
+  private Button newGameButton;
+  /**
+   * load game button.
+   */
+  @FXML
+  private Button loadGameButton;
+  /**
+   * Infopane.
+   */
+  @FXML
+  private SplitPane infoPane;
+  /**
+   * main game message.
+   */
+  @FXML
+  private Text mainGameMessage;
 
-        newGameButton.setOnMouseClicked(event -> {
-            MasterController.changeSceneToConfig();
-        });
+  /**
+   * Possible game states. Must find a better way to implement this
+   */
+  private enum State {
+    /**
+     * Not configured state.
+     */
+    NotConfigured,
+    /**
+     * Config game state.
+     */
+    ConfigGame,
+    /**
+     * Config players state.
+     */
+    ConfigPlayers,
+    /**
+     * Begin game state.
+     */
+    BeginGame
+  }
 
-        loadGameButton.setOnMouseClicked(event -> {
-            //Load game
-            List<GameSave> gameSaves = LocalGameSaves.loadGameSaves();
-            if (gameSaves.size() > 0) {
-                Log.debug("Loading");
-                Collections.sort(gameSaves);
-                Collections.reverse(gameSaves);
-                GameSave gameSave = gameSaves.get(0);
-                MongoPersistence.loadGame(gameSave);
-                MasterController.changeSceneToGameMap();
+  @Override
+  public final void initialize(
+      final URL location, final ResourceBundle resources) {
+    newGameButton.setText("New Game");
 
-            } else {
-                Log.debug("Load failed. Starting new game");
-                MasterController.changeSceneToConfig();
-            }
-        });
-    }
+    newGameButton.setOnMouseClicked(event -> {
+      MasterController.changeSceneToConfig();
+    });
+
+    loadGameButton.setOnMouseClicked(event -> {
+      //Load game
+      List<GameSave> gameSaves = LocalGameSaves.loadGameSaves();
+      if (gameSaves.size() > 0) {
+        Log.debug("Loading");
+        Collections.sort(gameSaves);
+        Collections.reverse(gameSaves);
+        GameSave gameSave = gameSaves.get(0);
+        MongoPersistence.loadGame(gameSave);
+        MasterController.changeSceneToGameMap();
+
+      } else {
+        Log.debug("Load failed. Starting new game");
+        MasterController.changeSceneToConfig();
+      }
+    });
+  }
 }

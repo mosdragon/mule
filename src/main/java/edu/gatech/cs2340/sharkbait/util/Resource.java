@@ -7,6 +7,7 @@ import java.io.Serializable;
 /**
  * Resource class
  * Created on 9/22/15.
+ *
  * @author Osama
  */
 public enum Resource implements Serializable, Packable {
@@ -31,6 +32,7 @@ public enum Resource implements Serializable, Packable {
 
   /**
    * Constructs a Resource with a String name.
+   *
    * @param nameField the name of the Resource
    */
   Resource(final String nameField) {
@@ -39,6 +41,7 @@ public enum Resource implements Serializable, Packable {
 
   /**
    * Return the name.
+   *
    * @return the name.
    */
   public String getName() {

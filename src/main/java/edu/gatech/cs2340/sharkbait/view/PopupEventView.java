@@ -13,32 +13,33 @@ import java.util.ResourceBundle;
  * Popup even view class.
  */
 public class PopupEventView implements Initializable {
-    /**
-     * Okay button.
-     */
-    @FXML
-    private Button okayButton;
-    /**
-     * Event text area.
-     */
-    @FXML
-    private TextArea eventText;
+  /**
+   * Okay button.
+   */
+  @FXML
+  private Button okayButton;
+  /**
+   * Event text area.
+   */
+  @FXML
+  private TextArea eventText;
 
-    @Override
-    public final void initialize(
-            final URL location, final ResourceBundle resources) {
-        okayButton.setOnMouseClicked(event -> {
-            MasterController.resumeTime();
-            MasterController.changeSceneToGameMap();
-        });
-    }
+  @Override
+  public final void initialize(
+      final URL location, final ResourceBundle resources) {
+    okayButton.setOnMouseClicked(event -> {
+      MasterController.resumeTime();
+      MasterController.changeSceneToGameMap();
+    });
+  }
 
-    /**
-     * Set text method.
-     * @param input input for text.
-     */
-    public final void setText(final String input) {
-        eventText.setWrapText(true);
-        eventText.setText(input);
-    }
+  /**
+   * Set text method.
+   *
+   * @param input input for text.
+   */
+  public final void setText(final String input) {
+    eventText.setWrapText(true);
+    eventText.setText(input);
+  }
 }

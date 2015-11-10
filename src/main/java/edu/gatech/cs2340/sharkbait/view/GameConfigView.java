@@ -18,57 +18,58 @@ import java.util.ResourceBundle;
  */
 public class GameConfigView implements Initializable {
 
-    /**
-     * initializes a comboBox configDifficulty.
-     */
-    @FXML
-    private ComboBox<Difficulty> configDifficulty;
-    /**
-     * initializes a ComboBox mapChoice.
-     */
-    @FXML
-    private ComboBox<MapType> mapChoice;
-    /**
-     * initializes a Slider playerSlider.
-     */
-    @FXML
-    private Slider playerSlider;
+  /**
+   * initializes a comboBox configDifficulty.
+   */
+  @FXML
+  private ComboBox<Difficulty> configDifficulty;
+  /**
+   * initializes a ComboBox mapChoice.
+   */
+  @FXML
+  private ComboBox<MapType> mapChoice;
+  /**
+   * initializes a Slider playerSlider.
+   */
+  @FXML
+  private Slider playerSlider;
 
-    /**
-     * initializes the GameConfigView.
-     * @param location the url image for the config view
-     * @param resources resources for the GameConfigView
-     */
-    @Override
-    public final void initialize(final URL location,
-                                 final ResourceBundle resources) {
+  /**
+   * initializes the GameConfigView.
+   *
+   * @param location  the url image for the config view
+   * @param resources resources for the GameConfigView
+   */
+  @Override
+  public final void initialize(final URL location,
+                               final ResourceBundle resources) {
 
-        ObservableList<Difficulty> difficultyOptions =
-                FXCollections.observableArrayList(
-                Difficulty.Beginner,
-                Difficulty.Standard,
-                Difficulty.Tournament
+    ObservableList<Difficulty> difficultyOptions =
+        FXCollections.observableArrayList(
+            Difficulty.Beginner,
+            Difficulty.Standard,
+            Difficulty.Tournament
         );
-        configDifficulty.setItems(difficultyOptions);
-        configDifficulty.setValue(difficultyOptions.get(0));
+    configDifficulty.setItems(difficultyOptions);
+    configDifficulty.setValue(difficultyOptions.get(0));
 
-        ObservableList<MapType> mapOptions = FXCollections.observableArrayList(
-                MapType.StandardMap,
-                MapType.RandomMap
-        );
-        mapChoice.setItems(mapOptions);
-        mapChoice.setValue(mapOptions.get(0));
-    }
+    ObservableList<MapType> mapOptions = FXCollections.observableArrayList(
+        MapType.StandardMap,
+        MapType.RandomMap
+    );
+    mapChoice.setItems(mapOptions);
+    mapChoice.setValue(mapOptions.get(0));
+  }
 
-    /**
-     * Called externally, most likely by ConfigScreenView.
-     */
-    public final void saveConfigs() {
-        int numPlayers = (int) playerSlider.getValue();
-        Difficulty difficulty = configDifficulty.getValue();
-        MapType mapType = mapChoice.getValue();
+  /**
+   * Called externally, most likely by ConfigScreenView.
+   */
+  public final void saveConfigs() {
+    int numPlayers = (int) playerSlider.getValue();
+    Difficulty difficulty = configDifficulty.getValue();
+    MapType mapType = mapChoice.getValue();
 
-        MasterController.saveConfigs(numPlayers, difficulty, mapType);
-    }
+    MasterController.saveConfigs(numPlayers, difficulty, mapType);
+  }
 
 }

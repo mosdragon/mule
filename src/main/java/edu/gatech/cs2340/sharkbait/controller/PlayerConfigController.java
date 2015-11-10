@@ -9,21 +9,22 @@ import edu.gatech.cs2340.sharkbait.util.Race;
  */
 public final class PlayerConfigController {
 
-    /**
-     * Empty constructor.
-     */
-    private PlayerConfigController() {
-    }
+  /**
+   * Empty constructor.
+   */
+  private PlayerConfigController() {
+  }
 
-    /**
-     * Creates a player.
-     * @param name player name
-     * @param color player color
-     * @param race player race
-     */
-    public static void createPlayer(
-            final String name, final String color, final Race race) {
-        Player player = new Player(name, color, race);
-        GameDuration.addPlayer(player);
-    }
+  /**
+   * Creates a player.
+   *
+   * @param name  player name
+   * @param color player color
+   * @param race  player race
+   */
+  public static void createPlayer(
+      final String name, final String color, final Race race) {
+    Player player = new Player(name, color, race);
+    GameDuration.addPlayer(player);
+  }
 }

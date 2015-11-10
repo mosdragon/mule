@@ -18,73 +18,78 @@ import java.util.ResourceBundle;
  * Created on 9/13/15 by osama.
  */
 public class ConfigScreenView implements Initializable {
-    /**
-     * Pane configBox.
-     */
-    @FXML
-    private Pane configBox;
-    /**
-     * Button nextButton.
-     */
-    @FXML
-    private Button nextButton;
-    /**
-     * SplitPane infoPane.
-     */
-    @FXML
-    private SplitPane infoPane;
-    /**
-     * Text mainGameMessage.
-     */
-    @FXML private Text mainGameMessage;
-    /**
-     * State gameState.
-     */
-    private static State gameState;
-    /**
-     * GameConfigView gameConfigView.
-     */
-    private static GameConfigView gameConfigView;
-    /**
-     * List<PlayerConfigView> playerConfigViews.
-     */
-    private List<PlayerConfigView> playerConfigViews;
-    /**
-     * setGameState method.
-     * @param gS gameState
-     */
-    public static void setGameState(final State gS) {
-        gameState = gS;
-    }
-    /**
-     * gameConfigView method.
-     * @param gCV gameConfigView
-     */
-    public static void setGameConfigView(final GameConfigView gCV) {
-        gameConfigView = gCV;
-    }
+  /**
+   * Pane configBox.
+   */
+  @FXML
+  private Pane configBox;
+  /**
+   * Button nextButton.
+   */
+  @FXML
+  private Button nextButton;
+  /**
+   * SplitPane infoPane.
+   */
+  @FXML
+  private SplitPane infoPane;
+  /**
+   * Text mainGameMessage.
+   */
+  @FXML
+  private Text mainGameMessage;
+  /**
+   * State gameState.
+   */
+  private static State gameState;
+  /**
+   * GameConfigView gameConfigView.
+   */
+  private static GameConfigView gameConfigView;
 
-    @Override
-    public final void initialize(final URL location,
-                                 final ResourceBundle resources) {
-        gameState = State.NotConfigured;
-        nextButton.setText("Configure Game");
+  /**
+   * playerConfigViews.
+   */
+  private List<PlayerConfigView> playerConfigViews;
 
-        playerConfigViews = new ArrayList<>();
+  /**
+   * setGameState method.
+   * @param state gameState
+   */
+  public static void setGameState(final State state) {
+    gameState = state;
+  }
 
-        nextButton.setOnMouseClicked(event -> {
-            configBox.getChildren().clear();
-            if (gameState == State.NotConfigured) {
-                ConfigScreenController.gameStateNotConfigured(configBox,
-                        nextButton);
-            } else if (gameState == State.ConfigGame) {
-                ConfigScreenController.gameStateConfigGame(gameConfigView,
-                        playerConfigViews, infoPane, nextButton);
-            } else if (gameState == State.ConfigPlayers) {
-                ConfigScreenController.gameStateConfigPlayers(
-                        playerConfigViews, infoPane, nextButton,
-                        mainGameMessage);
-            }
-        });
-    }
+  /**
+   * gameConfigView method.
+   *
+   * @param gameConfigViewField gameConfigView
+   */
+  public static void setGameConfigView(final GameConfigView gameConfigViewField) {
+    gameConfigView = gameConfigViewField;
+  }
+
+  @Override
+  public final void initialize(final URL location,
+                               final ResourceBundle resources) {
+    gameState = State.NotConfigured;
+    nextButton.setText("Configure Game");
+
+    playerConfigViews = new ArrayList<>();
+
+    nextButton.setOnMouseClicked(event -> {
+      configBox.getChildren().clear();
+      if (gameState == State.NotConfigured) {
+        ConfigScreenController.gameStateNotConfigured(configBox,
+            nextButton);
+      } else if (gameState == State.ConfigGame) {
+        ConfigScreenController.gameStateConfigGame(gameConfigView,
+            playerConfigViews, infoPane, nextButton);
+      } else if (gameState == State.ConfigPlayers) {
+        ConfigScreenController.gameStateConfigPlayers(
+            playerConfigViews, infoPane, nextButton,
+            mainGameMessage);
+      }
+    });
+  }
 }
