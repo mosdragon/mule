@@ -120,7 +120,7 @@ public final class TownMapController {
    */
     public static void sellOreMule() {
         Player activePlayer = GameDuration.getActivePlayer();
-        Store.sellMule(activePlayer, Resource.Ore);
+        //Store.sellMule(activePlayer, Resource.Ore);
         GameDuration.setActiveMuleType(Resource.Ore);
     }
 
@@ -134,13 +134,12 @@ public final class TownMapController {
         purchasedMule();
     }
 
-
   /**
    * Sell food mule.
    */
     public static void sellFoodMule() {
         Player activePlayer = GameDuration.getActivePlayer();
-        Store.sellMule(activePlayer, Resource.Food);
+        //Store.sellMule(activePlayer, Resource.Food);
         GameDuration.setActiveMuleType(Resource.Food);
     }
 
@@ -159,7 +158,7 @@ public final class TownMapController {
    */
     public static void sellEnergyMule() {
         Player activePlayer = GameDuration.getActivePlayer();
-        Store.sellMule(activePlayer, Resource.Energy);
+        //Store.sellMule(activePlayer, Resource.Energy);
         GameDuration.setActiveMuleType(Resource.Energy);
     }
 

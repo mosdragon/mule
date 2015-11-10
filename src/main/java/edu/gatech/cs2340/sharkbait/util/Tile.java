@@ -11,32 +11,76 @@ import java.io.Serializable;
 
 
 /**
- * Created by osama on 10/15/15.
+ * Tile class
+ * Created on 10/15/15.
+ * @author Osama
  */
 public class Tile implements Serializable, Packable {
 
+    /**
+     * initializes String CSS_TRANSPARENT.
+     */
     private static final String CSS_TRANSPARENT = Constants.CSS_TRANSPARENT;
+    /**
+     * initializes String BG_COLOR_TEMPLATE.
+     */
     private static final String BG_COLOR_TEMPLATE = Constants.BG_COLOR_TEMPLATE;
-
+    /**
+     * initializes String PLAIN.
+     */
     private static final String PLAIN = "plain";
+    /**
+     * initializes String river.
+     */
     private static final String RIVER = "river";
+    /**
+     * initializes String MOUNTAIN1.
+     */
     private static final String MOUNTAIN1 = "mountain1";
+    /**
+     * initializes String MOUNTAIN2.
+     */
     private static final String MOUNTAIN2 = "mountain2";
+    /**
+     * initializes String MOUNTAIN3.
+     */
     private static final String MOUNTAIN3 = "mountain3";
 
-//    This button is passed in and is serves as the physical grid representation of the tile
-//    including color, text, etc
+    /**
+     * This button is passed in and is serves as the
+     * physical grid representation of the tile
+     * including color, text, etc.
+     */
     private transient Button holder;
+    /**
+     * initializes PropertyType type.
+     */
     private PropertyType type;
 
-    private int row;
-    private int column;
+    /**
+     * initializes an int row for row in grid.
+     */
+    private final int row;
+    /**
+     * initializes an int column for column in grid.
+     */
+    private final int column;
 
+    /**
+     * initializes a String tileStyle which is the css style of the tile.
+     */
     private String tileStyle;
+    /**
+     * initializes a String tileText which is the text of the tile.
+     */
     private String tileText;
 
-    public Tile(Button holder) {
-        this.holder = holder;
+    /**
+     * initializes a Tile with a button holder.
+     * @param holderButton the button holder of the tile
+     */
+    public Tile(final Button holderButton) {
+        holder = holderButton;
         String buttonClass = holder.getStyleClass().toString();
         if (buttonClass.contains(PLAIN)) {
             type = PropertyType.Plains;
@@ -59,16 +103,27 @@ public class Tile implements Serializable, Packable {
         this.tileText = holder.getText();
     }
 
-    public void setTileStyle(String tileStyle) {
-        holder.setStyle(tileStyle);
-        this.tileStyle = tileStyle;
+    /**
+     * sets tileStyle to String passed in.
+     * @param tileStyleInput the style to set the tileStyle to
+     */
+    private void setTileStyle(final String tileStyleInput) {
+        holder.setStyle(tileStyleInput);
+        tileStyle = tileStyleInput;
     }
 
-
-    // goes through gridPane at specified column and row and gets the node
-    private static Button getButtonFromGrid(GridPane gridPane, int row, int column) {
+    /**
+     * goes through gridPane at specified column and row and gets the node.
+     * @param gridPane the gridPane to go through
+     * @param row the row index of the grid
+     * @param column the column index of te grid
+     * @return the button on the grid at the specified row and column
+     */
+    private static Button getButtonFromGrid(final GridPane gridPane,
+                                            final int row, final int column) {
         for (Node node : gridPane.getChildren()) {
-            if (GridPane.getColumnIndex(node) == column && GridPane.getRowIndex(node) == row) {
+            if (GridPane.getColumnIndex(node) == column
+                    && GridPane.getRowIndex(node) == row) {
                 if (node instanceof Button) {
                     return (Button) node;
                 }
@@ -77,77 +132,80 @@ public class Tile implements Serializable, Packable {
         return null;
     }
 
-    public int getRow() {
-        return row;
-    }
-
-    public int getColumn() {
-        return column;
-    }
-
-    public String getTileStyle() {
-        return tileStyle;
-    }
-
-    public String getTileText() {
-        return tileText;
-    }
-
-
-    public Button getHolder() {
+    /**
+     * gets the button holder of the tile.
+     * @return the Button holder
+     */
+    public final Button getHolder() {
         return holder;
     }
 
-    public void setHolder(Button holder) {
-        this.holder = holder;
-    }
-
-    public boolean isTransparent() {
+    /**
+     * checks if Tile is transparent.
+     * @return true if Tile is transparent, false if not
+     */
+    public final boolean isTransparent() {
         String styleText = holder.getStyle();
         return styleText.contains(CSS_TRANSPARENT);
     }
 
-    public void makeTransparent(String color) {
-        String currentColor = String.format(BG_COLOR_TEMPLATE, color);
-        replaceColor(currentColor, CSS_TRANSPARENT);
-    }
-
-    public void setColor(String replacementColor) {
+    /**
+     * sets the color of Tile to color passed in.
+     * @param replacementColor the color to change the Tile color too
+     */
+    public final void setColor(final String replacementColor) {
         String replacement = String.format(BG_COLOR_TEMPLATE, replacementColor);
-        replaceColor(CSS_TRANSPARENT, replacement);
+        replaceColor(replacement);
     }
 
-    public void replaceColor(String originalColor, String replacementColor) {
+    /**
+     * replaces the color of Tile to  replacement color passed in.
+     * @param replacementColor the color to replace Tile color too
+     */
+    private void replaceColor(final String replacementColor) {
         String styleText = holder.getStyle();
-        styleText = styleText.replace(originalColor, replacementColor);
+        styleText = styleText.replace(CSS_TRANSPARENT, replacementColor);
         holder.setStyle(styleText);
         this.tileStyle = styleText;
     }
 
-    public boolean containsColor(String color) {
+    /**
+     * checks if Tile is a certain color.
+     * @param color the color to check if the Tile is that color
+     * @return true if color passed in is the color of the Tile, false if not.
+     */
+    public final boolean containsColor(final String color) {
         String styleText = holder.getStyle();
         return styleText.contains(color);
     }
 
-    public void setText(String text) {
+    /**
+     * sets the text of the Tile to text passed in.
+     * @param text the text to set the Tile too.
+     */
+    public final void setText(final String text) {
         holder.setText(text);
         this.tileText = text;
     }
 
-    public String getText() {
+    /**
+     * gets the text of the Tile.
+     * @return the text of the Tile
+     */
+    public final String getText() {
         return holder.getText();
     }
 
-    public PropertyType getType() {
+    /**
+     * gets the PropertyType of the Tile.
+     * @return the PropertyType of the Tile
+     */
+    public final PropertyType getType() {
         return type;
     }
 
-    public void setType(PropertyType type) {
-        this.type = type;
-    }
-
     @Override
-    public void unpack() {
+    public final void unpack() {
         GridPane gridPane = MasterController.getGrid();
         Button holderFromGrid = getButtonFromGrid(gridPane, row, column);
         if (holderFromGrid != null) {
@@ -158,17 +216,7 @@ public class Tile implements Serializable, Packable {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return type.toString();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-//        Two tiles are the same if they have the same button representing them
-        if (obj instanceof Tile) {
-            Tile other = (Tile) obj;
-            return other.holder == this.holder;
-        }
-        return false;
     }
 }

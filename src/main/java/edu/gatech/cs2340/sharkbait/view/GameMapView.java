@@ -21,58 +21,111 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Created by osama on 9/22/15.
+ * GameMapView class.
+ * Created on 9/22/15.
+ * @author Osama
  */
 public class GameMapView implements Initializable {
 
+    /**
+     * initializes an ImageView town.
+     */
     @FXML
     private ImageView town;
+    /**
+     * initializes a GridPane grid.
+     */
     @FXML
     private GridPane grid;
+    /**
+     * initializes a Button passButton.
+     */
     @FXML
     private Button passButton;
+    /**
+     * initializes a Button pauseButton.
+     */
     @FXML
     private Button pauseButton;
-
+    /**
+     * initializes a Label phaseMsg.
+     */
     @FXML
     private Label phaseMsg;
 
+    /**
+     * initializes  a Label randomEventMsg.
+     */
     @FXML
     private Label randomEventMsg;
 
+    /**
+     * initializes a Label playerMsg.
+     */
     @FXML
     private Label playerMsg;
-
+    /**
+     * initializes a Label timerMsg.
+     * */
     @FXML
     private Label timerMsg;
-
+    /**
+     * Initializes Vbox for scorePanels.
+     */
     @FXML
-    private VBox scorePanel1, scorePanel2, scorePanel3, scorePanel4, activePlayerPanel;
+    private VBox scorePanel1, scorePanel2, scorePanel3,
+            scorePanel4, activePlayerPanel;
 
+    /**
+     * initializes Labels for names.
+     */
     @FXML
     private Label name1, name2, name3, name4;
 
+    /**
+     * initializes Labels for money.
+     */
     @FXML
     private Label money1, money2, money3, money4;
 
+    /**
+     * initializes Labels for food.
+     */
     @FXML
     private Label food1, food2, food3, food4;
 
+    /**
+     * initializes Labels for mules.
+     */
     @FXML
     private Label mules1, mules2, mules3, mules4;
 
+    /**
+     * initializes labels for energy.
+     */
     @FXML
     private Label energy1, energy2, energy3, energy4;
 
+    /**
+     * initializes Labels for ores.
+     */
     @FXML
     private Label ore1, ore2, ore3, ore4;
 
+    /**
+     * initializes a String Phase.
+     */
     private static final String PHASE = "Phase: ";
+
+    /**
+     * initializes a Sting Player.
+     */
     private static final String PLAYER = "Active Player: ";
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public final void initialize(final URL location,
+                                 final ResourceBundle resources) {
 
         town.setOnMouseClicked(event -> GameMapController.townClicked());
 
@@ -85,23 +138,39 @@ public class GameMapView implements Initializable {
         });
     }
 
+    /**
+     * handles gridButtonPresses on the gameMap.
+     * calls attemptGridButton from GameMapController
+     * @param ev represents some type of action
+     */
     @FXML
-    private void handleGridButtonPress(ActionEvent ev) {
+    private void handleGridButtonPress(final ActionEvent ev) {
         Button button = (Button) ev.getSource();
         Log.debug("You pressed: " + button.getStyleClass().toString());
         GameMapController.attemptGridButtonClick(button);
     }
 
-    public void updateTimer(String timeText) {
+    /**
+     * updates the timer in the GameMapView.
+     * @param timeText the time to update timer too
+     */
+    public final void updateTimer(final String timeText) {
         timerMsg.setText(timeText);
     }
 
-    public void handleRandomEvent(String randomEventText) {
+    /**
+     * handles random events.
+     * @param randomEventText the text to which to set the randomEventMsg too.
+     */
+    public final void handleRandomEvent(final String randomEventText) {
         randomEventMsg.setText(randomEventText);
         randomEventMsg.setWrapText(true);
     }
 
-    public void updateMessages() {
+    /**
+     * updates messages in the GameMapView.
+     */
+    public final void updateMessages() {
         if (GameDuration.hasBegun()) {
             if (GameDuration.getPhase() == GamePhase.PlayerTurnPhase) {
                 passButton.setText("End Turn");
@@ -109,21 +178,29 @@ public class GameMapView implements Initializable {
                 passButton.setText("Pass");
             }
             phaseMsg.setText(PHASE + GameDuration.getPhase().toString());
-            playerMsg.setText(PLAYER + GameDuration.getActivePlayer().getName());
+            playerMsg.setText(PLAYER
+                    + GameDuration.getActivePlayer().getName());
 
             updateScorePanels();
         }
     }
 
+
+    /**
+     * updates the score panel in the game map view.
+     */
     private void updateScorePanels() {
-        final String BG_COLOR_TEMPLATE = Constants.BG_COLOR_TEMPLATE;
+        final int maxPlayers = 4;
+        final int panel3 = 3;
+        final String bgColorTemplate = Constants.BG_COLOR_TEMPLATE;
         List<Player> players = GameDuration.getPlayers();
         int numPlayers = players.size();
 
 //        Player1 score panel
         Player player1 = players.get(0);
 
-        scorePanel1.setStyle(String.format(BG_COLOR_TEMPLATE, player1.getColor()));
+        scorePanel1.setStyle(String.format(bgColorTemplate,
+                player1.getColor()));
         name1.setText(player1.getName());
         money1.setText("Money: " + player1.getMoney());
         food1.setText("Food: " + player1.getFood());
@@ -134,7 +211,8 @@ public class GameMapView implements Initializable {
 //        Player2 score panel
         Player player2 = players.get(1);
 
-        scorePanel2.setStyle(String.format(BG_COLOR_TEMPLATE, player2.getColor()));
+        scorePanel2.setStyle(String.format(bgColorTemplate,
+                player2.getColor()));
         name2.setText(player2.getName());
         money2.setText("Money: " + player2.getMoney());
         food2.setText("Food: " + player2.getFood());
@@ -143,11 +221,12 @@ public class GameMapView implements Initializable {
         ore2.setText("Ore: " + player2.getOre());
 
 //        Player3 score panel
-        if (numPlayers >= 3) {
+        if (numPlayers >= panel3) {
 
             Player player3 = players.get(2);
 
-            scorePanel3.setStyle(String.format(BG_COLOR_TEMPLATE, player3.getColor()));
+            scorePanel3.setStyle(String.format(bgColorTemplate,
+                    player3.getColor()));
             name3.setText(player3.getName());
             money3.setText("Money: " + player3.getMoney());
             food3.setText("Food: " + player3.getFood());
@@ -157,11 +236,12 @@ public class GameMapView implements Initializable {
         }
 
 //        Player4 score panel
-        if (numPlayers >= 4) {
+        if (numPlayers >= maxPlayers) {
 
-            Player player4 = players.get(3);
+            Player player4 = players.get(panel3);
 
-            scorePanel4.setStyle(String.format(BG_COLOR_TEMPLATE, player4.getColor()));
+            scorePanel4.setStyle(String.format(bgColorTemplate,
+                    player4.getColor()));
             name4.setText(player4.getName());
             money4.setText("Money: " + player4.getMoney());
             food4.setText("Food: " + player4.getFood());
@@ -171,11 +251,16 @@ public class GameMapView implements Initializable {
         }
 
         Player activePlayer = GameDuration.getActivePlayer();
-        activePlayerPanel.setStyle(String.format(BG_COLOR_TEMPLATE, activePlayer.getColor()));
+        activePlayerPanel.setStyle(String.format(bgColorTemplate,
+                activePlayer.getColor()));
     }
 
 
-    public GridPane getGrid() {
+    /**
+     * gets the grid of the GameMap.
+     * @return the grid of the GameMap
+     */
+    public final GridPane getGrid() {
         return grid;
     }
 }

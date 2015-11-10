@@ -1,9 +1,7 @@
-package edu.gatech.cs2340.sharkbait.util;
+package edu.gatech.cs2340.sharkbait.model;
 
-import edu.gatech.cs2340.sharkbait.MainApplication;
-import edu.gatech.cs2340.sharkbait.controller.MasterController;
-import edu.gatech.cs2340.sharkbait.model.GameConfigs;
-import edu.gatech.cs2340.sharkbait.model.GameDuration;
+
+import edu.gatech.cs2340.sharkbait.util.*;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;

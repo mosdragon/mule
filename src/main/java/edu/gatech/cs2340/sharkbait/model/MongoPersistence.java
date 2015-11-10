@@ -127,8 +127,8 @@ public final class MongoPersistence {
 
       if (gameSaveDocument != null) {
 
-          String gameDuration = gameSaveDocument.getString(GAME_DURATION);
-          GameDuration.unpackfromJson(gameDuration);
+        String gameDuration = gameSaveDocument.getString(GAME_DURATION);
+        GameDuration.unpackFromJson(gameDuration);
 
           String gameConfigs = gameSaveDocument.getString(GAME_CONFIGS);
           GameConfigs.unpackfromJson(gameConfigs);

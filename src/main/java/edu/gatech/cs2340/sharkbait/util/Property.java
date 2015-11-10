@@ -8,56 +8,85 @@ import javafx.scene.control.Button;
 import java.io.Serializable;
 
 /**
- * Created by arihanshah on 9/22/15.
+ * Property class.
+ * @author Arihan Shah
+ * @version 1.0
  */
 public class Property implements Serializable, Packable {
-
+    /**
+     * initializes a text "mule".
+     */
     private static final String MULE = "Mule";
 
-    private Tile tile;
-    private PropertyType type;
+    /**
+     * initializes a tile.
+     */
+    private final Tile tile;
 
-    public Property(Button tileHolder) {
+    /**
+     * initializes a PropertyType.
+     */
+    private final PropertyType type;
+
+    /**
+     * constructor for property.
+     * @param tileHolder the button the property belongs to.
+     */
+    public Property(final Button tileHolder) {
         tile = new Tile(tileHolder);
         type = tile.getType();
     }
 
-    public Tile getTile() {
+    /**
+     * gets the tile of the property.
+     * @return the tile of the property
+     */
+    private Tile getTile() {
         return tile;
     }
 
-    public void setTile(Tile tile) {
-        this.tile = tile;
-    }
 
-    public boolean hasMule() {
+    /**
+     * checks if tile has a mule.
+     * @return true or false based on if the tile has a mule or not
+     */
+    public final boolean hasMule() {
         String tileText = tile.getText();
         return tileText.contains(MULE);
     }
 
-    public void addMule(Mule mule) {
+    /**
+     * adds a mule to a tile.
+     * @param mule the mule to be added to tile
+     */
+    public final void addMule(final Mule mule) {
         tile.setText(mule.toString());
     }
 
-    public void removeMule() {
-        tile.setText(new String());
-    }
-
-    public boolean isAvailable() {
+    /**
+     * determines if a tile is available.
+     * @return true if tile is available, false if not available
+     */
+    public final boolean isAvailable() {
         return tile.isTransparent();
     }
 
-    public boolean isOwner(Player player) {
+    /**
+     * determines if if the player is the owner of the property.
+     * @param player the player to check if is owner
+     * @return true if the player passed in is the owner, false if not
+     */
+    public final boolean isOwner(final Player player) {
         String playerColor = player.getColor();
         return tile.containsColor(playerColor);
     }
 
     /**
-     * Pass in a player that is trying to purchase the property
-     * @param player, the user trying to purchase the property
+     * Pass in a player that is trying to purchase the property.
+     * @param player the user trying to purchase the property
      * @return true if player purchase complete, false otherwise
      */
-    public boolean purchase(Player player) {
+    public final boolean purchase(final Player player) {
         if (isAvailable()) {
             String playerColor = player.getColor();
             tile.setColor(playerColor);
@@ -66,45 +95,25 @@ public class Property implements Serializable, Packable {
         return false;
     }
 
-    /**
-     * Pass in a player that is trying to sell the property
-     * @param player, the user trying to sell the property
-     * @return true if property sale complete, false otherwise
-     */
-    public boolean sell(Player player) {
-        if (!isAvailable() && isOwner(player)) {
-            String playerColor = player.getColor();
-            tile.makeTransparent(playerColor);
-            return true;
-        }
-        return false;
-    }
-
     @Override
-    public void unpack() {
+    public final void unpack() {
         getTile().unpack();
         GameDuration.addProperty(getTile().getHolder(), this);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Property) {
-            Property other = (Property) obj;
-            return this.tile.equals(other.tile);
-        }
-        return false;
-    }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Property: " + type.getText();
     }
 
-    public PropertyType getType() {
+    /**
+     *gets the property type.
+     * @return the property type
+     */
+    public final PropertyType getType() {
         return type;
     }
 
-    public void setType(PropertyType type) {
-        this.type = type;
-    }
+
 }

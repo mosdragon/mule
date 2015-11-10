@@ -13,20 +13,38 @@ import javafx.scene.control.Slider;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * GameConfig class which handles logistics of the config View.
+ */
 public class GameConfigView implements Initializable {
 
+    /**
+     * initializes a comboBox configDifficulty.
+     */
     @FXML
     private ComboBox<Difficulty> configDifficulty;
+    /**
+     * initializes a ComboBox mapChoice.
+     */
     @FXML
     private ComboBox<MapType> mapChoice;
+    /**
+     * initializes a Slider playerSlider.
+     */
     @FXML
     private Slider playerSlider;
 
-
+    /**
+     * initializes the GameConfigView.
+     * @param location the url image for the config view
+     * @param resources resources for the GameConfigView
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public final void initialize(final URL location,
+                                 final ResourceBundle resources) {
 
-        ObservableList<Difficulty> difficultyOptions = FXCollections.observableArrayList(
+        ObservableList<Difficulty> difficultyOptions =
+                FXCollections.observableArrayList(
                 Difficulty.Beginner,
                 Difficulty.Standard,
                 Difficulty.Tournament
@@ -43,9 +61,9 @@ public class GameConfigView implements Initializable {
     }
 
     /**
-     * Called externally, most likely by ConfigScreenView
+     * Called externally, most likely by ConfigScreenView.
      */
-    public void saveConfigs() {
+    public final void saveConfigs() {
         int numPlayers = (int) playerSlider.getValue();
         Difficulty difficulty = configDifficulty.getValue();
         MapType mapType = mapChoice.getValue();
