@@ -1,7 +1,7 @@
 gameFile=build/libs/mule-*.jar # where gameFile is located
 
 all:
-	@gradle build
+	@gradle assemble
 	@echo "Build complete"
 
 play:

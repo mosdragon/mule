@@ -1,14 +1,10 @@
 package edu.gatech.cs2340.sharkbait.view;
 
-import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.controller.TownMapController;
 import edu.gatech.cs2340.sharkbait.model.Constants;
-import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.model.Store;
 import edu.gatech.cs2340.sharkbait.util.Player;
-import edu.gatech.cs2340.sharkbait.util.Resource;
-import edu.gatech.cs2340.trydent.log.Log;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,9 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.util.*;
-
 import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created by osama on 9/22/15.

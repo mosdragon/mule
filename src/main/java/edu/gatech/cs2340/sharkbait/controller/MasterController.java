@@ -2,17 +2,20 @@ package edu.gatech.cs2340.sharkbait.controller;
 
 import edu.gatech.cs2340.sharkbait.model.GameConfigs;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
+import edu.gatech.cs2340.sharkbait.model.GameEvents;
 import edu.gatech.cs2340.sharkbait.model.Packable;
 import edu.gatech.cs2340.sharkbait.model.Packer;
-
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
-import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.MapType;
 import edu.gatech.cs2340.sharkbait.util.Player;
 
-import edu.gatech.cs2340.sharkbait.view.*;
 
-import edu.gatech.cs2340.trydent.log.Log;
+import edu.gatech.cs2340.sharkbait.view.GameMapView;
+import edu.gatech.cs2340.sharkbait.view.PauseScreenView;
+import edu.gatech.cs2340.sharkbait.view.PopupEventView;
+import edu.gatech.cs2340.sharkbait.view.ProductionView;
+import edu.gatech.cs2340.sharkbait.view.TownMapView;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -26,63 +29,132 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Random;
-//import java.awt.event.KeyEvent;
 
 /**
- * Created by osama on 9/23/15.
+ * A controller to serve as the glue between model and views.
+ * Initiaizes all screens, switches the screen, manages time throughout game
  */
-public class MasterController implements Serializable, Packable {
+public final class MasterController implements Serializable, Packable {
 
-//    Used to update timers
+    /**
+     * Used to update timers.
+     */
     private static final String TIME_LEFT = "Time Remaining: ";
 
-//    For random events, which must occur 27% of the time to players that are not in last place
-    private static final double CHANCE =  0.27;
-
-//    Interval for timeline in milliseconds
+    /**
+     * Interval for timeline in milliseconds.
+     */
     private static final int INTERVAL = 1000;
 
-
+    /**
+     * Used for random events.
+     */
     private transient Random random;
 
-
+    /**
+     * Game timeline to keep track of turns and rounds.
+     */
     private transient Timeline timeline;
 
+    /**
+     * Game scenes.
+     */
     private transient Scene configScene;
+
+    /**
+     * Game scenes.
+     */
     private transient Scene gameMapScene;
+
+    /**
+     * Game scenes.
+     */
     private transient Scene townMapScene;
-    private transient Scene saveScene;
+
+    /**
+     * Game scenes.
+     */
+    private transient Scene pauseScreenScene;
+
+    /**
+     * Game scenes.
+     */
     private transient Scene eventScene;
+
+    /**
+     * Game scenes.
+     */
     private transient Scene productionScene;
+
+    /**
+     * Game scenes.
+     */
     private transient Scene loadScreenScene;
 
+    /**
+     * JavaFX stage for application's single window.
+     */
     private transient Stage gameStage;
 
+    /**
+     * Game views. Used to switch screens.
+     */
     private transient GameMapView gameMapView;
+
+    /**
+     * Game views. Used to switch screens.
+     */
     private transient TownMapView townMapView;
+
+    /**
+     * Game views. Used to switch screens.
+     */
     private transient PauseScreenView pauseScreenView;
+
+    /**
+     * Game views. Used to switch screens.
+     */
     private transient PopupEventView popupEventView;
+
+    /**
+     * Game views. Used to switch screens.
+     */
     private transient ProductionView productionView;
 
-    private transient static MasterController instance;
+    /**
+     * Single instance of this class. Helps serialization.
+     */
+    private static transient MasterController instance;
 
+    /**
+     * gameId used to associate a game play to a save in our db.
+     * See @link{GameSave} for usage
+     */
     private long gameId;
 
-
+    /**
+     * Initialize gameId.
+     */
     private MasterController() {
         gameId = System.currentTimeMillis();
     }
 
+    /**
+     * Begin timeline for game.
+     */
     public static void initializeTimeline() {
-
-//    Used to pass time every second
-        getInstance().timeline = new Timeline(new KeyFrame(
+        instance.timeline = new Timeline(new KeyFrame(
                 Duration.millis(INTERVAL),
                 ae -> passTime()));
-        getInstance().timeline.setCycleCount(Animation.INDEFINITE);
-        getInstance().timeline.play();
+        instance.timeline.setCycleCount(Animation.INDEFINITE);
+        instance.timeline.play();
     }
 
+    /**
+     * Used internally to get the MasterController instance.
+     * Helps with static methods to do things like switch screens
+     * @return the instance of this controller
+     */
     public static MasterController getInstance() {
         if (instance == null) {
             instance = new MasterController();
@@ -90,6 +162,9 @@ public class MasterController implements Serializable, Packable {
         return instance;
     }
 
+    /**
+     * Passes time and updates views wherever time shows.
+     */
     private static void passTime() {
         if (GameDuration.hasBegun() && !GameDuration.isPaused()) {
             passOneSecond();
@@ -98,182 +173,69 @@ public class MasterController implements Serializable, Packable {
         }
     }
 
+    /**
+     * Update timer views across the different screens.
+     */
     private static void updateTimers() {
         if (GameDuration.hasBegun()) {
             int time = GameDuration.getTimeRemaining();
-            getInstance().gameMapView.updateTimer(TIME_LEFT + time);
-            getInstance().townMapView.updateTimer(TIME_LEFT + time);
+            instance.gameMapView.updateTimer(TIME_LEFT + time);
+            instance.townMapView.updateTimer(TIME_LEFT + time);
             updateMessages();
         }
     }
 
+    /**
+     * Clear the views accross screens that display random event text.
+     */
     public static void clearRandomEvent() {
         String event = "";
-        getInstance().gameMapView.handleRandomEvent(event);
-        getInstance().townMapView.handleRandomEvent(event);
+        instance.gameMapView.handleRandomEvent(event);
+        instance.townMapView.handleRandomEvent(event);
 
     }
 
+    /**
+     * Generates a random event with a given probability and affects
+     * a single player.
+     */
     public static void generateRandomEvent() {
 
-        if (getInstance().random == null) {
-            getInstance().random = new Random();
-        }
-        String event = "";
-
-        double chanceOfEvent = getInstance().random.nextDouble();
-        GamePhase phase = GameDuration.getPhase();
         Player player = GameDuration.getActivePlayer();
-
-        if(phase == GamePhase.PlayerTurnPhase && chanceOfEvent <= CHANCE) {
-
-            Log.debug("Random event occurring for: " + player.getName());
-
-            int round = GameDuration.getRound();
-//            m is the calculation factor
-            int m = 0;
-
-            switch (round) {
-                case 1:
-                    m = 25;
-                    break;
-                case 2:
-                    m = 25;
-                    break;
-                case 3:
-                    m = 25;
-                    break;
-                case 4:
-                    m = 50;
-                    break;
-                case 5:
-                    m = 50;
-                    break;
-                case 6:
-                    m = 50;
-                    break;
-                case 7:
-                    m = 50;
-                    break;
-                case 8:
-                    m = 75;
-                    break;
-                case 9:
-                    m = 75;
-                    break;
-                case 10:
-                    m = 75;
-                    break;
-                case 11:
-                    m = 75;
-                    break;
-                case 12:
-                    m = 100;
-                    break;
-            }
-
-            int eventId = getInstance().random.nextInt(7) + 1;
-
-            switch (eventId) {
-                case 1:
-                    event = ("YOU JUST RECEIVED A PACKAGE FROM THE GT ALUMNI CONTAINING 3 FOOD AND 2 ENERGY UNITS.");
-                    player.changeFood(3);
-                    player.changeEnergy(2);
-                    break;
-                case 2:
-                    event = ("A WANDERING TECH STUDENT REPAID YOUR HOSPITALITY BY LEAVING TWO BARS OF ORE.");
-                    player.changeOre(2);
-                    break;
-                case 3:
-                    event = ("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $" + 8 * m);
-                    player.changeMoney(8 * m);
-                    break;
-                case 4:
-                    event = ("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $" + 2 * m);
-                    player.changeMoney(2 * m);
-                    break;
-                case 5:
-                    event = ("FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $" + 4 * m);
-                    player.changeMoney(-4 * m);
-                    break;
-                case 6:
-                    event = ("MISCHIEVOUS UGA STUDENTS BROKE INTO YOUR STORAGE SHED AND STOLE HALF YOUR FOOD.");
-                    player.changeFood(-player.getFood() / 2);
-                    break;
-                case 7:
-                    event = ("YOUR SPACE GYPSY IN-LAWS MADE A MESS OF THE TOWN. IT COST YOU $" + 6 * m + " TO CLEAN IT UP.");
-                    player.changeMoney(-6 * m);
-                    break;
-            }
+        String event = GameEvents.generateRandomEvent(player);
+        if (!event.isEmpty()) {
             changeSceneToEvent(event);
         }
-        getInstance().gameMapView.handleRandomEvent(event);
-        getInstance().townMapView.handleRandomEvent(event);
+        instance.gameMapView.handleRandomEvent(event);
+        instance.townMapView.handleRandomEvent(event);
     }
 
+    /**
+     * Used for low-score players to ensure random event that happens to them
+     * is only good.
+     */
     public static void generateRandomGoodEvent() {
-        String event = "";
-        Random random = new Random();
-        double chanceOfEvent = random.nextDouble();
-        GamePhase phase = GameDuration.getPhase();
-
-        Player player = GameDuration.getActivePlayer();
-
-        if(phase != GamePhase.LandBuyPhase && chanceOfEvent <= CHANCE) {
-            int round = GameDuration.getRound();
-
-            Log.debug("Random GOOD event occurring for: " + player.getName());
-
-//            m is the calculation factor
-            int m = 0;
-
-            switch(round) {
-                case 1: m = 25; break;
-                case 2: m = 25; break;
-                case 3: m = 25; break;
-                case 4: m = 50; break;
-                case 5: m = 50; break;
-                case 6: m = 50; break;
-                case 7: m = 50; break;
-                case 8: m = 75; break;
-                case 9: m = 75; break;
-                case 10: m = 75; break;
-                case 11: m = 75; break;
-                case 12: m = 100; break;
-            }
-
-            int eventId = random.nextInt(4) + 1;
-
-            switch(eventId) {
-                case 1:
-                    event = ("YOU JUST RECEIVED A PACKAGE FROM THE GT ALUMNI CONTAINING 3 FOOD AND 2 ENERGY UNITS.");
-                    player.changeFood(3);
-                    player.changeEnergy(2);
-                    break;
-                case 2:
-                    event = ("A WANDERING TECH STUDENT REPAID YOUR HOSPITALITY BY LEAVING TWO BARS OF ORE.");
-                    player.changeOre(2);
-                    break;
-                case 3:
-                    event = ("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $" + 8*m);
-                    player.changeMoney(8*m);
-                    break;
-                case 4:
-                    event = ("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $" + 2*m);
-                    player.changeMoney(2*m);
-                    break;
-            }
-            changeSceneToEvent(event);
-        }
-        getInstance().gameMapView.handleRandomEvent(event);
-        getInstance().townMapView.handleRandomEvent(event);
+      Player player = GameDuration.getActivePlayer();
+      String event = GameEvents.generateRandomGoodEvent(player);
+      if (!event.isEmpty()) {
+        changeSceneToEvent(event);
+      }
+      instance.gameMapView.handleRandomEvent(event);
+      instance.townMapView.handleRandomEvent(event);
     }
 
+    /**
+     * Update messages across all screens.
+     */
     public static void updateMessages() {
-        getInstance().gameMapView.updateMessages();
-        getInstance().townMapView.updateMessages();
+        instance.gameMapView.updateMessages();
+        instance.townMapView.updateMessages();
     }
 
+    /**
+     * Pass a single second in game. If time is up, end the turn
+     * and switch to game map screen if needed.
+     */
     private static void passOneSecond() {
         int oneSecond = -1;
         GameDuration.changeTimeRemaining(oneSecond);
@@ -284,67 +246,71 @@ public class MasterController implements Serializable, Packable {
         }
     }
 
-
-    private static void constructScenes(Stage gameStage) {
-        getInstance().gameStage = gameStage;
+    /**
+     * Initialize all scenes from the fxml resources.
+     * @param gameStage the JavaFX stage.
+     */
+    private static void constructScenes(final Stage gameStage) {
+        instance.gameStage = gameStage;
 
         try {
-
-            Parent configRoot = new FXMLLoader(getInstance().getClass().getResource
-                    ("/fxml/config/config_screen.fxml")).load();
+            Parent configRoot = new FXMLLoader(instance.getClass()
+                    .getResource("/fxml/config/config_screen.fxml")).load();
             gameStage.setTitle("M.U.L.E");
-            getInstance().configScene = new Scene(configRoot);
+            instance.configScene = new Scene(configRoot);
 
-            Parent loadScreenRoot = new FXMLLoader(getInstance().getClass().getResource
-                    ("/fxml/config/load_screen.fxml")).load();
-//                    ("/fxml/config/config_screen.fxml")).load();
+            Parent loadScreenRoot = new FXMLLoader(instance.getClass()
+                    .getResource("/fxml/config/load_screen.fxml")).load();
             gameStage.setTitle("M.U.L.E");
-            getInstance().loadScreenScene = new Scene(loadScreenRoot);
+            instance.loadScreenScene = new Scene(loadScreenRoot);
 
 
-            FXMLLoader configScreenLoader = new FXMLLoader(getInstance().getClass().getResource
-                    ("/fxml/config/config_screen.fxml"));
+            FXMLLoader configScreenLoader = new FXMLLoader(getInstance()
+                    .getClass().getResource("/fxml/config/config_screen.fxml"));
             Parent configSceneRoot = configScreenLoader.load();
-            getInstance().configScene = new Scene(configSceneRoot);
+            instance.configScene = new Scene(configSceneRoot);
 //            configSceneView = configScreenLoader.getController();
 
-            FXMLLoader gameMapLoader = new FXMLLoader(getInstance().getClass().getResource
-                    ("/fxml/game_map.fxml"));
+            FXMLLoader gameMapLoader = new FXMLLoader(getInstance()
+                    .getClass().getResource("/fxml/game_map.fxml"));
             Parent gameMapRoot = gameMapLoader.load();
-            getInstance().gameMapScene = new Scene(gameMapRoot);
-            getInstance().gameMapView = gameMapLoader.getController();
+            instance.gameMapScene = new Scene(gameMapRoot);
+            instance.gameMapView = gameMapLoader.getController();
 
-            FXMLLoader townMapLoader = new FXMLLoader(getInstance().getClass().getResource
-                    ("/fxml/town_map.fxml"));
+            FXMLLoader townMapLoader = new FXMLLoader(getInstance()
+                    .getClass().getResource("/fxml/town_map.fxml"));
             Parent townMapRoot = townMapLoader.load();
 
-            getInstance().townMapScene = new Scene(townMapRoot);
-            getInstance().townMapView = townMapLoader.getController();
+            instance.townMapScene = new Scene(townMapRoot);
+            instance.townMapView = townMapLoader.getController();
 
-            FXMLLoader saveLoader = new FXMLLoader(getInstance().getClass().getResource("/fxml/save.fxml"));
-            Parent saveRoot = saveLoader.load();
-            getInstance().saveScene = new Scene(saveRoot);
-            getInstance().pauseScreenView = saveLoader.getController();
+            FXMLLoader pauseScreenLoader = new FXMLLoader(getInstance()
+                    .getClass().getResource("/fxml/pause_screen.fxml"));
+            Parent pauseScreenRoot = pauseScreenLoader.load();
+            instance.pauseScreenScene = new Scene(pauseScreenRoot);
+            instance.pauseScreenView = pauseScreenLoader.getController();
 
-            FXMLLoader eventLoader = new FXMLLoader(getInstance().getClass().getResource("/fxml/event.fxml"));
+            FXMLLoader eventLoader = new FXMLLoader(getInstance()
+                    .getClass().getResource("/fxml/event.fxml"));
             Parent eventRoot = eventLoader.load();
-            getInstance().eventScene = new Scene(eventRoot);
-            getInstance().popupEventView = eventLoader.getController();
+            instance.eventScene = new Scene(eventRoot);
+            instance.popupEventView = eventLoader.getController();
 
-            FXMLLoader productionLoader = new FXMLLoader(getInstance().getClass().getResource("/fxml/production.fxml"));
+            FXMLLoader productionLoader = new FXMLLoader(getInstance()
+                    .getClass().getResource("/fxml/production.fxml"));
             Parent productionRoot = productionLoader.load();
-            getInstance().productionScene = new Scene(productionRoot);
-            getInstance().productionView = productionLoader.getController();
+            instance.productionScene = new Scene(productionRoot);
+            instance.productionView = productionLoader.getController();
 
-            getInstance().gameMapScene.setOnKeyPressed(event -> {
+            instance.gameMapScene.setOnKeyPressed(event -> {
                 if (event.getText().toLowerCase().equals("p")) {
-                    changeSceneToSave();
+                    changeSceneToPauseScreen();
                 }
             });
 
-            getInstance().townMapScene.setOnKeyPressed(event -> {
+            instance.townMapScene.setOnKeyPressed(event -> {
                 if (event.getText().toLowerCase().equals("p")) {
-                    changeSceneToSave();
+                    changeSceneToPauseScreen();
                 }
             });
 
@@ -354,104 +320,148 @@ public class MasterController implements Serializable, Packable {
         }
     }
 
-    public static void initialize(Stage gameStage) {
+    /**
+     * Create the application given a game stage.
+     * @param gameStage the visible application screen.
+     */
+    public static void initialize(final Stage gameStage) {
+        instance = new MasterController();
         constructScenes(gameStage);
 
         initializeTimeline();
-        gameStage.setScene(getInstance().loadScreenScene);
+        gameStage.setScene(instance.loadScreenScene);
         gameStage.show();
 
     }
 
+    /**
+     * Screen should show game map screen.
+     */
     public static void changeSceneToGameMap() {
-        getInstance().gameStage.setScene(getInstance().gameMapScene);
+        instance.gameStage.setScene(instance.gameMapScene);
     }
 
+    /**
+     * Screen should show town map screen.
+     */
     public static void changeSceneToTownMap() {
-        getInstance().gameStage.setScene(getInstance().townMapScene);
+        instance.gameStage.setScene(instance.townMapScene);
     }
 
+    /**
+     * Screen should show config screen.
+     */
     public static void changeSceneToConfig() {
-        getInstance().gameStage.setScene(getInstance().configScene);
+        instance.gameStage.setScene(instance.configScene);
     }
 
-    public static void changeSceneToSave() {
+    /**
+     * Screen should show pause screen.
+     */
+    public static void changeSceneToPauseScreen() {
         pauseTime();
-        getInstance().gameStage.setScene(getInstance().saveScene);
+        instance.gameStage.setScene(instance.pauseScreenScene);
     }
 
-    public static void changeSceneToEvent(String event) {
+    /**
+     * Screen should show event occurrence screen.
+     * @param event the text of a random event
+     */
+    public static void changeSceneToEvent(final String event) {
         pauseTime();
-        getInstance().gameStage.setScene(getInstance().eventScene);
-        getInstance().popupEventView.setText(event);
+        instance.gameStage.setScene(instance.eventScene);
+        instance.popupEventView.setText(event);
     }
 
+    /**
+     * Screen should show production screen.
+     */
     public static void changeSceneToProduction() {
         pauseTime();
-        getInstance().gameStage.setScene(getInstance().productionScene);
+        instance.gameStage.setScene(instance.productionScene);
     }
 
+    /**
+     * Pause the game timer.
+     */
     public static void pauseTime() {
         GameDuration.pause();
     }
 
+    /**
+     * Resume the game timer.
+     */
     public static void resumeTime() {
         GameDuration.resume();
     }
 
-    public static GameMapView getGameMapView() {
-        return getInstance().gameMapView;
-    }
+    /**
+     * Save configuration settings from the config screens.
+     * @param numPlayers the number of players for the game.
+     * @param difficulty the difficulty of the game.
+     * @param mapType the map generated.
+     */
+    public static void saveConfigs(final int numPlayers, final Difficulty
+        difficulty, final MapType mapType) {
 
-    public static TownMapView getTownMapView() {
-        return getInstance().townMapView;
-    }
-
-    public static void saveConfigs(int numPlayers, Difficulty difficulty, MapType mapType) {
         GameConfigs.setGameDifficulty(difficulty);
         GameConfigs.setMapType(mapType);
         GameConfigs.setNumPlayers(numPlayers);
     }
 
     /**
-     * Redefine the single instance of a singleton using the provided source
-     * @param source, the source object
+     * Redefine the single instance of a singleton using the provided source.
+     * @param source the source MasterController instance
      */
-    public static void unpack(MasterController source) {
-        Stage currentStage = getInstance().gameStage;
+    public static void unpack(final MasterController source) {
+        Stage currentStage = instance.gameStage;
         instance = source;
         constructScenes(currentStage);
     }
 
     /**
-     * Redefine the single instance of a singleton using the provided source, which is JSON
-     * @param jsonSource
+     * Redefine the single instance of a singleton using the provided source,
+     * which is JSON.
+     * @param jsonSource the string with a serialized MasterController.
      */
-    public static void unpackfromJson(String jsonSource) {
-        if (getInstance().timeline != null) {
-            getInstance().timeline.stop();
+    public static void unpackfromJson(final String jsonSource) {
+        if (instance.timeline != null) {
+            instance.timeline.stop();
         }
-        MasterController source = Packer.unpack(jsonSource, MasterController.class);
+        MasterController source = Packer.unpack(jsonSource,
+            MasterController.class);
         unpack(source);
     }
 
     /**
-     * Serialized instance as JSON
+     * Serialized instance as JSON.
      * @return a JSONified version of this object
      */
     public static String packAsJson() {
-        return getInstance().pack();
+        return instance.pack();
     }
 
+    /**
+     * Gives the GameMapView's grid.
+     * @return the gameMapView's grid.
+     */
     public static GridPane getGrid() {
-        return getInstance().gameMapView.getGrid();
+        return instance.gameMapView.getGrid();
     }
 
+    /**
+     * Returns the unique game id.
+     * @return the unique game id.
+     */
     public static long getGameId() {
-        return getInstance().gameId;
+        return instance.gameId;
     }
 
-    public void setGameId(long gameId) {
-        getInstance().gameId = gameId;
+    /**
+     * Set a unique game id.
+     * @param gameIdField a unique game id.
+     */
+    public void setGameId(final long gameIdField) {
+        instance.gameId = gameIdField;
     }
 }

@@ -6,9 +6,6 @@ import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.sharkbait.util.Property;
 import edu.gatech.cs2340.sharkbait.util.Resource;
-import edu.gatech.cs2340.sharkbait.view.GameMapView;
-import edu.gatech.cs2340.sharkbait.view.TownMapView;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 import java.io.Serializable;
@@ -28,12 +25,6 @@ public class GameDuration implements Serializable, Packable {
     private static final int TIME_DEFAULT = 50;
 
     private static final int MAX_ROUNDS = 12;
-
-    private transient Parent gameMap = null;
-    private transient GameMapView gameMapView;
-
-    private transient Parent townMap = null;
-    private transient TownMapView townMapView;
 
     private List<Player> players;
     private int round;
@@ -114,23 +105,6 @@ public class GameDuration implements Serializable, Packable {
         getInstance().propertiesMap.put(button, property);
     }
 
-    public static Parent getGameMap() {
-        return getInstance().gameMap;
-    }
-
-    public static void setGameMap(Parent gameMap) {
-        getInstance().gameMap = gameMap;
-    }
-
-    public static Parent getTownMap() {
-        return getInstance().townMap;
-    }
-
-    public static void setTownMap(Parent townMap) {
-        getInstance().townMap = townMap;
-    }
-
-
     public static int getTurn() {
         return getInstance().turn;
     }
@@ -147,7 +121,7 @@ public class GameDuration implements Serializable, Packable {
         return getInstance().phase;
     }
 
-    public static void endTurn() {
+    public static void updateTurn() {
         getInstance().turn++;
         if (getInstance().turn >= GameConfigs.getInstance().getNumPlayers()) {
             getInstance().turn = 0;
@@ -161,6 +135,10 @@ public class GameDuration implements Serializable, Packable {
             }
         }
         getInstance().activePlayer = getPlayers().get(getInstance().turn);
+    }
+
+    public static void endTurn() {
+        updateTurn();
         determineTimeRemaining();
         handleRandomEvents();
         handleProductionIfApplicable();

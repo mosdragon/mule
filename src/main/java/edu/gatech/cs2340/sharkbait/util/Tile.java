@@ -2,16 +2,12 @@ package edu.gatech.cs2340.sharkbait.util;
 
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.model.Constants;
-
 import edu.gatech.cs2340.sharkbait.model.Packable;
-
-
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
-
 import java.io.Serializable;
-import javafx.scene.Node;
 
 
 /**

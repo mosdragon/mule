@@ -7,7 +7,6 @@ import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.util.GamePhase;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.trydent.log.Log;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -82,7 +81,7 @@ public class GameMapView implements Initializable {
         });
 
         pauseButton.setOnMouseClicked(event -> {
-            MasterController.changeSceneToSave();
+            MasterController.changeSceneToPauseScreen();
         });
     }
 

@@ -1,7 +1,6 @@
 package edu.gatech.cs2340.sharkbait.util;
 
 
-import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.model.Packable;
 import javafx.scene.control.Button;
