@@ -85,7 +85,7 @@
 
                 <ImageView pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="0">
                     <image>
-                        <Image url="@../images/river.jpeg" />
+                        <Image url="@../images/river.gif" />
                     </image>
                 </ImageView>
 
@@ -139,7 +139,7 @@
 
                 <ImageView pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
                     <image>
-                        <Image url="@../images/river.jpeg" />
+                        <Image url="@../images/river.gif" />
                     </image>
                 </ImageView>
 
@@ -247,7 +247,7 @@
 
                 <ImageView pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
                     <image>
-                        <Image url="@../images/river.jpeg" />
+                        <Image url="@../images/river.gif" />
                     </image>
                 </ImageView>
 
@@ -301,7 +301,7 @@
 
                 <ImageView pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
                     <image>
-                        <Image url="@../images/river.jpeg" />
+                        <Image url="@../images/river.gif" />
                     </image>
                 </ImageView>
 
