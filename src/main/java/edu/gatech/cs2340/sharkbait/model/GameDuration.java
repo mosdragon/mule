@@ -148,6 +148,7 @@ public class GameDuration implements Serializable, Packable {
     }
 
     public static void endTurn() {
+        int oldTurn = getInstance().turn;
         getInstance().turn++;
         if (getInstance().turn >= GameConfigs.getInstance().getNumPlayers()) {
             getInstance().turn = 0;
@@ -158,6 +159,7 @@ public class GameDuration implements Serializable, Packable {
                 Collections.sort(getPlayers());
                 getInstance().phase = GamePhase.LandBuyPhase;
                 getInstance().round++;
+                MasterController.roundRandomEvent();
             }
         }
         getInstance().activePlayer = getPlayers().get(getInstance().turn);
