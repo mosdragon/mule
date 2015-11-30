@@ -53,7 +53,9 @@ public class PlayerConfigView implements Initializable {
                 Race.Human,
                 Race.Bonzoid,
                 Race.Buzzite,
-                Race.Ugaite
+                Race.Ugaite,
+                Race.Alien,
+                Race.CollegeStudent
         );
         selectRace.setItems(raceOptions);
         selectRace.setValue(raceOptions.get(0));
