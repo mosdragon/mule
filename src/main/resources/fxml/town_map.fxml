@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import java.net.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
-
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
-
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import java.net.URL?>
 
-<SplitPane dividerPositions="0.83" orientation="VERTICAL"
-           minHeight="720.0" minWidth="1080.0"
-           maxHeight="720.0" maxWidth="1080.0"
-           prefHeight="720.0" prefWidth="1080.0"
-           xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="edu.gatech.cs2340.sharkbait.view.TownMapView">
+<SplitPane dividerPositions="0.83" maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" orientation="VERTICAL" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gatech.cs2340.sharkbait.view.TownMapView">
 
     <stylesheets>
         <URL value="@../css/map.css" />
@@ -32,12 +28,7 @@
 
     <items>
 
-        <Pane layoutX="0.0" layoutY="0.0"
-              prefHeight="600.0" prefWidth="1080.0"
-
-              style="-fx-background-color:#583B1E;"
-              minHeight="600.0" minWidth="1080.0"
-              maxHeight="600.0" maxWidth="1080.0">
+        <Pane layoutX="0.0" layoutY="0.0" maxHeight="600.0" maxWidth="1080.0" minHeight="600.0" minWidth="1080.0" prefHeight="600.0" prefWidth="1080.0" style="-fx-background-color:#583B1E;">
             <children>
 
                 <Text fx:id="oreText" fill="WHITE" layoutX="165.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ORE:">
@@ -46,13 +37,10 @@
                     </font>
                 </Text>
 
-                <ImageView id="oreStore" fx:id="oreImage" fitHeight="120.0" fitWidth="120.0"
-                           layoutX="55.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView id="oreStore" fx:id="oreImage" fitHeight="120.0" fitWidth="120.0" layoutX="55.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
 
                     <effect>
-                        <DropShadow color="#0000003d" height="45.19047619047619"
-                                    radius="22.095238095238095" width="45.19047619047619"
-                                    fx:id="x3" />
+                        <DropShadow color="#0000003d" height="45.19047619047619" radius="22.095238095238095" width="45.19047619047619" fx:id="x3" />
                     </effect>
 
                     <image>
@@ -61,10 +49,7 @@
                 </ImageView>
 
 
-                <Button id="" fx:id="sellOre" layoutX="185.0" layoutY="65.0" minWidth="-1.0"
-                        mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0"
-                        style="-fx-background-color:#505050;" text="Sell Ore: $" textFill="WHITE"
-                        textOverrun="ELLIPSIS">
+                <Button id="" fx:id="sellOre" layoutX="185.0" layoutY="65.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:#505050;" text="Sell Ore: $" textFill="WHITE" textOverrun="ELLIPSIS">
                     <effect>
                         <InnerShadow height="12.118881118881118" radius="5.559440559440559" width="12.118881118881118" fx:id="x1">
 
@@ -77,63 +62,38 @@
 
                 </Button>
 
-                <Button fx:id="buyOre" effect="$x1" layoutX="185.0" layoutY="130.0"
-                        minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0"
-                        prefWidth="150.0"  style="-fx-background-color:white;" text="Buy Ore: $"
-                        textOverrun="ELLIPSIS" />
+                <Button fx:id="buyOre" effect="$x1" layoutX="185.0" layoutY="130.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:white;" text="Buy Ore: $" textOverrun="ELLIPSIS" />
 
-                <Text fx:id="energyText" fill="WHITE" font="$x2" layoutX="491.0" layoutY="52.0"
-                      strokeType="OUTSIDE" strokeWidth="0.0" text="ENERGY: " />
+                <Text fx:id="energyText" fill="WHITE" font="$x2" layoutX="491.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ENERGY: " />
 
-                <ImageView id="energyStore" fx:id="energyImage" effect="$x3" fitHeight="120.0"
-                           fitWidth="120.0" layoutX="397.0" layoutY="65.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView id="energyStore" fx:id="energyImage" effect="$x3" fitHeight="120.0" fitWidth="120.0" layoutX="397.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/energy.jpeg" />
                     </image>
                 </ImageView>
 
 
-                <Button id="" fx:id="sellEnergy" effect="$x1" layoutX="531.0" layoutY="65.0"
-                        minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0"
-                        prefWidth="150.0"  style="-fx-background-color:#505050;"
-                        text="Sell Energy: $"  textFill="WHITE" textOverrun="ELLIPSIS" />
-                <Button fx:id="buyEnergy" effect="$x1" layoutX="531.0"
-                        layoutY="130.0"  minWidth="-1.0" mnemonicParsing="false"
-                        prefHeight="55.0"  prefWidth="150.0" style="-fx-background-color:white;"
-                        text="Buy Energy: $" textOverrun="ELLIPSIS" />
-                <Text fx:id="foodText" fill="WHITE" font="$x2" layoutX="845.0" layoutY="51.0"
-                      strokeType="OUTSIDE" strokeWidth="0.0" text="FOOD:" />
+                <Button id="" fx:id="sellEnergy" effect="$x1" layoutX="531.0" layoutY="65.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:#505050;" text="Sell Energy: $" textFill="WHITE" textOverrun="ELLIPSIS" />
+                <Button fx:id="buyEnergy" effect="$x1" layoutX="531.0" layoutY="130.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:white;" text="Buy Energy: $" textOverrun="ELLIPSIS" />
+                <Text fx:id="foodText" fill="WHITE" font="$x2" layoutX="845.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FOOD:" />
 
-                <ImageView id="foodStore" fx:id="foodImage" effect="$x3" fitHeight="120.0"
-                           fitWidth="120.0" layoutX="741.0" layoutY="65.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView id="foodStore" fx:id="foodImage" effect="$x3" fitHeight="120.0" fitWidth="120.0" layoutX="741.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/food.jpeg" />
                     </image>
                 </ImageView>
 
-                <Button id="" effect="$x1" layoutX="875.0" layoutY="65.0" minWidth="-1.0"
-                        mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0"
-                        style="-fx-background-color:#505050;" text="Sell Food: $"
-                        textFill="WHITE"  textOverrun="ELLIPSIS" fx:id="sellFood" />
+                <Button id="" fx:id="sellFood" effect="$x1" layoutX="875.0" layoutY="65.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:#505050;" text="Sell Food: $" textFill="WHITE" textOverrun="ELLIPSIS" />
 
-                <Button effect="$x1" layoutX="875.0" layoutY="130.0" minWidth="-1.0"
-                        mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0"
-                        style="-fx-background-color:white;" text="Buy Food: $"
-                        fx:id="buyFood"
-                        textOverrun="ELLIPSIS" />
+                <Button fx:id="buyFood" effect="$x1" layoutX="875.0" layoutY="130.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:white;" text="Buy Food: $" textOverrun="ELLIPSIS" />
 
-                <ImageView id="oreStore" effect="$x3" fitHeight="120.0" fitWidth="120.0"
-                           layoutX="55.0" layoutY="256.0" pickOnBounds="true" preserveRatio="false">
+                <ImageView id="oreStore" effect="$x3" fitHeight="120.0" fitWidth="120.0" layoutX="55.0" layoutY="256.0" pickOnBounds="true" preserveRatio="false">
                     <image>
                         <Image url="@../images/land.jpeg" />
                     </image>
                 </ImageView>
 
-                <ImageView id="oreStore" fx:id="pubImage" effect="$x3" fitHeight="120.0"
-                           fitWidth="120.0" layoutX="55.0" layoutY="441.0" pickOnBounds="true"
-                           preserveRatio="false">
+                <ImageView id="oreStore" fx:id="pubImage" effect="$x3" fitHeight="120.0" fitWidth="120.0" layoutX="55.0" layoutY="441.0" pickOnBounds="true" preserveRatio="false">
 
                     <image>
 
@@ -143,163 +103,117 @@
 
                 </ImageView>
 
-                <ImageView id="oreStore" effect="$x3" fitHeight="142.0" fitWidth="628.0"
-                           layoutX="395.0" layoutY="419.0" pickOnBounds="true"
-                           preserveRatio="false">
+                <Button fx:id="buyOreMule" effect="$x1" layoutX="397.0" layoutY="321.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0" style="-fx-background-color:white;" text="Buy Ore Mule: $" textOverrun="ELLIPSIS" />
 
-                    <image>
+                <Button fx:id="buyEnergyMule" effect="$x1" layoutX="619.0" layoutY="320.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0" style="-fx-background-color:white;" text="Buy Energy Mule: $" textOverrun="ELLIPSIS" />
 
-                        <Image url="@../images/mules.jpeg" />
+                <Button fx:id="buyFoodMule" effect="$x1" layoutX="845.0" layoutY="320.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0" style="-fx-background-color:white;" text="Buy Food Mule: $" textOverrun="ELLIPSIS" />
 
-                    </image>
+                <Button id="" fx:id="sellOreMule" effect="$x1" layoutX="397.0" layoutY="256.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0" style="-fx-background-color:#505050;" text="Sell Ore Mule: $" textFill="WHITE" textOverrun="ELLIPSIS" />
 
-                </ImageView>
+                <Button id="" fx:id="sellEnergyMule" effect="$x1" layoutX="619.0" layoutY="256.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0" style="-fx-background-color:#505050;" text="Sell Energy Mule: $" textFill="WHITE" textOverrun="ELLIPSIS" />
 
-                <Button fx:id="buyOreMule" effect="$x1" layoutX="397.0" layoutY="321.0"
-                        minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
-                        style="-fx-background-color:white;" text="Buy Ore Mule: $"
-                        textOverrun="ELLIPSIS" />
+                <Button id="" fx:id="sellFoodMule" effect="$x1" layoutX="845.0" layoutY="256.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0" style="-fx-background-color:#505050;" text="Sell Food Mule: $" textFill="WHITE" textOverrun="ELLIPSIS" />
 
-                <Button fx:id="buyEnergyMule" effect="$x1" layoutX="619.0"
-                        layoutY="320.0"
-                        minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
-                        style="-fx-background-color:white;" text="Buy Energy Mule: $"
-                        textOverrun="ELLIPSIS" />
+                <Text id="foodText" fx:id="muleText" fill="WHITE" font="$x2" layoutX="678.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MULES:" />
 
-                <Button fx:id="buyFoodMule" effect="$x1" layoutX="845.0" layoutY="320.0"
-                        minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
-                        style="-fx-background-color:white;" text="Buy Food Mule: $"
-                        textOverrun="ELLIPSIS" />
+                <Text id="oreText" fx:id="landOfficeText" fill="WHITE" font="$x2" layoutX="121.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LAND OFFICE: " />
 
-                <Button id="" fx:id="sellOreMule" effect="$x1" layoutX="397.0" layoutY="256.0"
-                        minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
-                        style="-fx-background-color:#505050;" text="Sell Ore Mule: $"
-                        textFill="WHITE"  textOverrun="ELLIPSIS" />
+                <Text id="oreText" fx:id="pubText" fill="WHITE" font="$x2" layoutX="161.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PUB:" />
 
-                <Button id="" fx:id="sellEnergyMule" effect="$x1" layoutX="619.0" layoutY="256.0"
-                        minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
-                        style="-fx-background-color:#505050;" text="Sell Energy Mule: $"
-                        textFill="WHITE"  textOverrun="ELLIPSIS" />
-
-                <Button id="" fx:id="sellFoodMule" effect="$x1" layoutX="845.0" layoutY="256.0"
-                        minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0"
-                        style="-fx-background-color:#505050;" text="Sell Food Mule: $"
-                        textFill="WHITE"  textOverrun="ELLIPSIS" />
-
-                <Text id="foodText" fx:id="muleText" fill="WHITE" font="$x2" layoutX="678.0"
-                      layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MULES:" />
-
-                <Text id="oreText" fx:id="landOfficeText" fill="WHITE" font="$x2" layoutX="121.0"
-                      layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LAND OFFICE: " />
-
-                <Text id="oreText" fx:id="pubText" fill="WHITE" font="$x2" layoutX="161.0"
-                      layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PUB:" />
-
-                <Button id="" fx:id="sellLand" layoutX="185.0" layoutY="256.0"  minWidth="-1.0"
-                        mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0"
-                        style="-fx-background-color:#505050;" text="Sell Land: $"
-                        textFill="WHITE"  textOverrun="ELLIPSIS">
+                <Button id="" fx:id="sellLand" layoutX="185.0" layoutY="256.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:#505050;" text="Sell Land: $" textFill="WHITE" textOverrun="ELLIPSIS">
 
                     <effect>
 
-                        <InnerShadow color="$x5" height="12.118881118881118"
-                                     radius="5.559440559440559" width="12.118881118881118"
-                                     fx:id="x4" />
+                        <InnerShadow color="$x5" height="12.118881118881118" radius="5.559440559440559" width="12.118881118881118" fx:id="x4" />
 
                     </effect>
 
                 </Button>
 
-                <Button fx:id="buyLand" effect="$x4" layoutX="185.0" layoutY="321.0"
-                        minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0"
-                        style="-fx-background-color:white;" text="Buy Land: $"
-                        textOverrun="ELLIPSIS" />
+                <Button fx:id="buyLand" effect="$x4" layoutX="185.0" layoutY="321.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="150.0" style="-fx-background-color:white;" text="Buy Land: $" textOverrun="ELLIPSIS" />
 
-                <Button fx:id="enterPub" layoutX="185.0" layoutY="441.0" minWidth="-1.0"
-                        mnemonicParsing="false" prefHeight="120.0" prefWidth="150.0"
-                        style="-fx-background-color:white;" text="ENTER THE PUB"
-                        textOverrun="ELLIPSIS">
+                <Button fx:id="enterPub" layoutX="185.0" layoutY="441.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="150.0" style="-fx-background-color:white;" text="ENTER THE PUB" textOverrun="ELLIPSIS">
 
                     <effect>
 
-                        <InnerShadow color="$x5" height="12.118881118881118" radius="5.559440559440559"
-                                     width="12.118881118881118" />
+                        <InnerShadow color="$x5" height="12.118881118881118" radius="5.559440559440559" width="12.118881118881118" />
 
                     </effect>
 
                 </Button>
 
-                <Button fx:id="exitTown" layoutX="0.0" layoutY="0.0" minWidth="-1.0"
-                        mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0"
-                        style="-fx-background-color:white;"
-                        text="Exit Town" textOverrun="ELLIPSIS">
+                <Button fx:id="exitTown" layoutX="0.0" layoutY="0.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color:white;" text="Exit Town" textOverrun="ELLIPSIS">
 
                     <effect>
-                        <InnerShadow color="$x5" height="12.118881118881118"
-                                     radius="5.559440559440559"
-                                     width="12.118881118881118" />
+                        <InnerShadow color="$x5" height="12.118881118881118" radius="5.559440559440559" width="12.118881118881118" />
                     </effect>
                 </Button>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5e9d1" height="90.0" layoutX="397.0" layoutY="439.0" stroke="TRANSPARENT" strokeType="INSIDE" width="628.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dab159" height="39.0" layoutX="397.0" layoutY="521.0" stroke="TRANSPARENT" strokeType="INSIDE" width="628.0" />
+            <ImageView id="energyMule" fx:id="muleImage" effect="$x3" fitHeight="120.0" fitWidth="162.0" layoutX="629.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/runningMule.gif" />
+               </image>
+            </ImageView>
             </children>
 
             <effect>
 
-                <InnerShadow color="#00000013" height="97.37762237762237" radius="48.18881118881119"
-                             width="97.37762237762237" />
+                <InnerShadow color="#00000013" height="97.37762237762237" radius="48.18881118881119" width="97.37762237762237" />
 
             </effect>
 
         </Pane>
 
 
-        <SplitPane dividerPositions="0.2, 0.4, 0.6, 0.8" minHeight="120.0" minWidth="1080.0"
-                   orientation="HORIZONTAL" prefHeight="120.0" prefWidth="1080.0">
+        <SplitPane dividerPositions="0.2, 0.4, 0.6, 0.8" minHeight="120.0" minWidth="1080.0" orientation="HORIZONTAL" prefHeight="120.0" prefWidth="1080.0">
 
             <items>
 
                 <VBox fx:id="scorePanel1">
                     <children>
-                        <Label fx:id="name1"></Label>
-                        <Label fx:id="mules1"></Label>
-                        <Label fx:id="money1"></Label>
-                        <Label fx:id="food1"></Label>
-                        <Label fx:id="energy1"></Label>
-                        <Label fx:id="ore1"></Label>
+                        <Label fx:id="name1" />
+                        <Label fx:id="mules1" />
+                        <Label fx:id="money1" />
+                        <Label fx:id="food1" />
+                        <Label fx:id="energy1" />
+                        <Label fx:id="ore1" />
 
                     </children>
                 </VBox>
 
                 <VBox fx:id="scorePanel2">
                     <children>
-                        <Label fx:id="name2"></Label>
-                        <Label fx:id="mules2"></Label>
-                        <Label fx:id="money2"></Label>
-                        <Label fx:id="food2"></Label>
-                        <Label fx:id="energy2"></Label>
-                        <Label fx:id="ore2"></Label>
+                        <Label fx:id="name2" />
+                        <Label fx:id="mules2" />
+                        <Label fx:id="money2" />
+                        <Label fx:id="food2" />
+                        <Label fx:id="energy2" />
+                        <Label fx:id="ore2" />
                     </children>
                 </VBox>
 
                 <VBox fx:id="scorePanel3">
                     <children>
-                        <Label fx:id="name3"></Label>
-                        <Label fx:id="mules3"></Label>
-                        <Label fx:id="money3"></Label>
-                        <Label fx:id="food3"></Label>
-                        <Label fx:id="energy3"></Label>
-                        <Label fx:id="ore3"></Label>
+                        <Label fx:id="name3" />
+                        <Label fx:id="mules3" />
+                        <Label fx:id="money3" />
+                        <Label fx:id="food3" />
+                        <Label fx:id="energy3" />
+                        <Label fx:id="ore3" />
                     </children>
                 </VBox>
 
                 <VBox fx:id="scorePanel4">
 
                     <children>
-                        <Label fx:id="name4"></Label>
-                        <Label fx:id="mules4"></Label>
-                        <Label fx:id="money4"></Label>
-                        <Label fx:id="food4"></Label>
-                        <Label fx:id="energy4"></Label>
-                        <Label fx:id="ore4"></Label>
+                        <Label fx:id="name4" />
+                        <Label fx:id="mules4" />
+                        <Label fx:id="money4" />
+                        <Label fx:id="food4" />
+                        <Label fx:id="energy4" />
+                        <Label fx:id="ore4" />
 
 
                     </children>
@@ -312,10 +226,10 @@
 
                     <children>
 
-                        <Label fx:id="phaseMsg" styleClass="turnMessages"></Label>
-                        <Label fx:id="playerMsg" styleClass="turnMessages"></Label>
-                        <Label fx:id="timerMsg" styleClass="turnMessages"></Label>
-                        <Label fx:id="randomEventMsg" styleClass="randomEventMsg"></Label>
+                        <Label fx:id="phaseMsg" styleClass="turnMessages" />
+                        <Label fx:id="playerMsg" styleClass="turnMessages" />
+                        <Label fx:id="timerMsg" styleClass="turnMessages" />
+                        <Label fx:id="randomEventMsg" styleClass="randomEventMsg" />
 
                     </children>
 

@@ -26,6 +26,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Random;
+import java.util.List;
 //import java.awt.event.KeyEvent;
 
 /**
@@ -129,50 +130,10 @@ public class MasterController implements Serializable, Packable {
 
             Log.debug("Random event occurring for: " + player.getName());
 
-            int round = GameDuration.getRound();
 //            m is the calculation factor
-            int m = 0;
+            int m = getMultiplier();
 
-            switch (round) {
-                case 1:
-                    m = 25;
-                    break;
-                case 2:
-                    m = 25;
-                    break;
-                case 3:
-                    m = 25;
-                    break;
-                case 4:
-                    m = 50;
-                    break;
-                case 5:
-                    m = 50;
-                    break;
-                case 6:
-                    m = 50;
-                    break;
-                case 7:
-                    m = 50;
-                    break;
-                case 8:
-                    m = 75;
-                    break;
-                case 9:
-                    m = 75;
-                    break;
-                case 10:
-                    m = 75;
-                    break;
-                case 11:
-                    m = 75;
-                    break;
-                case 12:
-                    m = 100;
-                    break;
-            }
-
-            int eventId = getInstance().random.nextInt(7) + 1;
+            int eventId = getInstance().random.nextInt(14) + 1;
 
             switch (eventId) {
                 case 1:
@@ -204,6 +165,37 @@ public class MasterController implements Serializable, Packable {
                     event = ("YOUR SPACE GYPSY IN-LAWS MADE A MESS OF THE TOWN. IT COST YOU $" + 6 * m + " TO CLEAN IT UP.");
                     player.changeMoney(-6 * m);
                     break;
+                case 8:
+                    event = ("TRIBBLES TOOK $" + 10 * m + " FROM YOUR BANK ACCOUNT. DON'T ASK HOW.");
+                    player.changeMoney(-10 * m);
+                    break;
+                case 9:
+                    event = ("YOU ATE 2 PIECES OF ORE BECAUSE YOU ARE STARVING.");
+                    player.changeOre(-2);
+                    break;
+                case 10:
+                    event = ("YOU GAVE 5 PIECES OF FOOD TO YOUR MOM.");
+                    player.changeFood(-5);
+                    break;
+                case 11:
+                    event = ("YOU GOT A COOKIE FROM GRANDMA.");
+                    player.changeFood(1);
+                    break;
+                case 12:
+                    event = ("YOU PILLAGED ANOTHER PLAYER AND GOT A TON OF RANDOM STUFF.");
+                    player.changeMoney(12);
+                    player.changeEnergy(2);
+                    player.changeFood(1);
+                    player.changeOre(2);
+                    break;
+                case 13:
+                    event = ("ONE OF YOUR FAN-GIRLS DIED. SHE LEFT HER INHERITANCE OF $" + 9*m + " Dollars.");
+                    player.changeMoney(9 * m);
+                    break;
+                case 14:
+                    event = ("YOU LOST YOUR PANTS AND HAD TO BARTER FOR NEW ONES WITH 2 PIECES OF FOOD.");
+                    player.changeFood(-2);
+                    break;
             }
             changeSceneToEvent(event);
         }
@@ -220,29 +212,12 @@ public class MasterController implements Serializable, Packable {
         Player player = GameDuration.getActivePlayer();
 
         if(phase != GamePhase.LandBuyPhase && chanceOfEvent <= CHANCE) {
-            int round = GameDuration.getRound();
-
             Log.debug("Random GOOD event occurring for: " + player.getName());
 
 //            m is the calculation factor
-            int m = 0;
+            int m = getMultiplier();
 
-            switch(round) {
-                case 1: m = 25; break;
-                case 2: m = 25; break;
-                case 3: m = 25; break;
-                case 4: m = 50; break;
-                case 5: m = 50; break;
-                case 6: m = 50; break;
-                case 7: m = 50; break;
-                case 8: m = 75; break;
-                case 9: m = 75; break;
-                case 10: m = 75; break;
-                case 11: m = 75; break;
-                case 12: m = 100; break;
-            }
-
-            int eventId = random.nextInt(4) + 1;
+            int eventId = random.nextInt(8) + 1;
 
             switch(eventId) {
                 case 1:
@@ -256,17 +231,94 @@ public class MasterController implements Serializable, Packable {
                     break;
                 case 3:
                     event = ("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $" + 8*m);
-                    player.changeMoney(8*m);
+                    player.changeMoney(8 * m);
                     break;
                 case 4:
                     event = ("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $" + 2*m);
                     player.changeMoney(2*m);
+                    break;
+                case 5:
+                    event = ("YOU FOUND A GIANT BATTERY AND GOT " + 2*m + " ENERGY.");
+                    player.changeEnergy(2*m);
+                    break;
+                case 6:
+                    event = ("YOU GOT SOME MONEY BY RECYCLING A CAN.");
+                    player.changeMoney(1);
+                    break;
+                case 7:
+                    event = ("YOU LOST THE LOTTERY BUT THE GUY WHO WON GAVE YOU 3 PIECES OF ORE.");
+                    player.changeOre(3);
+                    break;
+                case 8:
+                    event = ("YOU KILLED A DEER AND GOT 10 PIECES OF FOOD.");
+                    player.changeFood(10);
                     break;
             }
             changeSceneToEvent(event);
         }
         getInstance().gameMapView.handleRandomEvent(event);
         getInstance().townMapView.handleRandomEvent(event);
+    }
+
+    public static void roundRandomEvent() {
+        String event = "ROUND EVENT - ALL PLAYERS: ";
+        List<Player> players = GameDuration.getPlayers();
+        Random random = new Random();
+        int eventId = random.nextInt(5) + 1;
+        switch(eventId) {
+            case 1:
+                event += " EVERYONE GETS 2 ORE.";
+                for (Player p : players) {
+                    p.changeOre(2);
+                }
+                break;
+            case 2:
+                event += " EVERYONE GETS $200";
+                for (Player p : players) {
+                    p.changeMoney(200);
+                }
+                break;
+            case 3:
+                event += " EVERYONE GETS 5 FOOD.";
+                for (Player p : players) {
+                    p.changeFood(2);
+                }
+                break;
+            case 4:
+                event += " EVERYONE GETS 3 ENERGY.";
+                for (Player p : players) {
+                    p.changeEnergy(3);
+                }
+                break;
+            case 5:
+                event += " EVERYONE GETS 1 ORE AND 4 FOOD.";
+                for (Player p : players) {
+                    p.changeFood(4);
+                    p.changeOre(1);
+                }
+                break;
+        }
+        changeSceneToEvent(event);
+    }
+
+    public static int getMultiplier() {
+        int round = GameDuration.getRound();
+        int m = 1;
+        switch(round) {
+            case 1: m = 25; break;
+            case 2: m = 25; break;
+            case 3: m = 25; break;
+            case 4: m = 50; break;
+            case 5: m = 50; break;
+            case 6: m = 50; break;
+            case 7: m = 50; break;
+            case 8: m = 75; break;
+            case 9: m = 75; break;
+            case 10: m = 75; break;
+            case 11: m = 75; break;
+            case 12: m = 100; break;
+        }
+        return m;
     }
 
     public static void updateMessages() {
