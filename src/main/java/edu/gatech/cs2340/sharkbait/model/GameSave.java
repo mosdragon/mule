@@ -83,9 +83,8 @@ public final class GameSave implements Serializable, Comparable<GameSave> {
 
   @Override
   public String toString() {
-    String representation = String.format(TEMPLATE, getGameId(),
+    return String.format(TEMPLATE, getGameId(),
         getTimeStamp());
-    return representation;
   }
 
   /**
@@ -94,7 +93,6 @@ public final class GameSave implements Serializable, Comparable<GameSave> {
    * @param other the other GameSave
    * @return a int comparing the timestamp of ths and the other GameSave
    */
-  @Override
   public int compareTo(final GameSave other) {
     Long myTimestamp = timeStamp;
     Long otherTimestamp = other.timeStamp;

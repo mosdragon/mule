@@ -7,7 +7,6 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
 import edu.gatech.cs2340.sharkbait.controller.MasterController;
 import edu.gatech.cs2340.sharkbait.util.Player;
 import edu.gatech.cs2340.trydent.log.Log;
@@ -49,11 +48,6 @@ public final class MongoPersistence {
   private static MongoClient client;
 
   /**
-   * The connection uri for mongo.
-   */
-  private static MongoClientURI uri;
-
-  /**
    * Want only a single result from our find.
    */
   private static final int SINGLE_RESULT = 1;
@@ -68,7 +62,7 @@ public final class MongoPersistence {
    * Helper method to connect to remote Mongo instance.
    */
   private static void connect() {
-    uri = new MongoClientURI(Constants.MONGO_CONNECTION);
+    MongoClientURI uri = new MongoClientURI(Constants.MONGO_CONNECTION);
     client = new MongoClient(uri);
   }
 
@@ -139,9 +133,10 @@ public final class MongoPersistence {
           .getString(MASTER_CONTROLLER);
       MasterController.unpackfromJson(masterController);
 
-      for (Player player : GameDuration.getPlayers()) {
+      GameDuration.getPlayers().forEach(Player::unpack);
+      /*for (Player player : GameDuration.getPlayers()) {
         player.unpack();
-      }
+      }*/
       MasterController.initializeTimeline();
       MasterController.resumeTime();
 

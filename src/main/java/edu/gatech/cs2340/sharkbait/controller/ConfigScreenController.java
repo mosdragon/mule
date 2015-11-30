@@ -109,10 +109,10 @@ public final class ConfigScreenController {
                                             final SplitPane infoPane,
                                             final Button nextButton,
                                             final Text mainGameMessage) {
-
-    for (PlayerConfigView controller : playerConfigViews) {
+    playerConfigViews.forEach(PlayerConfigView::makePlayer);
+    /*for (PlayerConfigView controller : playerConfigViews) {
       controller.makePlayer();
-    }
+    }*/
 
     infoPane.getItems().clear();
 

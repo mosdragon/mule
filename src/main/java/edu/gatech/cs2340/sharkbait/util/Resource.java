@@ -28,7 +28,7 @@ public enum Resource implements Serializable, Packable {
   /**
    * The name to display for the resource.
    */
-  private String name;
+  private final String name;
 
   /**
    * Constructs a Resource with a String name.

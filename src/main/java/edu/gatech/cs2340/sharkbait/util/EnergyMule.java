@@ -1,7 +1,7 @@
 package edu.gatech.cs2340.sharkbait.util;
 
 /**
- * Created by osama on 10/27/15.
+ * Energy Mule class.
  */
 public class EnergyMule extends Mule {
 
@@ -10,7 +10,7 @@ public class EnergyMule extends Mule {
   }
 
   @Override
-  public void handleProduction(Player player) {
+  public final void handleProduction(Player player) {
     PropertyType propertyType = getProperty().getType();
 
     if (propertyType == PropertyType.Plains) {

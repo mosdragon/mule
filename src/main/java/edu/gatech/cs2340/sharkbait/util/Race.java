@@ -32,7 +32,7 @@ public enum Race implements Serializable, Packable {
   /**
    * name field.
    */
-  private String name;
+  private final String name;
 
   /**
    * Race Constructor.
@@ -41,10 +41,5 @@ public enum Race implements Serializable, Packable {
    */
   Race(final String nameField) {
     name = nameField;
-  }
-
-  @Override
-  public String toString() {
-    return super.toString();
   }
 }

@@ -173,13 +173,9 @@ public class GameMapView implements Initializable {
 
     town.setOnMouseClicked(event -> GameMapController.townClicked());
 
-    passButton.setOnMouseClicked(event -> {
-      GameMapController.pass();
-    });
+    passButton.setOnMouseClicked(event -> GameMapController.pass());
 
-    pauseButton.setOnMouseClicked(event -> {
-      MasterController.changeSceneToPauseScreen();
-    });
+    pauseButton.setOnMouseClicked(event -> MasterController.changeSceneToPauseScreen());
   }
 
   /**

@@ -5,7 +5,7 @@ import edu.gatech.cs2340.sharkbait.model.Packable;
 import java.io.Serializable;
 
 /**
- * Created by osama on 9/22/15.
+ * Mule class.
  */
 public abstract class Mule implements Serializable, Packable, MuleInterface {
 

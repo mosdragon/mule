@@ -1,7 +1,7 @@
 package edu.gatech.cs2340.sharkbait.model;
 
 /**
- * Created by osama on 10/17/15.
+ * Constants class.
  */
 public final class Constants {
 
@@ -35,7 +35,7 @@ public final class Constants {
   /**
    * Mule cost.
    */
-  public static final int MULE = 100;
+  private static final int MULE = 100;
 
   /**
    * Ore mule cost.
@@ -66,12 +66,12 @@ public final class Constants {
   /**
    * Database user.
    */
-  public static final String DB_USER = "app";
+  private static final String DB_USER = "app";
 
   /**
    * Database password.
    */
-  public static final String DB_PASS = "sharkbait";
+  private static final String DB_PASS = "sharkbait";
 
   /**
    * Mongo connection.

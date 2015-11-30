@@ -25,7 +25,6 @@ public final class MainApplication extends Application {
    * @param args, the args
    */
   public static void main(final String[] args) {
-    String[] launchArgs = args;
-    launch(launchArgs);
+    launch(args);
   }
 }

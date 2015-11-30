@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Created by sayem on 10/31/15.
+ * Load Screen View class.
  */
 public class LoadScreenView implements Initializable {
 
@@ -42,36 +42,12 @@ public class LoadScreenView implements Initializable {
   @FXML
   private Text mainGameMessage;
 
-  /**
-   * Possible game states. Must find a better way to implement this
-   */
-  private enum State {
-    /**
-     * Not configured state.
-     */
-    NotConfigured,
-    /**
-     * Config game state.
-     */
-    ConfigGame,
-    /**
-     * Config players state.
-     */
-    ConfigPlayers,
-    /**
-     * Begin game state.
-     */
-    BeginGame
-  }
-
   @Override
   public final void initialize(
       final URL location, final ResourceBundle resources) {
     newGameButton.setText("New Game");
 
-    newGameButton.setOnMouseClicked(event -> {
-      MasterController.changeSceneToConfig();
-    });
+    newGameButton.setOnMouseClicked(event -> MasterController.changeSceneToConfig());
 
     loadGameButton.setOnMouseClicked(event -> {
       //Load game

@@ -47,51 +47,16 @@ public final class Player implements Comparable<Player>, Serializable,
   /**
    * List mules.
    */
-  private List<Mule> mules;
+  private final List<Mule> mules;
 
   /**
    * List properties.
    */
-  private List<Property> properties;
+  private final List<Property> properties;
   /**
    * int LAND_COST.
    */
   private static final int LAND_COST = Constants.LAND;
-
-  /**
-   * int ENERGY.
-   */
-  private static final int ENERGY = Constants.ENERGY;
-
-  /**
-   * int FOOD.
-   */
-  private static final int FOOD = Constants.FOOD;
-
-  /**
-   * int ORE.
-   */
-  private static final int ORE = Constants.ORE;
-
-  /**
-   * int MULE.
-   */
-  private static final int MULE = Constants.MULE;
-
-  /**
-   * int ORE_MULE.
-   */
-  private static final int ORE_MULE = Constants.ORE_MULE;
-
-  /**
-   * int FOOD_MULE.
-   */
-  private static final int FOOD_MULE = Constants.FOOD_MULE;
-
-  /**
-   * int ENERGY_MULE.
-   */
-  private static final int ENERGY_MULE = Constants.ENERGY_MULE;
 
   /**
    * int MIN_PRODUCTION_ENERGY.
@@ -384,9 +349,10 @@ public final class Player implements Comparable<Player>, Serializable,
   @Override
   public void unpack() {
     if (properties != null) {
-      for (Property property : properties) {
+      properties.forEach(Property::unpack);
+      /*for (Property property : properties) {
         property.unpack();
-      }
+      }*/
     }
   }
 
@@ -424,7 +390,11 @@ public final class Player implements Comparable<Player>, Serializable,
     return getName();
   }
 
-  @Override
+  /**
+   * Compares players based on money.
+   * @param object the player to compare
+   * @return an int, based on the int .compareTo().
+   */
   public int compareTo(final Player object) {
     Double myMoney = this.money;
     Double thatMoney = object.money;
@@ -438,7 +408,7 @@ public final class Player implements Comparable<Player>, Serializable,
     }
     Player other = (Player) obj;
     return name.equals(other.name) && color.equals(other.color)
-        && race.equals(other.race) && money == other.money;
+        && race.equals(other.race) && money - other.money == 0.0;
   }
 
   @Override

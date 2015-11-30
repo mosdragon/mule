@@ -1,4 +1,4 @@
 /**
- * Created by osama on 11/8/15.
+ * Model Package.
  */
 package edu.gatech.cs2340.sharkbait.model;

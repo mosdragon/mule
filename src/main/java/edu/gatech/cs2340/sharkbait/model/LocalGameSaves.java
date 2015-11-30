@@ -13,7 +13,7 @@ import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 /**
- * Created by osama on 11/2/15.
+ * Class for local game saves.
  */
 public final class LocalGameSaves {
 
@@ -44,9 +44,7 @@ public final class LocalGameSaves {
 
     Gson gson = new Gson();
     Type typeOfList = new TypeToken<List<GameSave>>() {}.getType();
-    List<GameSave> saves = gson.fromJson(gameSavesArray, typeOfList);
-
-    return saves;
+    return gson.fromJson(gameSavesArray, typeOfList);
   }
 
   /**

@@ -126,10 +126,9 @@ public class Tile implements Serializable, Packable {
                                           final int row, final int column) {
     for (Node node : gridPane.getChildren()) {
       if (GridPane.getColumnIndex(node) == column
-          && GridPane.getRowIndex(node) == row) {
-        if (node instanceof Button) {
-          return (Button) node;
-        }
+          && GridPane.getRowIndex(node) == row
+              && (node instanceof Button)) {
+        return (Button) node;
       }
     }
     return null;

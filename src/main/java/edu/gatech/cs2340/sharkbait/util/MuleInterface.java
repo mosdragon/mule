@@ -3,7 +3,7 @@ package edu.gatech.cs2340.sharkbait.util;
 import edu.gatech.cs2340.sharkbait.model.Packable;
 
 /**
- * Created by osama on 10/27/15.
+ * Mule Interface.
  */
 
 public interface MuleInterface extends Packable {

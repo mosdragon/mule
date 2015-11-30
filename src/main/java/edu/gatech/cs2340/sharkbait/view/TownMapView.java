@@ -5,7 +5,6 @@ import edu.gatech.cs2340.sharkbait.model.Constants;
 import edu.gatech.cs2340.sharkbait.model.GameDuration;
 import edu.gatech.cs2340.sharkbait.model.Store;
 import edu.gatech.cs2340.sharkbait.util.Player;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -165,10 +164,6 @@ public class TownMapView implements Initializable {
   private Label ore4;
 
   /**
-   * Timeline timeline.
-   */
-  private Timeline timeline;
-  /**
    * String PHASE.
    */
   private static final String PHASE = "Phase: ";
@@ -176,10 +171,6 @@ public class TownMapView implements Initializable {
    * String PLAYER.
    */
   private static final String PLAYER = "Active Player: ";
-  /**
-   * String TIME_LEFT.
-   */
-  private static final String TIME_LEFT = "Time Remaining: ";
   /**
    * String MULE_TEXT.
    */

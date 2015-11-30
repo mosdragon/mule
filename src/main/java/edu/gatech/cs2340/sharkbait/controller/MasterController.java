@@ -1,18 +1,10 @@
 package edu.gatech.cs2340.sharkbait.controller;
 
-import edu.gatech.cs2340.sharkbait.model.GameConfigs;
-import edu.gatech.cs2340.sharkbait.model.GameDuration;
-import edu.gatech.cs2340.sharkbait.model.GameEvents;
-import edu.gatech.cs2340.sharkbait.model.Packable;
-import edu.gatech.cs2340.sharkbait.model.Packer;
+import edu.gatech.cs2340.sharkbait.model.*;
 import edu.gatech.cs2340.sharkbait.util.Difficulty;
 import edu.gatech.cs2340.sharkbait.util.MapType;
 import edu.gatech.cs2340.sharkbait.util.Player;
-import edu.gatech.cs2340.sharkbait.view.GameMapView;
-import edu.gatech.cs2340.sharkbait.view.PauseScreenView;
-import edu.gatech.cs2340.sharkbait.view.PopupEventView;
-import edu.gatech.cs2340.sharkbait.view.ProductionView;
-import edu.gatech.cs2340.sharkbait.view.TownMapView;
+import edu.gatech.cs2340.sharkbait.view.*;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -25,7 +17,6 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Random;
 
 /**
  * A controller to serve as the glue between model and views.
@@ -46,10 +37,6 @@ public final class MasterController implements Serializable, Packable {
    * Single instance of this class. Helps serialization.
    */
   private static transient MasterController instance;
-  /**
-   * Used for random events.
-   */
-  private transient Random random;
   /**
    * Game timeline to keep track of turns and rounds.
    */
@@ -136,7 +123,7 @@ public final class MasterController implements Serializable, Packable {
    *
    * @return the instance of this controller
    */
-  public static MasterController getInstance() {
+  private static MasterController getInstance() {
     if (instance == null) {
       instance = new MasterController();
     }
@@ -349,7 +336,7 @@ public final class MasterController implements Serializable, Packable {
    *
    * @param event the text of a random event
    */
-  public static void changeSceneToEvent(final String event) {
+  private static void changeSceneToEvent(final String event) {
     pauseTime();
     instance.gameStage.setScene(instance.eventScene);
     instance.popupEventView.setText(event);
@@ -366,7 +353,7 @@ public final class MasterController implements Serializable, Packable {
   /**
    * Pause the game timer.
    */
-  public static void pauseTime() {
+  private static void pauseTime() {
     GameDuration.pause();
   }
 
@@ -397,7 +384,7 @@ public final class MasterController implements Serializable, Packable {
    *
    * @param source the source MasterController instance
    */
-  public static void unpack(final MasterController source) {
+  private static void unpack(final MasterController source) {
     Stage currentStage = instance.gameStage;
     instance = source;
     constructScenes(currentStage);

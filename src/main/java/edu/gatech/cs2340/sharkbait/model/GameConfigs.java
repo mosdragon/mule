@@ -39,7 +39,7 @@ public final class GameConfigs implements Serializable, Packable {
    *
    * @return instance variable that is used throughout.
    */
-  public static GameConfigs getInstance() {
+  private static GameConfigs getInstance() {
     if (instance == null) {
       instance = new GameConfigs();
     }

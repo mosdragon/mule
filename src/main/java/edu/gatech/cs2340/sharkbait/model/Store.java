@@ -59,6 +59,27 @@ public final class Store implements Serializable, Packable {
    * creates instance of store.
    */
   private static transient Store instance;
+  /**
+   * Constant: initial energy.
+   */
+  private static final int INITIAL_ENERGY_BEGINNER = 16;
+  /**
+   * Constant: initial food.
+   */
+  private static final int INITIAL_FOOD_BEGINNER = 16;
+  /**
+   * Constant: initial ore.
+   */
+  private static final int INITIAL_ORE_BEGINNER = 0;
+  /**
+   * Constant: initial mules.
+   */
+  private static final int INITIAL_MULE_BEGINNER = 25;
+  /**
+   * Constant: money message.
+   */
+  private static final String NOT_ENOUGH_MONEY_MESSAGE = "Not enough money!";
+
 
   /**
    * constructor for  store.
@@ -87,17 +108,17 @@ public final class Store implements Serializable, Packable {
 
     if (GameConfigs.getGameDifficulty()
         == Difficulty.Beginner) {
-      getInstance().energyCount = 16;
-      getInstance().foodCount = 16;
-      getInstance().oreCount = 0;
-      getInstance().muleCount = 25;
+      getInstance().energyCount = INITIAL_ENERGY_BEGINNER;
+      getInstance().foodCount = INITIAL_FOOD_BEGINNER;
+      getInstance().oreCount = INITIAL_ORE_BEGINNER;
+      getInstance().muleCount = INITIAL_MULE_BEGINNER;
 
 //To do: ExtraCredit initial store amounts forStandard & Tournament difficulties
     } else {
-      getInstance().energyCount = 8;
-      getInstance().foodCount = 8;
-      getInstance().oreCount = 8;
-      getInstance().muleCount = 14;
+      getInstance().energyCount = INITIAL_ENERGY_BEGINNER;
+      getInstance().foodCount = INITIAL_FOOD_BEGINNER;
+      getInstance().oreCount = INITIAL_ORE_BEGINNER;
+      getInstance().muleCount = INITIAL_MULE_BEGINNER;
     }
   }
 
@@ -114,7 +135,7 @@ public final class Store implements Serializable, Packable {
       player.changeEnergy(1);
       getInstance().energyCount--;
     } else {
-      Log.debug("Not enough money!");
+      Log.debug(NOT_ENOUGH_MONEY_MESSAGE);
     }
   }
 
@@ -131,7 +152,7 @@ public final class Store implements Serializable, Packable {
       player.changeMoney(ENERGY);
       getInstance().energyCount++;
     } else {
-      Log.debug("Not enough energy!");
+      Log.debug(NOT_ENOUGH_MONEY_MESSAGE);
     }
   }
 
@@ -152,21 +173,21 @@ public final class Store implements Serializable, Packable {
           player.changeMoney(-ORE_MULE);
           canAfford = true;
         } else {
-          Log.debug("Not enough money!");
+          Log.debug(NOT_ENOUGH_MONEY_MESSAGE);
         }
       } else if (type == Resource.Energy) {
         if (player.getMoney() >= ENERGY_MULE) {
           player.changeMoney(-ENERGY_MULE);
           canAfford = true;
         } else {
-          Log.debug("Not enough money!");
+          Log.debug(NOT_ENOUGH_MONEY_MESSAGE);
         }
       } else {
         if (player.getMoney() >= FOOD_MULE) {
           player.changeMoney(-FOOD_MULE);
           canAfford = true;
         } else {
-          Log.debug("Not enough money!");
+          Log.debug(NOT_ENOUGH_MONEY_MESSAGE);
         }
       }
 
@@ -192,7 +213,7 @@ public final class Store implements Serializable, Packable {
       player.changeFood(1);
       getInstance().foodCount--;
     } else {
-      Log.debug("Not enough money!");
+      Log.debug(NOT_ENOUGH_MONEY_MESSAGE);
     }
   }
 
@@ -228,7 +249,7 @@ public final class Store implements Serializable, Packable {
       player.changeOre(1);
       getInstance().oreCount--;
     } else {
-      Log.debug("Not enough money!");
+      Log.debug(NOT_ENOUGH_MONEY_MESSAGE);
     }
   }
 
@@ -328,7 +349,7 @@ public final class Store implements Serializable, Packable {
    * @return the cost of an ore
    */
   public static int getOreCost() {
-    return Constants.ORE;
+    return ORE;
   }
 
   /**
@@ -337,7 +358,7 @@ public final class Store implements Serializable, Packable {
    * @return the cost of food
    */
   public static int getFoodCost() {
-    return Constants.FOOD;
+    return FOOD;
   }
 
   /**
@@ -346,7 +367,7 @@ public final class Store implements Serializable, Packable {
    * @return the cost of Energy
    */
   public static int getEnergyCost() {
-    return Constants.ENERGY;
+    return ENERGY;
   }
 
   /**
@@ -355,7 +376,7 @@ public final class Store implements Serializable, Packable {
    * @return the cost of an oreMule
    */
   public static int getOreMuleCost() {
-    return Constants.ORE_MULE;
+    return ORE_MULE;
   }
 
   /**
@@ -364,7 +385,7 @@ public final class Store implements Serializable, Packable {
    * @return the cost of a foodMule
    */
   public static int getFoodMuleCost() {
-    return Constants.FOOD_MULE;
+    return FOOD_MULE;
   }
 
   /**
@@ -373,7 +394,7 @@ public final class Store implements Serializable, Packable {
    * @return the cost of an energyMule
    */
   public static int getEnergyMuleCost() {
-    return Constants.ENERGY_MULE;
+    return ENERGY_MULE;
   }
 
   /**
