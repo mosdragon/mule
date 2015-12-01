@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public enum Race implements Serializable, Packable {
     Human("Human"), Flapper("Flapper"), Buzzite("Buzzite"), Ugaite("Ugaite"),
-    Bonzoid("Bonzoid");
+    Bonzoid("Bonzoid"), Alien("Alien"), CollegeStudent("CollegeStudent");
 
     private String name;
 

@@ -33,7 +33,8 @@ public class GameConfigView implements Initializable {
         ObservableList<Difficulty> difficultyOptions = FXCollections.observableArrayList(
                 Difficulty.Beginner,
                 Difficulty.Standard,
-                Difficulty.Tournament
+                Difficulty.Tournament,
+                Difficulty.Learner
         );
         configDifficulty.setItems(difficultyOptions);
         configDifficulty.setValue(difficultyOptions.get(0));

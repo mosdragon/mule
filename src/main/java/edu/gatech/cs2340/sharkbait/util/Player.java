@@ -44,6 +44,10 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     private static final int STANDARD_ENERGY = 2;
     private static final int STANDARD_ORE = 0;
 
+    private static final int LEARNER_FOOD = 16;
+    private static final int LEARNER_ENERGY = 8;
+    private static final int LEARNER_ORE = 0;
+
     private static final int TOURNAMENT_FOOD = 4;
     private static final int TOURNAMENT_ENERGY = 2;
     private static final int TOURNAMENT_ORE = 0;
@@ -64,10 +68,12 @@ public class Player implements Comparable<Player>, Serializable, Packable {
     private void initializeMoney() {
         if (race == Race.Flapper) {
             money = 1600;
-
         } else if (race == Race.Human) {
             money = 600;
-
+        } else if (race == Race.CollegeStudent) {
+            money = 300;
+        } else if (race == Race.Alien) {
+            money = 1200;
         } else {
             money = 1000;
         }
@@ -81,10 +87,16 @@ public class Player implements Comparable<Player>, Serializable, Packable {
             energy = BEGINNER_ENERGY;
             ore = BEGINNER_ORE;
 
+        } else if (difficulty == Difficulty.Learner) {
+            food = LEARNER_FOOD;
+            energy = LEARNER_ENERGY;
+            ore = LEARNER_ORE;
+
         } else if (difficulty == Difficulty.Standard) {
             food = STANDARD_FOOD;
             energy = STANDARD_ENERGY;
             ore = STANDARD_ORE;
+
 
         } else if (difficulty == Difficulty.Tournament) {
             food = TOURNAMENT_FOOD;

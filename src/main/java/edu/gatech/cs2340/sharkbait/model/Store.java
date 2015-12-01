@@ -41,7 +41,8 @@ public class Store implements Serializable, Packable {
 
     public static void initializeStore() {
 
-        if (GameConfigs.getInstance().getGameDifficulty() == Difficulty.Beginner) {
+        if (GameConfigs.getInstance().getGameDifficulty() == Difficulty.Beginner
+                || GameConfigs.getInstance().getGameDifficulty() == Difficulty.Learner) {
             getInstance().energyCount = 16;
             getInstance().foodCount = 16;
             getInstance().oreCount = 0;
