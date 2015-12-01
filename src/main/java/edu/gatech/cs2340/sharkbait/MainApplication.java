@@ -20,15 +20,6 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         MasterController.initialize(primaryStage);
-        String path = "./src/music3.wav";
-        Media media = new Media(new File(path).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
-        mediaPlayer.onRepeatProperty();
-        mediaPlayer.setCycleCount(AudioClip.INDEFINITE);
-        MediaView mediaView = new MediaView(mediaPlayer);
-
-
 
     }
 

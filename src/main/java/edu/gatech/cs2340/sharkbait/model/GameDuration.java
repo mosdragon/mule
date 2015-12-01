@@ -84,6 +84,7 @@ public class GameDuration implements Serializable, Packable {
         getInstance().phase = GamePhase.LandBuyPhase;
         resetTime();
         getInstance().propertiesMap = new HashMap<>();
+        MasterController.startMusic();
     }
 
     public static Player getActivePlayer() {

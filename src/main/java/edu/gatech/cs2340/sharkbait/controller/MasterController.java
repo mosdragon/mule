@@ -20,9 +20,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Random;
@@ -473,6 +478,7 @@ public class MasterController implements Serializable, Packable {
         Stage currentStage = getInstance().gameStage;
         instance = source;
         constructScenes(currentStage);
+        startMusic();
     }
 
     /**
@@ -505,5 +511,15 @@ public class MasterController implements Serializable, Packable {
 
     public void setGameId(long gameId) {
         getInstance().gameId = gameId;
+    }
+
+    public static void startMusic() {
+        String path = "./src/music3.wav";
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.onRepeatProperty();
+        mediaPlayer.setCycleCount(AudioClip.INDEFINITE);
+//        MediaView mediaView = new MediaView(mediaPlayer);
     }
 }
