@@ -24,6 +24,7 @@ import java.util.List;
 public class ConfigScreenController {
 
     public static void endConfigScreen() {
+        MasterController.setupGameMap();
         MasterController.changeSceneToGameMap();
         GameDuration.begin();
     }

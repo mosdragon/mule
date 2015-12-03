@@ -16,10 +16,15 @@ import edu.gatech.cs2340.trydent.log.Log;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -30,8 +35,16 @@ import javafx.util.Duration;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Observable;
 import java.util.Random;
 import java.util.List;
+import java.util.Set;
 //import java.awt.event.KeyEvent;
 
 /**
@@ -73,6 +86,32 @@ public class MasterController implements Serializable, Packable {
     private transient static MasterController instance;
 
     private long gameId;
+
+    private static class Coordinate {
+        private int row;
+        private int col;
+        private Node button;
+        private Node image;
+
+        public Coordinate(int mRow, int mCol) {
+            row = mRow;
+            col = mCol;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (!(obj instanceof  Coordinate)) {
+                return false;
+            }
+            Coordinate other = (Coordinate) obj;
+            return row == other.row && col == other.col;
+        }
+
+        public Coordinate clone() {
+            Coordinate coord = new Coordinate(row, col);
+            return coord;
+        }
+    }
 
 
     private MasterController() {
@@ -338,6 +377,112 @@ public class MasterController implements Serializable, Packable {
             GameDuration.endTurn();
 //            New turns always begin on game map
             changeSceneToGameMap();
+        }
+    }
+
+    private <T> List<T> getNodesOfType(Pane parent, Class<T> type) {
+        List<T> elements = new ArrayList<>();
+        for (Node node : parent.getChildren()) {
+            if (node instanceof Pane) {
+                elements.addAll(getNodesOfType((Pane) node, type));
+            } else if (type.isAssignableFrom(node.getClass())) {
+                //noinspection unchecked
+                elements.add((T) node);
+            }
+        }
+        return Collections.unmodifiableList(elements);
+    }
+
+    private void updatePositions() {
+        GridPane grid = getGrid();
+
+        int num_cols = grid.getColumnConstraints().size();
+        int num_rows = grid.getRowConstraints().size();
+
+        Set<Coordinate> unused_coords = new HashSet<>();
+
+        for (int r = 0; r <= num_rows; r++)
+        {
+            for (int c = 0; c <= num_cols; c++) {
+                Coordinate coord = new Coordinate(r, c);
+                unused_coords.add(coord);
+            }
+        }
+
+
+        List<Coordinate> coord_keys = new ArrayList<>(unused_coords);
+
+        List<Coordinate> shuffled_coords = new ArrayList<>(unused_coords);
+        Collections.shuffle(shuffled_coords);
+
+//            Map coordinate keys to shuffled coordinates
+        Map<Coordinate, Coordinate> updates = new HashMap<>();
+
+        for (int i = 0; i < coord_keys.size(); i++) {
+            updates.put(coord_keys.get(i), shuffled_coords.get(i));
+        }
+
+
+        Set<Coordinate> used_coords = new HashSet<>();
+
+        ObservableList<Node> children =  grid.getChildren();
+
+        int index = 0;
+        for (Node child : children) {
+            int row = GridPane.getRowIndex(child);
+            int col = GridPane.getColumnIndex(child);
+            Coordinate old_spot = new Coordinate(row, col);
+
+            Coordinate new_spot = updates.get(old_spot);
+
+            if (new_spot != null) {
+                if (child instanceof Button) {
+                    new_spot.button = child;
+                } else if(child instanceof ImageView) {
+                    new_spot.image = child;
+                }
+            }
+        }
+
+        List<Button> buttons = getNodesOfType(grid, Button.class);
+        List<ImageView> imageViews = getNodesOfType(grid, ImageView.class);
+
+        for (Button child : buttons) {
+            int row = GridPane.getRowIndex(child);
+            int col = GridPane.getColumnIndex(child);
+            Coordinate old_spot = new Coordinate(row, col);
+
+            Coordinate new_spot = updates.get(old_spot);
+
+            if (new_spot != null) {
+                if (child instanceof Button) {
+                    new_spot.button = child;
+                } else if(child instanceof ImageView) {
+                    new_spot.image = child;
+                }
+            }
+        }
+
+
+
+        for (Coordinate coord : updates.values()) {
+            if (coord.button != null) {
+                Log.debug("Updating button pos");
+                GridPane.setColumnIndex(coord.button, coord.col);
+                GridPane.setRowIndex(coord.button, coord.row);
+            }
+            if (coord.image != null) {
+                Log.debug("Updating image pos");
+                GridPane.setColumnIndex(coord.image, coord.col);
+                GridPane.setRowIndex(coord.image, coord.row);
+            }
+        }
+    }
+
+    public static void setupGameMap() {
+        if (GameConfigs.getMapType() == MapType.RandomMap) {
+            Log.debug("setup Game Map for randommap");
+            getInstance().updatePositions();
         }
     }
 
