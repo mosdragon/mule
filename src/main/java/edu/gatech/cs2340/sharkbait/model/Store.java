@@ -41,14 +41,20 @@ public class Store implements Serializable, Packable {
 
     public static void initializeStore() {
 
-        if (GameConfigs.getInstance().getGameDifficulty() == Difficulty.Beginner
-                || GameConfigs.getInstance().getGameDifficulty() == Difficulty.Learner) {
+        if (GameConfigs.getInstance().getGameDifficulty() == Difficulty.Beginner) {
             getInstance().energyCount = 16;
             getInstance().foodCount = 16;
             getInstance().oreCount = 0;
             getInstance().muleCount = 25;
 
-//        TODO: Extra Credit initial store amounts for Standard & Tournament difficulties
+//        TODO: Extra Credit initial store amounts for Standard & Tournament & Learner difficulties
+        } else if (GameConfigs.getGameDifficulty() == Difficulty.Learner) {
+
+            getInstance().energyCount = 12;
+            getInstance().foodCount = 12;
+            getInstance().oreCount = 4;
+            getInstance().muleCount = 22;
+
         } else {
             getInstance().energyCount = 8;
             getInstance().foodCount = 8;
